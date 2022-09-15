@@ -1,0 +1,41 @@
+:root {
+  --text-color: #153c3f;
+  --bg-one: #00c8e1;
+  --bg-two: #00ec8b;
+  --bg-three: #153c3f;
+  --bg-footer: #153c3f;
+  --color-footer: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: rtl;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+/* styles to apply globally */
+.logo {
+  width: 90px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.solid-shadow {
+  box-shadow: -6px 6px 0px #153c3f;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}

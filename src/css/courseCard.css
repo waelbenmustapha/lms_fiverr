@@ -1,0 +1,17 @@
+.card {
+  position: relative;
+  width: 475px;
+  height: 450px;
+}
+.card-header {
+  position: relative;
+  width: 100%;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.actions {
+  width: 100%;
+}

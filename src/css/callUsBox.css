@@ -1,0 +1,32 @@
+/* call us box */
+.call-us {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 100px 20px;
+  background-color: var(--bg-two);
+}
+
+.call-us .title {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.call-us .description {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.btn-call-us {
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  padding: 16px 60px;
+  color: #ffffff;
+  background-color: var(--text-color);
+  cursor: pointer;
+}
