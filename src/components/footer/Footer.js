@@ -1,8 +1,8 @@
 import React from "react";
-import "../css/footer.css";
-import logo from "../assets/images/logo.png";
-import { ReactComponent as Twitter } from "../assets/svg/twitter.svg";
-import { ReactComponent as Linkedin } from "../assets/svg/linkedin.svg";
+import "./footer.css";
+import logo from "../../assets/images/logo.png";
+import { ReactComponent as Twitter } from "../../assets/svg/twitter.svg";
+import { ReactComponent as Linkedin } from "../../assets/svg/linkedin.svg";
 
 function Footer() {
   return (

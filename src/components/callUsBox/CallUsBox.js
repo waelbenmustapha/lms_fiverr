@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/callUsBox.css";
+import "./callUsBox.css";
 
 function CallUsBox() {
   return (

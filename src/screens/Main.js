@@ -1,17 +1,16 @@
-import React from 'react'
-import CallUsBox from '../components/CallUsBox'
-import CourseCard from '../components/CourseCard'
-import Footer from '../components/Footer'
-import NavBar from '../components/NavBar'
+import React from "react";
+import Footer from "../components/footer/Footer";
+import NavBar from "../components/navbar/NavBar";
+import { Outlet } from "react-router-dom";
 
 function Main() {
   return (
-<>
-<NavBar />
-<CourseCard />
-<CallUsBox />
-<Footer />
-</>  )
+    <>
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </>
+  );
 }
 
-export default Main
+export default Main;
