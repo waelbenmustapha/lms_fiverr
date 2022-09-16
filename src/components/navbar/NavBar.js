@@ -6,21 +6,21 @@ import { NavBarRoutes } from "../../utils/Routes";
 function NavBar() {
   return (
     <nav>
-      <div class="navigation">
+      <div className="navigation">
         <a href="#">
-          <img class="logo" src={logo} alt="logo" />
+          <img className="logo" src={logo} alt="logo" />
         </a>
-        <div class="links">
+        <div className="links">
           <ul>
-            {NavBarRoutes.map((route) => (
-              <li>
+            {NavBarRoutes.map((route, index) => (
+              <li key={index}>
                 <a href={route.path}>{route.name}</a>
               </li>
             ))}
           </ul>
         </div>
       </div>
-      <button class="btn-register">تسجيل الدخول</button>
+      <button className="btn-register">تسجيل الدخول</button>
     </nav>
   );
 }

@@ -1,0 +1,25 @@
+.top-programs {
+  margin-bottom: 60px;
+}
+
+.see-more {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 10px 64px;
+}
+
+.see-more-btn {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 14px 24px;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  background-color: var(--bg-three);
+  cursor: pointer;
+}

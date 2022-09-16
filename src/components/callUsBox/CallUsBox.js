@@ -1,14 +1,12 @@
 import React from "react";
 import "./callUsBox.css";
 
-function CallUsBox() {
+function CallUsBox({ title, description }) {
   return (
-    <div class="call-us">
-      <p class="title mb-20">تواصل معنا ؟</p>
-      <p class="description mb-20">
-        تواصل معنا لمساعدتك على تحديد الدورة الأنسب لك
-      </p>
-      <button class="btn-call-us">تواصل معنا</button>
+    <div className="call-us">
+      <p className="title mb-20">{title}</p>
+      <p className="description mb-20">{description}</p>
+      <button className="btn-call-us">تواصل معنا</button>
     </div>
   );
 }

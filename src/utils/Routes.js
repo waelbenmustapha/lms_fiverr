@@ -1,3 +1,4 @@
+import CourseDetails from "../screens/mainScreens/courseDetails/CourseDetails";
 import Info from "../screens/mainScreens/info/Info";
 import Lessons from "../screens/mainScreens/lessons/Lessons";
 import News from "../screens/mainScreens/news/News";
@@ -36,5 +37,12 @@ export const NavBarRoutes = [
     path: "info",
     component: <Info />,
     name: "من نحن",
+  },
+];
+
+export const AppRoutes = [
+  {
+    path: "course-details",
+    component: <CourseDetails />,
   },
 ];

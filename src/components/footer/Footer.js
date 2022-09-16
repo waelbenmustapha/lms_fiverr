@@ -8,10 +8,10 @@ function Footer() {
   return (
     <footer>
       <a href="#">
-        <img class="logo" src={logo} alt="logo" />
+        <img className="logo" src={logo} alt="logo" />
       </a>
-      <div class="footer-content">
-        <div class="footer-nav mb-20">
+      <div className="footer-content">
+        <div className="footer-nav mb-20">
           <ul>
             <li>
               <a href="#">سياسة الخصوصية</a>
@@ -26,7 +26,7 @@ function Footer() {
         </div>
         <p>&copy; 2022 جميع الحقوق محفوظة ابرامج قدقبي قلقذ</p>
       </div>
-      <div class="social-icons">
+      <div className="social-icons">
         <Twitter />
         <Linkedin />
       </div>
