@@ -16,9 +16,9 @@
 }
 
 .dataElement {
-  padding: 17px 80px 17px 17px;
-
+  padding: 17px 80px 17px 64px;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
 }
 
@@ -32,7 +32,7 @@
   background-color: rgb(21, 60, 63, 0.05);
 }
 .datascroll {
-  max-height: 700px;
+  height: 700px;
   overflow-y: scroll;
 }
 .datascroll::-webkit-scrollbar {

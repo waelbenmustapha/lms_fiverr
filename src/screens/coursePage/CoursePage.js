@@ -10,6 +10,7 @@ function CoursePage() {
       {
         name: "مقدمة عن البرنامج",
         progress: 15,
+        locked:false,
         content: [
           {
             id: "1",
@@ -56,6 +57,8 @@ function CoursePage() {
       {
         name: "مقدمة عن البرنامج",
         progress: 0,
+        locked:true,
+
         content: [
           {
             id: "7",
@@ -76,16 +79,42 @@ function CoursePage() {
   return (
     <div className="container">
       <div className="sidebar">
-        <p
+        <div
           style={{
-            fontSize: "16px",
             marginBottom: "40px",
-            fontFamily: "bold",
+            marginTop: "76px",
+            display:"flex",
+            alignItems:"center",
+            gap:"20px",
             marginRight: "60px",
           }}
+         
         >
-          تقدمك بالبرنامج:
-        </p>
+          <p
+            style={{
+              fontSize: "16px",
+              fontFamily: "bold",
+            }}
+          >
+            تقدمك بالبرنامج:
+          </p>
+          <div className="percent">
+            <svg>
+              <circle cx="28" cy="28" r="25"></circle>
+              <circle
+                cx="28"
+                cy="28"
+                r="25"
+                style={{ "--percent": courseData.totalProgress }}
+              ></circle>
+            </svg>
+            <div className="number">
+              <h3>
+                {courseData.totalProgress}<span>%</span>
+              </h3>
+            </div>
+          </div>
+        </div>
         <div className="datascroll">
           {courseData.sections.map((element) => (
             <DataElement
@@ -96,9 +125,22 @@ function CoursePage() {
           ))}
         </div>
         <div className="contactHelp">
-          <img style={{ left: "20px", top: "30px",position:"absolute" }} src={helpme} />
-          <p style={{fontFamily:"bold",fontSize:"16px",color:"#153C3F",marginRight:"15px"}}><p>في حال كنت </p>  تواجه مشاكل في برامجك<p> التدريبية، تواصل مع فريق الدعم</p></p>
-        <p className="btnhelp">تواصل معنا</p>
+          <img
+            style={{ left: "20px", top: "30px", position: "absolute" }}
+            src={helpme}
+          />
+          <p
+            style={{
+              fontFamily: "bold",
+              fontSize: "16px",
+              color: "#153C3F",
+              marginRight: "15px",
+            }}
+          >
+            <p>في حال كنت </p> تواجه مشاكل في برامجك
+            <p> التدريبية، تواصل مع فريق الدعم</p>
+          </p>
+          <p className="btnhelp">تواصل معنا</p>
         </div>
       </div>
       <div></div>

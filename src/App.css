@@ -113,3 +113,48 @@ body {
 .swiper {
   padding: 40px 64px !important;
 }
+
+.percent {
+  position: relative;
+  margin-left: 16px;
+}
+
+.percent svg {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  transform: rotate(-90deg);
+}
+
+.percent svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f0f0f0;
+  stroke-width: 5;
+}
+
+.percent svg circle:last-of-type {
+  stroke-dasharray: 156px;
+  stroke-dashoffset: calc(156px - (156px * var(--percent)) / 100);
+  stroke: var(--bg-two);
+}
+
+.percent .number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.percent .number h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-green);
+  margin-bottom: 5px;
+}
+.lesson-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
