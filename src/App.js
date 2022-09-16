@@ -14,6 +14,7 @@ function App() {
           {ConvertRoutes(AppRoutes)}
           {ConvertRoutes(NavBarRoutes)}
         </Route>
+
       </Routes>
     </BrowserRouter>
   );
