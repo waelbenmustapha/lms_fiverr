@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
+import { ReactComponent as Book } from "../../assets/svg/bookOpen.svg";
+import { ReactComponent as Play } from "../../assets/svg/play-circle.svg";
 function DataElement({ element, selectedData, setSelectedData }) {
   const [collapse, setCollapse] = useState(false);
   console.log(element);
@@ -28,7 +30,7 @@ function DataElement({ element, selectedData, setSelectedData }) {
           {element.name}
         </p>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          {element.locked&&<Lock style={{opacity:0.2}}/>}
+          {element.locked && <Lock style={{ opacity: 0.2 }} />}
           <Arrow style={{ rotate: !collapse ? "180deg" : "0deg" }} />
         </div>
       </div>
@@ -36,13 +38,18 @@ function DataElement({ element, selectedData, setSelectedData }) {
         <div className="datatypes">
           {element.content.map((el) => (
             <div
-              onClick={() => setSelectedData(el.id)}
+              onClick={() => setSelectedData({...el})}
               className={
                 "dataElement hover-cursor " +
                 (el.finished ? "isElementFinished " : " ") +
-                (el.id === selectedData ? "selected " : " ")
+                (el.id === selectedData.id ? "selected " : " ")
               }
             >
+              {el.type === "text" ? (
+                <Book style={{ height: "14px", width: "14px" }} />
+              ) : el.type === "video" ? (
+                <Play style={{ height: "14px", width: "14px" }} />
+              ) : null}
               <p>{el.name}</p>
             </div>
           ))}
