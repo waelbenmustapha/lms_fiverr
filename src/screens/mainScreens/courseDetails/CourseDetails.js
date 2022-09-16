@@ -1,5 +1,5 @@
 import { useRef } from "react";
-// import local style
+import { Link } from "react-router-dom";
 import "./courseDetails.css";
 
 // Import Swiper React components
@@ -11,21 +11,27 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/navigation";
 
+// Import SVG
+import { ReactComponent as ArrowLeft } from "../../../assets/svg/arrowLeft.svg";
+import { ReactComponent as ArrowRight } from "../../../assets/svg/arrowRight.svg";
+
+//import Images
+import image1 from "../../../assets/images/image1.png";
+import image2 from "../../../assets/images/image2.png";
+
 // import components
 import CallUsBox from "../../../components/callUsBox/CallUsBox";
 import Header from "../../../components/header/Header";
 import ScoreBox from "../../../components/scoreBox/ScoreBox";
 import Collapsible from "../../../components/Collapsible/Collapsible";
-
-// Import SVG
-import { ReactComponent as ArrowLeft } from "../../../assets/svg/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../../assets/svg/arrowRight.svg";
+import ProgramContentCard from "../../../components/programContentCard/ProgramContentCard";
 
 SwiperCore.use([Navigation]);
 
 function CourseDetails() {
   // Swiper instance
   const swiperLearningRef = useRef(null);
+  const swiperProgContentRef = useRef(null);
 
   // skills about to learn from the program
   const skills = [
@@ -58,6 +64,40 @@ function CourseDetails() {
     {
       number: 4,
       description: "مثال لأحد أهداف الدورة وسمثال لأحد أهداف الدورة وس",
+    },
+  ];
+
+  //program content
+  const programContent = [
+    {
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
     },
   ];
 
@@ -173,18 +213,63 @@ function CourseDetails() {
         {/* --------------- program content -------------------- */}
         <div className="program-content">
           <div className="swiper-navigation-header">
-            <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
+            <p className="title">محتوى البرنامج</p>
             <div className="swipe-btns">
               <ArrowRight
-                onClick={() => swiperLearningRef.current.swiper.slidePrev()}
+                onClick={() => swiperProgContentRef.current.swiper.slidePrev()}
                 className="icon"
               />
               <ArrowLeft
-                onClick={() => swiperLearningRef.current.swiper.slideNext()}
+                onClick={() => swiperProgContentRef.current.swiper.slideNext()}
                 className="icon"
               />
             </div>
           </div>
+          <div className="programs-content-category">
+            <p className="title">عناوين البرنامة</p>
+            <div className="btn-title-category active">
+              <span>مقدمة عن البرنامة</span>
+            </div>
+            <div className="btn-title-category">
+              <span>أساسيات الدورة</span>
+            </div>
+            <div className="btn-title-category">
+              <span>أساسيات الدورة ٢</span>
+            </div>
+            <div className="btn-title-category">
+              <span>أساسيات الدورة ٣</span>
+            </div>
+          </div>
+          <Swiper
+            ref={swiperProgContentRef}
+            dir="rtl"
+            spaceBetween={20}
+            slidesPerView={2.5}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[Navigation]}
+          >
+            {programContent.map((item, index) => (
+              <SwiperSlide key={index}>
+                <ProgramContentCard
+                  title={item.title}
+                  description={item.description}
+                  image={item.image}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <div className="full text-center mt-40">
+            <Link to={"/course-details"} className="enroll-program-btn">
+              انضم للدورة التدريبية
+            </Link>
+          </div>
+        </div>
+        {/* ------- devider ------ */}
+        <div className="full p-horizontal">
+          <div className="devider"></div>
         </div>
         {/* --------------- top asked questions ------------- */}
         <div className="top-asked-questions p-horizontal">
@@ -198,6 +283,10 @@ function CourseDetails() {
               </div>
             ))}
           </div>
+        </div>
+        {/* ------- devider ------ */}
+        <div className="full p-horizontal">
+          <div className="devider"></div>
         </div>
       </div>
       <CallUsBox

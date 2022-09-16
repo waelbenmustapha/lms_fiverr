@@ -25,7 +25,7 @@ function Lessons() {
       />
       <div className="lessons-container">
         <TopPrograms />
-        <div className="full px-64 mb-40">
+        <div className="full p-horizontal mb-40">
           <div className="devider"></div>
         </div>
         <Programs />

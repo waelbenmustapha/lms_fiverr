@@ -1,0 +1,75 @@
+.program-content-card {
+  position: relative;
+  max-width: 475px;
+  height: 250px;
+  overflow: hidden;
+}
+
+.program-content-card img {
+  width: 100%;
+  height: 100%;
+}
+
+.image-overlay-bg {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 60, 63, 80%);
+  overflow: hidden;
+}
+
+.program-content-card:hover .image-overlay-bg {
+  display: block;
+}
+
+.image-overlay-content {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 70%;
+  padding: 24px;
+  background-color: var(--bg-two);
+  transform: translateY(100%);
+  transition: 0.5s;
+}
+
+.image-overlay-bg:hover .image-overlay-content {
+  transform: translateY(0%);
+}
+
+.overlay-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.overlay-description {
+  font-size: 16px;
+}
+
+.overlay-btn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: #ffffff;
+  text-decoration: none;
+  box-shadow: 2px 2px 0px #153c3f;
+  cursor: pointer;
+}
+
+.overlay-btn-icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+}
