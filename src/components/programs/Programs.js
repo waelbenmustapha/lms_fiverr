@@ -41,7 +41,6 @@ function Programs() {
           <span>برامج ابرامج ابرامج ا</span>
         </div>
       </div>
-      {/* ********* 2 row swiper ************ */}
       <div className="programs-header">
         <p className="title">جميع البرامج</p>
         <div className="swipe-btns">
