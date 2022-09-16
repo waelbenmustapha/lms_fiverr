@@ -1,0 +1,30 @@
+.scoreBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 130px;
+  width: 100%;
+  padding: 100px 20px;
+  background-color: var(--bg-two);
+  transform: translate(6px, -6px);
+}
+.score-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.score-item .icon {
+  width: 100px;
+  width: 100px;
+}
+
+.score-item-content .title {
+  font-size: 54px;
+  font-weight: bold;
+}
+.score-item-content .description {
+  font-size: 28px;
+  font-weight: bold;
+}

@@ -1,0 +1,34 @@
+.collapsible {
+  cursor: pointer;
+}
+
+.collapsible-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px;
+}
+
+.collapsible-label {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+}
+
+.collapsible-icon {
+  width: 17px;
+  height: 8px;
+}
+
+.collapsible-content {
+  font-size: 20px;
+  padding: 10px 32px 32px 32px;
+}
+
+.collapsible-content-parent {
+  height: 0px;
+  overflow: hidden;
+  transition: height ease 0.38s;
+}

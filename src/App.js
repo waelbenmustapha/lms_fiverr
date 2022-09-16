@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { NavBarRoutes ,NormalRoutes} from "./utils/Routes";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NavBarRoutes, AppRoutes, NormalRoutes } from "./utils/Routes";
 import Main from "./screens/Main";
 import { ConvertRoutes } from "./utils/ConvertRoutes";
 
@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={"/"} element={<Main />}>
+          {ConvertRoutes(AppRoutes)}
           {ConvertRoutes(NavBarRoutes)}
           {ConvertRoutes(NormalRoutes)}
         </Route>

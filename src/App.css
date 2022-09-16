@@ -10,6 +10,7 @@
 }
 :root {
   --text-color: #153c3f;
+  --text-green: #00ec8b;
   --bg-one: #00c8e1;
   --bg-two: #00ec8b;
   --bg-three: #153c3f;
@@ -41,8 +42,13 @@ body {
   cursor: pointer;
 }
 
-.solid-shadow {
-  box-shadow: -6px 6px 0px #153c3f;
+.custom-shadow-box {
+  width: 100%;
+  background-color: var(--bg-three);
+}
+
+.mb-16 {
+  margin-bottom: 16px;
 }
 
 .mb-20 {
@@ -50,3 +56,60 @@ body {
 }
 
 .hover-cursor:hover{cursor: pointer;}
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.px-64 {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.p-horizontal {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.full {
+  width: 100%;
+}
+
+.devider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(21, 60, 63, 0.1);
+}
+
+/* -------- swiper style -------- */
+.swiper-navigation-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 64px;
+}
+
+.swiper-navigation .title {
+  font-size: 32px;
+  color: var(--text-color);
+}
+
+.swipe-btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.swipe-btns .icon {
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.swiper {
+  padding: 40px 64px !important;
+}
