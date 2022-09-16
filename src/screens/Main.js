@@ -5,11 +5,11 @@ import { Outlet } from "react-router-dom";
 
 function Main() {
   return (
-    <>
+    <div style={{position:"relative",minHeight:"100vh",paddingBottom:"100px"}}>
       <NavBar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 
