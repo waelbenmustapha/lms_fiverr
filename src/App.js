@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavBarRoutes, AppRoutes, NormalRoutes } from "./utils/Routes";
+import { NavBarRoutes, AppRoutes } from "./utils/Routes";
 import Main from "./screens/Main";
 import { ConvertRoutes } from "./utils/ConvertRoutes";
 
@@ -13,7 +13,6 @@ function App() {
         <Route path={"/"} element={<Main />}>
           {ConvertRoutes(AppRoutes)}
           {ConvertRoutes(NavBarRoutes)}
-          {ConvertRoutes(NormalRoutes)}
         </Route>
 
       </Routes>
