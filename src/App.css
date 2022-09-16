@@ -26,8 +26,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "regular",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "regular", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
@@ -55,14 +54,15 @@ body {
   margin-bottom: 20px;
 }
 
-.hover-cursor:hover{cursor: pointer;}
-.mb-40 {
-  margin-bottom: 40px;
+.hover-cursor:hover {
+  cursor: pointer;
+}
+.mt-40 {
+  margin-top: 40px;
 }
 
-.px-64 {
-  padding-left: 64px;
-  padding-right: 64px;
+.mb-40 {
+  margin-bottom: 40px;
 }
 
 .p-horizontal {
@@ -72,6 +72,10 @@ body {
 
 .full {
   width: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .devider {

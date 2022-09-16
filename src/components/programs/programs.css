@@ -33,8 +33,7 @@
   cursor: pointer;
 }
 
-.btn-category.active,
-.btn-category:hover {
+.btn-category.active {
   background-color: var(--bg-two);
 }
 
