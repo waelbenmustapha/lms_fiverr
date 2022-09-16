@@ -94,7 +94,7 @@ body {
   padding: 0px 64px;
 }
 
-.swiper-navigation .title {
+.swiper-navigation-header .title {
   font-size: 32px;
   color: var(--text-color);
 }
