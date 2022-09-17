@@ -67,7 +67,7 @@ function DataElement({ element, selectedContent, setselectedContent ,collapsed }
               {el.type === "text" ? (
                 <Book style={{ height: "14px", width: "14px" }} />
               ) : el.type === "video" ? (
-                <Play style={{ height: "14px", width: "14px" }} />
+                <Play  style={{ color:"#153C3F",height: "14px", width: "14px" }} />
               ) : null}
               <p>{el.name}</p>
             </div>
