@@ -20,7 +20,11 @@ function NavBar() {
               <div>
                 <li
                   className={
-                    location.pathname.startsWith(route.path) ? "active" : ""
+                    location.pathname.startsWith(route.path) ||
+                    (location.pathname === "/" &&
+                      route.path === "/academy-lessons")
+                      ? "active"
+                      : ""
                   }
                   onClick={() => navigate(route.path)}
                   key={index}
