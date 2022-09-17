@@ -23,8 +23,6 @@ import Header from "../../../components/header/Header";
 import ScoreBox from "../../../components/scoreBox/ScoreBox";
 import Collapsible from "../../../components/Collapsible/Collapsible";
 import ProgramContentCard from "../../../components/programContentCard/ProgramContentCard";
-// fake data
-import dummydata from "../../../assets/data.js";
 
 SwiperCore.use([Navigation]);
 
@@ -48,20 +46,15 @@ function CourseDetails() {
 
   // get all Course Data
   const getData = () => {
-    // axios
-    //   .get("https://mocki.io/v1/1e9d9da5-2773-455c-83c5-2fb8dc0fcf34")
-    //   .then((res) => {
-    //     setData(res.data);
-    //     setProgramTitles(res.data.program_titles);
-    //     setProgramContent(res.data.program_content);
-    //     setLearningProcess(res.data.learning_process);
-    //     setSkills(res.data.skills_gained);
-    //   });
-    setData(dummydata);
-    setProgramTitles(dummydata.program_titles);
-    setProgramContent(dummydata.program_content);
-    setLearningProcess(dummydata.learning_process);
-    setSkills(dummydata.skills_gained);
+    axios
+      .get("https://mocki.io/v1/770e18db-6039-4c9f-99b3-85ba02825045")
+      .then((res) => {
+        setData(res.data);
+        setProgramTitles(res.data.program_titles);
+        setProgramContent(res.data.program_content);
+        setLearningProcess(res.data.learning_process);
+        setSkills(res.data.skills_gained);
+      });
   };
 
   // get all programs
@@ -94,7 +87,7 @@ function CourseDetails() {
           description1="ساعة مسجلة"
           title2={`${data.related_article}+`}
           description2="مقال ذات صلة"
-          title3={`${data.program_completion}+`}
+          title3={data.program_completion}
           description3="إتمام البرنامج"
         />
 
@@ -225,7 +218,10 @@ function CourseDetails() {
                 ))}
             </Swiper>
             <div className="full text-center mt-40">
-              <Link to={"/academy-lessons/course-details"} className="enroll-program-btn">
+              <Link
+                to={"/academy-lessons/course-details"}
+                className="enroll-program-btn"
+              >
                 انضم للدورة التدريبية
               </Link>
             </div>

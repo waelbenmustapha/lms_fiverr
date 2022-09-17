@@ -6,6 +6,7 @@ function HelpMe() {
       <img
         style={{ left: "20px", top: "30px", position: "absolute" }}
         src={helpme}
+        alt="help"
       />
       <div
         style={{

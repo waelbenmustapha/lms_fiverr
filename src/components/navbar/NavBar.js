@@ -11,7 +11,7 @@ function NavBar() {
   return (
     <nav>
       <div className="navigation">
-        <a href="#">
+        <a href="/">
           <img className="logo" src={logo} alt="logo" />
         </a>
         <div className="links">
@@ -29,7 +29,7 @@ function NavBar() {
                   onClick={() => navigate(route.path)}
                   key={index}
                 >
-                  <a>{route.name}</a>
+                  <span>{route.name}</span>
                 </li>
               </div>
             ))}

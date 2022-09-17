@@ -7,6 +7,7 @@ import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
 import HelpMe from "../../components/coursePage/HelpMe";
+
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
   const [courseData, setCourseData] = useState(null);
@@ -85,19 +86,31 @@ function CoursePage() {
               <ReactPlayer
                 controls={true}
                 playIcon={
-                  <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
                     <PlayButton
                       style={{ color: "white", height: "56px", width: "56px" }}
                       stroke="white"
                     />
-                    <p style={{ fontSize: "24px", fontFamily: "bold",color:"white" }}>
+                    <p
+                      style={{
+                        fontSize: "24px",
+                        fontFamily: "bold",
+                        color: "white",
+                      }}
+                    >
                       شغل الفيديو
                     </p>
                   </div>
                 }
                 onClickPreview={() => console.log("hi")}
                 playing={true}
-                
                 light={"https://i.postimg.cc/cCX0D6vw/Mask-group-1.png"}
                 key={selectedContent.id}
                 className="react-player"
