@@ -1,189 +1,197 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import helpme from "../../assets/images/helpme.png";
 import DataElement from "../../components/coursePage/DataElement";
 import ReactPlayer from "react-player";
-
+import axios from "axios";
 import "./coursePage.css";
 function CoursePage() {
-  const courseData = {
-    totalProgress: 6,
-    sections: [
-      {
-        name: "مقدمة عن البرنامج",
-        progress: 15,
-        locked: false,
-        content: [
-          {
-            id: "1",
-            url: "https://www.dailymotion.com/video/x8da13x",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق.",
-            type: "video",
-            name: "مقدمة",
-            finished: true,
-          },
-          {
-            url: "videos/sample.mp4",
-            id: "2",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شrandom أزرق.",
-            type: "video",
-            name: "مقدمة ٢",
-            finished: true,
-          },
-          {
-            id: "3",
-            text: "مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلدمكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلدمكتوب على ثوب أخضر ومغلف بجلدمكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلدمكتوب على ثوب أخضر ومغلف بجلد مكتوب على ثوب أخضر ومغلف بجلد",
-            name: "مقال",
-            type: "text",
-            finished: true,
-          },
-          {
-            id: "4",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شrandom أزرق.",
-            url: "https://www.dailymotion.com/video/x8dnw8k",
-            name: "مقدمة ١",
-            type: "video",
-            finished: false,
-          },
-          {
-            id: "5",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شrandom أزرق.",
-            url: "https://www.dailymotion.com/video/x8da13x",
+  const [courseData, setCourseData] = useState(null);
 
-            name: "دليل",
-            type: "video",
-            finished: false,
-          },
-          {
-            id: "6",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شrandom أزرق.",
+  const [selectedData, setSelectedData] = useState(null);
 
-            name: "مقدمة ٢",
-            type: "text",
-            finished: false,
-          },
-        ],
-      },
-      {
-        name: "مقدمة عن البرنامج",
-        progress: 0,
-        locked: true,
-
-        content: [
-          {
-            id: "7",
-            text: "نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرق. ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شrandom أزرق.",
-            type: "video",
-            url: "https://www.dailymotion.com/video/x7tiax2",
-
-            name: "مقدمة",
-            finished: true,
-          },
-          {
-            id: "8",
-            url: "https://www.dailymotion.com/video/x8dnw8k",
-
-            text: "م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح م له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص ح",
-            type: "video",
-            name: "مقدمة",
-            finished: true,
-          },
-        ],
-      },
-    ],
-  };
-  const [selectedData, setSelectedData] = useState(
-    courseData.sections[0].content[0]
-  );
-
-  return (
-    <div className="container">
-      <div className="sidebar">
-        <div className="onScreenContent">
-          <div
-            style={{
-              marginBottom: "40px",
-              marginTop: "76px",
-              display: "flex",
-              alignItems: "center",
-              gap: "20px",
-              marginRight: "60px",
-            }}
-          >
-            <p
+  function fetchCourseData() {
+    axios
+      .get("https://mocki.io/v1/09157feb-9534-4ca0-a50b-c98e012acd02")
+      .then((res) => {
+        setCourseData(res.data);
+        setSelectedData(res.data?.sections[0].content[0]);
+      });
+  }
+  useEffect(() => {
+    fetchCourseData();
+  }, []);
+  if (courseData == null || selectedData == null) {
+    return (
+      <div>
+        <p>Loading</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        <div className="sidebar">
+          <div className="onScreenContent">
+            <div
               style={{
-                fontSize: "16px",
-                fontFamily: "bold",
+                marginBottom: "40px",
+                marginTop: "76px",
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                marginRight: "60px",
               }}
             >
-              تقدمك بالبرنامج:
-            </p>
-            <div className="percent">
-              <svg>
-                <circle cx="28" cy="28" r="25"></circle>
-                <circle
-                  cx="28"
-                  cy="28"
-                  r="25"
-                  style={{ "--percent": courseData.totalProgress }}
-                ></circle>
-              </svg>
-              <div className="number">
-                <h3>
-                  {courseData.totalProgress}
-                  <span>%</span>
-                </h3>
+              <p
+                style={{
+                  fontSize: "16px",
+                  fontFamily: "bold",
+                }}
+              >
+                تقدمك بالبرنامج:
+              </p>
+              <div className="percent">
+                <svg>
+                  <circle cx="28" cy="28" r="25"></circle>
+                  <circle
+                    cx="28"
+                    cy="28"
+                    r="25"
+                    style={{ "--percent": courseData.totalProgress }}
+                  ></circle>
+                </svg>
+                <div className="number">
+                  <h3>
+                    {courseData.totalProgress}
+                    <span>%</span>
+                  </h3>
+                </div>
               </div>
             </div>
+            <div className="datascroll">
+              {courseData.sections.map((element, index) => (
+                <DataElement
+                  collapsed={index === 0 ? true : false}
+                  selectedData={selectedData}
+                  setSelectedData={setSelectedData}
+                  element={element}
+                />
+              ))}
+            </div>
           </div>
-          <div className="datascroll">
-            {courseData.sections.map((element) => (
-              <DataElement
-                selectedData={selectedData}
-                setSelectedData={setSelectedData}
-                element={element}
+          <div className="contactHelp">
+            <img
+              style={{ left: "20px", top: "30px", position: "absolute" }}
+              src={helpme}
+            />
+            <p
+              style={{
+                fontFamily: "bold",
+                fontSize: "16px",
+                color: "#153C3F",
+                marginRight: "15px",
+              }}
+            >
+              <p>في حال كنت </p> تواجه مشاكل في برامجك
+              <p> التدريبية، تواصل مع فريق الدعم</p>
+            </p>
+            <p className="btnhelp">تواصل معنا</p>
+          </div>
+        </div>
+        <div style={{ width: "100%", flex: 1 }}>
+          <div className=" onScreenContent">
+            {selectedData.type === "video" ? (
+              <ReactPlayer
+                controls={true}
+                playIcon={<></>}
+                onClickPreview={() => console.log("hi")}
+                playing={true}
+                light={"https://i.postimg.cc/fL1TPFG6/Group-284.jpg"}
+                key={selectedData.id}
+                className="react-player"
+                height={"100%"}
+                width="100%"
+                url={selectedData.url}
               />
-            ))}
+            ) : selectedData.type === "text" ? (
+              <div style={{ backgroundColor: "#f2f2f2", height: "100%" }}></div>
+            ) : null}
+          </div>
+          <div style={{ paddingLeft: "65px" }}>
+            <div
+              style={{
+                marginTop: "30px",
+                fontFamily: "regular",
+                fontSize: "16px",
+                display: "flex",
+                flexDirection: "row",
+                gap: "10px",
+                alignItems: "center",
+              }}
+            >
+              <p style={{ fontFamily: "bold" }}>مقدمة عن المحاضرة</p>
+              <div
+                style={{
+                  height: "8px",
+                  width: "8px",
+                  display: "block",
+                  backgroundColor: "#153C3F",
+                  borderRadius: "50%",
+                  marginTop: "5px",
+                }}
+              ></div>
+              <p>نص المحاضرة</p>
+              <div
+                style={{
+                  height: "8px",
+                  width: "8px",
+                  display: "block",
+                  backgroundColor: "#153C3F",
+                  borderRadius: "50%",
+                  marginTop: "5px",
+                }}
+              ></div>
+              <p>الأسئلة الشائعة</p>
+            </div>
+            <div
+              style={{
+                height: "1px",
+                backgroundColor: "rgba(21, 60, 63, 0.1)",
+                width: "100%",
+                marginTop: "28px",
+                marginBottom: "28px",
+              }}
+            >
+              <div
+                style={{
+                  width: "135px",
+                  height: "100%",
+                  backgroundColor: "#153C3F",
+                }}
+              ></div>
+            </div>
+            <p style={{ lineHeight: "120%" }}>
+              نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرق{" "}
+            </p>
+            <p style={{ lineHeight: "120%" }}>
+              . ص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد
+              أزرق.
+            </p>
           </div>
         </div>
-        <div className="contactHelp">
-          <img
-            style={{ left: "20px", top: "30px", position: "absolute" }}
-            src={helpme}
-          />
-          <p
-            style={{
-              fontFamily: "bold",
-              fontSize: "16px",
-              color: "#153C3F",
-              marginRight: "15px",
-            }}
-          >
-            <p>في حال كنت </p> تواجه مشاكل في برامجك
-            <p> التدريبية، تواصل مع فريق الدعم</p>
-          </p>
-          <p className="btnhelp">تواصل معنا</p>
-        </div>
       </div>
-      <div style={{ width: "100%",flex:1 }} className=" onScreenContent">
-        {selectedData.type === "video" ? (
-          <ReactPlayer
-          controls={true}
-          playIcon={<></>}
-          onClickPreview={()=>console.log("hi")}
-          playing={true}
-            light={"https://i.postimg.cc/fL1TPFG6/Group-284.jpg"}
-            key={selectedData.id}
-            className="react-player"
-            height={"100%"}
-            width="100%"
-            url={selectedData.url}
-          />
-        ) : selectedData.type === "text" ? (
-          <p>{selectedData.text}</p>
-        ) : null}
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default CoursePage;
