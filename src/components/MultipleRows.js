@@ -21,7 +21,8 @@ export default class MultipleRows extends Component {
     const settings = {
       className: "center",
       centerMode: true,
-      slidesToShow: 2.2,
+      infinite: false,
+      slidesToShow: 2,
       speed: 500,
       rows: 2,
       slidesPerRow: 1,
@@ -30,48 +31,6 @@ export default class MultipleRows extends Component {
       <div>
         <h2>Multiple Rows</h2>
         <Slider ref={(c) => (this.slider = c)} {...settings}>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
-          <div>
-            <CourseCard />
-          </div>
           <div>
             <CourseCard />
           </div>
