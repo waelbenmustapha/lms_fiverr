@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./courseDetails.css";
 
@@ -33,6 +33,7 @@ function CourseDetails() {
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
 
+  const [selectedCat, setselectedCat] = useState("intro");
   // skills about to learn from the program
   const skills = [
     "المهارة الأولى",
@@ -47,6 +48,12 @@ function CourseDetails() {
     "المهارة العاشرة",
   ];
 
+  const categories = [
+    { name: "مقدمة عن البرنامة", category: "intro" },
+    { name: "أساسيات الدورة", category: "basics" },
+    { name: "أساسيات الدورة ٢", category: "basics2" },
+    { name: "أساسيات الدورة ٣", category: "basics3" },
+  ];
   // what you gonna learn in this program
   const programLearning = [
     {
@@ -70,34 +77,102 @@ function CourseDetails() {
   //program content
   const programContent = [
     {
-      title: "عنوان المقال",
+      category: "intro",
+      title: "عنوان المقeeeeeeال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
     },
     {
+      category: "basics",
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image1,
     },
     {
+      category: "basics2",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
     },
     {
+      category: "basics3",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image1,
     },
     {
+      category: "intro",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
+    },
+    {
+      category: "intro",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category: "basics",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category: "basics2",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category: "basics3",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category: "intro",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category: "basics",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category: "basics2",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category: "basics3",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
     },
   ];
 
@@ -131,6 +206,7 @@ function CourseDetails() {
         title3="500+"
         description3="طالب وطالبة"
       />
+
       {/* ---------- course details ---------------- */}
       <div className="course-details">
         <div className="p-horizontal">
@@ -227,18 +303,17 @@ function CourseDetails() {
           </div>
           <div className="programs-content-category">
             <p className="title">عناوين البرنامة</p>
-            <div className="btn-title-category active">
-              <span>مقدمة عن البرنامة</span>
-            </div>
-            <div className="btn-title-category">
-              <span>أساسيات الدورة</span>
-            </div>
-            <div className="btn-title-category">
-              <span>أساسيات الدورة ٢</span>
-            </div>
-            <div className="btn-title-category">
-              <span>أساسيات الدورة ٣</span>
-            </div>
+            {categories.map((el) => (
+              <div
+                onClick={() => setselectedCat(el.category)}
+                className={
+                  "btn-title-category " + (el.category === selectedCat &&
+                  "active")
+                }
+              >
+                <span>{el.name}</span>
+              </div>
+            ))}
           </div>
           <Swiper
             ref={swiperProgContentRef}
@@ -251,15 +326,17 @@ function CourseDetails() {
             }}
             modules={[Navigation]}
           >
-            {programContent.map((item, index) => (
-              <SwiperSlide key={index}>
-                <ProgramContentCard
-                  title={item.title}
-                  description={item.description}
-                  image={item.image}
-                />
-              </SwiperSlide>
-            ))}
+            {programContent
+              .filter((el) => el.category === selectedCat)
+              .map((item, index) => (
+                <SwiperSlide key={index}>
+                  <ProgramContentCard
+                    title={item.title}
+                    description={item.description}
+                    image={item.image}
+                  />
+                </SwiperSlide>
+              ))}
           </Swiper>
           <div className="full text-center mt-40">
             <Link to={"/course-details"} className="enroll-program-btn">
