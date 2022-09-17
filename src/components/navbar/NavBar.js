@@ -17,8 +17,8 @@ function NavBar() {
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <div style={{borderBottom:location.pathname.startsWith(route.path)||(location.pathname==="/"&&route.path==="/academy-lessons")?"2px solid red":""}}>
-                <li onClick={()=>navigate(route.path)} key={index}>
+              <div >
+                <li className={location.pathname.startsWith(route.path)||(location.pathname==="/"&&route.path==="/academy-lessons")?"active":""} onClick={()=>navigate(route.path)} key={index}>
                   <a >{route.name}</a>
                 </li>
               </div>
