@@ -12,9 +12,9 @@ function CourseCard({ program }) {
       <div className="card-header">
         <img src={image1} alt="course" />
         <div className="card-tags">
-          {program.type && (
+          {program.category && (
             <div className="tag">
-              <span>{program.type}</span>
+              <span>{program.category}</span>
             </div>
           )}
           {program.duration && (

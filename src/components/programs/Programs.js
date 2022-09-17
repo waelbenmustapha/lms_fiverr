@@ -33,15 +33,15 @@ function Programs() {
   // category items
   const category = [
     { name: "جميع البرامج", category: "all" },
-    { name: "برامج ا", category: "program1" },
-    { name: "برامج ابرامج ا", category: "program2" },
-    { name: "برامج ابرامج ابرامج ا", category: "program3" },
+    { name: "برامج ا", category: "برامج ا" },
+    { name: "برامج ابرامج ا", category: "برامج ابرامج ا" },
+    { name: "برامج ابرامج ابرامج ا", category: "برامج ابرامج ابرامج ا" },
   ];
 
   // get all programs
   const getPrograms = () => {
     axios
-      .get("https://mocki.io/v1/648570eb-74b0-4b5c-a200-2848e9f06a54")
+      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
       .then((res) => setPrograms(res.data));
   };
 

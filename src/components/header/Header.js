@@ -1,40 +1,43 @@
 import React from "react";
 import "./header.css";
-import image1 from "../../assets/images/image1.png";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
-import { ReactComponent as Mask } from "../../assets/svg/video-mask.svg";
+import { Link } from "react-router-dom";
 
-function Header() {
+function Header({
+  id,
+  title,
+  description,
+  image,
+  start_date,
+  duration,
+  learning_average,
+}) {
   return (
     <div className="header">
       <div className="header-content">
         <div>
-          <p className="title">
-            برنامج الاكاد الاكاد يميبر يميبر نامج الاكاديمي
-          </p>
-          <p className="description">
-            بربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد
-            الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر يميبر
-            نامج الاكاديمي... برنامج الاكاد الاكاد يميبر يميبر نامج
-            الاكاديميبرنامج الاكاد ...
-          </p>
+          <p className="title">{title}</p>
+          <p className="description">{description}</p>
           <div className="description-track">
             <Calendar className="icon" />
             <p>
               يبدأ البرنامج في تاريخ{" "}
-              <span style={{ fontWeight: "bold" }}>٢٠ أكتوبر</span>
+              <span style={{ fontWeight: "bold" }}>{start_date}</span>
             </p>
           </div>
           <div className="description-track">
             <Clock className="icon" />
             <p>
-              مدة البرنامج <span style={{ fontWeight: "bold" }}>٣ أسابيع</span>،
-              بمعدل <span style={{ fontWeight: "bold" }}>٣ ساعات أسبوعيًا</span>
+              مدة البرنامج{" "}
+              <span style={{ fontWeight: "bold" }}>{duration}</span>، بمعدل{" "}
+              <span style={{ fontWeight: "bold" }}>{learning_average}</span>
             </p>
           </div>
         </div>
-        <button>انضم للبرنامج التدريبي</button>
+        <Link to={`/course?course_id=${id}`} className="enroll-course-btn">
+          انضم للبرنامج التدريبي
+        </Link>
       </div>
       <svg
         width="588"
@@ -56,7 +59,7 @@ function Header() {
         <path d="M12 33L12 500" stroke="#153C3F" stroke-width="8" />
         <defs>
           <pattern id="imgpattern" x="0" y="0" width="1" height="1">
-            <image width="588" height="503" xlinkHref="/images/image1.png" />
+            <image width="588" height="503" xlinkHref={image} />
           </pattern>
         </defs>
       </svg>
