@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 // Import Local Styles
 import "./programs.css";
+// Import needed library
+import axios from "axios";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,68 +25,46 @@ SwiperCore.use([Navigation]);
 function Programs() {
   // Swiper instance
   const swiperGridRef = useRef(null);
+  // selected category
+  const [selectedCat, setselectedCat] = useState("all");
+  //store programs data
+  const [programs, setPrograms] = useState([]);
 
-  const programs = [
-    {
-      id: 1,
-      title: "عنوان البرنامج",
-      category: "برامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
-    {
-      id: 2,
-      title: "عنوان البرنامج",
-      category: "برامج ابرامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
-    {
-      id: 3,
-      title: "عنوان البرنامج",
-      category: "برامج ابرامج ابرامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
-    {
-      id: 4,
-      title: "عنوان البرنامج",
-      category: "برامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
-    {
-      id: 5,
-      title: "عنوان البرنامج",
-      category: "برامج ابرامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
-    {
-      id: 6,
-      title: "عنوان البرنامج",
-      category: "برامج ابرامج ابرامج ا",
-      description:
-        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
-    },
+  // category items
+  const category = [
+    { name: "جميع البرامج", category: "all" },
+    { name: "برامج ا", category: "program1" },
+    { name: "برامج ابرامج ا", category: "program2" },
+    { name: "برامج ابرامج ابرامج ا", category: "program3" },
   ];
+
+  // get all programs
+  const getPrograms = () => {
+    axios
+      .get("https://mocki.io/v1/648570eb-74b0-4b5c-a200-2848e9f06a54")
+      .then((res) => setPrograms(res.data));
+  };
+
+  // run api to load the data
+  useEffect(() => {
+    getPrograms();
+  }, []);
 
   return (
     <div className="programs">
-      <div className="programs-category">
+      <div className="programs-category mb-40">
         <p className="title">تصنيف البرامج</p>
-        <div className="btn-category active">
-          <span>جميع البرامج</span>
-        </div>
-        <div className="btn-category">
-          <span>برامج ا</span>
-        </div>
-        <div className="btn-category">
-          <span>برامج ابرامج ا</span>
-        </div>
-        <div className="btn-category">
-          <span>برامج ابرامج ابرامج ا</span>
-        </div>
+        {category.map((ctg, index) => (
+          <div
+            key={`category-${index}`}
+            onClick={() => setselectedCat(ctg.category)}
+            className={
+              "btn-category " + (ctg.category === selectedCat && "active")
+            }
+          >
+            <span>{ctg.name}</span>
+          </div>
+        ))}
       </div>
       <div className="programs-header">
         <p className="title">جميع البرامج</p>
@@ -114,11 +94,19 @@ function Programs() {
         }}
         modules={[Grid, Navigation]}
       >
-        {programs.map((prog, index) => (
-          <SwiperSlide key={`prog-${index}`}>
-            <CourseCard program={prog} />
-          </SwiperSlide>
-        ))}
+        {selectedCat === "all"
+          ? programs.map((prog, index) => (
+              <SwiperSlide key={`prog-${index}`}>
+                <CourseCard program={prog} />
+              </SwiperSlide>
+            ))
+          : programs
+              .filter((el) => el.category === selectedCat)
+              .map((prog, index) => (
+                <SwiperSlide key={`prog-${index}`}>
+                  <CourseCard program={prog} />
+                </SwiperSlide>
+              ))}
       </Swiper>
     </div>
   );

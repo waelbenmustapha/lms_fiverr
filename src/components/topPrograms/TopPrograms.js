@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 // Import Local Styles
 import "./topPrograms.css";
+// Import needed library
+import axios from "axios";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,6 +25,21 @@ SwiperCore.use([Navigation]);
 function TopPrograms() {
   // Swiper instance
   const swiperRef = useRef(null);
+
+  //store Top Programs data
+  const [topPrograms, setTopPrograms] = useState([]);
+
+  // get all programs
+  const getTopPrograms = () => {
+    axios
+      .get("https://mocki.io/v1/648570eb-74b0-4b5c-a200-2848e9f06a54")
+      .then((res) => setTopPrograms(res.data));
+  };
+
+  // run api to load the data
+  useEffect(() => {
+    getTopPrograms();
+  }, []);
 
   return (
     <div className="top-programs">
@@ -50,18 +67,11 @@ function TopPrograms() {
         }}
         modules={[Navigation]}
       >
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
+        {topPrograms.map((prog, index) => (
+          <SwiperSlide key={`prog-${index}`}>
+            <CourseCard program={prog} />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <div className="see-more">
         <button className="see-more-btn">اكتشف جميع البرامج</button>

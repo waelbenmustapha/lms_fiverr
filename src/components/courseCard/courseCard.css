@@ -2,6 +2,7 @@
   position: relative;
   max-width: 475px;
   border: 1px solid var(--text-color);
+  background-color: #ffffff;
 }
 .card:hover {
   transition: transform 0.25s ease-in-out;

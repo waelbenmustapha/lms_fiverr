@@ -1,6 +1,8 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import "./courseDetails.css";
+// Import needed library
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,344 +35,223 @@ function CourseDetails() {
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
 
-  const [selectedCat, setselectedCat] = useState("intro");
-  // skills about to learn from the program
-  const skills = [
-    "المهارة الأولى",
-    "المهارة الثانية",
-    "المهارة الثالثة",
-    "المهارة الرابعة",
-    "المهارة الخامسة",
-    "المهارة السادسة",
-    "المهارة السابعة",
-    "المهارة الثامنة",
-    "المهارة التاسعة",
-    "المهارة العاشرة",
-  ];
+  // default selected category
+  const [selectedTitle, setselectedTitle] = useState("intro");
 
-  const categories = [
-    { name: "مقدمة عن البرنامة", category: "intro" },
-    { name: "أساسيات الدورة", category: "basics" },
-    { name: "أساسيات الدورة ٢", category: "basics2" },
-    { name: "أساسيات الدورة ٣", category: "basics3" },
-  ];
-  // what you gonna learn in this program
-  const programLearning = [
-    {
-      number: 1,
-      description: "مثال لأحد أهداف الدورة وسمثال لأحد أهداف الدورة وس",
-    },
-    {
-      number: 2,
-      description: "مثال لأحد أهداف الدورة وسمثال لأحد أهداف الدورة وس",
-    },
-    {
-      number: 3,
-      description: "مثال لأحد أهداف الدورة وسمثال لأحد أهداف الدورة وس",
-    },
-    {
-      number: 4,
-      description: "مثال لأحد أهداف الدورة وسمثال لأحد أهداف الدورة وس",
-    },
-  ];
+  //store Course data
+  const [data, setData] = useState({});
+  const [programTitles, setProgramTitles] = useState([]);
+  const [programContent, setProgramContent] = useState([]);
+  const [learningProcess, setLearningProcess] = useState([]);
+  const [skills, setSkills] = useState([]);
 
-  //program content
-  const programContent = [
-    {
-      category: "intro",
-      title: "عنوان المقeeeeeeال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics",
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-    {
-      category: "basics2",
+  //store Top asked questions data
+  const [questions, setQuestions] = useState([]);
 
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics3",
+  // get all Course Data
+  const getData = () => {
+    axios
+      .get("https://mocki.io/v1/1e9d9da5-2773-455c-83c5-2fb8dc0fcf34")
+      .then((res) => {
+        setData(res.data);
+        setProgramTitles(res.data.program_titles);
+        setProgramContent(res.data.program_content);
+        setLearningProcess(res.data.learning_process);
+        setSkills(res.data.skills_gained);
+      });
+  };
 
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-    {
-      category: "intro",
+  // get all programs
+  const getQuestions = () => {
+    axios
+      .get("https://mocki.io/v1/a0fe7b6f-176f-46e8-b3d4-9be5466569a9")
+      .then((res) => setQuestions(res.data));
+  };
 
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "intro",
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics",
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-    {
-      category: "basics2",
-
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics3",
-
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-    {
-      category: "intro",
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics",
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-    {
-      category: "basics2",
-
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image2,
-    },
-    {
-      category: "basics3",
-
-      title: "عنوان المقال",
-      description:
-        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
-      image: image1,
-    },
-  ];
-
-  // top asked questions
-  const questions = [
-    {
-      label: "السؤال الأول",
-      question:
-        "أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو",
-    },
-    {
-      label: "السؤال الثاني",
-      question:
-        "أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو",
-    },
-    {
-      label: "السؤال الثالث",
-      question:
-        "أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدوأساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو أساسيات الدو",
-    },
-  ];
+  // run api to load the data
+  useEffect(() => {
+    getData();
+    getQuestions();
+  }, []);
 
   return (
-    <>
-      <Header />
-      <ScoreBox
-        title1="15+"
-        description1="برنامج متاح"
-        title2="5+"
-        description2="تصينف وفئة"
-        title3="500+"
-        description3="طالب وطالبة"
-      />
+    data && (
+      <>
+        <Header
+          title={data.title}
+          description={data.description}
+          image={data.program_image}
+          start_date={data.start_date}
+          duration={data.duration}
+        />
+        <ScoreBox
+          title1={`${data.available_program}+`}
+          description1="برنامج متاح"
+          title2={`${data.nb_classification}+`}
+          description2="تصينف وفئة"
+          title3={`${data.people_awarded}+`}
+          description3="طالب وطالبة"
+        />
 
-      {/* ---------- course details ---------------- */}
-      <div className="course-details">
-        <div className="p-horizontal">
-          <p className="title mb-40">مقدمة عن البرنامج</p>
-          <p className="description">
-            بربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد
-            الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر يميبر
-            نامج الاكاديمي...مج الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج
-            الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر
-            يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر يميبر نامج
-            الاكاديميبرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج
-            الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر
-            يميبر نامج الاكاديميبرنامج الاكاد الاكاد يميبر يميبر نامج
-            الاكاديميبرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنامج
-            الاكاد الاكاد يميبر يميبر نامج الاكاديميبرنا
-          </p>
-        </div>
-        {/* ------- what you gonna learn in this programs ------- */}
-        <div className="program-learning">
-          <div className="swiper-navigation-header">
-            <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
-            <div className="swipe-btns">
-              <ArrowRight
-                onClick={() => swiperLearningRef.current.swiper.slidePrev()}
-                className="icon"
-              />
-              <ArrowLeft
-                onClick={() => swiperLearningRef.current.swiper.slideNext()}
-                className="icon"
-              />
-            </div>
+        {/* ---------- course details ---------------- */}
+        <div className="course-details">
+          <div className="p-horizontal">
+            <p className="title mb-40">مقدمة عن البرنامج</p>
+            <p className="description">{data.introduction}</p>
           </div>
-          <Swiper
-            ref={swiperLearningRef}
-            dir="rtl"
-            spaceBetween={0}
-            slidesPerView={3.5}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            modules={[Navigation]}
-          >
-            {programLearning.map(function (item, index) {
-              if (index % 2 === 0) {
-                return (
-                  <SwiperSlide key={index}>
-                    <div className="card-about-to-learn">
-                      <p className="number">{item.number}</p>
-                      <p className="info">{item.description}</p>
-                    </div>
-                  </SwiperSlide>
-                );
-              } else {
-                return (
-                  <SwiperSlide key={index}>
-                    <div className="card-about-to-learn active">
-                      <p className="number">{item.number}</p>
-                      <p className="info">{item.description}</p>
-                    </div>
-                  </SwiperSlide>
-                );
-              }
-            })}
-          </Swiper>
-        </div>
-        {/* --------------- Skills gained from this program ------------------ */}
-        <div className="program-skills p-horizontal">
-          <p className="title mb-40">
-            المهارات المكتسبة من برنامج الابتكار المفتوح:
-          </p>
-          <div className="skills">
-            {skills.map((item, index) => (
-              <div key={index} className="skills-item">
-                {item}
+          {/* ------- what you gonna learn in this programs ------- */}
+          <div className="program-learning">
+            <div className="swiper-navigation-header">
+              <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
+              <div className="swipe-btns">
+                <ArrowRight
+                  onClick={() => swiperLearningRef.current.swiper.slidePrev()}
+                  className="icon"
+                />
+                <ArrowLeft
+                  onClick={() => swiperLearningRef.current.swiper.slideNext()}
+                  className="icon"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-        {/* --------------- program content -------------------- */}
-        <div className="program-content">
-          <div className="swiper-navigation-header">
-            <p className="title">محتوى البرنامج</p>
-            <div className="swipe-btns">
-              <ArrowRight
-                onClick={() => swiperProgContentRef.current.swiper.slidePrev()}
-                className="icon"
-              />
-              <ArrowLeft
-                onClick={() => swiperProgContentRef.current.swiper.slideNext()}
-                className="icon"
-              />
             </div>
-          </div>
-          <div className="programs-content-category">
-            <p className="title">عناوين البرنامة</p>
-            {categories.map((el) => (
-              <div
-                onClick={() => setselectedCat(el.category)}
-                className={
-                  "btn-title-category " + (el.category === selectedCat &&
-                  "active")
+            <Swiper
+              ref={swiperLearningRef}
+              dir="rtl"
+              spaceBetween={0}
+              slidesPerView={3.5}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              modules={[Navigation]}
+            >
+              {learningProcess.map(function (text, index) {
+                if (index % 2 === 0) {
+                  return (
+                    <SwiperSlide key={index}>
+                      <div className="card-about-to-learn">
+                        <p className="number">{index + 1}</p>
+                        <p className="info">{text}</p>
+                      </div>
+                    </SwiperSlide>
+                  );
+                } else {
+                  return (
+                    <SwiperSlide key={index}>
+                      <div className="card-about-to-learn active">
+                        <p className="number">{index + 1}</p>
+                        <p className="info">{text}</p>
+                      </div>
+                    </SwiperSlide>
+                  );
                 }
-              >
-                <span>{el.name}</span>
-              </div>
-            ))}
+              })}
+            </Swiper>
           </div>
-          <Swiper
-            ref={swiperProgContentRef}
-            dir="rtl"
-            spaceBetween={20}
-            slidesPerView={2.5}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            modules={[Navigation]}
-          >
-            {programContent
-              .filter((el) => el.category === selectedCat)
-              .map((item, index) => (
-                <SwiperSlide key={index}>
-                  <ProgramContentCard
-                    title={item.title}
-                    description={item.description}
-                    image={item.image}
-                  />
-                </SwiperSlide>
+          {/* --------------- Skills gained from this program ------------------ */}
+          <div className="program-skills p-horizontal">
+            <p className="title mb-40">
+              المهارات المكتسبة من برنامج الابتكار المفتوح:
+            </p>
+            <div className="skills">
+              {skills.map((item, index) => (
+                <div key={index} className="skills-item">
+                  {item}
+                </div>
               ))}
-          </Swiper>
-          <div className="full text-center mt-40">
-            <Link to={"/course-details"} className="enroll-program-btn">
-              انضم للدورة التدريبية
-            </Link>
+            </div>
           </div>
-        </div>
-        {/* ------- devider ------ */}
-        <div className="full p-horizontal">
-          <div className="devider"></div>
-        </div>
-        {/* --------------- top asked questions ------------- */}
-        <div className="top-asked-questions p-horizontal">
-          <p className="title mb-40">الأسئلة الشائعة</p>
-          <div>
-            {questions.map((item, index) => (
-              <div key={index} className="mb-16">
-                <Collapsible label={item.label}>
-                  <p>{item.question}</p>
-                </Collapsible>
+          {/* --------------- program content -------------------- */}
+          <div className="program-content">
+            <div className="swiper-navigation-header">
+              <p className="title">محتوى البرنامج</p>
+              <div className="swipe-btns">
+                <ArrowRight
+                  onClick={() =>
+                    swiperProgContentRef.current.swiper.slidePrev()
+                  }
+                  className="icon"
+                />
+                <ArrowLeft
+                  onClick={() =>
+                    swiperProgContentRef.current.swiper.slideNext()
+                  }
+                  className="icon"
+                />
               </div>
-            ))}
+            </div>
+            <div className="programs-content-category">
+              <p className="title">عناوين البرنامة</p>
+              {programTitles.map((el, index) => (
+                <div
+                  key={`ctg-${index}`}
+                  onClick={() => setselectedTitle(el.label)}
+                  className={
+                    "btn-title-category " +
+                    (el.label === selectedTitle && "active")
+                  }
+                >
+                  <span>{el.name}</span>
+                </div>
+              ))}
+            </div>
+            <Swiper
+              ref={swiperProgContentRef}
+              dir="rtl"
+              spaceBetween={20}
+              slidesPerView={2.5}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              modules={[Navigation]}
+            >
+              {programContent
+                .filter((el) => el.category === selectedTitle)
+                .map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <ProgramContentCard
+                      title={item.title}
+                      description={item.description}
+                      image={item.image}
+                    />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+            <div className="full text-center mt-40">
+              <Link to={"/course-details"} className="enroll-program-btn">
+                انضم للدورة التدريبية
+              </Link>
+            </div>
+          </div>
+          {/* ------- devider ------ */}
+          <div className="full p-horizontal">
+            <div className="devider"></div>
+          </div>
+          {/* --------------- top asked questions ------------- */}
+          <div className="top-asked-questions p-horizontal">
+            <p className="title mb-40">الأسئلة الشائعة</p>
+            <div>
+              {questions.map((item, index) => (
+                <div key={index} className="mb-16">
+                  <Collapsible label={item.label}>
+                    <p>{item.question}</p>
+                  </Collapsible>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* ------- devider ------ */}
+          <div className="full p-horizontal">
+            <div className="devider"></div>
           </div>
         </div>
-        {/* ------- devider ------ */}
-        <div className="full p-horizontal">
-          <div className="devider"></div>
-        </div>
-      </div>
-      <CallUsBox
-        title="باقي ما جاوبناك؟"
-        description="تواصل معنا لمساعدتك على آلية التسجيل وتوفيرك بمعلومات إضافية"
-      />
-    </>
+        <CallUsBox
+          title="باقي ما جاوبناك؟"
+          description="تواصل معنا لمساعدتك على آلية التسجيل وتوفيرك بمعلومات إضافية"
+        />
+      </>
+    )
   );
 }
 

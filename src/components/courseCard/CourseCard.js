@@ -6,33 +6,39 @@ import { ReactComponent as Calendar } from "../../assets/svg/calendar.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clockFill.svg";
 import { Link } from "react-router-dom";
 
-function CourseCard() {
+function CourseCard({ program }) {
   return (
     <div className="card">
       <div className="card-header">
         <img src={image1} alt="course" />
         <div className="card-tags">
-          <div className="tag">
-            <span>الابتكار</span>
-          </div>
-          <div className="tag">
-            <Clock className="icon" />
-            <span>3 أسابيع</span>
-          </div>
-          <div className="tag">
-            <Calendar className="icon" />
-            <span>تبدأ في 10 أكتوبر</span>
-          </div>
+          {program.type && (
+            <div className="tag">
+              <span>{program.type}</span>
+            </div>
+          )}
+          {program.duration && (
+            <div className="tag">
+              <Clock className="icon" />
+              <span>{program.duration}</span>
+            </div>
+          )}
+          {program.start_date && (
+            <div className="tag">
+              <Calendar className="icon" />
+              <span>تبدأ في {program.start_date}</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="card-content">
-        <p className="title">عنوان البرنامج</p>
-        <p className="description">
-          دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد
-          الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.
-        </p>
+        <p className="title">{program.title}</p>
+        <p className="description">{program.description}</p>
         <div className="actions">
-          <Link to={"/course-details"} className="enroll-btn">
+          <Link
+            to={`/course-details?course_id=${program.id}`}
+            className="enroll-btn"
+          >
             إنضم للبرنامج
           </Link>
           <button className="share-btn">
