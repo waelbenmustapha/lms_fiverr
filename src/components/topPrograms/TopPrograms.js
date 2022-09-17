@@ -26,7 +26,6 @@ function TopPrograms() {
 
   return (
     <div className="top-programs">
-      {/* ********* 1 row swiper ************ */}
       <div className="swiper-navigation-header">
         <p className="title">البرامج الأكثر شيوعًا</p>
         <div className="swipe-btns">
