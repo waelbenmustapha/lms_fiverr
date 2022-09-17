@@ -5,14 +5,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBarRoutes, AppRoutes } from "./utils/Routes";
 import Main from "./screens/Main";
 import { ConvertRoutes } from "./utils/ConvertRoutes";
+import Lessons from "./screens/mainScreens/lessons/Lessons";
 
 function App() {
+  console.log(ConvertRoutes(NavBarRoutes));
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={"/"} element={<Main />}>
-          {ConvertRoutes(AppRoutes)}
+        <Route path="/" element={<Main />}>
           {ConvertRoutes(NavBarRoutes)}
+          <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
         </Route>
       </Routes>
     </BrowserRouter>

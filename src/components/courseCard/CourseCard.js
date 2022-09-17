@@ -36,7 +36,7 @@ function CourseCard({ program }) {
         <p className="description">{program.description}</p>
         <div className="actions">
           <Link
-            to={`/course-details?course_id=${program.id}`}
+            to={`/academy-lessons/course-details?course_id=${program.id}`}
             className="enroll-btn"
           >
             إنضم للبرنامج

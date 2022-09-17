@@ -11,7 +11,7 @@ function ProgramContentCard({ id, title, description, image }) {
         <div className="image-overlay-content">
           <p className="overlay-title mb-16">{title}</p>
           <p className="overlay-description mb-16">{description}</p>
-          <Link to={`/course-details?article_id=${id}`} className="overlay-btn">
+          <Link to={"/academy-lessons/course-details"} className="overlay-btn">
             <Book className="overlay-btn-icon" />
             <span>مقال</span>
           </Link>

@@ -2,8 +2,12 @@ import React from "react";
 import "./navbar.css";
 import logo from "../../assets/images/logo.png";
 import { NavBarRoutes } from "../../utils/Routes";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log(location)
   return (
     <nav>
       <div className="navigation">
@@ -13,9 +17,11 @@ function NavBar() {
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <li key={index}>
-                <a href={route.path}>{route.name}</a>
-              </li>
+              <div style={{borderBottom:location.pathname.startsWith(route.path)?"2px solid red":""}}>
+                <li onClick={()=>navigate(route.path)} key={index}>
+                  <a >{route.name}</a>
+                </li>
+              </div>
             ))}
           </ul>
         </div>

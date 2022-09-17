@@ -225,7 +225,7 @@ function CourseDetails() {
                 ))}
             </Swiper>
             <div className="full text-center mt-40">
-              <Link to={"/course-details"} className="enroll-program-btn">
+              <Link to={"/academy-lessons/course-details"} className="enroll-program-btn">
                 انضم للدورة التدريبية
               </Link>
             </div>
