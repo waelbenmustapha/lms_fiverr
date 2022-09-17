@@ -3,10 +3,9 @@ import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
 import { ReactComponent as Book } from "../../assets/svg/bookOpen.svg";
 import { ReactComponent as Play } from "../../assets/svg/play-circle.svg";
-function DataElement({ element, selectedData, setSelectedData, collapsed }) {
+function DataElement({ element, selectedContent, setselectedContent ,collapsed }) {
   const [collapse, setCollapse] = useState(collapsed);
-
-  console.log(element);
+  
   return (
     <div>
       <div
@@ -32,7 +31,7 @@ function DataElement({ element, selectedData, setSelectedData, collapsed }) {
         </p>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           {element.locked && <Lock style={{ opacity: 0.2 }} />}
-          {element.progress !== 0 && (
+          {element.progress!==0 && (
             <div className="smpercent">
               <svg>
                 <circle cx="16.8" cy="16.8" r="14"></circle>
@@ -58,11 +57,11 @@ function DataElement({ element, selectedData, setSelectedData, collapsed }) {
         <div className="datatypes">
           {element.content.map((el) => (
             <div
-              onClick={() => setSelectedData({ ...el })}
+              onClick={() => setselectedContent({ ...el })}
               className={
                 "dataElement hover-cursor " +
                 (el.finished ? "isElementFinished " : " ") +
-                (el.id === selectedData.id ? "selected " : " ")
+                (el.id === selectedContent.id ? "selected " : " ")
               }
             >
               {el.type === "text" ? (
