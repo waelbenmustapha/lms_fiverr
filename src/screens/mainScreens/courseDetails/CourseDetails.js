@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./courseDetails.css";
 
@@ -33,6 +33,7 @@ function CourseDetails() {
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
 
+  const [selectedCat,setselectedCat]=useState("intro")
   // skills about to learn from the program
   const skills = [
     "المهارة الأولى",
@@ -47,6 +48,7 @@ function CourseDetails() {
     "المهارة العاشرة",
   ];
 
+  const categories = [{name:"مقدمة عن البرنامة",category:"intro"},{name:"أساسيات الدورة",category:"basics"},"أساسيات الدورة ٢","أساسيات الدورة ٣"];
   // what you gonna learn in this program
   const programLearning = [
     {
@@ -70,34 +72,102 @@ function CourseDetails() {
   //program content
   const programContent = [
     {
-      title: "عنوان المقال",
+      category:"intro",
+      title: "عنوان المقeeeeeeال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
     },
     {
+      category:"basics",
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image1,
     },
     {
+      category:"basics2",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
     },
     {
+      category:"basics3",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image1,
     },
     {
+      category:"intro",
+
       title: "عنوان المقال",
       description:
         "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
       image: image2,
+    },
+    {
+      category:"intro",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category:"basics",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category:"basics2",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category:"basics3",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category:"intro",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category:"basics",
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
+    },
+    {
+      category:"basics2",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image2,
+    },
+    {
+      category:"basics3",
+
+      title: "عنوان المقال",
+      description:
+        "مثال لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق، لأحد أهداف الدورة وسيتم شرحها بشكل مفصل بوقت لاحق",
+      image: image1,
     },
   ];
 
@@ -251,7 +321,7 @@ function CourseDetails() {
             }}
             modules={[Navigation]}
           >
-            {programContent.map((item, index) => (
+            {programContent.filter((el)=>el.category===selectedCat).map((item, index) => (
               <SwiperSlide key={index}>
                 <ProgramContentCard
                   title={item.title}
