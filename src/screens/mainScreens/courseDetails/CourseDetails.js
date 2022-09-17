@@ -201,6 +201,7 @@ function CourseDetails() {
         title3="500+"
         description3="طالب وطالبة"
       />
+      
       {/* ---------- course details ---------------- */}
       <div className="course-details">
         <div className="p-horizontal">
