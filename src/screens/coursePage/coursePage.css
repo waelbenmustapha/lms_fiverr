@@ -7,12 +7,13 @@
 .sidebar {
   width: 380px;
   height: 100%;
-  background-color: #fafafa;
 }
 .onScreenContent{
   height: calc( 100vh - 100px);
   display: flex;
   flex-direction: column;
+  background-color: #fafafa;
+
 
 }
 .datatypes {
@@ -81,3 +82,43 @@ box-shadow: 0px 4px 64px 8px rgba(0, 200, 225, 0.05);
 }
 
 
+.smpercent {
+  position: relative;
+  margin-top: 5px;
+
+}
+
+.smpercent svg {
+  position: relative;
+  width: 33.6px;
+  height: 33.6px;
+  transform: rotate(-90deg);
+}
+
+.smpercent svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f0f0f0;
+  stroke-width: 2;
+}
+
+.smpercent svg circle:last-of-type {
+  stroke-dasharray: 93.6px;
+  stroke-dashoffset: calc(93.6px - (93.6px * var(--percent)) / 100);
+  stroke: var(--text-color);
+}
+
+.smpercent .smnumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.smpercent .smnumber h3 {
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
