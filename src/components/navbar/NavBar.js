@@ -5,9 +5,9 @@ import { NavBarRoutes } from "../../utils/Routes";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function NavBar() {
-  const location = useLocation()
-  const navigate = useNavigate()
-  console.log(location)
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
   return (
     <nav>
       <div className="navigation">
@@ -17,9 +17,15 @@ function NavBar() {
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <div style={{borderBottom:location.pathname.startsWith(route.path)?"2px solid red":""}}>
-                <li onClick={()=>navigate(route.path)} key={index}>
-                  <a >{route.name}</a>
+              <div>
+                <li
+                  className={
+                    location.pathname.startsWith(route.path) ? "active" : ""
+                  }
+                  onClick={() => navigate(route.path)}
+                  key={index}
+                >
+                  <a>{route.name}</a>
                 </li>
               </div>
             ))}
