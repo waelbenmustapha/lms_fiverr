@@ -6,12 +6,12 @@ import { ReactComponent as Linkedin } from "../../assets/svg/linkedin.svg";
 
 function Footer() {
   return (
-    <footer >
+    <footer>
       <a href="#">
         <img className="logo" src={logo} alt="logo" />
       </a>
       <div className="footer-content">
-        <div className="footer-nav mb-20">
+        <div className="footer-nav">
           <ul>
             <li>
               <a href="#">سياسة الخصوصية</a>
