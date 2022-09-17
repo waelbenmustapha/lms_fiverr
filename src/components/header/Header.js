@@ -37,9 +37,9 @@ function Header() {
         <button>انضم للبرنامج التدريبي</button>
       </div>
       <div className="header-image">
-        <div className="clip-mask-image">
+        {/* <div className="clip-mask-image">
           <img src={image1} alt="course" />
-        </div>
+        </div> */}
         <Mask className="mask" />
       </div>
     </div>
