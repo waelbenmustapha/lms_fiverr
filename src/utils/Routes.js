@@ -9,32 +9,32 @@ import Tools from "../screens/mainScreens/tools/Tools";
 
 export const NavBarRoutes = [
   {
-    path: "info",
+    path: "/info",
     component: <Info />,
     name: "من نحن",
   },
   {
-    path: "prices",
+    path: "/prices",
     component: <Prices />,
     name: "اسعار",
   },
   {
-    path: "services",
+    path: "/services",
     component: <Services />,
     name: "الخدمات",
   },
   {
-    path: "academy-lessons",
+    path: "/academy-lessons",
     component: <Lessons />,
     name: "أكاديمية درس",
   },
   {
-    path: "tools",
+    path: "/tools",
     component: <Tools />,
     name: "الأدوات",
   },
   {
-    path: "news",
+    path: "/news",
     component: <News />,
     name: "الأخبار",
   },
@@ -42,11 +42,11 @@ export const NavBarRoutes = [
 
 export const AppRoutes = [
   {
-    path: "course-details",
+    path: "/academy-lessons/course-details",
     component: <CourseDetails />,
   },
   {
-    path: "course",
+    path: "/academy-lessons/course",
     component: <CoursePage />,
   },
 ];
