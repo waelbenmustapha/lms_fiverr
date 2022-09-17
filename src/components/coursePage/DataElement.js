@@ -31,14 +31,14 @@ function DataElement({ element, selectedData, setSelectedData }) {
         </p>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           {element.locked && <Lock style={{ opacity: 0.2 }} />}
-          <Arrow style={{ rotate: !collapse ? "180deg" : "0deg" }} />
+          <Arrow style={{ rotate: !collapse ? "0deg" : "180deg" }} />
         </div>
       </div>
       {collapse && (
         <div className="datatypes">
           {element.content.map((el) => (
             <div
-              onClick={() => setSelectedData({...el})}
+              onClick={() => setSelectedData({ ...el })}
               className={
                 "dataElement hover-cursor " +
                 (el.finished ? "isElementFinished " : " ") +

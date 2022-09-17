@@ -1,6 +1,8 @@
 .course-details {
   padding-top: 100px;
   padding-bottom: 100px;
+  background-image: url("../../../assets/images/bg.png");
+  background-repeat: no-repeat;
 }
 
 .course-details .title {

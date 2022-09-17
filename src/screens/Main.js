@@ -14,6 +14,7 @@ function Main() {
       }}
     >
       <NavBar />
+      {/* <MultipleRows /> */}
       <Outlet />
       <Footer />
     </div>
