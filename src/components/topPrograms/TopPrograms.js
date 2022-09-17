@@ -32,7 +32,7 @@ function TopPrograms() {
   // get all programs
   const getTopPrograms = () => {
     axios
-      .get("https://mocki.io/v1/648570eb-74b0-4b5c-a200-2848e9f06a54")
+      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
       .then((res) => setTopPrograms(res.data));
   };
 

@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./notification.css";
+// Import needed library
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Notification() {
   // colse or open notification
   const [isNotifOpen, setIsNotifOpen] = useState(true);
+
+  //store Course Progress data
+  const [data, setData] = useState({});
+
+  // get current course progress
+  const getCourseProgress = () => {
+    axios
+      .get("https://mocki.io/v1/34bcf0c9-60a7-4ae4-a135-a1514fe39817")
+      .then((res) => setData(res.data));
+  };
+
+  // run api to load the data
+  useEffect(() => {
+    getCourseProgress();
+  }, []);
 
   return (
     <>
@@ -18,9 +36,7 @@ function Notification() {
               </div>
             </div>
             <div className="notif-content">
-              <p className="description">
-                يبر نامج الاك اديميب رنامج ايبر نامجلا
-              </p>
+              <p className="description">{data.current_course_name}</p>
               <div className="lesson-track">
                 <div className="percent">
                   <svg>
@@ -29,18 +45,25 @@ function Notification() {
                       cx="28"
                       cy="28"
                       r="25"
-                      style={{ "--percent": 15 }}
+                      style={{
+                        "--percent": data.current_course_progress_percent,
+                      }}
                     ></circle>
                   </svg>
                   <div className="number">
                     <h3>
-                      15<span>%</span>
+                      {data.current_course_progress_percent}
+                      <span>%</span>
                     </h3>
                   </div>
                 </div>
-                <p>أتممت ٣ ساعات من أصل ٢٥ ساعة</p>
+                <p>{data.current_course_progress_time}</p>
               </div>
-              <button>متابعة البرنامج</button>
+              <Link
+                to={`/academy-lessons/course?course_id=${data.current_course_id}`}
+              >
+                <button>متابعة البرنامج</button>
+              </Link>
             </div>
           </div>
         </div>

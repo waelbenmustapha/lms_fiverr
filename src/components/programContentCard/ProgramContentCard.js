@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./programContentCard.css";
 import { ReactComponent as Book } from "../../assets/svg/bookOpen.svg";
 
-function ProgramContentCard({ title, description, image }) {
+function ProgramContentCard({ id, title, description, image }) {
   return (
     <div className="program-content-card">
       <img src={image} alt="course" />

@@ -1,6 +1,8 @@
-import React from "react";
+import { useState, useEffect } from "react";
 // Import Local Styles
 import "./lessons.css";
+// Import needed library
+import axios from "axios";
 
 // Import Components
 import CallUsBox from "../../../components/callUsBox/CallUsBox";
@@ -11,16 +13,39 @@ import Programs from "../../../components/programs/Programs";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
 
 function Lessons() {
+  //store Course Progress data
+  const [lessonData, setLessonData] = useState({});
+
+  // get Lesson Data
+  const getLessonData = () => {
+    axios
+      .get("https://mocki.io/v1/ba60eba7-cd45-4386-840e-8470157e95a3")
+      .then((res) => setLessonData(res.data));
+  };
+
+  // run api to load the data
+  useEffect(() => {
+    getLessonData();
+  }, []);
+
   return (
     <>
       <Notification />
-      <Header />
+      <Header
+        course_id={lessonData.id}
+        title={lessonData.title}
+        description={lessonData.description}
+        image={lessonData.lesson_image}
+        start_date={lessonData.start_date}
+        duration={lessonData.duration}
+        learning_average={lessonData.learning_average}
+      />
       <ScoreBox
-        title1="15+"
+        title1={`${lessonData.available_program}+`}
         description1="برنامج متاح"
-        title2="5+"
+        title2={`${lessonData.nb_classification}+`}
         description2="تصينف وفئة"
-        title3="500+"
+        title3={`${lessonData.people_awarded}+`}
         description3="طالب وطالبة"
       />
       <div className="lessons-container">

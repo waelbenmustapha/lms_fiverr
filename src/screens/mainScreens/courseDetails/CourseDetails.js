@@ -17,16 +17,14 @@ import "swiper/css/navigation";
 import { ReactComponent as ArrowLeft } from "../../../assets/svg/arrowLeft.svg";
 import { ReactComponent as ArrowRight } from "../../../assets/svg/arrowRight.svg";
 
-//import Images
-import image1 from "../../../assets/images/image1.png";
-import image2 from "../../../assets/images/image2.png";
-
 // import components
 import CallUsBox from "../../../components/callUsBox/CallUsBox";
 import Header from "../../../components/header/Header";
 import ScoreBox from "../../../components/scoreBox/ScoreBox";
 import Collapsible from "../../../components/Collapsible/Collapsible";
 import ProgramContentCard from "../../../components/programContentCard/ProgramContentCard";
+// fake data
+import dummydata from "../../../assets/data.js";
 
 SwiperCore.use([Navigation]);
 
@@ -36,7 +34,7 @@ function CourseDetails() {
   const swiperProgContentRef = useRef(null);
 
   // default selected category
-  const [selectedTitle, setselectedTitle] = useState("intro");
+  const [selectedTitle, setselectedTitle] = useState("مقدمة عن البرنامة");
 
   //store Course data
   const [data, setData] = useState({});
@@ -50,15 +48,20 @@ function CourseDetails() {
 
   // get all Course Data
   const getData = () => {
-    axios
-      .get("https://mocki.io/v1/1e9d9da5-2773-455c-83c5-2fb8dc0fcf34")
-      .then((res) => {
-        setData(res.data);
-        setProgramTitles(res.data.program_titles);
-        setProgramContent(res.data.program_content);
-        setLearningProcess(res.data.learning_process);
-        setSkills(res.data.skills_gained);
-      });
+    // axios
+    //   .get("https://mocki.io/v1/1e9d9da5-2773-455c-83c5-2fb8dc0fcf34")
+    //   .then((res) => {
+    //     setData(res.data);
+    //     setProgramTitles(res.data.program_titles);
+    //     setProgramContent(res.data.program_content);
+    //     setLearningProcess(res.data.learning_process);
+    //     setSkills(res.data.skills_gained);
+    //   });
+    setData(dummydata);
+    setProgramTitles(dummydata.program_titles);
+    setProgramContent(dummydata.program_content);
+    setLearningProcess(dummydata.learning_process);
+    setSkills(dummydata.skills_gained);
   };
 
   // get all programs
@@ -78,19 +81,21 @@ function CourseDetails() {
     data && (
       <>
         <Header
+          course_id={data.id}
           title={data.title}
           description={data.description}
           image={data.program_image}
           start_date={data.start_date}
           duration={data.duration}
+          learning_average={data.learning_average}
         />
         <ScoreBox
-          title1={`${data.available_program}+`}
-          description1="برنامج متاح"
-          title2={`${data.nb_classification}+`}
-          description2="تصينف وفئة"
-          title3={`${data.people_awarded}+`}
-          description3="طالب وطالبة"
+          title1={`${data.time_recorded}+`}
+          description1="ساعة مسجلة"
+          title2={`${data.related_article}+`}
+          description2="مقال ذات صلة"
+          title3={`${data.program_completion}+`}
+          description3="إتمام البرنامج"
         />
 
         {/* ---------- course details ---------------- */}
@@ -207,10 +212,11 @@ function CourseDetails() {
               modules={[Navigation]}
             >
               {programContent
-                .filter((el) => el.category === selectedTitle)
+                .filter((el) => el.label === selectedTitle)
                 .map((item, index) => (
                   <SwiperSlide key={index}>
                     <ProgramContentCard
+                      id={item.id}
                       title={item.title}
                       description={item.description}
                       image={item.image}
