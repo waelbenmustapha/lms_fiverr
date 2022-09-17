@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           {ConvertRoutes(NavBarRoutes)}
+          <Route element={<Lessons />} index />
           <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
         </Route>
       </Routes>
