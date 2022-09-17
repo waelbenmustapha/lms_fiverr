@@ -59,7 +59,9 @@ function Notification() {
                 </div>
                 <p>{data.current_course_progress_time}</p>
               </div>
-              <Link to={`/course?course_id=${data.current_course_id}`}>
+              <Link
+                to={`/academy-lessons/course?course_id=${data.current_course_id}`}
+              >
                 <button>متابعة البرنامج</button>
               </Link>
             </div>

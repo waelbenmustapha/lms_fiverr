@@ -35,7 +35,10 @@ function Header({
             </p>
           </div>
         </div>
-        <Link to={`/course?course_id=${id}`} className="enroll-course-btn">
+        <Link
+          to={`/academy-lessons/course?course_id=${id}`}
+          className="enroll-course-btn"
+        >
           انضم للبرنامج التدريبي
         </Link>
       </div>
