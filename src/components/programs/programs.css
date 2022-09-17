@@ -51,21 +51,6 @@
   color: var(--text-color);
 }
 
-.swipe-btns {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 6px;
-}
-
-.swipe-btns .icon {
-  width: 32px;
-  height: 32px;
-  padding: 2px;
-  cursor: pointer;
-}
-
 .see-more {
   display: flex;
   flex-direction: row;
@@ -88,6 +73,6 @@
   cursor: pointer;
 }
 
-.swiper {
-  padding: 40px 64px !important;
+.swiper-slide {
+  height: calc((100% - 30px) / 2) !important;
 }

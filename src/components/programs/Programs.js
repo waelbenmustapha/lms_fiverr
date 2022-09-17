@@ -5,7 +5,7 @@ import "./programs.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper core and required modules
-import SwiperCore, { Grid, Navigation } from "swiper";
+import SwiperCore, { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/grid";
@@ -23,6 +23,14 @@ SwiperCore.use([Navigation]);
 function Programs() {
   // Swiper instance
   const swiperGridRef = useRef(null);
+
+  const programs = [
+    {
+      title: "",
+      description:
+        "دوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر يميبر نامج الاكاديميدوربرنامج الاكاد الاكاد يميبر.",
+    },
+  ];
 
   return (
     <div className="programs">
@@ -58,38 +66,35 @@ function Programs() {
         ref={swiperGridRef}
         dir="rtl"
         spaceBetween={40}
-        slidesPerView={2}
-        grid={{
-          rows: 2,
-        }}
+        slidesPerView={2.5}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        modules={[Grid, Navigation]}
+        modules={[Navigation]}
       >
         <SwiperSlide>
+          <div className="mb-40">
+            <CourseCard />
+          </div>
           <CourseCard />
         </SwiperSlide>
         <SwiperSlide>
+          <div className="mb-40">
+            <CourseCard />
+          </div>
           <CourseCard />
         </SwiperSlide>
         <SwiperSlide>
+          <div className="mb-40">
+            <CourseCard />
+          </div>
           <CourseCard />
         </SwiperSlide>
         <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <CourseCard />
-        </SwiperSlide>
-        <SwiperSlide>
+          <div className="mb-40">
+            <CourseCard />
+          </div>
           <CourseCard />
         </SwiperSlide>
       </Swiper>
