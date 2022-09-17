@@ -24,7 +24,9 @@ footer .social-icons * {
   padding: 8px;
   cursor: pointer;
 }
-
+.footer-nav {
+  margin-bottom: 8px;
+}
 .footer-nav ul {
   display: flex;
   flex-direction: row;
