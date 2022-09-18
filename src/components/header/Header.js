@@ -15,7 +15,7 @@ function Header({
   learning_average,
 }) {
   return (
-    <div className="header">
+    <div className="header p-horizontal">
       <div className="header-content">
         <div>
           <p className="title">{title}</p>
