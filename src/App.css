@@ -1,12 +1,12 @@
 @font-face {
   font-family: "bold"; /*Can be any text*/
   src: local("URWGeometricArabic"),
-    url("./fonts/URWGeometricArabic-Bold.ttf") format("truetype");
+    url("./assets/fonts/URWGeometricArabic-Bold.ttf") format("truetype");
 }
 @font-face {
   font-family: "regular"; /*Can be any text*/
   src: local("URWGeometricArabic"),
-    url("./fonts/URWGeometricArabic-Regular.ttf") format("truetype");
+    url("./assets/fonts/URWGeometricArabic-Regular.ttf") format("truetype");
 }
 :root {
   --text-color: #153c3f;
@@ -70,6 +70,19 @@ body {
   padding-right: 64px;
 }
 
+@media only screen and (max-width: 1080px) {
+  .p-horizontal {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .p-horizontal {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 .full {
   width: 100%;
 }
@@ -118,6 +131,7 @@ body {
   padding: 40px 64px !important;
 }
 
+/* ----------- progress bar style ----------- */
 .percent {
   position: relative;
   margin-left: 16px;
