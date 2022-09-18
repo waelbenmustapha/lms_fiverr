@@ -288,7 +288,7 @@ padding-left: 60px;
 }
 
 /* Medium devices ( tablets, 768px and down) */
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 950px) {
   .sidebar {
     width: 240px;
   }
@@ -363,8 +363,9 @@ padding-left: 60px;
     font-size: 13px;
   }
 }
+
 /* Small devices (phones, 650px and up) */
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 767px) {
   .container {
     height: 100%;
     display: flex;
@@ -573,4 +574,14 @@ position: absolute;
   }
 
  .bottomselect{max-height: 40vh;height: fit-content;}
+}
+
+@media only screen and (min-width: 768px) {
+.bottomselect{
+  max-height: 800px;
+}
+.onScreenContent{
+  max-height: 800px;
+}
+  
 }
