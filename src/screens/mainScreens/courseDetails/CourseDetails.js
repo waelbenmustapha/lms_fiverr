@@ -94,7 +94,7 @@ function CourseDetails() {
         {/* ---------- course details ---------------- */}
         <div className="course-details">
           <div className="p-horizontal">
-            <p className="title mb-40">مقدمة عن البرنامج</p>
+            <p className="title ">مقدمة عن البرنامج</p>
             <p className="description">{data.introduction}</p>
           </div>
           {/* ------- what you gonna learn in this programs ------- */}
