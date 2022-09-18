@@ -3,7 +3,7 @@ import "./header.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
-import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
+// import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 
 function Header({
   id,
@@ -43,10 +43,9 @@ function Header({
           انضم للبرنامج التدريبي
         </Link>
       </div>
-      <div className="course-svg-image">
+      <div className="header-image">
         <svg
-          width="588"
-          height="503"
+          className="svg-image"
           viewBox="0 0 588 503"
           fill="url(#imgpattern)"
           xmlns="http://www.w3.org/2000/svg"
