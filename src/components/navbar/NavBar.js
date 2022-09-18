@@ -1,19 +1,21 @@
 import React from "react";
 import "./navbar.css";
-import logo from "../../assets/images/logo.png";
-import { NavBarRoutes } from "../../utils/Routes";
 import { useLocation, useNavigate } from "react-router-dom";
+import { NavBarRoutes } from "../../utils/Routes";
+import logo from "../../assets/images/logo.png";
+import Menu from "./Menu";
 
 function NavBar() {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+
   return (
-    <nav>
+    <nav className="p-horizontal">
+      <Menu />
+      <a href="/">
+        <img className="logo" src={logo} alt="logo" />
+      </a>
       <div className="navigation">
-        <a href="/">
-          <img className="logo" src={logo} alt="logo" />
-        </a>
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
@@ -35,8 +37,8 @@ function NavBar() {
             ))}
           </ul>
         </div>
+        <button className="btn-register">تسجيل الدخول</button>
       </div>
-      <button className="btn-register">تسجيل الدخول</button>
     </nav>
   );
 }
