@@ -2,7 +2,7 @@ import React from "react";
 
 function CoursTextDescription() {
   return (
-    <div style={{ paddingLeft: "65px" }}>
+    <div style={{ paddingLeft: "65px" ,flex:1}}>
       <div className="dotsandtext">
         <p style={{ fontFamily: "bold" }}>مقدمة عن المحاضرة</p>
         <div className="smallDot"></div>
@@ -13,7 +13,7 @@ function CoursTextDescription() {
       <div className="bigBar">
         <div className="smallBar"></div>
       </div>
-      <p style={{ lineHeight: "120%" }}>
+      <div className="contentdescription"><p style={{ lineHeight: "120%" }}>
         نص حكيم له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم
         له سر قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر
         قاطع وذو شأن عظيم مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع
@@ -29,6 +29,7 @@ function CoursTextDescription() {
         مكتوب على ثوب أخضر ومغلف بجلد أزرقص حكيم له سر قاطع وذو شأن عظيم مكتوب
         على ثوب أخضر ومغلف بجلد أزرق.
       </p>
+      </div>
     </div>
   );
 }
