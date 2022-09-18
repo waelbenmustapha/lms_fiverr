@@ -43,7 +43,7 @@ function TopPrograms() {
 
   return (
     <div className="top-programs">
-      <div className="swiper-navigation-header">
+      <div className="swiper-navigation-header p-horizontal">
         <p className="title">البرامج الأكثر شيوعًا</p>
         <div className="swipe-btns">
           <ArrowRight
@@ -59,8 +59,30 @@ function TopPrograms() {
       <Swiper
         ref={swiperRef}
         dir="rtl"
-        spaceBetween={40}
-        slidesPerView={2.5}
+        slidesPerView={1}
+        spaceBetween={30}
+        breakpoints={{
+          600: {
+            slidesPerView: 1.2,
+            spaceBetween: 30,
+          },
+          768: {
+            slidesPerView: 1.75,
+            spaceBetween: 30,
+          },
+          900: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          1280: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1368: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -73,7 +95,7 @@ function TopPrograms() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="see-more">
+      <div className="see-more p-horizontal">
         <button className="see-more-btn">اكتشف جميع البرامج</button>
       </div>
     </div>
