@@ -3,9 +3,24 @@
   display: flex;
   flex-direction: column;
 }
+.helpmeimg{
+  left: 20px;
+top: 30px;
+position: absolute;
+}
+.helpmetxt{
+  font-family: bold;
+font-size: 16px;
+color: #153C3F;
+margin-right: 15px;
+}
 .helpanddescription {
   display: flex;
   flex-direction: row;
+}
+.coursetext{
+  flex: 1;
+padding-left: 60px;
 }
 .player {
   flex: 1;
@@ -33,7 +48,17 @@
   width: 380px;
   height: 100%;
 }
+.helpme {
+  width: 380px;
+  height: 100%;
+}
 .onScreenContent {
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+.bottomselect{
   height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
@@ -186,6 +211,9 @@
   .sidebar {
     width: 280px;
   }
+  .helpme {
+    width: 280px;
+  }
   .content {
     display: flex;
     justify-content: space-between;
@@ -264,6 +292,10 @@
   .sidebar {
     width: 240px;
   }
+  .helpme{
+    width: 240px;
+
+  }
   .content {
     font-size: 12px;
     padding-right: 30px;
@@ -340,12 +372,18 @@
   }
   .helpanddescription {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
   }
+.coursetext{
+  flex: 1;
+padding-left: 60px;
+padding-right: 30px;
+}
   .content {
   
     padding-right: 25px;
     padding-left: 25px;
+    height: 50px;
     margin-bottom: 5px;
   }
   .videoandsidebar {
@@ -359,11 +397,18 @@
     font-size: 12px;
     font-family: bold;
   }
-  .sidebar {
+  .helpme {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
   }
   .onScreenContent {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+  }
+  .bottomselect{
     display: flex;
     flex-direction: column;
     background-color: #fafafa;
@@ -401,15 +446,11 @@
     height: 0;
   }
   .contactHelp {
-    display: flex;
-    margin-bottom: 40px;
-    margin-top: 16px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin-right: 40px;
+ 
     background-color: #00ec8b;
-    width:150px;
+    width: max-content;
+    padding: 20px;
+    margin: 50px;
     height: 250px;
     box-shadow: -6px 6px 0px 0px #153c3f;
   }
@@ -419,14 +460,14 @@
     justify-content: center;
     align-items: center;
     font-family: "bold";
-    font-size: 12px;
-    padding: 14px 30px;
+    font-size: 10px;
+    padding: 10px 20px;
     gap: 10px;
     color: white;
     bottom: 16px;
     position: absolute;
-    width: 150px;
-    height: 45px;
+    width: 120px;
+    height: 40px;
 
     background: #153c3f;
     box-shadow: 0px 4px 64px 8px rgba(0, 200, 225, 0.05);
@@ -510,8 +551,26 @@
     background-color: #153c3f;
   }
   .player {
-    height: 60vh;
+    height: 50vh;
     flex: none;
   }
   .bottomselect{max-height: 40vh;}
+  .sidebar {
+    width: 100%;
+  }
+  .helpmetxt{
+    font-family: bold;
+font-size: 13px;
+color: #153C3F;
+margin-right: 10px;
+  }
+  .helpmeimg{
+    left: 10px;
+top: 15px;
+height: 40px;
+width: 40px;
+position: absolute;
+  }
+
+ .bottomselect{max-height: 40vh;height: fit-content;}
 }

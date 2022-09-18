@@ -18,7 +18,7 @@ function CoursePage() {
   //fetching courseData for the current connected user using the userid and the courseID
   function fetchCourseData() {
     axios
-      .get("https://mocki.io/v1/09157feb-9534-4ca0-a50b-c98e012acd02")
+      .get("https://mocki.io/v1/6faf00e5-4603-4bc3-adf3-90d605b72c45")
       .then((res) => {
         setCourseData(res.data);
         setselectedContent(res.data?.sections[0].content[0]);
@@ -39,7 +39,7 @@ function CoursePage() {
     return (
       <div className="container">
         <div className="videoandsidebar">
-          <div className="onScreenContent sidebar bottomselect">
+          <div className="sidebar bottomselect">
             <div className="textandprogress">
               <p className="takadom">تقدمك بالبرنامج:</p>
               <div className="percent">
@@ -101,7 +101,7 @@ function CoursePage() {
                 }
                 onClickPreview={() => console.log("hi")}
                 playing={true}
-                light={"https://i.postimg.cc/cCX0D6vw/Mask-group-1.png"}
+                light={selectedContent.thumbnail}
                 key={selectedContent.id}
                 className="react-player"
                 height={"100%"}
@@ -114,10 +114,10 @@ function CoursePage() {
           </div>
         </div>
         <div className="helpanddescription">
-          <div className="sidebar">
+          <div className="helpme">
             <HelpMe />
           </div>
-          <CoursTextDescription />
+          <CoursTextDescription text={selectedContent.text}/>
         </div>
       </div>
     );
