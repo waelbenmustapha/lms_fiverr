@@ -9,7 +9,6 @@ function Main() {
       style={{
         position: "relative",
         minHeight: "100vh",
-        paddingBottom: "100px",
       }}
     >
       <NavBar />
