@@ -116,7 +116,21 @@ function CourseDetails() {
               ref={swiperLearningRef}
               dir="rtl"
               spaceBetween={0}
-              slidesPerView={3.5}
+              slidesPerView={1}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                },
+                500: {
+                  slidesPerView: 2,
+                },
+                780: {
+                  slidesPerView: 3,
+                },
+                1300:{
+                  slidesPerView: 4,
+                }
+              }}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
