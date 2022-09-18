@@ -27,7 +27,7 @@ function Notification() {
     <>
       {isNotifOpen && (
         <div className="custom-shadow-box">
-          <div className="notification">
+          <div className="notification p-horizontal">
             <div className="notif-header">
               <p className="title">برامجك الحالية:</p>
               <div onClick={() => setIsNotifOpen(false)} className="close-btn">
