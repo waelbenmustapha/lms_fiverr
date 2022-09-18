@@ -116,7 +116,7 @@ function CourseDetails() {
               ref={swiperLearningRef}
               dir="rtl"
               spaceBetween={0}
-              slidesPerView={3.5}
+              slidesPerView={"auto"}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
