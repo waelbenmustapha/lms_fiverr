@@ -9,22 +9,14 @@ function DataElement({ element, selectedContent, setselectedContent ,collapsed }
   return (
     <div>
       <div
-        className="hover-cursor"
+        className="hover-cursor content"
         onClick={() => setCollapse(!collapse)}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingRight: "65px",
-          paddingLeft: "65px",
-          marginBottom: "30px",
-        }}
+      
       >
         <p
           style={{
             fontFamily: "bold",
 
-            fontSize: "14px",
           }}
         >
           {element.name}

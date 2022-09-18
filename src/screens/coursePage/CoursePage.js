@@ -38,17 +38,10 @@ function CoursePage() {
   } else {
     return (
       <div className="container">
-        <div className="sidebar">
-          <div className="onScreenContent">
+        <div className="videoandsidebar">
+          <div className="onScreenContent sidebar bottomselect">
             <div className="textandprogress">
-              <p
-                style={{
-                  fontSize: "16px",
-                  fontFamily: "bold",
-                }}
-              >
-                تقدمك بالبرنامج:
-              </p>
+              <p className="takadom">تقدمك بالبرنامج:</p>
               <div className="percent">
                 <svg>
                   <circle cx="28" cy="28" r="25"></circle>
@@ -78,10 +71,7 @@ function CoursePage() {
               ))}
             </div>
           </div>
-          <HelpMe />
-        </div>
-        <div style={{ width: "100%", flex: 1 }}>
-          <div className=" onScreenContent">
+          <div className=" onScreenContent player" >
             {selectedContent.type === "video" ? (
               <ReactPlayer
                 controls={true}
@@ -121,6 +111,11 @@ function CoursePage() {
             ) : selectedContent.type === "text" ? (
               <div style={{ backgroundColor: "#f2f2f2", height: "100%" }}></div>
             ) : null}
+          </div>
+        </div>
+        <div className="helpanddescription">
+          <div className="sidebar">
+            <HelpMe />
           </div>
           <CoursTextDescription />
         </div>
