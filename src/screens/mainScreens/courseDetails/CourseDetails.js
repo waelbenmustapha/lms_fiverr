@@ -127,9 +127,9 @@ function CourseDetails() {
                 780: {
                   slidesPerView: 3,
                 },
-                1300:{
+                1300: {
                   slidesPerView: 4,
-                }
+                },
               }}
               navigation={{
                 nextEl: ".swiper-button-next",
