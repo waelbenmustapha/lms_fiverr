@@ -2,7 +2,7 @@ import React from "react";
 
 function CoursTextDescription() {
   return (
-    <div style={{ paddingLeft: "65px" ,flex:1}}>
+    <div style={{ flex:1}}>
       <div className="dotsandtext">
         <p style={{ fontFamily: "bold" }}>مقدمة عن المحاضرة</p>
         <div className="smallDot"></div>
