@@ -73,3 +73,28 @@
   height: 14px;
   margin-left: 4px;
 }
+
+@media only screen and (max-width: 1024px) {
+  .overlay-title {
+    font-size: 18px;
+  }
+  .image-overlay-content {
+    padding: 18px;
+  }
+
+  .overlay-description {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 950px) {
+  .overlay-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .image-overlay-content {
+    padding: 14px;
+  }
+  .overlay-description {
+    font-size: 12px;
+  }
+}

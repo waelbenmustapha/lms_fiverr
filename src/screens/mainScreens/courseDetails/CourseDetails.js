@@ -211,7 +211,19 @@ function CourseDetails() {
               ref={swiperProgContentRef}
               dir="rtl"
               spaceBetween={20}
-              slidesPerView={2.5}
+              slidesPerView={1}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                },
+                550: {
+                  slidesPerView: 2,
+                },
+                850: {
+                  slidesPerView: 3,
+                },
+                
+              }}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
