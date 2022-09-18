@@ -138,6 +138,8 @@
 }
 
 @media only screen and (max-width: 1024px) {
+ 
+  
   .top-asked-questions {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -199,7 +201,6 @@
   }
   .programs-content-category {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     gap: 20px;
