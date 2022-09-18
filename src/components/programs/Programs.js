@@ -66,7 +66,7 @@ function Programs() {
           </div>
         ))}
       </div>
-      <div className="programs-header p-horizontal">
+      <div className="swiper-navigation-header p-horizontal">
         <p className="title">جميع البرامج</p>
         <div className="swipe-btns">
           <ArrowRight
@@ -97,7 +97,7 @@ function Programs() {
           1280: {
             slidesPerView: 3,
           },
-          1368: {
+          1680: {
             slidesPerView: 4,
           },
         }}

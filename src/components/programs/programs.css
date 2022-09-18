@@ -19,7 +19,7 @@
   font-size: 20px;
   font-weight: bold;
   height: 55px;
-  padding: 14px 32px;
+  padding: 8px 32px;
   background-color: #ffffff;
   border: 1px solid var(--bg-three);
   outline: none;
@@ -31,41 +31,13 @@
   background-color: var(--bg-two);
 }
 
-.programs-header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.programs-header .title {
-  font-size: 32px;
-  color: var(--text-color);
-}
-
-.see-more {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 10px 64px;
-}
-
-.see-more-btn {
-  font-family: inherit;
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  padding: 14px 24px;
-  outline: none;
-  border: none;
-  color: #ffffff;
-  background-color: var(--bg-three);
-  cursor: pointer;
-}
-
-.swiper-slide {
-  height: calc((100% - 30px) / 2) !important;
+@media screen and (max-width: 1080px) {
+  .programs-category {
+    gap: 20px;
+  }
+  .btn-category {
+    font-size: 16px;
+    height: 40px;
+    padding: 8px 28px;
+  }
 }

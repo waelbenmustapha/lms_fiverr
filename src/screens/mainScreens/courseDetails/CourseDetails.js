@@ -99,7 +99,7 @@ function CourseDetails() {
           </div>
           {/* ------- what you gonna learn in this programs ------- */}
           <div className="program-learning">
-            <div className="swiper-navigation-header">
+            <div className="swiper-navigation-header p-horizontal">
               <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
               <div className="swipe-btns">
                 <ArrowRight
@@ -175,7 +175,7 @@ function CourseDetails() {
           </div>
           {/* --------------- program content -------------------- */}
           <div className="program-content">
-            <div className="swiper-navigation-header">
+            <div className="swiper-navigation-header p-horizontal">
               <p className="title">محتوى البرنامج</p>
               <div className="swipe-btns">
                 <ArrowRight
