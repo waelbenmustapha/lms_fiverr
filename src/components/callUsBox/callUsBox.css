@@ -1,4 +1,3 @@
-/* call us box */
 .call-us {
   display: flex;
   flex-direction: column;
@@ -13,11 +12,13 @@
 .call-us .title {
   font-size: 64px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .call-us .description {
   font-size: 28px;
   font-weight: bold;
+  margin-bottom: 30px;
 }
 
 .btn-call-us {
@@ -31,4 +32,44 @@
   color: #ffffff;
   background-color: var(--text-color);
   cursor: pointer;
+}
+
+@media screen and (max-width: 1080px) {
+  .call-us {
+    padding: 70px 20px;
+  }
+
+  .call-us .title {
+    font-size: 48px;
+  }
+
+  .call-us .description {
+    font-size: 24px;
+  }
+
+  .btn-call-us {
+    font-size: 14px;
+    height: 45px;
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .call-us {
+    padding: 50px 20px;
+  }
+
+  .call-us .title {
+    font-size: 36px;
+  }
+
+  .call-us .description {
+    font-size: 20px;
+  }
+
+  .btn-call-us {
+    font-size: 14px;
+    height: 45px;
+    padding: 10px 40px;
+  }
 }
