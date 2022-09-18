@@ -52,7 +52,7 @@ function Programs() {
 
   return (
     <div className="programs">
-      <div className="programs-category mb-40">
+      <div className="programs-category p-horizontal mb-40">
         <p className="title">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div
@@ -66,7 +66,7 @@ function Programs() {
           </div>
         ))}
       </div>
-      <div className="programs-header">
+      <div className="programs-header p-horizontal">
         <p className="title">جميع البرامج</p>
         <div className="swipe-btns">
           <ArrowRight
@@ -82,8 +82,25 @@ function Programs() {
       <Swiper
         ref={swiperGridRef}
         dir="rtl"
-        spaceBetween={40}
-        slidesPerView={2.5}
+        slidesPerView={1}
+        spaceBetween={30}
+        breakpoints={{
+          600: {
+            slidesPerView: 1.2,
+          },
+          768: {
+            slidesPerView: 1.75,
+          },
+          900: {
+            slidesPerView: 2,
+          },
+          1280: {
+            slidesPerView: 3,
+          },
+          1368: {
+            slidesPerView: 4,
+          },
+        }}
         grid={{
           rows: 2,
           fill: "row",
