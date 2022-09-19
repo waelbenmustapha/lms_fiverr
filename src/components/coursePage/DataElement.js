@@ -50,8 +50,9 @@ function DataElement({
       </div>
       {collapse && (
         <div className="datatypes">
-          {element.content.map((el) => (
+          {element.content.map((el, index) => (
             <div
+              key={`data-${index}`}
               onClick={() => setselectedContent({ ...el })}
               className={
                 "dataElement cursor-pointer " +

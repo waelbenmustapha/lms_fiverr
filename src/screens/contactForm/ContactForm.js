@@ -1,6 +1,10 @@
 import React from "react";
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
+
 function ContactForm() {
+  const navigate = useNavigate();
+
   return (
     <div className="mx-auto max-w-[850px] px-[20px] pt-[60px] mb-[100px]">
       <p className="max-w-[550px] text-[40px] mediamax-1023:text-[28px] mediamax-860:text-[24px] font-bold mb-[40px]">
@@ -19,6 +23,7 @@ function ContactForm() {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
+          navigate("/form-sucess");
         }}
       >
         {({

@@ -63,6 +63,7 @@ function CoursePage() {
             <div className="datascroll">
               {courseData.sections.map((element, index) => (
                 <DataElement
+                  key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}
                   selectedContent={selectedContent}
                   setselectedContent={setselectedContent}
@@ -71,7 +72,7 @@ function CoursePage() {
               ))}
             </div>
           </div>
-          <div className=" onScreenContent player" >
+          <div className=" onScreenContent player">
             {selectedContent.type === "video" ? (
               <ReactPlayer
                 controls={true}
@@ -117,7 +118,7 @@ function CoursePage() {
           <div className="helpme">
             <HelpMe />
           </div>
-          <CoursTextDescription text={selectedContent.text}/>
+          <CoursTextDescription text={selectedContent.text} />
         </div>
       </div>
     );
