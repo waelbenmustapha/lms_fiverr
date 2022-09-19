@@ -40,6 +40,7 @@ function ContactForm() {
             <div>
               <div>
                 <input
+                  className="input-formit"
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -49,7 +50,8 @@ function ContactForm() {
               </div>
               <div>
                 <input
-                className="border-4"
+                  className="input-formit"
+                  placeholder="أكتب بريدك الالكتروني.."
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}

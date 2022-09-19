@@ -7,3 +7,12 @@
     @apply w-[90px] h-[35px] cursor-pointer;
   }
 }
+
+@layer components {
+  .logo {
+    @apply w-[90px] h-[35px] cursor-pointer;
+  }
+  .input-formit{
+    @apply px-6 h-[70px] w-[450px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
+  }
+}
