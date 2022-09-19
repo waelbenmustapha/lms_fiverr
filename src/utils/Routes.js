@@ -9,6 +9,8 @@ import Prices from "../screens/mainScreens/prices/Prices";
 import Services from "../screens/mainScreens/services/Services";
 import Tools from "../screens/mainScreens/tools/Tools";
 import Login from "../screens/auth/Login";
+import ForgotPassword from "../screens/auth/ForgotPassword";
+import NewPassword from "../screens/auth/NewPassword";
 
 export const NavBarRoutes = [
   {
@@ -67,5 +69,13 @@ export const SoloRoutes = [
   {
     path: "/login",
     component: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    component: <ForgotPassword />,
+  },
+  {
+    path: "/new-password",
+    component: <NewPassword />,
   },
 ];
