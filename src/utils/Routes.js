@@ -62,3 +62,7 @@ export const NormalRoutes = [
     component: <ContactForm />,
   },
 ]
+export const SoloRoutes=[ {
+  path: "/login",
+  component: <ContactForm />,
+},]

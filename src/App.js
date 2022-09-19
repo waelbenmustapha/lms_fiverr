@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavBarRoutes, AppRoutes, NormalRoutes } from "./utils/Routes";
+import { NavBarRoutes, AppRoutes, NormalRoutes, SoloRoutes } from "./utils/Routes";
 import Main from "./screens/Main";
 import { ConvertRoutes } from "./utils/ConvertRoutes";
 import Lessons from "./screens/mainScreens/lessons/Lessons";
@@ -11,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+      {ConvertRoutes(SoloRoutes)}
 
         <Route path="/" element={<Main />}>
         {ConvertRoutes(NormalRoutes)}
