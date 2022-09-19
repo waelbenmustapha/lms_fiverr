@@ -1,10 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
-import "./contactForm.css"
 function ContactForm() {
   return (
-    <div className="contact-container">
-        <p className="bigtxt">لو عندك أسئلة تواصل معنا وراح نجاوبك بأسرع وقت..</p>
+    <div className="pr-[200px] pt-[100px]">
+      <p className="w-[700px] text-[56px] font-[bold] mb-[65px]">
+        لو عندك أسئلة تواصل معنا وراح نجاوبك بأسرع وقت..
+      </p>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -36,22 +37,28 @@ function ContactForm() {
           /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {errors.password && touched.password && errors.password}
+            <div>
+              <div>
+                <input
+                  name="email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+                {errors.email && touched.email && errors.email}
+              </div>
+              <div>
+                <input
+                className="border-4"
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+                {errors.password && touched.password && errors.password}
+              </div>
+            </div>
+
             <button type="submit" disabled={isSubmitting}>
               Submit
             </button>
