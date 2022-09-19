@@ -1,3 +1,4 @@
+import AllCourses from "../screens/allCourses/AllCourses";
 import CoursePage from "../screens/coursePage/CoursePage";
 import CourseDetails from "../screens/mainScreens/courseDetails/CourseDetails";
 import Info from "../screens/mainScreens/info/Info";
@@ -41,6 +42,10 @@ export const NavBarRoutes = [
 ];
 
 export const AppRoutes = [
+  {
+    path: "/academy-lessons/all-courses",
+    component: <AllCourses />,
+  },
   {
     path: "/academy-lessons/course-details",
     component: <CourseDetails />,

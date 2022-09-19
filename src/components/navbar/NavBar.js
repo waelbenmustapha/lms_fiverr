@@ -19,7 +19,7 @@ function NavBar() {
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <div>
+              <div key={`nav-${index}`}>
                 <li
                   className={
                     location.pathname.startsWith(route.path) ||
