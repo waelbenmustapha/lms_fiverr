@@ -31,10 +31,7 @@ function AllCourses() {
   }, []);
 
   return (
-    <div
-      style={{ paddingTop: "64px", paddingBottom: "150px" }}
-      className="all-courses p-horizontal"
-    >
+    <div className="pt-[64px] pb-[150px] all-courses p-horizontal">
       <p className="title mb-40">جميع البرامج</p>
       <div className="programs-category mb-40">
         <p className="title">تصنيف البرامج</p>
