@@ -2,8 +2,8 @@ import React from "react";
 import { Formik } from "formik";
 function ContactForm() {
   return (
-    <div className="pr-[200px] mediamax-1023:pr-[150px] mediamax-860:pr-[100px] mediamax-550:pr-[40px] pt-[100px] mediamax-1023pt-[80px] mediamax-860:pt-[50px] mediamax-550:pt-[30px] mb-[120px]">
-      <p className="w-[700px] text-[56px] font-[bold] mb-[65px]">
+    <div className="pr-[200px]  mediamax-1079:pr-[100px]  mediamax-1079:pt-[50px] mediamax-860:pr-[50px] mediamax-860:pt-[25px] pt-[100px] mb-[120px]">
+      <p className="w-[60%] text-[56px] mediamax-1023:text-[40px] mediamax-860:text-[30px] mediamax-650:[22px] mediamax-550:text-[18px]  font-[bold] media mb-[65px]">
         لو عندك أسئلة تواصل معنا وراح نجاوبك بأسرع وقت..
       </p>
       <Formik
@@ -31,10 +31,10 @@ function ContactForm() {
           /* and other goodies */
         }) => (
           <form >
-            <div className="w-fit">
-            <div className="flex flex-row gap-[65px] mb-[30px]">
+            <div className="w-fit mediamax-650:w-[80%]">
+            <div className="flex flex-row mediamax-650:flex-col mediamax-650:gap-[15px] gap-[65px] mb-[30px]">
               <div>
-                <p className="text-[24px] text-primary-color mb-[10px]">
+                <p className="text-[24px] text-primary-color mb-[10px] mediamax-1023:text-[21px] mediamax-860:text-[18px] mediamax-550:text-[14px]">
                   الاسم
                 </p>
                 <input
@@ -47,7 +47,7 @@ function ContactForm() {
                 />
               </div>
               <div>
-                <p className="text-[24px] text-primary-color mb-[10px]">
+                <p className="text-[24px] text-primary-color mb-[10px] mediamax-1023:text-[21px] mediamax-860:text-[18px] mediamax-550:text-[14px]">
                   البريد الالكتروني
                 </p>
                 <input
@@ -60,9 +60,9 @@ function ContactForm() {
                 />
               </div>
             </div>
-            <div className="flex flex-row gap-[65px] mb-[30px]">
+            <div className="flex flex-row mediamax-650:flex-col mediamax-650:gap-[15px] gap-[65px] mb-[30px]">
               <div>
-                <p className="text-[24px] text-primary-color mb-[10px]">
+                <p className="text-[24px] text-primary-color mb-[10px] mediamax-1023:text-[21px] mediamax-860:text-[18px] mediamax-550:text-[14px]">
                   عنوان الرسالة
                 </p>
                 <input
@@ -75,7 +75,7 @@ function ContactForm() {
                 />
               </div>
               <div>
-                <p className="text-[24px] text-primary-color mb-[10px]">
+                <p className="text-[24px] text-primary-color mb-[10px] mediamax-1023:text-[21px] mediamax-860:text-[18px] mediamax-550:text-[14px]">
                   اسم البرنامج{" "}
                 </p>
                 <input
@@ -89,7 +89,7 @@ function ContactForm() {
               </div>
             </div>
             <div className=" w-full flex flex-col ">
-            <p className="text-[24px] text-primary-color mb-[10px]">الرسالة </p>
+            <p className="text-[24px] text-primary-color mb-[10px] mediamax-1023:text-[21px] mediamax-860:text-[18px] mediamax-550:text-[14px]">الرسالة </p>
             <textarea
               className="input-formit w-full  h-[270px] mb-[30px]  p-5"
               placeholder="أكتب الرسالة.."
@@ -102,8 +102,8 @@ function ContactForm() {
                 <p className="text-[20px] font-[bold] text-primary-color">submit</p>
             </div>
             </div>
-
-            </div>
+</div>
+           
           </form>
         )}
       </Formik>
