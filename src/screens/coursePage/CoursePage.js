@@ -37,7 +37,7 @@ function CoursePage() {
     );
   } else {
     return (
-      <div className="container">
+      <div className="containerp">
         <div className="videoandsidebar">
           <div className="sidebar bottomselect">
             <div className="textandprogress">

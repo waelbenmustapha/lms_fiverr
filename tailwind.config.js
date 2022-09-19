@@ -27,14 +27,13 @@ module.exports = {
       "mediamax-767": { max: "767px" },
       // => @media (max-width: 767px) { ... }
 
-      tablet: "768px",
-      // => @media (min-width: 768px) { ... }
-
       "mediamax-650": { max: "650px" },
       // => @media (max-width: 650px) { ... }
 
       "mediamax-550": { max: "550px" },
       // => @media (max-width: 550px) { ... }
+
+      // => @media (min-width: 1280px) { ... }
     },
     extend: {
       colors: {

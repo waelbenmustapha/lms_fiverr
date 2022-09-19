@@ -1,4 +1,4 @@
-.container {
+.containerp {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -366,7 +366,7 @@ padding-left: 60px;
 
 /* Small devices (phones, 650px and up) */
 @media only screen and (max-width: 767px) {
-  .container {
+  .containerp {
     height: 100%;
     display: flex;
     flex-direction: column;
