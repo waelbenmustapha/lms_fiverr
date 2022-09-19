@@ -7,6 +7,6 @@
     @apply w-[90px] h-[35px] cursor-pointer;
   }
   .input-formit {
-    @apply px-6 h-[50px] w-[400px] mediamax-1079:w-[300px] mediamax-767:w-[200px] mediamax-650:w-full  bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
+    @apply px-6 h-[50px] w-full  bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
   }
 }
