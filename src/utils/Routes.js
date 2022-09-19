@@ -1,3 +1,4 @@
+import ContactForm from "../screens/contactForm/ContactForm";
 import AllCourses from "../screens/allCourses/AllCourses";
 import CoursePage from "../screens/coursePage/CoursePage";
 import CourseDetails from "../screens/mainScreens/courseDetails/CourseDetails";
@@ -55,3 +56,9 @@ export const AppRoutes = [
     component: <CoursePage />,
   },
 ];
+export const NormalRoutes = [
+  {
+    path: "/contact-us",
+    component: <ContactForm />,
+  },
+]
