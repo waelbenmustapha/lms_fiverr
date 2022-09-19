@@ -31,9 +31,9 @@ function AllCourses() {
   }, []);
 
   return (
-    <div className="pt-[64px] pb-[150px] all-courses p-horizontal">
-      <p className="title mb-40">جميع البرامج</p>
-      <div className="programs-category mb-40">
+    <div className="pt-[64px] pb-[150px] all-courses px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+      <p className="title mb-[40px]">جميع البرامج</p>
+      <div className="programs-category mb-[40px]">
         <p className="title">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div

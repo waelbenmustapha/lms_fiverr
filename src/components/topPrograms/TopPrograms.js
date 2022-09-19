@@ -43,7 +43,7 @@ function TopPrograms() {
 
   return (
     <div className="top-programs">
-      <div className="swiper-navigation-header p-horizontal">
+      <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
         <p className="title">البرامج الأكثر شيوعًا</p>
         <div className="swipe-btns">
           <ArrowRight
@@ -95,7 +95,7 @@ function TopPrograms() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="see-more p-horizontal">
+      <div className="see-more px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
         <button className="see-more-btn">اكتشف جميع البرامج</button>
       </div>
     </div>

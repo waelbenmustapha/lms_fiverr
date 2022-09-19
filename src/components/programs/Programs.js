@@ -52,7 +52,7 @@ function Programs() {
 
   return (
     <div className="programs">
-      <div className="programs-category p-horizontal mb-40">
+      <div className="programs-category px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-40">
         <p className="title">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div
@@ -66,7 +66,7 @@ function Programs() {
           </div>
         ))}
       </div>
-      <div className="swiper-navigation-header p-horizontal">
+      <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
         <p className="title">جميع البرامج</p>
         <div className="swipe-btns">
           <ArrowRight

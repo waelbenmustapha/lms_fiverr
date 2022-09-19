@@ -9,6 +9,9 @@ module.exports = {
       "mediamax-1279": { max: "1279px" },
       // => @media (max-width: 1279px) { ... }
 
+      "mediamax-1079": { max: "1079px" },
+      // => @media (max-width: 1079px) { ... }
+
       "mediamax-1023": { max: "1023px" },
       // => @media (max-width: 1023px) { ... }
 

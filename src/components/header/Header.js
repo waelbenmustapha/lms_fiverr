@@ -15,7 +15,7 @@ function Header({
   learning_average,
 }) {
   return (
-    <div className="header p-horizontal">
+    <div className="header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
       <div className="header-content">
         <div>
           <p className="title">{title}</p>

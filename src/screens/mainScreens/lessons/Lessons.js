@@ -50,7 +50,7 @@ function Lessons() {
       />
       <div className="lessons-container">
         <TopPrograms />
-        <div className="full p-horizontal mb-40">
+        <div className="full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-40">
           <div className="devider"></div>
         </div>
         <Programs />

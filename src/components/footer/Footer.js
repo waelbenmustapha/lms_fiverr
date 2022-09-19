@@ -6,7 +6,7 @@ import { ReactComponent as Linkedin } from "../../assets/svg/linkedin.svg";
 
 function Footer() {
   return (
-    <footer className="p-horizontal">
+    <footer className="px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
       <a href="#">
         <img className="logo" src={logo} alt="logo" />
       </a>
