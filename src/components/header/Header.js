@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
+import { ReactComponent as Check } from "../../assets/svg/check-circle-greeno-utline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
 // import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 
@@ -14,6 +15,7 @@ function Header({
   duration,
   learning_average,
 }) {
+  const [joined, setJoined] = useState(false);
   return (
     <div className="header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
       <div className="header-content">
@@ -36,12 +38,35 @@ function Header({
             </p>
           </div>
         </div>
-        <Link
-          to={`/academy-lessons/course?course_id=${id}`}
-          className="enroll-course-btn"
-        >
-          انضم للبرنامج التدريبي
-        </Link>
+        <div>
+          <div
+            onClick={() => setJoined(!joined)}
+            className={
+              "text-[20px] font-[bold] text-center flex items-center justify-center w-full h-[55px] py-2 px-4   outline-none border-none cursor-pointer " +
+              (joined
+                ? "bg-[#153C3F] text-[#00ec8b] "
+                : "bg-[#00ec8b] text-primary-color ")
+            }
+          >
+            {joined ? (
+              <div className="flex flex-row gap-[10px] items-center">
+                <Check />
+                <p>تم انضمامك للبرنامج بنجاح!</p>
+              </div>
+            ) : (
+              "انضم للبرنامج التدريبي"
+            )}
+          </div>
+          {joined && (
+            <div
+              className="w-full h-[50px] bg-white flex items-center text-[16px] px-[16px]"
+             
+            >
+              <span> يمكنك الآن عرض البرنامج والبدء فيه..</span>
+              <Link  to={`/academy-lessons/course?course_id=${id}`} className="font-[bold]  cursor-pointer text-[#00EC8B]"> ابدأ البرنامج</Link>
+            </div>
+          )}
+        </div>
       </div>
       <div className="header-image">
         <svg
