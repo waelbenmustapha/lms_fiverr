@@ -3,24 +3,25 @@ import "./footer.css";
 import logo from "../../assets/images/logo.png";
 import { ReactComponent as Twitter } from "../../assets/svg/twitter.svg";
 import { ReactComponent as Linkedin } from "../../assets/svg/linkedin.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <footer className="px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-      <a href="#">
+      <Link to={"/"}>
         <img className="logo" src={logo} alt="logo" />
-      </a>
+      </Link>
       <div className="footer-content">
         <div className="footer-nav">
           <ul>
             <li>
-              <a href="#">سياسة الخصوصية</a>
+              <a href="/">سياسة الخصوصية</a>
             </li>
             <li>
-              <a href="#">الشروط والأحكام</a>
+              <a href="/">الشروط والأحكام</a>
             </li>
             <li>
-              <a href="#">الأسئلة الشائعة</a>
+              <a href="/">الأسئلة الشائعة</a>
             </li>
           </ul>
         </div>
