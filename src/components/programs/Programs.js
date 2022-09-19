@@ -52,7 +52,7 @@ function Programs() {
 
   return (
     <div className="programs">
-      <div className="programs-category px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-40">
+      <div className="programs-category px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-[40px]">
         <p className="title">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div

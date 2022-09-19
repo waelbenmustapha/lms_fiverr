@@ -31,33 +31,42 @@ function AllCourses() {
   }, []);
 
   return (
-    <div className="pt-[64px] pb-[150px] all-courses px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-      <p className="title mb-[40px]">جميع البرامج</p>
-      <div className="programs-category mb-[40px]">
-        <p className="title">تصنيف البرامج</p>
+    <div className="pt-[64px] mediamax-1079:pt-[40px] pb-[150px] mediamax-1079:pb-[80px] px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+      <p className="text-primary-color text-[32px] mediamax-1079:text-[24px] mb-[40px]">
+        جميع البرامج
+      </p>
+      <div className="flex flex-row flex-wrap items-center gap-[36px] mediamax-1079:gap-[20px] mb-[40px]">
+        <p className="text-[20px] text-primary-color">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div
             key={`category-${index}`}
             onClick={() => setselectedCat(ctg.category)}
             className={
-              "btn-category " + (ctg.category === selectedCat && "active")
+              "flex justify-center items-center font-[inherit] text-[20px] mediamax-1079:text-[16px] font-bold h-[55px] mediamax-1079:h-[40px] px-[32px] py-[8px] mediamax-1079:px-[28px] border-[1px] border-primary-color outline-none whitespace-nowrap cursor-pointer " +
+              (ctg.category === selectedCat ? "bg-green" : "bg-white")
             }
           >
             <span>{ctg.name}</span>
           </div>
         ))}
       </div>
-      <div className="all-courses-content">
+      <div className="flex flex-row flex-wrap justify-between items-center ml-[-12px] mr-[-12px]">
         {selectedCat === "all"
           ? programs.map((prog, index) => (
-              <div key={`prog-${index}`} className="stretched">
+              <div
+                key={`prog-${index}`}
+                className="flex justify-center items-center w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
+              >
                 <CourseCard program={prog} />
               </div>
             ))
           : programs
               .filter((el) => el.category === selectedCat)
               .map((prog, index) => (
-                <div key={`prog-${index}`} className="stretched">
+                <div
+                  key={`prog-${index}`}
+                  className="flex justify-center items-center w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
+                >
                   <CourseCard program={prog} />
                 </div>
               ))}

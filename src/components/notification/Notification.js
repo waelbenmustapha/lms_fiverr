@@ -26,7 +26,7 @@ function Notification() {
   return (
     <>
       {isNotifOpen && (
-        <div className="custom-shadow-box">
+        <div className="w-full bg-primary-color">
           <div className="notification px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
             <div className="notif-header">
               <p className="title">برامجك الحالية:</p>

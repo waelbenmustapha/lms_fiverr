@@ -162,7 +162,7 @@ function CourseDetails() {
           </div>
           {/* --------------- Skills gained from this program ------------------ */}
           <div className="program-skills px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-            <p className="title mb-40">
+            <p className="title mb-[40px]">
               المهارات المكتسبة من برنامج الابتكار المفتوح:
             </p>
             <div className="skills">
@@ -242,7 +242,7 @@ function CourseDetails() {
                   </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="full text-center mt-40">
+            <div className="w-full text-center mt-[40px]">
               <Link
                 to={"/academy-lessons/course-details"}
                 className="enroll-program-btn"
@@ -252,15 +252,15 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-            <div className="devider"></div>
+          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
           {/* --------------- top asked questions ------------- */}
           <div className="top-asked-questions px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-            <p className="title mb-40">الأسئلة الشائعة</p>
+            <p className="title mb-[40px]">الأسئلة الشائعة</p>
             <div>
               {questions.map((item, index) => (
-                <div key={index} className="mb-16">
+                <div key={index} className="mb-[16px]">
                   <Collapsible label={item.label}>
                     <p>{item.question}</p>
                   </Collapsible>
@@ -269,8 +269,8 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-            <div className="devider"></div>
+          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
         </div>
         <CallUsBox

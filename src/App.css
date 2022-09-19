@@ -8,6 +8,7 @@
   src: local("URWGeometricArabic"),
     url("./assets/fonts/URWGeometricArabic-Regular.ttf") format("truetype");
 }
+
 :root {
   --text-color: #153c3f;
   --text-green: #00ec8b;
@@ -18,16 +19,7 @@
   --color-footer: #ffffff;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  max-width: 1800px;
-  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, "regular", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,67 +28,10 @@ body {
   color: var(--text-color);
 }
 
-/* styles to apply globally */
-.logo {
-  width: 90px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.custom-shadow-box {
-  width: 100%;
-  background-color: var(--bg-three);
-}
-
-.mb-16 {
-  margin-bottom: 16px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.hover-cursor:hover {
-  cursor: pointer;
-}
-.mt-40 {
-  margin-top: 40px;
-}
-
-.mb-40 {
-  margin-bottom: 40px;
-}
-
-.p-horizontal {
-  padding-left: 64px;
-  padding-right: 64px;
-}
-
-@media only screen and (max-width: 1080px) {
-  .p-horizontal {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .p-horizontal {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-.full {
-  width: 100%;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.devider {
-  width: 100%;
-  height: 1px;
-  background-color: rgba(21, 60, 63, 0.1);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* -------- swiper style -------- */

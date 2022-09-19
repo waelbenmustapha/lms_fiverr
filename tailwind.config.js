@@ -40,12 +40,10 @@ module.exports = {
       colors: {
         white: "#ffffff",
         red: "red",
-        green: "green",
-        blue: "blue",
         black: "black",
-        "text-color": "#153c3f",
-        "light-green": "#00ec8b",
-        "light-blue": "#00c8e1",
+        "primary-color": "#153c3f",
+        green: "#00ec8b",
+        blue: "#00c8e1",
       },
       boxShadow: {
         "contect-help": "-6px 6px 0px 0px #153c3f",
