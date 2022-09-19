@@ -7,14 +7,14 @@ import { ReactComponent as LoginLayer } from "../../assets/svg/login-layer.svg";
 function Login() {
   return (
     <div className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative">
-      <div className="flex-[1] w-full h-full my-auto px-16 py-8">
+      <div className="flex-[1] w-full h-full my-auto py-8 p-horizontal">
         <div className="relative w-full h-full flex flex-col justify-center">
           <Link
             to={"/"}
             className="flex flex-row items-center flex-nowrap w-fit text-primary-one text-[24px] mb-[20px]"
           >
             <BackArrow className="w-[30px] h-[16px] ml-[8px]" />
-            <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-primary-color before:bottom-[2px] right-[0px]">
+            <span className="relative font-bold before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-primary-color before:bottom-[2px] right-[0px]">
               الرجوع
             </span>
           </Link>
@@ -24,7 +24,7 @@ function Login() {
           </h3>
           <form className="flex flex-col">
             <div className="mb-[16px]">
-              <p className="text-[16px] text-primary-color mb-[8px]">
+              <p className="text-[16px] font-bold text-primary-color mb-[8px]">
                 البريد الالكتروني
               </p>
               <input
@@ -37,7 +37,7 @@ function Login() {
               />
             </div>
             <div className="mb-[16px]">
-              <p className="text-[16px] text-primary-color mb-[8px]">
+              <p className="text-[16px] font-bold text-primary-color mb-[8px]">
                 كلمة المرور
               </p>
               <input

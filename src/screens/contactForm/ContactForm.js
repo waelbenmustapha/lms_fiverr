@@ -102,7 +102,7 @@ function ContactForm() {
                 />
                 <div
                   onClick={() => handleSubmit()}
-                  className="bg-[#00EC8B] self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center"
+                  className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center"
                 >
                   <p className="text-[20px] font-[bold] text-primary-color">
                     submit

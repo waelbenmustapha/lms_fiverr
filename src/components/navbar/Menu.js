@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBarRoutes } from "../../utils/Routes";
 import { KEY_CODES } from "../../utils/keyCodes";
 import { useOnClickOutside } from "../../hooks";
@@ -84,7 +84,9 @@ const Menu = () => {
               </li>
             ))}
           </ul>
-          <button className="btn-register">تسجيل الدخول</button>
+          <Link to={"login"}>
+            <button className="btn-register">تسجيل الدخول</button>
+          </Link>
         </div>
       </div>
     </div>
