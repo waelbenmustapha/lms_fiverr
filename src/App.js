@@ -11,9 +11,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {ConvertRoutes(NormalRoutes)}
 
         <Route path="/" element={<Main />}>
+        {ConvertRoutes(NormalRoutes)}
           {ConvertRoutes(NavBarRoutes)}
           <Route element={<Lessons />} index />
           <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
