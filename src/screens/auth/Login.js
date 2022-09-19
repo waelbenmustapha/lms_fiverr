@@ -1,53 +1,63 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 function Login() {
   return (
     <div className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative">
-      <div className="w-[47%] mediamax-900::w-[100%] relative p-16">
-        <div className="relative flex flex-col justify-center h-full w-fit">
-          <img src={logo} alt="logo" className="w-[200px] h-[77px] mb-[50px]" />
-          <h3 className="text-primary-one text-3xl font-bold">تسجيل الدخول</h3>
-          <form className="flex flex-col">
-            <div>
-              <p className="text-[24px] text-primary-color mb-[10px]">
-                البريد الالكتروني
-              </p>
-              <input
-                className="input-formit"
-                placeholder="أدخل بريدك الالكتروني.."
-                name="name"
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // value={values.name}
-              />
-            </div>
-            <div>
-              <p className="text-[24px] text-primary-color mb-[10px]">
-                كلمة المرور
-              </p>
-              <input
-                className="input-formit"
-                placeholder="أدخل كلمة المرور.."
-                name="name"
-                // onChange={handleChange}
-                // onBlur={handleBlur}
-                // value={values.name}
-              />
-            </div>
-            <p className="w-full underline text-primary-one text-tiny mb-[40px]">
-              نسيت كلمة المرور؟
+      <div className="flex-[1] relative flex flex-col justify-center h-full w-full p-16">
+        <Link
+          to={"/"}
+          className="w-fit underline text-primary-one text-[24px] mb-[20px]"
+        >
+          <span>الرجوع</span>
+        </Link>
+        <img src={logo} alt="logo" className="w-[180px] h-[70px] mb-[40px]" />
+        <h3 className="text-primary-one text-3xl font-bold mb-[20px]">
+          تسجيل الدخول
+        </h3>
+        <form className="flex flex-col">
+          <div className="mb-[16px]">
+            <p className="text-[16px] text-primary-color mb-[8px]">
+              البريد الالكتروني
             </p>
-            <button
-              onClick={(e) => {}}
-              className="flex flex-row flex-nowrap justify-center items-center font-bold text-center text-base bg-primary-one text-white outline-none border-none shadow-orange-shadow w-[100%] max-w-[365px] h-[50px] rounded-[10px]"
-            >
-              <span>Login</span>
-            </button>
-          </form>
-        </div>
+            <input
+              className="px-6 w-[100%] max-w-[370px] h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+              placeholder="أدخل بريدك الالكتروني.."
+              name="name"
+              // onChange={handleChange}
+              // onBlur={handleBlur}
+              // value={values.name}
+            />
+          </div>
+          <div className="mb-[16px]">
+            <p className="text-[16px] text-primary-color mb-[8px]">
+              كلمة المرور
+            </p>
+            <input
+              className="px-6 w-[100%] max-w-[370px] h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+              placeholder="أدخل كلمة المرور.."
+              name="name"
+              // onChange={handleChange}
+              // onBlur={handleBlur}
+              // value={values.name}
+            />
+          </div>
+          <Link
+            to={"/forgot-password"}
+            className="w-fit underline text-primary-one text-[14px] mb-[40px]"
+          >
+            <span>نسيت كلمة المرور؟</span>
+          </Link>
+          <button
+            onClick={(e) => {}}
+            className="w-[100%] max-w-[250px] h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
+          >
+            <span>تسجيل الدخول</span>
+          </button>
+        </form>
       </div>
-      <div className="block w-[53%] mediamax-900:hidden justify-start items-start bg-login-image bg-no-repeat bg-cover"></div>
+      <div className="flex-[1] relative block mediamax-550:hidden bg-login-image bg-no-repeat bg-cover"></div>
     </div>
   );
 }
