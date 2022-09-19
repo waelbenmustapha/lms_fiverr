@@ -19,6 +19,7 @@ import CourseCard from "../courseCard/CourseCard";
 // Import SVG
 import { ReactComponent as ArrowLeft } from "../../assets/svg/arrowLeft.svg";
 import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
+import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation]);
 
@@ -64,23 +65,18 @@ function TopPrograms() {
         breakpoints={{
           600: {
             slidesPerView: 1.2,
-            spaceBetween: 30,
           },
           768: {
             slidesPerView: 1.75,
-            spaceBetween: 30,
           },
           900: {
             slidesPerView: 2,
-            spaceBetween: 30,
           },
           1280: {
             slidesPerView: 3,
-            spaceBetween: 30,
           },
-          1368: {
+          1680: {
             slidesPerView: 4,
-            spaceBetween: 30,
           },
         }}
         navigation={{
@@ -96,7 +92,9 @@ function TopPrograms() {
         ))}
       </Swiper>
       <div className="see-more px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-        <button className="see-more-btn">اكتشف جميع البرامج</button>
+        <Link to={"/academy-lessons/all-courses"}>
+          <button className="see-more-btn">اكتشف جميع البرامج</button>
+        </Link>
       </div>
     </div>
   );
