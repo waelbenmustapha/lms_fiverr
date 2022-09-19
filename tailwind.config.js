@@ -44,6 +44,9 @@ module.exports = {
         green: "#00ec8b",
         blue: "#00c8e1",
       },
+      backgroundImage: {
+        "login-image": "url('./assets/images/login-image.png')",
+      },
       boxShadow: {
         "contect-help": "-6px 6px 0px 0px #153c3f",
         "strong-shadow": "3px 3px 0px #153c3f",
