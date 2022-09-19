@@ -58,7 +58,7 @@ footer .social-icons * {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .footer-nav ul {
     flex-direction: column;
     margin-bottom: 24px;

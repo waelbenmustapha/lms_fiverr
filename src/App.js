@@ -8,7 +8,6 @@ import { ConvertRoutes } from "./utils/ConvertRoutes";
 import Lessons from "./screens/mainScreens/lessons/Lessons";
 
 function App() {
-  console.log(ConvertRoutes(NavBarRoutes));
   return (
     <BrowserRouter>
       <Routes>

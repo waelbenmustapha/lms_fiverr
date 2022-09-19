@@ -69,21 +69,19 @@ const Menu = () => {
         <div ref={navRef} className={menuOpen ? "links is-active" : "links"}>
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <div>
-                <li
-                  className={
-                    location.pathname.startsWith(route.path) ||
-                    (location.pathname === "/" &&
-                      route.path === "/academy-lessons")
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() => navigate(route.path)}
-                  key={index}
-                >
-                  <span>{route.name}</span>
-                </li>
-              </div>
+              <li
+                key={`nav-${index}`}
+                className={
+                  location.pathname.startsWith(route.path) ||
+                  (location.pathname === "/" &&
+                    route.path === "/academy-lessons")
+                    ? "active"
+                    : ""
+                }
+                onClick={() => navigate(route.path)}
+              >
+                <span>{route.name}</span>
+              </li>
             ))}
           </ul>
           <button className="btn-register">تسجيل الدخول</button>

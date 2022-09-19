@@ -10,7 +10,7 @@ function NavBar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="p-horizontal">
+    <nav className="px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
       <Menu />
       <a href="/">
         <img className="logo" src={logo} alt="logo" />
@@ -19,7 +19,7 @@ function NavBar() {
         <div className="links">
           <ul>
             {NavBarRoutes.map((route, index) => (
-              <div>
+              <div key={`nav-${index}`}>
                 <li
                   className={
                     location.pathname.startsWith(route.path) ||

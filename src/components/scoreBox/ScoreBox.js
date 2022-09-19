@@ -13,7 +13,7 @@ function ScoreBox({
   description3,
 }) {
   return (
-    <div className="custom-shadow-box">
+    <div className="w-full bg-primary-color">
       <div className="scoreBox">
         <div className="score-item">
           <Clock className="icon" />

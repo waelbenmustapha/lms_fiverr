@@ -15,7 +15,7 @@ function Header({
   learning_average,
 }) {
   return (
-    <div className="header p-horizontal">
+    <div className="header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
       <div className="header-content">
         <div>
           <p className="title">{title}</p>
@@ -53,14 +53,14 @@ function Header({
           <path
             d="M584 499H12V36.7648H373.179L436.126 4H584V499Z"
             stroke="#153C3F"
-            stroke-width="8"
+            strokeWidth="8"
           />
           <path
             d="M4 491V44.5H348L405 11H576V491H4Z"
             stroke="#00EC8B"
-            stroke-width="8"
+            strokeWidth="8"
           />
-          <path d="M12 33L12 500" stroke="#153C3F" stroke-width="8" />
+          <path d="M12 33L12 500" stroke="#153C3F" strokeWidth="8" />
           <defs>
             <pattern id="imgpattern" x="0" y="0" width="1" height="1">
               <image width="588" height="503" xlinkHref={image} />

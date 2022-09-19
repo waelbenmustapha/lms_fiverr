@@ -93,13 +93,13 @@ function CourseDetails() {
 
         {/* ---------- course details ---------------- */}
         <div className="course-details">
-          <div className="p-horizontal">
+          <div className="px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
             <p className="title ">مقدمة عن البرنامج</p>
             <p className="description">{data.introduction}</p>
           </div>
           {/* ------- what you gonna learn in this programs ------- */}
           <div className="program-learning">
-            <div className="swiper-navigation-header p-horizontal">
+            <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
               <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
               <div className="swipe-btns">
                 <ArrowRight
@@ -161,8 +161,8 @@ function CourseDetails() {
             </Swiper>
           </div>
           {/* --------------- Skills gained from this program ------------------ */}
-          <div className="program-skills p-horizontal">
-            <p className="title mb-40">
+          <div className="program-skills px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <p className="title mb-[40px]">
               المهارات المكتسبة من برنامج الابتكار المفتوح:
             </p>
             <div className="skills">
@@ -175,7 +175,7 @@ function CourseDetails() {
           </div>
           {/* --------------- program content -------------------- */}
           <div className="program-content">
-            <div className="swiper-navigation-header p-horizontal">
+            <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
               <p className="title">محتوى البرنامج</p>
               <div className="swipe-btns">
                 <ArrowRight
@@ -222,7 +222,6 @@ function CourseDetails() {
                 850: {
                   slidesPerView: 3,
                 },
-                
               }}
               navigation={{
                 nextEl: ".swiper-button-next",
@@ -243,7 +242,7 @@ function CourseDetails() {
                   </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="full text-center mt-40">
+            <div className="w-full text-center mt-[40px]">
               <Link
                 to={"/academy-lessons/course-details"}
                 className="enroll-program-btn"
@@ -253,15 +252,15 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="full p-horizontal">
-            <div className="devider"></div>
+          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
           {/* --------------- top asked questions ------------- */}
-          <div className="top-asked-questions p-horizontal">
-            <p className="title mb-40">الأسئلة الشائعة</p>
+          <div className="top-asked-questions px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <p className="title mb-[40px]">الأسئلة الشائعة</p>
             <div>
               {questions.map((item, index) => (
-                <div key={index} className="mb-16">
+                <div key={index} className="mb-[16px]">
                   <Collapsible label={item.label}>
                     <p>{item.question}</p>
                   </Collapsible>
@@ -270,8 +269,8 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="full p-horizontal">
-            <div className="devider"></div>
+          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
         </div>
         <CallUsBox

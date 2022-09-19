@@ -50,8 +50,8 @@ function Lessons() {
       />
       <div className="lessons-container">
         <TopPrograms />
-        <div className="full p-horizontal mb-40">
-          <div className="devider"></div>
+        <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-[40px]">
+          <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
         </div>
         <Programs />
       </div>

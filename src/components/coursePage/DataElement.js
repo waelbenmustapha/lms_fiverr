@@ -3,27 +3,30 @@ import { ReactComponent as Arrow } from "../../assets/svg/arrow.svg";
 import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
 import { ReactComponent as Book } from "../../assets/svg/bookOpen.svg";
 import { ReactComponent as Play } from "../../assets/svg/play-circle.svg";
-function DataElement({ element, selectedContent, setselectedContent ,collapsed }) {
+function DataElement({
+  element,
+  selectedContent,
+  setselectedContent,
+  collapsed,
+}) {
   const [collapse, setCollapse] = useState(collapsed);
-  
+
   return (
     <div>
       <div
-        className="hover-cursor content"
+        className="cursor-pointer content"
         onClick={() => setCollapse(!collapse)}
-      
       >
         <p
           style={{
             fontFamily: "bold",
-
           }}
         >
           {element.name}
         </p>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           {element.locked && <Lock style={{ opacity: 0.2 }} />}
-          {element.progress!==0 && (
+          {element.progress !== 0 && (
             <div className="smpercent">
               <svg>
                 <circle cx="16.8" cy="16.8" r="14"></circle>
@@ -51,7 +54,7 @@ function DataElement({ element, selectedContent, setselectedContent ,collapsed }
             <div
               onClick={() => setselectedContent({ ...el })}
               className={
-                "dataElement hover-cursor " +
+                "dataElement cursor-pointer " +
                 (el.finished ? "isElementFinished " : " ") +
                 (el.id === selectedContent.id ? "selected " : " ")
               }
@@ -59,7 +62,9 @@ function DataElement({ element, selectedContent, setselectedContent ,collapsed }
               {el.type === "text" ? (
                 <Book style={{ height: "14px", width: "14px" }} />
               ) : el.type === "video" ? (
-                <Play  style={{ color:"#153C3F",height: "14px", width: "14px" }} />
+                <Play
+                  style={{ color: "#153C3F", height: "14px", width: "14px" }}
+                />
               ) : null}
               <p>{el.name}</p>
             </div>
