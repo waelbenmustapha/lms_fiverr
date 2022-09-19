@@ -8,6 +8,7 @@ import News from "../screens/mainScreens/news/News";
 import Prices from "../screens/mainScreens/prices/Prices";
 import Services from "../screens/mainScreens/services/Services";
 import Tools from "../screens/mainScreens/tools/Tools";
+import Login from "../screens/auth/Login";
 
 export const NavBarRoutes = [
   {
@@ -58,7 +59,11 @@ export const AppRoutes = [
 ];
 export const NormalRoutes = [
   {
+    path: "/login",
+    component: <Login />,
+  },
+  {
     path: "/contact-us",
     component: <ContactForm />,
   },
-]
+];
