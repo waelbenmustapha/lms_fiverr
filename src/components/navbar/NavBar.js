@@ -1,6 +1,6 @@
 import React from "react";
 import "./navbar.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBarRoutes } from "../../utils/Routes";
 import logo from "../../assets/images/logo.png";
 import Menu from "./Menu";
@@ -37,7 +37,9 @@ function NavBar() {
             ))}
           </ul>
         </div>
-        <button className="btn-register">تسجيل الدخول</button>
+        <Link to={"login"}>
+          <button className="btn-register">تسجيل الدخول</button>
+        </Link>
       </div>
     </nav>
   );
