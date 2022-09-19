@@ -59,11 +59,13 @@ export const AppRoutes = [
 ];
 export const NormalRoutes = [
   {
-    path: "/login",
-    component: <Login />,
-  },
-  {
     path: "/contact-us",
+    component: <ContactForm />,
+  },
+];
+export const SoloRoutes = [
+  {
+    path: "/login",
     component: <ContactForm />,
   },
 ];
