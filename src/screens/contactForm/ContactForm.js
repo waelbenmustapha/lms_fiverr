@@ -3,7 +3,7 @@ import { Formik } from "formik";
 function ContactForm() {
   return (
     <div className="pr-[200px]  mediamax-1079:pr-[100px]  mediamax-1079:pt-[50px] mediamax-860:pr-[50px] mediamax-860:pt-[25px] pt-[100px] mb-[120px]">
-      <p className="w-[60%] text-[56px] mediamax-1023:text-[40px] mediamax-860:text-[30px] mediamax-650:[22px] mediamax-550:text-[18px]  font-[bold] media mb-[65px]">
+      <p className="w-[60%] text-[40px] mediamax-1023:text-[35px] mediamax-860:text-[27px] mediamax-650:[20px] mediamax-550:text-[18px]  font-[bold] media mb-[65px]">
         لو عندك أسئلة تواصل معنا وراح نجاوبك بأسرع وقت..
       </p>
       <Formik
