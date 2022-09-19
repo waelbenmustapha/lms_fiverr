@@ -11,6 +11,7 @@ import Tools from "../screens/mainScreens/tools/Tools";
 import Login from "../screens/auth/Login";
 import ForgotPassword from "../screens/auth/ForgotPassword";
 import NewPassword from "../screens/auth/NewPassword";
+import FormSubmission from "../screens/contactForm/FormSubmission";
 
 export const NavBarRoutes = [
   {
@@ -77,5 +78,9 @@ export const SoloRoutes = [
   {
     path: "/new-password",
     component: <NewPassword />,
+  },
+  {
+    path: "/form-sucess",
+    component: <FormSubmission />,
   },
 ];
