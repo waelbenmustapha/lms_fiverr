@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 function ContactForm() {
   return (
-    <div className="pr-[200px] mediamax-1023:pr-[150px] mediamax-860:pr-[100px] mediamax-550:pr-[40px] pt-[100px] mediamax-1023pt-[80px] mediamax-860:pt-[50px] mediamax-550:pt-[30px] mb-[120px]">
+    <div className="pr-[200px] pt-[100px] mb-[120px]">
       <p className="w-[700px] text-[56px] font-[bold] mb-[65px]">
         لو عندك أسئلة تواصل معنا وراح نجاوبك بأسرع وقت..
       </p>
@@ -31,7 +31,6 @@ function ContactForm() {
           /* and other goodies */
         }) => (
           <form >
-            <div className="w-fit">
             <div className="flex flex-row gap-[65px] mb-[30px]">
               <div>
                 <p className="text-[24px] text-primary-color mb-[10px]">
@@ -88,7 +87,7 @@ function ContactForm() {
                 />
               </div>
             </div>
-            <div className=" w-full flex flex-col ">
+            <div className=" w-[960px] flex flex-col ">
             <p className="text-[24px] text-primary-color mb-[10px]">الرسالة </p>
             <textarea
               className="input-formit w-full  h-[270px] mb-[30px]  p-5"
@@ -103,7 +102,7 @@ function ContactForm() {
             </div>
             </div>
 
-            </div>
+           
           </form>
         )}
       </Formik>
