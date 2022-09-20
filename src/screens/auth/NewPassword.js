@@ -3,10 +3,22 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
-
+import { Formik, ErrorMessage, Form, Field } from "formik";
+import * as Yup from "yup";
 function NewPassword() {
   const [success, setSuccess] = useState(false);
 
+  const loginSchema = Yup.object().shape({
+    password1: Yup.string()
+      .min(8, "كلمة المرور قصيرة")
+      .max(30, "كلمة المرور طويلة")
+      .required("حقل مطلوب"),
+    passwordConfirmation: Yup.string()
+      .min(8, "كلمة المرور قصيرة")
+      .max(30, "كلمة المرور طويلة")
+      .required("حقل مطلوب")
+      .oneOf([Yup.ref("password1"), null], "Passwords must match"),
+  });
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center py-[40px] p-horizontal">
       <Link to={"/"}>
@@ -29,42 +41,66 @@ function NewPassword() {
         <h3 className="text-primary-one text-3xl font-bold mb-[20px]">
           إعادة تعيين كلمة المرور
         </h3>
-        <div className="flex flex-col">
-          <div className="mb-[20px]">
-            <p className="text-[16px] font-bold text-primary-color mb-[8px]">
-              كلمة المرور الجديدة
-            </p>
-            <input
-              className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
-              placeholder="أدخل كلمة المرور الجديدة.."
-              name="name"
-              // onChange={handleChange}
-              // onBlur={handleBlur}
-              // value={values.name}
-            />
-          </div>
-          <div className="mb-[64px] mediamax-767:mb-[40px]">
-            <p className="text-[16px] font-bold text-primary-color mb-[8px]">
-              تأكيد كلمة المرور الجديدة
-            </p>
-            <input
-              className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
-              placeholder="أدخل كلمة المرور الجديدة مره أخرى.."
-              name="name"
-              // onChange={handleChange}
-              // onBlur={handleBlur}
-              // value={values.name}
-            />
-          </div>
-          <button
-            onClick={() => {
-              setSuccess(true);
-            }}
-            className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
-          >
-            <span>تحديث كلمة المرور</span>
-          </button>
-        </div>
+        <Formik
+          initialValues={{
+            password1: "",
+            passwordConfirmation: "",
+          }}
+          validationSchema={loginSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            setSuccess(true);
+            setSubmitting(false);
+          }}
+        >
+          {({
+            isSubmitting,
+            /* and other goodies */
+          }) => (
+            <Form>
+              <div className="flex flex-col">
+                <div className="mb-[20px]">
+                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                    كلمة المرور الجديدة
+                  </p>
+                  <Field
+                    className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+                    placeholder="أدخل كلمة المرور الجديدة.."
+                    name="password1"
+                    type="password"
+                  />
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="password1"
+                    component="div"
+                  />
+                </div>
+                <div className="mb-[64px] mediamax-767:mb-[40px]">
+                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                    تأكيد كلمة المرور الجديدة
+                  </p>
+                  <Field
+                    className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+                    placeholder="أدخل كلمة المرور الجديدة مره أخرى.."
+                    type="password"
+                    name="passwordConfirmation"
+                  />
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="passwordConfirmation"
+                    component="div"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
+                >
+                  <span>تحديث كلمة المرور</span>
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
         {success && (
           <div className="text-[16px] font-bold p-[24px] mt-[16px] bg-green/10 flex flex-row items-center">
             <CheckCircle className="ml-[16px]" />
