@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./header.css";
 import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
 import { ReactComponent as Check } from "../../assets/svg/check-circle-greeno-utline.svg";
@@ -17,20 +16,24 @@ function Header({
 }) {
   const [joined, setJoined] = useState(false);
   return (
-    <div className="header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-      <div className="header-content">
+    <div className="relative flex flex-row justify-between mediamax-950:flex-col-reverse mediamax-950:justify-center gap-[40px] bg-[#fafafa] py-[100px] mediamax-1279:py-[70px] p-horizontal">
+      <div className="flex-[1] flex flex-col justify-between">
         <div>
-          <p className="title">{title}</p>
-          <p className="description">{description}</p>
-          <div className="description-track">
-            <Calendar className="icon" />
+          <p className="text-[48px] leading-[1.2] font-bold mb-[30px] mediamax-1279:mb-[20px] mediamax-1279:text-[32px] mediamax-1023:text-[28px] mediamax-950:text-[24px]">
+            {title}
+          </p>
+          <p className="text-[20px] mb-[30px] mediamax-1279:text-[18px] mediamax-1279:mb-[20px]">
+            {description}
+          </p>
+          <div className="flex flex-row flex-nowrap mb-[30px] mediamax-1279:text-[14px] mediamax-1279:mb-[20px]">
+            <Calendar className="w-[24px] h-[24px] ml-[10px] mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
             <p>
               يبدأ البرنامج في تاريخ{" "}
               <span style={{ fontWeight: "bold" }}>{start_date}</span>
             </p>
           </div>
-          <div className="description-track">
-            <Clock className="icon" />
+          <div className="flex flex-row flex-nowrap mb-[30px] mediamax-1279:text-[14px] mediamax-1279:mb-[20px]">
+            <Clock className="w-[24px] h-[24px] ml-[10px] mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
             <p>
               مدة البرنامج{" "}
               <span style={{ fontWeight: "bold" }}>{duration}</span>، بمعدل{" "}
@@ -42,7 +45,7 @@ function Header({
           <div
             onClick={() => setJoined(!joined)}
             className={
-              "text-[20px] font-[bold] text-center flex items-center justify-center w-full h-[55px] py-2 px-4   outline-none border-none cursor-pointer " +
+              "w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer " +
               (joined
                 ? "bg-[#153C3F] text-[#00ec8b] "
                 : "bg-[#00ec8b] text-primary-color ")
@@ -58,19 +61,22 @@ function Header({
             )}
           </div>
           {joined && (
-            <div
-              className="w-full h-[50px] bg-white flex items-center text-[16px] px-[16px]"
-             
-            >
+            <div className="w-full h-[50px] bg-white flex items-center text-[16px] px-[16px]">
               <span> يمكنك الآن عرض البرنامج والبدء فيه..</span>
-              <Link  to={`/academy-lessons/course?course_id=${id}`} className="font-[bold]  cursor-pointer text-[#00EC8B]"> ابدأ البرنامج</Link>
+              <Link
+                to={`/academy-lessons/course?course_id=${id}`}
+                className="font-bold cursor-pointer text-green"
+              >
+                {" "}
+                ابدأ البرنامج
+              </Link>
             </div>
           )}
         </div>
       </div>
-      <div className="header-image">
+      <div className="flex-[1] relative max-w-[580px] max-h-[500px] mediamax-950:max-w-full mediamax-950:max-h-full flex items-center justify-center">
         <svg
-          className="svg-image"
+          className="w-full h-full"
           viewBox="0 0 588 503"
           fill="url(#imgpattern)"
           xmlns="http://www.w3.org/2000/svg"
@@ -88,18 +94,18 @@ function Header({
           <path d="M12 33L12 500" stroke="#153C3F" strokeWidth="8" />
           <defs>
             <pattern id="imgpattern" x="0" y="0" width="1" height="1">
-              <image width="588" height="503" xlinkHref={image} />
+              <image
+                /*className="brightness-[70%]"*/
+                width="588"
+                height="503"
+                xlinkHref={image}
+              />
             </pattern>
           </defs>
         </svg>
-        {/* <div className="play-btn">
-          <PlayButton
-            style={{ color: "white", height: "56px", width: "56px" }}
-            stroke="white"
-          />
-          <p style={{ fontSize: "24px", fontFamily: "bold", color: "white" }}>
-            شغل الفيديو
-          </p>
+        {/* <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col justify-center items-center">
+          <PlayButton className="text-white h-[56px] w-[56px]" stroke="white" />
+          <p className="text-white font-bold text-[24px]">شغل الفيديو</p>
         </div> */}
       </div>
     </div>

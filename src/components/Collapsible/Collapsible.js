@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-
 // Import SVG
 import { ReactComponent as ArrowUp } from "../../assets/svg/arrowUp.svg";
 import { ReactComponent as ArrowDown } from "../../assets/svg/arrowDown.svg";
@@ -24,10 +23,12 @@ const Collapsible = (props) => {
       }
     >
       <div
-        className="w-full flex flex-row justify-between items-center py-[28px] px-[32px]"
+        className="w-full flex flex-row justify-between items-center py-[28px] px-[32px] mediamax-767:p-[20px]"
         onClick={toggle}
       >
-        <p className="text-xl font-bold">{props.label}</p>
+        <p className="text-[20px] mediamax-1079:text-[18px] font-bold">
+          {props.label}
+        </p>
         {open ? (
           <ArrowUp className="w-[17px] h-[8px]" />
         ) : (
@@ -43,7 +44,7 @@ const Collapsible = (props) => {
             : { height: "0px" }
         }
       >
-        <div className="text-[20px] px-[32px] pt-[10px] pb-[32px]">
+        <div className="text-[16px] px-[32px] pt-[8px] pb-[32px]">
           {props.children}
         </div>
       </div>

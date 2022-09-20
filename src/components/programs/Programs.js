@@ -93,10 +93,10 @@ function Programs() {
           900: {
             slidesPerView: 2,
           },
-          1280: {
+          1024: {
             slidesPerView: 3,
           },
-          1680: {
+          1360: {
             slidesPerView: 4,
           },
         }}
