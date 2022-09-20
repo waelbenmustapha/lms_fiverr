@@ -37,11 +37,11 @@ function CoursePage() {
     );
   } else {
     return (
-      <div className="containerp">
-        <div className="videoandsidebar">
-          <div className="sidebar bottomselect">
-            <div className="textandprogress">
-              <p className="takadom">تقدمك بالبرنامج:</p>
+      <div className="h-full flex flex-col">
+        <div className="flex flex-row">
+          <div className="w-[380px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)]">
+            <div className="mb-[40px] mt-[76px] flex items-center gap-[20px] mr-[60px] ">
+              <p className="text-[14px]">تقدمك بالبرنامج:</p>
               <div className="percent">
                 <svg>
                   <circle cx="28" cy="28" r="25"></circle>
@@ -60,7 +60,7 @@ function CoursePage() {
                 </div>
               </div>
             </div>
-            <div className="datascroll">
+            <div className="overflow-y-scroll ">
               {courseData.sections.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
@@ -72,50 +72,35 @@ function CoursePage() {
               ))}
             </div>
           </div>
-          <div className=" onScreenContent player">
+          <div className=" flex flex-col flex-[1] h-[calc(100vh-100px)]">
             {selectedContent.type === "video" ? (
               <ReactPlayer
                 controls={true}
                 playIcon={
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div className="flex flex-col justify-center items-center">
                     <PlayButton
-                      style={{ color: "white", height: "56px", width: "56px" }}
+                      className="text-white h-[56px] w-[56px]"
                       stroke="white"
                     />
-                    <p
-                      style={{
-                        fontSize: "24px",
-                        fontFamily: "bold",
-                        color: "white",
-                      }}
-                    >
+                    <p className="text-[24px] font-[bold] text-white">
                       شغل الفيديو
                     </p>
                   </div>
                 }
-                onClickPreview={() => console.log("hi")}
                 playing={true}
                 light={selectedContent.thumbnail}
                 key={selectedContent.id}
-                className="react-player"
                 height={"100%"}
                 width="100%"
                 url={selectedContent.url}
               />
             ) : selectedContent.type === "text" ? (
-              <div style={{ backgroundColor: "#f2f2f2", height: "100%" }}></div>
+              <div className="bg-[#f2f2f2] h-full"></div>
             ) : null}
           </div>
         </div>
-        <div className="helpanddescription">
-          <div className="helpme">
+        <div className="flex flex-row">
+          <div className="w-[380px] h-full ">
             <HelpMe />
           </div>
           <CoursTextDescription text={selectedContent.text} />

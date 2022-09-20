@@ -18,7 +18,7 @@ export const signin = ( data ) => {
     })
   };
 
-  export const setNewPass = ( data ) => {
+  export const changePass = ( data ) => {
     return execRequest({
       baseURL: "https://reqres.in/",
       url: 'api/register',

@@ -5,6 +5,7 @@ import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
+import { changePass } from "../../utils/apis/Auth";
 function NewPassword() {
   const [success, setSuccess] = useState(false);
 
@@ -49,6 +50,8 @@ function NewPassword() {
           validationSchema={loginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setSuccess(true);
+            console.log(values)
+            changePass({email:"eve.holt@reqres.in",password:"testpassforapi"})
             setSubmitting(false);
           }}
         >

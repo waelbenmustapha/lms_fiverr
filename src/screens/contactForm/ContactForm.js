@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
+import { sendForm } from "../../utils/apis/contactUs/SendContactForm";
 function ContactForm() {
   const navigate = useNavigate();
 
@@ -10,7 +11,7 @@ function ContactForm() {
     email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
     title: Yup.string().required("حقل مطلوب").min(5, "العنوان قصير"),
     program: Yup.string().required("حقل مطلوب").min(5, "اسم البرنامج قصير"),
-    message: Yup.string().required("حقل مطلوب").min(8,"الرسالة قصيرة"),
+    message: Yup.string().required("حقل مطلوب").min(8, "الرسالة قصيرة"),
   });
 
   return (
@@ -28,11 +29,10 @@ function ContactForm() {
         }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-          navigate("/form-sucess");
+          console.log(values);
+          sendForm({ email: values.email, password: "testpassforapi" }).then(
+            () => navigate("/form-sucess")
+          );
         }}
       >
         {({
@@ -51,7 +51,7 @@ function ContactForm() {
                     placeholder="أكتب اسمك.."
                     name="name"
                   />
-                    <ErrorMessage
+                  <ErrorMessage
                     className="text-[#cc0000] text-[14px]"
                     name="name"
                     component="div"
@@ -84,7 +84,7 @@ function ContactForm() {
                     placeholder="أكتب عنوان الرسالة.."
                     name="title"
                   />
-                    <ErrorMessage
+                  <ErrorMessage
                     className="text-[#cc0000] text-[14px]"
                     name="title"
                     component="div"
@@ -99,7 +99,7 @@ function ContactForm() {
                     placeholder="برنامج مركز سبل الأولى للابتكار المفتوح"
                     name="program"
                   />
-                    <ErrorMessage
+                  <ErrorMessage
                     className="text-[#cc0000] text-[14px]"
                     name="program"
                     component="div"
@@ -111,16 +111,16 @@ function ContactForm() {
                   الرسالة
                 </p>
                 <Field
-                as="textarea"
+                  as="textarea"
                   className="input-formit w-full  h-[270px]  p-5"
                   placeholder="أكتب الرسالة.."
                   name="message"
                 />
-                  <ErrorMessage
-                    className="text-[#cc0000] text-[14px] "
-                    name="message"
-                    component="div"
-                  />
+                <ErrorMessage
+                  className="text-[#cc0000] text-[14px] "
+                  name="message"
+                  component="div"
+                />
                 <div className="w-full flex justify-end mt-[30px]">
                   <button
                     type="submit"

@@ -4,6 +4,7 @@ import logo from "../../assets/images/logo.png";
 import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
+import { forgetPass } from "../../utils/apis/Auth";
 function ForgotPassword() {
   const [success, setSuccess] = useState(false);
   const loginSchema = Yup.object().shape({
@@ -39,6 +40,8 @@ function ForgotPassword() {
           validationSchema={loginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setSuccess(true);
+            console.log(values)
+            forgetPass({email:"eve.holt@reqres.in",password:"testpassforapi"})
             setSubmitting(false)
           }}
         >

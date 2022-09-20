@@ -14,18 +14,16 @@ function DataElement({
   return (
     <div>
       <div
-        className="cursor-pointer content"
+        className="cursor-pointer  flex justify-between items-center pr-[65px] pl-[65px] mb-[30px]"
         onClick={() => setCollapse(!collapse)}
       >
         <p
-          style={{
-            fontFamily: "bold",
-          }}
+         className="font-[bold]"
         >
           {element.name}
         </p>
-        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          {element.locked && <Lock style={{ opacity: 0.2 }} />}
+        <div className="flex gap-[12px] items-center">
+          {element.locked && <Lock className="opacity-20" />}
           {element.progress !== 0 && (
             <div className="smpercent">
               <svg>
@@ -45,26 +43,26 @@ function DataElement({
               </div>
             </div>
           )}
-          <Arrow style={{ rotate: collapse ? "180deg" : "0deg" }} />
+          <Arrow  style={{ rotate: collapse ? "180deg" : "0deg" }} />
         </div>
       </div>
       {collapse && (
-        <div className="datatypes">
+        <div className="flex flex-col mb-[30px]">
           {element.content.map((el, index) => (
             <div
               key={`data-${index}`}
               onClick={() => setselectedContent({ ...el })}
               className={
-                "dataElement cursor-pointer " +
-                (el.finished ? "isElementFinished " : " ") +
-                (el.id === selectedContent.id ? "selected " : " ")
+                "pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row " +
+                (el.finished ? "text-[#00ec8b] underline " : " ") +
+                (el.id === selectedContent.id ? "font-[bold] " : " ")
               }
             >
               {el.type === "text" ? (
-                <Book style={{ height: "14px", width: "14px" }} />
+                <Book className="h-[14px] w-[14px]" />
               ) : el.type === "video" ? (
                 <Play
-                  style={{ color: "#153C3F", height: "14px", width: "14px" }}
+                className="text-[#153C3F] h-[14px] w-[14px]"
                 />
               ) : null}
               <p>{el.name}</p>
