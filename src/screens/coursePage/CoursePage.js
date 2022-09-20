@@ -79,40 +79,25 @@ function CoursePage() {
               <ReactPlayer
                 controls={true}
                 playIcon={
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div className="flex flex-col justify-center items-center">
                     <PlayButton
-                      style={{ color: "white", height: "56px", width: "56px" }}
+                      className="text-white h-[56px] w-[56px]"
                       stroke="white"
                     />
-                    <p
-                      style={{
-                        fontSize: "24px",
-                        fontFamily: "bold",
-                        color: "white",
-                      }}
-                    >
+                    <p className="text-[24px] font-[bold] text-white">
                       شغل الفيديو
                     </p>
                   </div>
                 }
-                onClickPreview={() => console.log("hi")}
                 playing={true}
                 light={selectedContent.thumbnail}
                 key={selectedContent.id}
-                className="react-player"
                 height={"100%"}
                 width="100%"
                 url={selectedContent.url}
               />
             ) : selectedContent.type === "text" ? (
-              <div style={{ backgroundColor: "#f2f2f2", height: "100%" }}></div>
+              <div className="bg-[#f2f2f2] h-full"></div>
             ) : null}
           </div>
         </div>

@@ -3,8 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBarRoutes } from "../../utils/Routes";
 import logo from "../../assets/images/logo.png";
 import Menu from "./Menu";
+import { useAuth } from "../../contexts/AuthContext";
 
 function NavBar() {
+  const auth = useAuth()
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,9 +40,12 @@ function NavBar() {
             ))}
           </ul>
         </div>
-        <Link to={"login"}>
+        {!auth.user?<Link to={"login"}>
           <button className="btn-register">تسجيل الدخول</button>
-        </Link>
+        </Link>:<Link to={"/"}>
+          <button onClick={()=>auth.logout()} className="btn-register"> تسجيل ال.
+          خروج</button>
+        </Link>}
       </div>
     </nav>
   );

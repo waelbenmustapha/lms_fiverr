@@ -49,6 +49,8 @@ module.exports = {
         "bg-1": "url('./assets/images/bg.png')",
       },
       boxShadow: {
+        
+        "help-btn":"0px 4px 64px 8px rgba(0, 200, 225, 0.05)",
         "contect-help": "-6px 6px 0px 0px #153c3f",
         "strong-shadow": "3px 3px 0px #153c3f",
         "course-card": "2px 2px 0px #153c3f",

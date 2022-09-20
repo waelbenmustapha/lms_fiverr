@@ -17,15 +17,9 @@ function DataElement({
         className="cursor-pointer flex justify-between items-center pr-[65px] pl-[65px] mb-[30px] mediamax-767:pr-[25px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px] mediamax-767:mb-[5px]  mediamax-1079:text-[13px]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[40px]  mediamax-1079:mb-[15px] mediamax-950:text-[12px] mediamax-950:px-[30px] mediamax-950:mb-[12px]"
         onClick={() => setCollapse(!collapse)}
       >
-        <p
-          style={{
-            fontFamily: "bold",
-          }}
-        >
-          {element.name}
-        </p>
-        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          {element.locked && <Lock style={{ opacity: 0.2 }} />}
+        <p className="font-[bold]">{element.name}</p>
+        <div className="flex gap-[12px] items-center">
+          {element.locked && <Lock className="opacity-20" />}
           {element.progress !== 0 && (
             <div className="smpercent">
               <svg>
@@ -63,11 +57,9 @@ function DataElement({
               }
             >
               {el.type === "text" ? (
-                <Book style={{ height: "14px", width: "14px" }} />
+                <Book className="h-[14px] w-[14px]" />
               ) : el.type === "video" ? (
-                <Play
-                  style={{ color: "#153C3F", height: "14px", width: "14px" }}
-                />
+                <Play className="text-[#153C3F] h-[14px] w-[14px]" />
               ) : null}
               <p>{el.name}</p>
             </div>
