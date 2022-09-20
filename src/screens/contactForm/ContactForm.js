@@ -1,9 +1,17 @@
 import React from "react";
-import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-
+import { Formik, ErrorMessage, Form, Field } from "formik";
+import * as Yup from "yup";
 function ContactForm() {
   const navigate = useNavigate();
+
+  const loginSchema = Yup.object().shape({
+    name: Yup.string().required("حقل مطلوب"),
+    email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
+    title: Yup.string().required("حقل مطلوب").min(5, "العنوان قصير"),
+    program: Yup.string().required("حقل مطلوب").min(5, "اسم البرنامج قصير"),
+    message: Yup.string().required("حقل مطلوب").min(8,"الرسالة قصيرة"),
+  });
 
   return (
     <div className="mx-auto max-w-[850px] px-[20px] pt-[60px] mb-[100px]">
@@ -18,6 +26,7 @@ function ContactForm() {
           program: "",
           message: "",
         }}
+        validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -27,41 +36,41 @@ function ContactForm() {
         }}
       >
         {({
-          values,
-
-          handleChange,
-          handleBlur,
-          handleSubmit,
           isSubmitting,
           /* and other goodies */
         }) => (
-          <form>
+          <Form>
             <div className="w-full">
               <div className="flex flex-row mediamax-650:flex-col mediamax-650:gap-[15px] gap-[50px] mb-[20px]">
                 <div className="flex-[1]">
                   <p className="text-[24px] text-primary-color mb-[8px]">
                     الاسم
                   </p>
-                  <input
+                  <Field
                     className="input-formit"
                     placeholder="أكتب اسمك.."
                     name="name"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.name}
+                  />
+                    <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="name"
+                    component="div"
                   />
                 </div>
                 <div className="flex-[1]">
                   <p className="text-[24px] text-primary-color mb-[8px]">
                     البريد الالكتروني
                   </p>
-                  <input
+                  <Field
                     className="input-formit"
                     placeholder="أكتب بريدك الالكتروني.."
                     name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
+                    type="email"
+                  />
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="email"
+                    component="div"
                   />
                 </div>
               </div>
@@ -70,52 +79,60 @@ function ContactForm() {
                   <p className="text-[24px] text-primary-color mb-[8px]">
                     عنوان الرسالة
                   </p>
-                  <input
+                  <Field
                     className="input-formit"
                     placeholder="أكتب عنوان الرسالة.."
                     name="title"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
+                  />
+                    <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="title"
+                    component="div"
                   />
                 </div>
                 <div className="flex-[1]">
                   <p className="text-[24px] text-primary-color mb-[8px]">
                     اسم البرنامج
                   </p>
-                  <input
+                  <Field
                     className="input-formit"
                     placeholder="برنامج مركز سبل الأولى للابتكار المفتوح"
                     name="program"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.program}
+                  />
+                    <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="program"
+                    component="div"
                   />
                 </div>
               </div>
-              <div className=" w-full flex flex-col ">
+              <div className=" w-full flex flex-col  ">
                 <p className="text-[24px] text-primary-color mb-[8px]">
                   الرسالة
                 </p>
-                <textarea
-                  className="input-formit w-full  h-[270px] mb-[30px]  p-5"
+                <Field
+                as="textarea"
+                  className="input-formit w-full  h-[270px]  p-5"
                   placeholder="أكتب الرسالة.."
                   name="message"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.message}
                 />
-                <div
-                  onClick={() => handleSubmit()}
-                  className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center"
-                >
-                  <p className="text-[20px] font-[bold] text-primary-color">
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px] "
+                    name="message"
+                    component="div"
+                  />
+                <div className="w-full flex justify-end mt-[30px]">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center text-[20px] font-[bold] text-primary-color"
+                  >
                     submit
-                  </p>
+                  </button>
                 </div>
               </div>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
     </div>
