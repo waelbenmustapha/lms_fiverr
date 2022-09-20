@@ -34,6 +34,7 @@ export const NavBarRoutes = [
     component: <Lessons />,
     name: "أكاديمية درس",
   },
+
   {
     path: "/tools",
     component: <Tools />,
@@ -83,4 +84,5 @@ export const SoloRoutes = [
     path: "/form-sucess",
     component: <FormSubmission />,
   },
+
 ];

@@ -5,8 +5,11 @@ import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
 import { ReactComponent as LoginLayer } from "../../assets/svg/login-layer.svg";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
+import { signin } from "../../utils/apis/Auth";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Login() {
+  const auth = useAuth()
   const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     password: Yup.string()
@@ -40,7 +43,13 @@ function Login() {
             }}
             validationSchema={loginSchema}
             onSubmit={(values, { setSubmitting }) => {
-              navigate("/form-sucess");
+             
+signin(values).then((res) => {
+  auth.login(res.token);
+  navigate("/");
+})
+.catch(() => alert("الرجاء التأكد من صحة المعلومات"));
+setSubmitting(false)        
             }}
           >
             {({

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Book } from "../../assets/svg/bigborder.svg";
+import { ReactComponent as BigBorder } from "../../assets/svg/bigborder.svg";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circleform.svg";
 
 function FormSubmission() {
   return (
     <div className="relative bg-[#00EC8B] h-screen w-full">
-      <Book className="absolute h-screen w-full top-0 left-0" />
+      <BigBorder className="absolute h-screen w-full top-0 left-0" />
       <div className="absolute top-0 left-0 z-10 h-screen w-full flex justify-center items-center gap-[32px] flex-col">
         <CheckCircle className="h-[25vh] w-[25vh]" />
         <div className="flex flex-col items-center justify-center">
