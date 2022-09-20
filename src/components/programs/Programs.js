@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-// Import Local Styles
-import "./programs.css";
 // Import needed library
 import axios from "axios";
 
@@ -52,14 +50,15 @@ function Programs() {
 
   return (
     <div className="programs">
-      <div className="programs-category px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-[40px]">
-        <p className="title">تصنيف البرامج</p>
+      <div className="flex flex-row flex-wrap items-center gap-[36px] mediamax-1079:gap-[20px] p-horizontal mb-[40px]">
+        <p className="text-[20px] text-primary-color">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div
             key={`category-${index}`}
             onClick={() => setselectedCat(ctg.category)}
             className={
-              "btn-category " + (ctg.category === selectedCat && "active")
+              "flex items-center justify-center font-[inherit] text-[20px] font-bold h-[55px] py-[8px] px-[32px] mediamax-1079:text-[16px] mediamax-1079:h-[40px] mediamax-1079:px-[28px] whitespace-nowrap outline-none cursor-pointer border-[1px] border-primary-color " +
+              (ctg.category === selectedCat ? "bg-green" : "bg-white")
             }
           >
             <span>{ctg.name}</span>

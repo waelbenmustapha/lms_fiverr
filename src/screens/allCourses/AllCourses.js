@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./allCourses.css";
 import axios from "axios";
 import CourseCard from "../../components/courseCard/CourseCard";
 

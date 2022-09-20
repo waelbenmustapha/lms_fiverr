@@ -12,4 +12,121 @@
   .input-formit {
     @apply px-6 h-[50px] w-full  bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
   }
+  .links {
+    @apply block mediamax-950:hidden;
+  }
+
+  /*---------------------- nav menu style -------------- */
+  .menu {
+    @apply hidden mediamax-950:block mt-[8px] text-center;
+  }
+
+  .hamburger {
+    @apply hidden mediamax-950:block relative z-10 select-none appearance-none border-none outline-none cursor-pointer;
+  }
+  .hamburger span {
+    @apply block w-[33px] h-[2px] mb-2 relative rounded-md bg-primary-color;
+    transform-origin: 0 0;
+    transition: 0.4s;
+  }
+  .hamburger.is-active span:nth-child(1) {
+    transform: translate(0px, 0px) rotate(45deg);
+  }
+  .hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  .hamburger.is-active span:nth-child(3) {
+    transform: translate(-2px, 3px) rotate(-45deg);
+  }
+
+  .menu .links ul li {
+    @apply relative w-fit;
+  }
+  .menu .links ul li.active {
+    @apply before:absolute before:w-full before:h-[2px] before:content-[''] before:bottom-[-4px] before:bg-blue;
+  }
+
+  .links.is-active ul {
+    @apply flex flex-col justify-center items-center no-underline;
+  }
+
+  .links.is-active li {
+    @apply mt-[5px] mb-[16px] mx-[14px];
+  }
+
+  .menu .links ul li span {
+    @apply text-[16px] font-bold no-underline cursor-pointer text-primary-color;
+  }
+
+  .links.is-active .btn-register {
+    @apply mt-[30px];
+  }
+
+  .links.is-active {
+    @apply flex flex-col justify-center items-center fixed top-0 bottom-0 right-0 py-[50px] px-[10px] h-screen overflow-y-scroll z-[9] outline-none bg-[#f5f5f5] shadow-nav-bar visible;
+    width: min(75vw, 300px);
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    transform: translateX(0vw);
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .links.is-active::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* --------------- register button ----------------- */
+  .btn-register {
+    @apply font-[inherit] text-[16px] font-bold text-primary-color bg-blue h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none shadow-register-btn mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px];
+  }
+
+  /* -------- swiper navigation style -------- */
+  .swiper-navigation-header {
+    @apply flex flex-row flex-nowrap items-center justify-between pt-0 pb-0;
+  }
+
+  .swiper-navigation-header .title {
+    @apply text-[32px] text-primary-color;
+  }
+
+  .swipe-btns {
+    @apply flex flex-row flex-nowrap items-center gap-[6px];
+  }
+
+  .swipe-btns .icon {
+    @apply w-[32px] h-[32px] cursor-pointer p-[2px];
+  }
+
+  /* ----------- progress bar style ----------- */
+  .lesson-track {
+    @apply flex items-center justify-center;
+  }
+
+  .percent {
+    @apply relative ml-[16px];
+  }
+
+  .percent svg {
+    @apply relative w-[56px] h-[56px] rotate-[-90deg];
+  }
+
+  .percent svg circle {
+    @apply w-full h-full fill-[none] stroke-[#f0f0f0] stroke-[5];
+  }
+
+  .percent svg circle:last-of-type {
+    @apply stroke-green;
+    stroke-dasharray: 156px;
+    stroke-dashoffset: calc(156px - (156px * var(--percent)) / 100);
+  }
+
+  .percent .number {
+    @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%];
+  }
+
+  .percent .number h3 {
+    @apply text-[18px] font-bold text-green mb-[5px];
+  }
 }

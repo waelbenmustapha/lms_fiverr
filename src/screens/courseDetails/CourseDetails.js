@@ -14,15 +14,15 @@ import "swiper/css/grid";
 import "swiper/css/navigation";
 
 // Import SVG
-import { ReactComponent as ArrowLeft } from "../../../assets/svg/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../../assets/svg/arrowRight.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/svg/arrowLeft.svg";
+import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
 
 // import components
-import CallUsBox from "../../../components/callUsBox/CallUsBox";
-import Header from "../../../components/header/Header";
-import ScoreBox from "../../../components/scoreBox/ScoreBox";
-import Collapsible from "../../../components/Collapsible/Collapsible";
-import ProgramContentCard from "../../../components/programContentCard/ProgramContentCard";
+import CallUsBox from "../../components/callUsBox/CallUsBox";
+import Header from "../../components/header/Header";
+import ScoreBox from "../../components/scoreBox/ScoreBox";
+import Collapsible from "../../components/Collapsible/Collapsible";
+import ProgramContentCard from "../../components/programContentCard/ProgramContentCard";
 
 SwiperCore.use([Navigation]);
 
@@ -93,13 +93,13 @@ function CourseDetails() {
 
         {/* ---------- course details ---------------- */}
         <div className="course-details">
-          <div className="px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+          <div className="p-horizontal">
             <p className="title ">مقدمة عن البرنامج</p>
             <p className="description">{data.introduction}</p>
           </div>
           {/* ------- what you gonna learn in this programs ------- */}
           <div className="program-learning">
-            <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="swiper-navigation-header p-horizontal">
               <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
               <div className="swipe-btns">
                 <ArrowRight
@@ -127,7 +127,7 @@ function CourseDetails() {
                 780: {
                   slidesPerView: 3,
                 },
-                1300: {
+                1360: {
                   slidesPerView: 4,
                 },
               }}
@@ -161,7 +161,7 @@ function CourseDetails() {
             </Swiper>
           </div>
           {/* --------------- Skills gained from this program ------------------ */}
-          <div className="program-skills px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+          <div className="program-skills p-horizontal">
             <p className="title mb-[40px]">
               المهارات المكتسبة من برنامج الابتكار المفتوح:
             </p>
@@ -175,7 +175,7 @@ function CourseDetails() {
           </div>
           {/* --------------- program content -------------------- */}
           <div className="program-content">
-            <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+            <div className="swiper-navigation-header p-horizontal">
               <p className="title">محتوى البرنامج</p>
               <div className="swipe-btns">
                 <ArrowRight
@@ -252,11 +252,11 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+          <div className="w-full p-horizontal">
             <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
           {/* --------------- top asked questions ------------- */}
-          <div className="top-asked-questions px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+          <div className="top-asked-questions p-horizontal">
             <p className="title mb-[40px]">الأسئلة الشائعة</p>
             <div>
               {questions.map((item, index) => (
@@ -269,7 +269,7 @@ function CourseDetails() {
             </div>
           </div>
           {/* ------- devider ------ */}
-          <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+          <div className="w-full p-horizontal">
             <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
           </div>
         </div>

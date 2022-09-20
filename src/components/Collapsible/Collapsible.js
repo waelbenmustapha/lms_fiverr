@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import "./collapsible.css";
 
 // Import SVG
 import { ReactComponent as ArrowUp } from "../../assets/svg/arrowUp.svg";
@@ -17,23 +16,26 @@ const Collapsible = (props) => {
 
   return (
     <div
-      className="collapsible"
+      className="cursor-pointer"
       style={
         open
           ? { backgroundColor: "#00EC8B" }
           : { backgroundColor: "rgba(21, 60, 63, 5%)" }
       }
     >
-      <div className="collapsible-header" onClick={toggle}>
-        <p className="collapsible-label">{props.label}</p>
+      <div
+        className="w-full flex flex-row justify-between items-center py-[28px] px-[32px]"
+        onClick={toggle}
+      >
+        <p className="text-xl font-bold">{props.label}</p>
         {open ? (
-          <ArrowUp className="collapsible-icon" />
+          <ArrowUp className="w-[17px] h-[8px]" />
         ) : (
-          <ArrowDown className="collapsible-icon" />
+          <ArrowDown className="w-[17px] h-[8px]" />
         )}
       </div>
       <div
-        className="collapsible-content-parent"
+        className="h-[0px] overflow-hidden transition-[height] duration-[0.38s]"
         ref={contentRef}
         style={
           open
@@ -41,7 +43,9 @@ const Collapsible = (props) => {
             : { height: "0px" }
         }
       >
-        <div className="collapsible-content">{props.children}</div>
+        <div className="text-[20px] px-[32px] pt-[10px] pb-[32px]">
+          {props.children}
+        </div>
       </div>
     </div>
   );

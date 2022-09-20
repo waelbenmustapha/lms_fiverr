@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// Import Local Styles
-import "./lessons.css";
 // Import needed library
 import axios from "axios";
 
@@ -48,10 +46,10 @@ function Lessons() {
         title3={`${lessonData.people_awarded}+`}
         description3="طالب وطالبة"
       />
-      <div className="lessons-container">
+      <div className="w-full px-0 py-[100px] mediamax-1279:py-[70px] bg-bg-1 bg-no-repeat">
         <TopPrograms />
-        <div className="w-full px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px] mb-[40px]">
-          <div className="w-full h-[1px] bg-[rgba(21, 60, 63, 0.1)]"></div>
+        <div className="w-full p-horizontal mb-[40px]">
+          <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
         </div>
         <Programs />
       </div>

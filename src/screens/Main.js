@@ -5,12 +5,7 @@ import { Outlet } from "react-router-dom";
 
 function Main() {
   return (
-    <div
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="relative min-h-screen">
       <NavBar />
       <Outlet />
       <Footer />

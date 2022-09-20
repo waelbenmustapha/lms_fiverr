@@ -34,37 +34,6 @@ body {
   box-sizing: border-box;
 }
 
-/* -------- swiper style -------- */
-.swiper-navigation-header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.swiper-navigation-header .title {
-  font-size: 32px;
-  color: var(--text-color);
-}
-
-.swipe-btns {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 6px;
-}
-
-.swipe-btns .icon {
-  width: 32px;
-  height: 32px;
-  padding: 2px;
-  cursor: pointer;
-}
-
 .swiper {
   padding: 40px 64px !important;
 }
@@ -81,50 +50,4 @@ body {
   .swiper {
     padding: 40px 20px !important;
   }
-}
-
-/* ----------- progress bar style ----------- */
-.percent {
-  position: relative;
-  margin-left: 16px;
-}
-
-.percent svg {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  transform: rotate(-90deg);
-}
-
-.percent svg circle {
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: #f0f0f0;
-  stroke-width: 5;
-}
-
-.percent svg circle:last-of-type {
-  stroke-dasharray: 156px;
-  stroke-dashoffset: calc(156px - (156px * var(--percent)) / 100);
-  stroke: var(--bg-two);
-}
-
-.percent .number {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.percent .number h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--text-green);
-  margin-bottom: 5px;
-}
-.lesson-track {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

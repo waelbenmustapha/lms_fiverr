@@ -46,6 +46,7 @@ module.exports = {
       },
       backgroundImage: {
         "login-image": "url('./assets/images/login-image.png')",
+        "bg-1": "url('./assets/images/bg.png')",
       },
       boxShadow: {
         "contect-help": "-6px 6px 0px 0px #153c3f",

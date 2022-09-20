@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBarRoutes } from "../../utils/Routes";
 import { KEY_CODES } from "../../utils/keyCodes";
 import { useOnClickOutside } from "../../hooks";
-import "./menu.css";
 
 const Menu = () => {
   const location = useLocation();
