@@ -37,12 +37,14 @@ function CoursePage() {
     );
   } else {
     return (
-      <div className="containerp">
-        <div className="videoandsidebar">
-          <div className="sidebar bottomselect">
-            <div className="textandprogress">
-              <p className="takadom">تقدمك بالبرنامج:</p>
-              <div className="percent">
+      <div className="h-full flex flex-col">
+        <div className="flex flex-row mediamax-767:flex-col-reverse">
+          <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
+            <div className="mb-[40px] mt-[76px] flex items-center gap-[20px] mr-[54px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px]  mediamax-1079:mr-[20px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
+              <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
+                تقدمك بالبرنامج:
+              </p>
+              <div className="percent mediamax-767:scale-[0.75]">
                 <svg>
                   <circle cx="28" cy="28" r="25"></circle>
                   <circle
@@ -60,7 +62,7 @@ function CoursePage() {
                 </div>
               </div>
             </div>
-            <div className="datascroll">
+            <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
               {courseData.sections.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
@@ -72,7 +74,7 @@ function CoursePage() {
               ))}
             </div>
           </div>
-          <div className=" onScreenContent player">
+          <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
             {selectedContent.type === "video" ? (
               <ReactPlayer
                 controls={true}
@@ -114,8 +116,8 @@ function CoursePage() {
             ) : null}
           </div>
         </div>
-        <div className="helpanddescription">
-          <div className="helpme">
+        <div className=" flex flex-row mediamax-767:flex-col-reverse">
+          <div className="w-[380px] h-full mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
             <HelpMe />
           </div>
           <CoursTextDescription text={selectedContent.text} />

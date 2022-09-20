@@ -33,7 +33,7 @@ module.exports = {
       "mediamax-550": { max: "550px" },
       // => @media (max-width: 550px) { ... }
 
-      // => @media (min-width: 1280px) { ... }
+      min767: "767px",
     },
     extend: {
       colors: {
