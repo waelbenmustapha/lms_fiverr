@@ -49,7 +49,7 @@ function DataElement({
               key={`data-${index}`}
               onClick={() => setselectedContent({ ...el })}
               className={
-                "pt-[17px] pr-[54px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-950:py-[12px] mediamax-950:pr-[24px] mediamax-950:pl-[50px] mediamax-950:mr-[20px] mediamax-950:gap-[5px] cursor-pointer " +
+                "pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer " +
                 (el.finished ? "text-[#00ec8b] underline " : " ") +
                 (el.id === selectedContent.id
                   ? "bg-[rgb(20,58,61,0.05)] font-[bold] "
