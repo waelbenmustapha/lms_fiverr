@@ -9,7 +9,7 @@ import { signin } from "../../utils/apis/Auth";
 import { useAuth } from "../../contexts/AuthContext";
 
 function Login() {
-  const auth = useAuth()
+  const auth = useAuth();
   const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     password: Yup.string()
@@ -43,13 +43,13 @@ function Login() {
             }}
             validationSchema={loginSchema}
             onSubmit={(values, { setSubmitting }) => {
-             
-signin(values).then((res) => {
-  auth.login(res.token);
-  navigate("/");
-})
-.catch(() => alert("الرجاء التأكد من صحة المعلومات"));
-setSubmitting(false)        
+              signin(values)
+                .then((res) => {
+                  auth.login(res.token);
+                  navigate("/");
+                })
+                .catch(() => alert("الرجاء التأكد من صحة المعلومات"));
+              setSubmitting(false);
             }}
           >
             {({
