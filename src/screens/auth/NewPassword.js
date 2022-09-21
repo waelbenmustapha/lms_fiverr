@@ -48,10 +48,9 @@ function NewPassword() {
             passwordConfirmation: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            setSuccess(true);
-            console.log(values)
-            changePass({email:"eve.holt@reqres.in",password:"testpassforapi"})
+          onSubmit={(values, { setSubmitting }) => {            
+            changePass({email:"eve.holt@reqres.in",password:"testpassforapi"}).then((res) => setSuccess(true))
+            .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
             setSubmitting(false);
           }}
         >
