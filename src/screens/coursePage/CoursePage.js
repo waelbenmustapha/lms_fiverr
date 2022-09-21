@@ -40,7 +40,7 @@ function CoursePage() {
       <div className="h-full flex flex-col">
         <div className="flex flex-row mediamax-767:flex-col-reverse">
           <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
-            <div className="mb-[40px] mt-[76px] flex items-center gap-[20px] mr-[54px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px]  mediamax-1079:mr-[20px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
+            <div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
               </p>
