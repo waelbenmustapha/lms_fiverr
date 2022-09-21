@@ -39,14 +39,18 @@ function ForgotPassword() {
           }}
           validationSchema={loginSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setSuccess(true);
-            console.log(values)
-            forgetPass({email:"eve.holt@reqres.in",password:"testpassforapi"})
-            setSubmitting(false)
+            console.log(values);
+            forgetPass({
+              email: "eve.holt@reqres.in",
+              password: "testpassforapi",
+            })
+              .then((res) => setSuccess(true))
+              .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
+
+            setSubmitting(false);
           }}
         >
           {({
-          
             isSubmitting,
             /* and other goodies */
           }) => (
@@ -69,7 +73,8 @@ function ForgotPassword() {
                   />
                 </div>
                 <button
-                 type="submit" disabled={isSubmitting}
+                  type="submit"
+                  disabled={isSubmitting}
                   className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
                 >
                   <span>إرسال</span>
