@@ -4,7 +4,7 @@ function CoursTextDescription({ text }) {
   return (
     <div className=" flex-[1] pl-[60px] mediamax-767:pr-[30px]">
       <div className="mt-[30px] text-[16px] flex flex-row gap-[10px] items-center mediamax-767:mt-[20px] mediamax-767:text-[13px] mediamax-1079:mt-[27px] mediamax-1079:text-[13px] mediamax-1079:gap-[8px] mediamax-950:mt-[25px] mediamax-950:text-[12px] mediamax-950:gap-[7px]">
-        <p className="font-[bold]">مقدمة عن المحاضرة</p>
+        <p className="font-bold">مقدمة عن المحاضرة</p>
         <div className="h-[8px] w-[8px] block bg-[#153c3f] rounded-full mt-[5px] mediamax-950:h-[8px] mediamax-950:w-[8px] mediamax-950:mt-[5px]"></div>
         <p>نص المحاضرة</p>
         <div className="h-[8px] w-[8px] block bg-[#153c3f] rounded-full mt-[5px] mediamax-950:h-[8px] mediamax-950:w-[8px] mediamax-950:mt-[5px]"></div>

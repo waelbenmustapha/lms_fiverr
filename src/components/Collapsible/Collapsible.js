@@ -7,7 +7,6 @@ const Collapsible = (props) => {
   const [open, setOPen] = useState(false);
 
   const contentRef = useRef();
-  if (contentRef.current) console.log(contentRef.current.scrollHeight);
 
   const toggle = () => {
     setOPen(!open);

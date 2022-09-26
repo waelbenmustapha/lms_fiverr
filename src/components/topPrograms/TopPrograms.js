@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-// Import needed library
-import axios from "axios";
+import { useRef } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,24 +19,9 @@ import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation]);
 
-function TopPrograms() {
+function TopPrograms({ topPrograms }) {
   // Swiper instance
   const swiperRef = useRef(null);
-
-  //store Top Programs data
-  const [topPrograms, setTopPrograms] = useState([]);
-
-  // get all programs
-  const getTopPrograms = () => {
-    axios
-      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
-      .then((res) => setTopPrograms(res.data));
-  };
-
-  // run api to load the data
-  useEffect(() => {
-    getTopPrograms();
-  }, []);
 
   return (
     <div className="top-programs mb-[40px]">

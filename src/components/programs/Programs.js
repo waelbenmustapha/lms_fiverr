@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-// Import needed library
-import axios from "axios";
+import { useState, useRef } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,13 +18,11 @@ import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
 
 SwiperCore.use([Navigation]);
 
-function Programs() {
+function Programs({ programs }) {
   // Swiper instance
   const swiperGridRef = useRef(null);
   // selected category
   const [selectedCat, setselectedCat] = useState("all");
-  //store programs data
-  const [programs, setPrograms] = useState([]);
 
   // category items
   const category = [
@@ -35,18 +31,6 @@ function Programs() {
     { name: "برامج ابرامج ا", category: "برامج ابرامج ا" },
     { name: "برامج ابرامج ابرامج ا", category: "برامج ابرامج ابرامج ا" },
   ];
-
-  // get all programs
-  const getPrograms = () => {
-    axios
-      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
-      .then((res) => setPrograms(res.data));
-  };
-
-  // run api to load the data
-  useEffect(() => {
-    getPrograms();
-  }, []);
 
   return (
     <div className="programs">

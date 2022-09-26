@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 // Import needed library
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -30,43 +30,51 @@ function CourseDetails() {
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
 
-  // default selected category
-  const [selectedTitle, setselectedTitle] = useState("مقدمة عن البرنامة");
-
-  //store Course data
+  //store Course details data
   const [data, setData] = useState({});
-  const [programTitles, setProgramTitles] = useState([]);
-  const [programContent, setProgramContent] = useState([]);
-  const [learningProcess, setLearningProcess] = useState([]);
+  const [objectives, setObjectives] = useState([]);
   const [skills, setSkills] = useState([]);
-
-  //store Top asked questions data
+  const [courseContent, setCourseContent] = useState([]);
   const [questions, setQuestions] = useState([]);
+
+  // default selected category
+  const [selectedTitle, setselectedTitle] = useState("");
+  // course content titles
+  const [chaptersTitles, setChaptersTitles] = useState([]);
+
+  // Calculate the options for filtering
+  // course content by chapter title
+  useMemo(() => {
+    const options = new Set();
+    courseContent.forEach((row) => {
+      options.add(row["chapter_title"]);
+    });
+    let iterator = [...options.values()];
+    let items = [];
+    iterator.forEach((element) => {
+      items.push({ name: element, label: element });
+    });
+    if (items.length > 0) setselectedTitle(items[0].name);
+    setChaptersTitles(items);
+    return items;
+  }, [courseContent]);
 
   // get all Course Data
   const getData = () => {
     axios
-      .get("https://mocki.io/v1/770e18db-6039-4c9f-99b3-85ba02825045")
+      .get("https://mocki.io/v1/944d67da-c1d1-4634-aacf-ef04a39bada5")
       .then((res) => {
         setData(res.data);
-        setProgramTitles(res.data.program_titles);
-        setProgramContent(res.data.program_content);
-        setLearningProcess(res.data.learning_process);
-        setSkills(res.data.skills_gained);
+        setObjectives(res.data.objective_desc);
+        setSkills(res.data.skills_desc);
+        setCourseContent(res.data.course_content);
+        setQuestions(res.data.faq_desc);
       });
-  };
-
-  // get all programs
-  const getQuestions = () => {
-    axios
-      .get("https://mocki.io/v1/a0fe7b6f-176f-46e8-b3d4-9be5466569a9")
-      .then((res) => setQuestions(res.data));
   };
 
   // run api to load the data
   useEffect(() => {
     getData();
-    getQuestions();
   }, []);
 
   return (
@@ -76,17 +84,18 @@ function CourseDetails() {
           course_id={data.id}
           title={data.title}
           description={data.description}
-          image={data.program_image}
+          image={data.thumbnail}
           start_date={data.start_date}
           duration={data.duration}
-          learning_average={data.learning_average}
+          learning_average={"٣ ساعات أسبوعيًا"}
+          is_enrolled={data.is_enrolled}
         />
         <ScoreBox
-          title1={`${data.time_recorded}+`}
+          title1={`${data.analytic1}+`}
           description1="ساعة مسجلة"
-          title2={`${data.related_article}+`}
+          title2={`${data.analytic2}+`}
           description2="مقال ذات صلة"
-          title3={data.program_completion}
+          title3={data.analytic3}
           description3="إتمام البرنامج"
         />
 
@@ -94,16 +103,16 @@ function CourseDetails() {
         <div className="py-[100px] bg-bg-1 bg-no-repeat mediamax-1023:py-[50px] mediamax-950:py-[40px]">
           <div className="p-horizontal">
             <p className="font-[inherit] text-[32px] font-bold mb-[30px] mediamax-1023:text-[28px] mediamax-1023:mb-[20px] mediamax-950:text-[24px] ">
-              مقدمة عن البرنامج
+              {data.about_title}
             </p>
             <p className="font-[inherit] text-[20px] mb-[100px] mediamax-1023:text-[20px] mediamax-1023:mb-[60px] mediamax-950:text-[18px] mediamax-950:mb-[60px]">
-              {data.introduction}
+              {data.about_desc}
             </p>
           </div>
-          {/* ------- what you gonna learn in this programs ------- */}
+          {/* ------- course objectives ------- */}
           <div className="mb-[60px]">
             <div className="swiper-navigation-header p-horizontal">
-              <p className="title">ماذا ستتعلم في هذا البرنامج:</p>
+              <p className="title">{data.objective_title}:</p>
               <div className="swipe-btns">
                 <ArrowRight
                   onClick={() => swiperLearningRef.current.swiper.slidePrev()}
@@ -143,7 +152,7 @@ function CourseDetails() {
               }}
               modules={[Navigation]}
             >
-              {learningProcess.map(function (text, index) {
+              {objectives.map(function (obj, index) {
                 if (index % 2 === 0) {
                   return (
                     <SwiperSlide key={index}>
@@ -152,7 +161,7 @@ function CourseDetails() {
                           {index + 1}
                         </p>
                         <p className="text-[24px] font-bold mediamax-1023:text-[20px] mediamax-950:text-[18px]">
-                          {text}
+                          {obj.objective}
                         </p>
                       </div>
                     </SwiperSlide>
@@ -165,7 +174,7 @@ function CourseDetails() {
                           {index + 1}
                         </p>
                         <p className="text-[24px] font-bold mediamax-1023:text-[20px] mediamax-950:text-[18px]">
-                          {text}
+                          {obj.objective}
                         </p>
                       </div>
                     </SwiperSlide>
@@ -177,7 +186,7 @@ function CourseDetails() {
           {/* --------------- Skills gained from this program ------------------ */}
           <div className="w-full py-[100px] bg-[rgba(20,58,61,5%)] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
             <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-              المهارات المكتسبة من برنامج الابتكار المفتوح:
+              {data.skills_title}:
             </p>
             <div className="flex flex-row flex-wrap items-center justify-start gap-[16px]">
               {skills.map((item, index) => (
@@ -190,7 +199,7 @@ function CourseDetails() {
               ))}
             </div>
           </div>
-          {/* --------------- program content -------------------- */}
+          {/* --------------- course content -------------------- */}
           <div className="relative py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px]">
             <div className="swiper-navigation-header p-horizontal">
               <p className="title">محتوى البرنامج</p>
@@ -211,7 +220,7 @@ function CourseDetails() {
             </div>
             <div className="flex flex-row flex-wrap items-center gap-[36px] py-0 px-[64px] mt-[48px] mediamax-950:flex mediamax-950:flex-wrap mediamax-950:items-center mediamax-950:gap-[20px] mediamax-950:py-0 mediamax-950:px-[64px] mediamax-950:mt-[15px]">
               <p className="text-[20px] text-primary-color">عناوين البرنامة</p>
-              {programTitles.map((el, index) => (
+              {chaptersTitles.map((el, index) => (
                 <div
                   key={`ctg-${index}`}
                   onClick={() => setselectedTitle(el.label)}
@@ -251,15 +260,15 @@ function CourseDetails() {
               }}
               modules={[Navigation]}
             >
-              {programContent
-                .filter((el) => el.label === selectedTitle)
+              {courseContent
+                .filter((el) => el.chapter_title === selectedTitle)
                 .map((item, index) => (
                   <SwiperSlide key={index}>
                     <ProgramContentCard
                       id={item.id}
-                      title={item.title}
-                      description={item.description}
-                      image={item.image}
+                      title={item.lesson_title}
+                      description={item.lesson_desc}
+                      image={item.lesson_thumbnail}
                     />
                   </SwiperSlide>
                 ))}
@@ -280,12 +289,12 @@ function CourseDetails() {
           {/* --------------- top asked questions ------------- */}
           <div className="py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
             <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-              الأسئلة الشائعة
+              {data.faq_title}
             </p>
             <div>
               {questions.map((item, index) => (
                 <div key={index} className="mb-[16px]">
-                  <Collapsible label={item.label}>
+                  <Collapsible label={item.title}>
                     <p>{item.question}</p>
                   </Collapsible>
                 </div>

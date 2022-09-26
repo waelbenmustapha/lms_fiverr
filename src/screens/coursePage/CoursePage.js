@@ -84,7 +84,7 @@ function CoursePage() {
                       className="text-white h-[56px] w-[56px]"
                       stroke="white"
                     />
-                    <p className="text-[24px] font-[bold] text-white">
+                    <p className="text-[24px] font-bold text-white">
                       شغل الفيديو
                     </p>
                   </div>

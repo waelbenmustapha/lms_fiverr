@@ -15,12 +15,10 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <AuthProvider>
-       <AnimatePresence
-      exitBeforeEnter
-    >
+      <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           {ConvertRoutes(SoloRoutes)}
 
@@ -31,7 +29,7 @@ function App() {
             <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
           </Route>
         </Routes>
-        </AnimatePresence>
+      </AnimatePresence>
     </AuthProvider>
   );
 }

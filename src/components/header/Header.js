@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
@@ -13,8 +14,30 @@ function Header({
   start_date,
   duration,
   learning_average,
+  is_enrolled,
 }) {
-  const [joined, setJoined] = useState(false);
+  // status of user is erolled or not
+  const [joined, setJoined] = useState(is_enrolled);
+
+  // handle user enroll to course
+  const enrollToCourse = () => {
+    axios
+      .put(`https://reqres.in/api/users/${id}`, {
+        name: "test", // this is just to make fake api work remove it in later part
+        job: "test", // this is just to make fake api work remove it in later part
+        is_enrolled: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          setJoined(true);
+        } else {
+          console.log(res);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="relative flex flex-row justify-between mediamax-950:flex-col-reverse mediamax-950:justify-center gap-[40px] bg-[#fafafa] py-[100px] mediamax-1279:py-[70px] p-horizontal">
       <div className="flex-[1] flex flex-col justify-between">
@@ -42,24 +65,21 @@ function Header({
           </div>
         </div>
         <div>
-          <div
-            onClick={() => setJoined(!joined)}
-            className={
-              "w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer " +
-              (joined
-                ? "bg-[#153C3F] text-[#00ec8b] "
-                : "bg-[#00ec8b] text-primary-color ")
-            }
-          >
-            {joined ? (
+          {joined ? (
+            <div className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#153C3F] text-[#00ec8b]">
               <div className="flex flex-row gap-[10px] items-center">
                 <Check />
                 <p>تم انضمامك للبرنامج بنجاح!</p>
               </div>
-            ) : (
-              "انضم للبرنامج التدريبي"
-            )}
-          </div>
+            </div>
+          ) : (
+            <div
+              onClick={() => enrollToCourse()}
+              className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+            >
+              انضم للبرنامج التدريبي
+            </div>
+          )}
           {joined && (
             <div className="w-full h-[50px] bg-white flex items-center text-[16px] px-[16px]">
               <span> يمكنك الآن عرض البرنامج والبدء فيه..</span>
@@ -67,7 +87,6 @@ function Header({
                 to={`/academy-lessons/course?course_id=${id}`}
                 className="font-bold cursor-pointer text-green"
               >
-                {" "}
                 ابدأ البرنامج
               </Link>
             </div>

@@ -29,11 +29,11 @@ function ContactForm() {
         }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          //send form api here 
+          //send form api here
           sendForm({
             name: "morpheus",
             job: "leader",
-            ...values
+            ...values,
           })
             .then(() => navigate("/form-sucess"))
             .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
@@ -129,7 +129,7 @@ function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center text-[20px] font-[bold] text-primary-color"
+                    className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center text-[20px] font-bold text-primary-color"
                   >
                     submit
                   </button>
