@@ -21,7 +21,7 @@ function CoursePage() {
     console.log("fetching initial course data");
 
     axios
-      .get("https://mocki.io/v1/bc51107c-15bb-4de6-8cf7-55f1ea06b611")
+      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
       .then((res) => {
         setCourseData(res.data);
         setselectedContent(res.data?.course_content[0].lessons[0]);
@@ -30,7 +30,7 @@ function CoursePage() {
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/bc51107c-15bb-4de6-8cf7-55f1ea06b611")
+      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -54,6 +54,7 @@ function CoursePage() {
             <div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
+                
               </p>
               <div className="percent mediamax-767:scale-[0.75]">
                 <svg>
