@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   NavBarRoutes,
   AppRoutes,
@@ -12,12 +12,16 @@ import Main from "./screens/Main";
 import { ConvertRoutes } from "./utils/ConvertRoutes";
 import Lessons from "./screens/mainScreens/lessons/Lessons";
 import { AuthProvider } from "./contexts/AuthContext";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const location = useLocation()
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
+       <AnimatePresence
+      exitBeforeEnter
+    >
+        <Routes location={location} key={location.pathname}>
           {ConvertRoutes(SoloRoutes)}
 
           <Route path="/" element={<Main />}>
@@ -27,7 +31,7 @@ function App() {
             <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
           </Route>
         </Routes>
-      </BrowserRouter>
+        </AnimatePresence>
     </AuthProvider>
   );
 }

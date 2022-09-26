@@ -43,8 +43,7 @@ function NavBar() {
         {!auth.user?<Link to={"login"}>
           <button className="btn-register">تسجيل الدخول</button>
         </Link>:<Link to={"/"}>
-          <button onClick={()=>auth.logout()} className="btn-register"> تسجيل ال.
-          خروج</button>
+          <button onClick={()=>auth.logout()} className="btn-register"> تسجيل الخروج</button>
         </Link>}
       </div>
     </nav>
