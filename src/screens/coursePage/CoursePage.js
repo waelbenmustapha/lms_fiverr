@@ -21,16 +21,16 @@ function CoursePage() {
     console.log("fetching initial course data");
 
     axios
-      .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
+      .get("https://mocki.io/v1/bc51107c-15bb-4de6-8cf7-55f1ea06b611")
       .then((res) => {
         setCourseData(res.data);
-        setselectedContent(res.data?.course_content.chapters[0].lessons[0]);
+        setselectedContent(res.data?.course_content[0].lessons[0]);
       });
   }
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
+      .get("https://mocki.io/v1/bc51107c-15bb-4de6-8cf7-55f1ea06b611")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -62,19 +62,19 @@ function CoursePage() {
                     cx="28"
                     cy="28"
                     r="25"
-                    style={{ "--percent": courseData.course_content.progress }}
+                    style={{ "--percent": courseData.course_id.progress }}
                   ></circle>
                 </svg>
                 <div className="number">
                   <h3>
-                    {courseData.course_content.progress}
+                    {courseData.course_id.progress}
                     <span>%</span>
                   </h3>
                 </div>
               </div>
             </div>
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
-              {courseData.course_content.chapters.map((element, index) => (
+              {courseData.course_content.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}

@@ -25,7 +25,7 @@ function ContactForm() {
           email: "",
           title: "",
           program: "",
-          message: "",
+          body: "",
         }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
@@ -118,11 +118,11 @@ function ContactForm() {
                   as="textarea"
                   className="input-formit w-full  h-[270px]  p-5"
                   placeholder="أكتب الرسالة.."
-                  name="message"
+                  name="body"
                 />
                 <ErrorMessage
                   className="text-[#cc0000] text-[14px] "
-                  name="message"
+                  name="body"
                   component="div"
                 />
                 <div className="w-full flex justify-end mt-[30px]">
