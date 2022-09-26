@@ -18,7 +18,7 @@ function CoursePage() {
 
   //fetching courseData for the current connected user using the userid and the courseID
   function fetchInitialCourseData() {
-    console.log("fetching initial course data")
+    console.log("fetching initial course data");
 
     axios
       .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
@@ -28,7 +28,7 @@ function CoursePage() {
       });
   }
   function fetchCourseData() {
-    console.log("fetching course data")
+    console.log("fetching course data");
     axios
       .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
       .then((res) => {
@@ -89,6 +89,12 @@ function CoursePage() {
             {selectedContent.article_url ? (
               <div className="  h-full flex justify-center items-center">
                 <a
+                  onClick={() => {
+                    setselectedContent({ ...selectedContent, is_open: true });
+                    IsOpenDone(selectedContent.id).then(() =>
+                      fetchCourseData()
+                    );
+                  }}
                   href={selectedContent.article_url}
                   className="bg-[#00ec8b] p-[20px] w-[200px] text-center font-[bold] text-[16px]"
                   target="_blank"
@@ -110,7 +116,7 @@ function CoursePage() {
                     alert(
                       "Watched more than half the video execute setIsOpen api"
                     );
-                    setselectedContent({...selectedContent,is_open:true});
+                    setselectedContent({ ...selectedContent, is_open: true });
                     IsOpenDone(selectedContent.id).then(() =>
                       fetchCourseData()
                     );
