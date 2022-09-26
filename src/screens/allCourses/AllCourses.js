@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import CourseCard from "../../components/courseCard/CourseCard";
 
@@ -9,18 +9,25 @@ function AllCourses() {
   // selected category
   const [selectedCat, setselectedCat] = useState("all");
 
-  // category items
-  const category = [
-    { name: "جميع البرامج", category: "all" },
-    { name: "برامج ا", category: "برامج ا" },
-    { name: "برامج ابرامج ا", category: "برامج ابرامج ا" },
-    { name: "برامج ابرامج ابرامج ا", category: "برامج ابرامج ابرامج ا" },
-  ];
+  // Calculate the options for filtering
+  // courses by category
+  const category = useMemo(() => {
+    const options = new Set();
+    programs.forEach((row) => {
+      options.add(row["category"]);
+    });
+    let iterator = [...options.values()];
+    let items = [{ name: "جميع البرامج", category: "all" }];
+    iterator.forEach((element) => {
+      items.push({ name: element, category: element });
+    });
+    return items;
+  }, [programs]);
 
   // get all programs
   const getPrograms = () => {
     axios
-      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
+      .get("https://mocki.io/v1/bf36b2d1-2551-4e1f-884e-a545b8eb6876")
       .then((res) => setPrograms(res.data));
   };
 

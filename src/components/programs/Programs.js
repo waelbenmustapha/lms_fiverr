@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,13 +24,20 @@ function Programs({ programs }) {
   // selected category
   const [selectedCat, setselectedCat] = useState("all");
 
-  // category items
-  const category = [
-    { name: "جميع البرامج", category: "all" },
-    { name: "برامج ا", category: "برامج ا" },
-    { name: "برامج ابرامج ا", category: "برامج ابرامج ا" },
-    { name: "برامج ابرامج ابرامج ا", category: "برامج ابرامج ابرامج ا" },
-  ];
+  // Calculate the options for filtering
+  // courses by category
+  const category = useMemo(() => {
+    const options = new Set();
+    programs.forEach((row) => {
+      options.add(row["category"]);
+    });
+    let iterator = [...options.values()];
+    let items = [{ name: "جميع البرامج", category: "all" }];
+    iterator.forEach((element) => {
+      items.push({ name: element, category: element });
+    });
+    return items;
+  }, [programs]);
 
   return (
     <div className="programs">
