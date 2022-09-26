@@ -98,6 +98,7 @@ function CoursePage() {
                   href={selectedContent.article_url}
                   className="bg-[#00ec8b] p-[20px] w-[200px] text-center font-[bold] text-[16px]"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   اقرأ المقال
                 </a>
