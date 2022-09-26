@@ -29,10 +29,11 @@ function ContactForm() {
         }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log({ email: values.email, password: "testpassforapi" });
+          //send form api here 
           sendForm({
             name: "morpheus",
             job: "leader",
+            ...values
           })
             .then(() => navigate("/form-sucess"))
             .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
