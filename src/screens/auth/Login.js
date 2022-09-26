@@ -24,8 +24,8 @@ function Login() {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0,x: window.innerWidth }}
+      animate={{ opacity: 1,x:0 }}
       exit={{ x: window.innerWidth, opacity: 0,transition:{duration:0.4}}}
       className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative"
     >

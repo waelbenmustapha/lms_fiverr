@@ -46,12 +46,11 @@ function NavBar() {
             <button className="btn-register">تسجيل الدخول</button>
           </Link>
         ) : (
-          <Link to={"/"}>
+          <a href="/">
             <button onClick={() => auth.logout()} className="btn-register">
-              {" "}
               تسجيل الخروج
             </button>
-          </Link>
+          </a>
         )}
       </div>
     </nav>
