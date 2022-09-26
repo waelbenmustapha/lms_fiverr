@@ -3,8 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavBarRoutes } from "../../utils/Routes";
 import { KEY_CODES } from "../../utils/keyCodes";
 import { useOnClickOutside } from "../../hooks";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Menu = () => {
+  // get authenticated user
+  const auth = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -83,9 +86,18 @@ const Menu = () => {
               </li>
             ))}
           </ul>
-          <Link to={"login"}>
-            <button className="btn-register">تسجيل الدخول</button>
-          </Link>
+          {!auth.user ? (
+            <Link to={"login"}>
+              <button className="btn-register">تسجيل الدخول</button>
+            </Link>
+          ) : (
+            <Link to={"/"}>
+              <button onClick={() => auth.logout()} className="btn-register">
+                {" "}
+                تسجيل الخروج
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

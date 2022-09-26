@@ -6,7 +6,8 @@ import Menu from "./Menu";
 import { useAuth } from "../../contexts/AuthContext";
 
 function NavBar() {
-  const auth = useAuth()
+  // get authenticated user
+  const auth = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -40,11 +41,18 @@ function NavBar() {
             ))}
           </ul>
         </div>
-        {!auth.user?<Link to={"login"}>
-          <button className="btn-register">تسجيل الدخول</button>
-        </Link>:<Link to={"/"}>
-          <button onClick={()=>auth.logout()} className="btn-register"> تسجيل الخروج</button>
-        </Link>}
+        {!auth.user ? (
+          <Link to={"login"}>
+            <button className="btn-register">تسجيل الدخول</button>
+          </Link>
+        ) : (
+          <Link to={"/"}>
+            <button onClick={() => auth.logout()} className="btn-register">
+              {" "}
+              تسجيل الخروج
+            </button>
+          </Link>
+        )}
       </div>
     </nav>
   );
