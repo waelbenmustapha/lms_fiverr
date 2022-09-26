@@ -8,7 +8,7 @@ import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 // import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 
 function Header({
-  id,
+  course_id,
   title,
   description,
   image,
@@ -23,13 +23,14 @@ function Header({
   // handle user enroll to course
   const enrollToCourse = () => {
     EnrollToCourse({
-      id,
+      course_id: course_id,
       is_enrolled: true,
       name: "test", // this is just to make fake api work remove it in later part
       job: "test", // this is just to make fake api work remove it in later part
     })
       .then((res) => {
-        console.log(res.data);
+        console.log("joined");
+        console.log(res);
         setJoined(true);
       })
       .catch((error) => console.log(error));
@@ -81,7 +82,7 @@ function Header({
             <div className="w-full h-[50px] bg-white flex items-center text-[16px] px-[16px]">
               <span> يمكنك الآن عرض البرنامج والبدء فيه..</span>
               <Link
-                to={`/academy-lessons/course?course_id=${id}`}
+                to={`/academy-lessons/course?course_id=${course_id}`}
                 className="font-bold cursor-pointer text-green"
               >
                 ابدأ البرنامج
