@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DataElement from "../../components/coursePage/DataElement";
 import ReactPlayer from "react-player";
 import axios from "axios";
@@ -7,25 +7,36 @@ import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
 import HelpMe from "../../components/coursePage/HelpMe";
+import { IsOpenDone } from "../../utils/apis/course/CoursePage";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
   const [courseData, setCourseData] = useState(null);
-
+  const playerRef = useRef();
   //the content selected by the user to show it currently , it's the content inside a section , an object with a type , name , if the user finished it or not ...
   const [selectedContent, setselectedContent] = useState(null);
 
   //fetching courseData for the current connected user using the userid and the courseID
-  function fetchCourseData() {
+  function fetchInitialCourseData() {
+    console.log("fetching initial course data")
+
     axios
-      .get("https://mocki.io/v1/6faf00e5-4603-4bc3-adf3-90d605b72c45")
+      .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
       .then((res) => {
         setCourseData(res.data);
-        setselectedContent(res.data?.sections[0].content[0]);
+        setselectedContent(res.data?.course_content.chapters[0].lessons[0]);
+      });
+  }
+  function fetchCourseData() {
+    console.log("fetching course data")
+    axios
+      .get("https://mocki.io/v1/fa062a69-b381-4f88-9da2-4f932469d236")
+      .then((res) => {
+        setCourseData(res.data);
       });
   }
   useEffect(() => {
-    fetchCourseData();
+    fetchInitialCourseData();
   }, []);
 
   //if still loading show loading
@@ -51,19 +62,19 @@ function CoursePage() {
                     cx="28"
                     cy="28"
                     r="25"
-                    style={{ "--percent": courseData.totalProgress }}
+                    style={{ "--percent": courseData.course_content.progress }}
                   ></circle>
                 </svg>
                 <div className="number">
                   <h3>
-                    {courseData.totalProgress}
+                    {courseData.course_content.progress}
                     <span>%</span>
                   </h3>
                 </div>
               </div>
             </div>
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
-              {courseData.sections.map((element, index) => (
+              {courseData.course_content.chapters.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}
@@ -75,9 +86,36 @@ function CoursePage() {
             </div>
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
-            {selectedContent.type === "video" ? (
+            {selectedContent.article_url ? (
+              <div className="  h-full flex justify-center items-center">
+                <a
+                  href={selectedContent.article_url}
+                  className="bg-[#00ec8b] p-[20px] w-[200px] text-center font-[bold] text-[16px]"
+                  target="_blank"
+                >
+                  اقرأ المقال
+                </a>
+              </div>
+            ) : (
               <ReactPlayer
+                onPlay={() => console.log("im playing now hee")}
+                ref={playerRef}
                 controls={true}
+                onProgress={(progress) => {
+                  if (
+                    progress.playedSeconds >
+                      playerRef.current.getDuration() / 2 &&
+                    selectedContent.is_open === false
+                  ) {
+                    alert(
+                      "Watched more than half the video execute setIsOpen api"
+                    );
+                    setselectedContent({...selectedContent,is_open:true});
+                    IsOpenDone(selectedContent.id).then(() =>
+                      fetchCourseData()
+                    );
+                  }
+                }}
                 playIcon={
                   <div className="flex flex-col justify-center items-center">
                     <PlayButton
@@ -94,18 +132,16 @@ function CoursePage() {
                 key={selectedContent.id}
                 height={"100%"}
                 width="100%"
-                url={selectedContent.url}
+                url={selectedContent.video}
               />
-            ) : selectedContent.type === "text" ? (
-              <div className="bg-[#f2f2f2] h-full"></div>
-            ) : null}
+            )}
           </div>
         </div>
         <div className=" flex flex-row mediamax-767:flex-col-reverse">
           <div className="w-[380px] h-full mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
             <HelpMe />
           </div>
-          <CoursTextDescription text={selectedContent.text} />
+          <CoursTextDescription text={selectedContent.description} />
         </div>
       </div>
     );

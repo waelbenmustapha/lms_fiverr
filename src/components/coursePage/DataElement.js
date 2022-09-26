@@ -19,7 +19,7 @@ function DataElement({
       >
         <p className="font-[bold]">{element.name}</p>
         <div className="flex gap-[12px] items-center">
-          {element.locked && <Lock className="opacity-20" />}
+         {/* {element.locked && <Lock className="opacity-20" />}
           {element.progress !== 0 && (
             <div className="smpercent">
               <svg>
@@ -38,30 +38,30 @@ function DataElement({
                 </h3>
               </div>
             </div>
-          )}
+          )}*/}
           <Arrow style={{ rotate: collapse ? "180deg" : "0deg" }} />
         </div>
       </div>
       {collapse && (
         <div className="flex flex-col mb-[30px]  mediamax-1079:mb-[27px] mediamax-950:mb-[23px]">
-          {element.content.map((el, index) => (
+          {element.lessons.map((el, index) => (
             <div
               key={`data-${index}`}
               onClick={() => setselectedContent({ ...el })}
               className={
                 "pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer " +
-                (el.finished ? "text-[#00ec8b] underline " : " ") +
+                (el.is_open ? "text-[#00ec8b] underline " : " ") +
                 (el.id === selectedContent.id
                   ? "bg-[rgb(20,58,61,0.05)] font-[bold] "
                   : " ")
               }
             >
-              {el.type === "text" ? (
+              {el.article_url? (
                 <Book className="h-[14px] w-[14px]" />
-              ) : el.type === "video" ? (
+              ) :(
                 <Play className="text-[#153C3F] h-[14px] w-[14px]" />
-              ) : null}
-              <p>{el.name}</p>
+              ) }
+              <p>{el.title}</p>
             </div>
           ))}
         </div>
