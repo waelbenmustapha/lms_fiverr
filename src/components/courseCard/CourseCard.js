@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function CourseCard({ program }) {
   return (
-    <div className="relative max-w-[475px] border-[1px] border-primary-color bg-white hover:transition-transform hover:duration-[0.25s] hover:translate-y-[-8px] hover:shadow-dark">
+    <div className="relative max-w-[475px] h-[410px] border-[1px] border-primary-color bg-white hover:transition-transform hover:duration-[0.25s] hover:translate-y-[-8px] hover:shadow-dark">
       <div className="relative w-full h-[220px]">
         <img className="w-full h-full" src={image1} alt="course" />
         <div className="absolute bottom-[10px] right-[16px] flex flex-row flex-wrap">
@@ -32,7 +32,9 @@ function CourseCard({ program }) {
       </div>
       <div className="w-full p-[16px]">
         <p className="text-[22px] font-bold mb-[8px]">{program.title}</p>
-        <p className="text-[16px] mb-[20px]">{program.description}</p>
+        <div className="text-[16px] mb-[20px] w-full h-[50px] overflow-hidden text-ellipsis">
+          {program.description}
+        </div>
         <div className="flex flex-row justify-center items-center w-full gap-[16px]">
           <Link
             to={`/academy-lessons/course-details?course_id=${program.id}`}

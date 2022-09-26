@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
 import { ReactComponent as Check } from "../../assets/svg/check-circle-greeno-utline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
+import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 // import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 
 function Header({
@@ -21,19 +22,15 @@ function Header({
 
   // handle user enroll to course
   const enrollToCourse = () => {
-    axios
-      .put(`https://reqres.in/api/users/${id}`, {
-        name: "test", // this is just to make fake api work remove it in later part
-        job: "test", // this is just to make fake api work remove it in later part
-        is_enrolled: true,
-      })
+    EnrollToCourse({
+      id,
+      is_enrolled: true,
+      name: "test", // this is just to make fake api work remove it in later part
+      job: "test", // this is just to make fake api work remove it in later part
+    })
       .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data);
-          setJoined(true);
-        } else {
-          console.log(res);
-        }
+        console.log(res.data);
+        setJoined(true);
       })
       .catch((error) => console.log(error));
   };

@@ -11,68 +11,68 @@ import Programs from "../../../components/programs/Programs";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
 
 function Lessons() {
-  //store Course Progress data
-  const [lessonData, setLessonData] = useState({});
-  //store all programs data
-  const [programs, setPrograms] = useState([]);
-  //store Top Programs data
-  const [topPrograms, setTopPrograms] = useState([]);
+  //store all Courses data
+  const [allCourses, setAllCourses] = useState([]);
+  //store Top Courses data
+  const [topCourses, setTopCourses] = useState([]);
+  //store Feature Course data
+  const [featureCourse, setFeatureCourse] = useState({});
 
-  // get Lesson Data
-  const getLessonData = () => {
-    axios
-      .get("https://mocki.io/v1/ba60eba7-cd45-4386-840e-8470157e95a3")
-      .then((res) => setLessonData(res.data));
+  // filter And Set Top Courses
+  const filterAndSetTopCourses = (data) => {
+    const filtred = data.filter((el) => el.is_top === true);
+    setTopCourses(filtred);
   };
 
-  // get all programs
-  const getPrograms = () => {
-    axios
-      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
-      .then((res) => setPrograms(res.data));
+  // filter And Set Feature Course
+  const filterAndSetFeatureCourse = (data) => {
+    const filtred = data.find((el) => el.is_featured === true);
+    setFeatureCourse(filtred);
   };
 
-  // get top programs
-  const getTopPrograms = () => {
+  // get all courses
+  const getAllCourses = () => {
     axios
-      .get("https://mocki.io/v1/c772ebe2-ea4a-47dc-906a-f9ef4631c85c")
-      .then((res) => setTopPrograms(res.data));
+      .get("https://mocki.io/v1/bf36b2d1-2551-4e1f-884e-a545b8eb6876")
+      .then((res) => {
+        setAllCourses(res.data);
+        filterAndSetTopCourses(res.data);
+        filterAndSetFeatureCourse(res.data);
+      });
   };
 
   // run api to load the data
   useEffect(() => {
-    getLessonData();
-    getPrograms();
-    getTopPrograms();
+    getAllCourses();
   }, []);
 
   return (
     <>
       <Notification />
       <Header
-        course_id={lessonData.id}
-        title={lessonData.title}
-        description={lessonData.description}
-        image={lessonData.lesson_image}
-        start_date={lessonData.start_date}
-        duration={lessonData.duration}
-        learning_average={lessonData.learning_average}
-        is_enrolled={true}
+        course_id={featureCourse.id}
+        title={featureCourse.title}
+        description={featureCourse.description}
+        image={featureCourse.thumbnail}
+        start_date={featureCourse.start_date}
+        duration={featureCourse.duration}
+        learning_average={"٣ ساعات أسبوعيًا"}
+        is_enrolled={featureCourse.is_enrolled}
       />
       <ScoreBox
-        title1={`${lessonData.available_program}+`}
+        title1={`${featureCourse.analytic1}+`}
         description1="برنامج متاح"
-        title2={`${lessonData.nb_classification}+`}
+        title2={`${featureCourse.analytic2}+`}
         description2="تصينف وفئة"
-        title3={`${lessonData.people_awarded}+`}
+        title3={`${featureCourse.analytic3}+`}
         description3="طالب وطالبة"
       />
       <div className="w-full px-0 py-[100px] mediamax-1279:py-[70px] bg-bg-1 bg-no-repeat">
-        <TopPrograms topPrograms={topPrograms} />
+        <TopPrograms topPrograms={topCourses} />
         <div className="w-full p-horizontal mb-[40px]">
           <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
         </div>
-        <Programs programs={programs} />
+        <Programs programs={allCourses} />
       </div>
       <CallUsBox
         title="تواصل معنا؟"
