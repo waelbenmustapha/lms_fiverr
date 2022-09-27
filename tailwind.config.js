@@ -49,14 +49,19 @@ module.exports = {
         "bg-1": "url('./assets/images/bg.png')",
       },
       boxShadow: {
-        
-        "help-btn":"0px 4px 64px 8px rgba(0, 200, 225, 0.05)",
+        "help-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.05)",
         "contect-help": "-6px 6px 0px 0px #153c3f",
         "strong-shadow": "3px 3px 0px #153c3f",
         "course-card": "2px 2px 0px #153c3f",
         "register-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.1)",
         "nav-bar": "0px 2px 16px 8px rgba(21, 60, 63, 0.05)",
         dark: "8px 16px 32px 0px rgba(21, 60, 63, 0.25)",
+      },
+      keyframes: {
+        "animate-width": {
+          "0%": { width: "100%" },
+          "100%": { width: "60%" },
+        },
       },
     },
   },
