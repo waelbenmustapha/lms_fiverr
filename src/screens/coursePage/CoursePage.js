@@ -21,7 +21,7 @@ function CoursePage() {
     console.log("fetching initial course data");
 
     axios
-      .get("https://mocki.io/v1/2e3e38b3-17e1-4b30-9aed-587df34a40c8")
+      .get("https://mocki.io/v1/b34685e5-4661-45e0-a8fe-cf5cdae717a7")
       .then((res) => {
         setCourseData(res.data);
         setselectedContent(res.data?.chapters[0].lessons[0]);
@@ -30,7 +30,7 @@ function CoursePage() {
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/2e3e38b3-17e1-4b30-9aed-587df34a40c8")
+      .get("https://mocki.io/v1/b34685e5-4661-45e0-a8fe-cf5cdae717a7")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -109,6 +109,8 @@ function CoursePage() {
                 ref={playerRef}
                 controls={true}
                 onProgress={(progress) => {
+                  console.log(progress.playedSeconds)
+                  console.log(playerRef.current.getDuration()/2)
                   if (
                     progress.playedSeconds >
                       playerRef.current.getDuration() / 2 &&
