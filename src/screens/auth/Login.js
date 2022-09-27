@@ -29,7 +29,7 @@ function Login() {
       exit={{
         x: window.innerWidth,
         opacity: 0.3,
-        transition: { duration: 0.32 },
+        transition: { duration: 0.4},
       }}
       className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative"
     >
@@ -58,7 +58,7 @@ function Login() {
               signin(values)
                 .then((res) => {
                   auth.login(res.token);
-                  navigate("/",{state:{from:"login"}});
+                  navigate("/", { state: { from: "login" } });
                 })
                 .catch(() => setLoginErr(true))
                 .finally(() => setSubmitting(false));

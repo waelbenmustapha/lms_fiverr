@@ -35,7 +35,6 @@ function Lessons() {
   // filter And Set Running Course on notification
   const filterAndSetNotificationCourse = (data) => {
     const filtred = data.find((el) => el.is_enrolled === true);
-    console.log(filtred);
     setNotificationCourse(filtred);
   };
 

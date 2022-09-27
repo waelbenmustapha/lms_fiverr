@@ -19,20 +19,18 @@ function App() {
   const location = useLocation();
   return (
     <AuthProvider>
-      <AnimatePresence>
-        <AnimateAfterLogin>
+        <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {ConvertRoutes(SoloRoutes)}
 
-            <Route path="/" element={<Main />}>
+            <Route path="/" element={<AnimateAfterLogin><Main/></AnimateAfterLogin>}>
               {ConvertRoutes(NormalRoutes)}
               {ConvertRoutes(NavBarRoutes)}
               <Route element={<Lessons />} index />
               <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
             </Route>
           </Routes>
-        </AnimateAfterLogin>
-      </AnimatePresence>
+        </AnimatePresence>
     </AuthProvider>
   );
 }
