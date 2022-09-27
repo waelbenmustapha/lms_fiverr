@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { signin } from "../../utils/apis/Auth";
 import { useAuth } from "../../contexts/AuthContext";
 import { motion } from "framer-motion";
-import { RotatingLines, TailSpin } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 
 function Login() {
   const auth = useAuth();

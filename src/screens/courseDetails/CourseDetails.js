@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 // Import needed library
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -22,10 +22,16 @@ import Header from "../../components/header/Header";
 import ScoreBox from "../../components/scoreBox/ScoreBox";
 import Collapsible from "../../components/Collapsible/Collapsible";
 import ProgramContentCard from "../../components/programContentCard/ProgramContentCard";
+import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
+import { RotatingLines } from "react-loader-spinner";
 
 SwiperCore.use([Navigation]);
 
 function CourseDetails() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  // add this course_id to url to fetch course by id
+  const course_id = searchParams.get("course_id");
+
   // Swiper instance
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
@@ -41,6 +47,31 @@ function CourseDetails() {
   const [selectedTitle, setselectedTitle] = useState("");
   // course content titles
   const [chaptersTitles, setChaptersTitles] = useState([]);
+
+  // status of user is erolled or not
+  const [joined, setJoined] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // handle user enroll to course
+  const enrollToCourse = () => {
+    EnrollToCourse({
+      course_id: course_id,
+      is_enrolled: true,
+      name: "test", // this is just to make fake api work remove it in later part
+      job: "test", // this is just to make fake api work remove it in later part
+    })
+      .then((res) => {
+        console.log(res);
+        // display loader
+        setIsSubmitting(true);
+        // delay 1 second
+        setTimeout(() => {
+          setIsSubmitting(false);
+          setJoined(true);
+        }, 1000);
+      })
+      .catch((error) => console.log(error));
+  };
 
   // Calculate the options for filtering
   // course content by chapter title
@@ -69,6 +100,7 @@ function CourseDetails() {
         setSkills(res.data.skills_desc);
         setCourseContent(res.data.course_content);
         setQuestions(res.data.faq_desc);
+        setJoined(res.data.is_enrolled);
       });
   };
 
@@ -85,10 +117,12 @@ function CourseDetails() {
           title={data.title}
           description={data.description}
           image={data.thumbnail}
+          video={data.preview_video}
           start_date={data.start_date}
           duration={data.duration}
           learning_average={"٣ ساعات أسبوعيًا"}
           is_enrolled={data.is_enrolled}
+          is_course_details={true}
         />
         <ScoreBox
           title1={`${data.analytic1}+`}
@@ -273,13 +307,36 @@ function CourseDetails() {
                   </SwiperSlide>
                 ))}
             </Swiper>
-            <div className="w-full text-center mt-[40px]">
-              <Link
-                to={"/academy-lessons/course-details"}
-                className="h-[60px] mediamax-1079:h-[50px] py-[16px] mediamax-1079:py-[14px] px-[60px] mediamax-1079:[50px] font-[inherit] text-[20px] mediamax-1079:text-[18px] font-bold whitespace-nowrap text-center no-underline outline-none text-primary-color bg-green cursor-pointer"
-              >
-                انضم للدورة التدريبية
-              </Link>
+            <div className="w-full px-[20px] flex items items-center justify-center mt-[40px]">
+              <div>
+                {joined ? (
+                  <Link to={"/academy-lessons/course?course_id=" + course_id}>
+                    <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color">
+                      ابدأ دورتك الآن
+                    </div>
+                  </Link>
+                ) : (
+                  <button
+                    disabled={isSubmitting}
+                    onClick={() => enrollToCourse()}
+                    className="w-fit h-[60px] mediamax-1279:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+                  >
+                    {isSubmitting ? (
+                      <span className="px-[64px] mediamax-1279:px-[40px]">
+                        <RotatingLines
+                          strokeColor="white"
+                          strokeWidth="5"
+                          animationDuration="1"
+                          width="35"
+                          visible={true}
+                        />
+                      </span>
+                    ) : (
+                      <span>انضم للدورة التدريبية</span>
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
           {/* ------- devider ------ */}

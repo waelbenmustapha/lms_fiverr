@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import image1 from "../../assets/images/image1.png";
 import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import { ReactComponent as Calendar } from "../../assets/svg/calendar.svg";
@@ -6,6 +6,24 @@ import { ReactComponent as Clock } from "../../assets/svg/clockFill.svg";
 import { Link } from "react-router-dom";
 
 function CourseCard({ program }) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  function copyToClipboard() {
+    navigator.clipboard.writeText(
+      window.location.origin +
+        "/academy-lessons/course-details?course_id=" +
+        program.id
+    );
+    setIsCopied(true);
+  }
+
+  // disappear after 2 second
+  useEffect(() => {
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  }, [isCopied]);
+
   return (
     <div className="relative max-w-[475px] h-[410px] border-[1px] border-primary-color bg-white hover:transition-transform hover:duration-[0.25s] hover:translate-y-[-8px] hover:shadow-dark">
       <div className="relative w-full h-[220px]">
@@ -42,10 +60,24 @@ function CourseCard({ program }) {
           >
             إنضم للبرنامج
           </Link>
-          <button className="flex-[1] h-[40px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[16px] text-primary-color bg-white font-bold outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]">
-            <Share />
-            شارك الدورة
-          </button>
+          {!isCopied ? (
+            <button
+              onClick={() => {
+                copyToClipboard();
+              }}
+              className="flex-[1] h-[40px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[16px] text-primary-color bg-white font-bold outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
+            >
+              <Share />
+              <span>شارك الدورة</span>
+            </button>
+          ) : (
+            <button
+              disabled
+              className="flex-[1] h-[40px] py-[8px] px-[16px] bg-[#f5f5f5] font-[inherit] text-[16px] text-primary-color font-bold flex flex-row items-center justify-center gap-[8px] outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
+            >
+              <span>تم النسخ!!</span>
+            </button>
+          )}
         </div>
       </div>
     </div>
