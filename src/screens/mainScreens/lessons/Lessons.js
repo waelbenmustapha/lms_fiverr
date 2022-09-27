@@ -18,7 +18,7 @@ function Lessons() {
   //store Feature Course data
   const [featureCourse, setFeatureCourse] = useState({});
   //store Notification Course data
-  const [notificationCourse, setNotificationCourse] = useState({});
+  const [notificationCourse, setNotificationCourse] = useState(null);
 
   // filter And Set Top Courses
   const filterAndSetTopCourses = (data) => {
@@ -28,7 +28,7 @@ function Lessons() {
 
   // filter And Set Feature Course
   const filterAndSetFeatureCourse = (data) => {
-    const filtred = data.find((el) => el.is_featured === true);
+    const filtred = data.find((el) => el.is_feature === true);
     setFeatureCourse(filtred);
   };
 
@@ -41,7 +41,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axios
-      .get("https://mocki.io/v1/bf36b2d1-2551-4e1f-884e-a545b8eb6876")
+      .get("https://mocki.io/v1/96263ca2-2e4d-4a9e-8de2-8fdc111a8462")
       .then((res) => {
         setAllCourses(res.data);
         filterAndSetTopCourses(res.data);
@@ -57,7 +57,9 @@ function Lessons() {
 
   return (
     <>
-      <Notification />
+      {notificationCourse && notificationCourse.percentage < 100 && (
+        <Notification notificationCourse={notificationCourse} />
+      )}
       <Header
         course_id={featureCourse.id}
         title={featureCourse.title}
@@ -70,11 +72,11 @@ function Lessons() {
         is_enrolled={featureCourse.is_enrolled}
       />
       <ScoreBox
-        title1={`${featureCourse.analytic1}+`}
+        title1={`${featureCourse.statistics_one}+`}
         description1="برنامج متاح"
-        title2={`${featureCourse.analytic2}+`}
+        title2={`${featureCourse.statistics_two}+`}
         description2="تصينف وفئة"
-        title3={`${featureCourse.analytic3}+`}
+        title3={`${featureCourse.statistics_three}+`}
         description3="طالب وطالبة"
       />
       <div className="w-full px-0 py-[100px] mediamax-1279:py-[70px] bg-bg-1 bg-no-repeat">

@@ -41,6 +41,7 @@ function CourseDetails() {
   const [objectives, setObjectives] = useState([]);
   const [skills, setSkills] = useState([]);
   const [courseContent, setCourseContent] = useState([]);
+  const [filtredLessons, setFiltredLessons] = useState([]);
   const [questions, setQuestions] = useState([]);
 
   // default selected category
@@ -51,6 +52,17 @@ function CourseDetails() {
   // status of user is erolled or not
   const [joined, setJoined] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // filter courses by chapter
+  useEffect(() => {
+    const filterByChapter = () => {
+      const chapter = courseContent.find((chp) => chp.title === selectedTitle);
+      if (chapter != null) {
+        setFiltredLessons(chapter.lessons);
+      }
+    };
+    filterByChapter();
+  }, [selectedTitle]);
 
   // handle user enroll to course
   const enrollToCourse = () => {
@@ -78,7 +90,7 @@ function CourseDetails() {
   useMemo(() => {
     const options = new Set();
     courseContent.forEach((row) => {
-      options.add(row["chapter_title"]);
+      options.add(row["title"]);
     });
     let iterator = [...options.values()];
     let items = [];
@@ -93,12 +105,12 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axios
-      .get("https://mocki.io/v1/944d67da-c1d1-4634-aacf-ef04a39bada5")
+      .get("https://mocki.io/v1/daf340e2-9dac-4852-91bf-28eff9fed9de")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
         setSkills(res.data.skills_desc);
-        setCourseContent(res.data.course_content);
+        setCourseContent(res.data.chapters);
         setQuestions(res.data.faq_desc);
         setJoined(res.data.is_enrolled);
       });
@@ -125,11 +137,11 @@ function CourseDetails() {
           is_course_details={true}
         />
         <ScoreBox
-          title1={`${data.analytic1}+`}
+          title1={`${data.statistics_one}+`}
           description1="ساعة مسجلة"
-          title2={`${data.analytic2}+`}
+          title2={`${data.statistics_two}+`}
           description2="مقال ذات صلة"
-          title3={data.analytic3}
+          title3={data.statistics_three}
           description3="إتمام البرنامج"
         />
 
@@ -146,7 +158,7 @@ function CourseDetails() {
           {/* ------- course objectives ------- */}
           <div className="mb-[60px]">
             <div className="swiper-navigation-header p-horizontal">
-              <p className="title">{data.objective_title}:</p>
+              <p className="title">{data.objectives}:</p>
               <div className="swipe-btns">
                 <ArrowRight
                   onClick={() => swiperLearningRef.current.swiper.slidePrev()}
@@ -294,18 +306,16 @@ function CourseDetails() {
               }}
               modules={[Navigation]}
             >
-              {courseContent
-                .filter((el) => el.chapter_title === selectedTitle)
-                .map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <ProgramContentCard
-                      id={item.id}
-                      title={item.lesson_title}
-                      description={item.lesson_desc}
-                      image={item.lesson_thumbnail}
-                    />
-                  </SwiperSlide>
-                ))}
+              {filtredLessons.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <ProgramContentCard
+                    id={item.id}
+                    title={item.title}
+                    description={item.description}
+                    image={item.thumbnail}
+                  />
+                </SwiperSlide>
+              ))}
             </Swiper>
             <div className="w-full px-[20px] flex items items-center justify-center mt-[40px]">
               <div>

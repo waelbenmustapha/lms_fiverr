@@ -1,31 +1,9 @@
 import { useState, useEffect } from "react";
-// Import needed library
-import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Notification() {
+function Notification({ notificationCourse }) {
   // colse or open notification
   const [isNotifOpen, setIsNotifOpen] = useState(true);
-
-  //store Course Progress data
-  const [data, setData] = useState({});
-
-  // get current course progress
-  const getCourseProgress = () => {
-    axios
-      .get("https://mocki.io/v1/34bcf0c9-60a7-4ae4-a135-a1514fe39817")
-      .then((res) => {
-        setData(res.data);
-        if (res.data.current_course_progress_percent == 100) {
-          setIsNotifOpen(false);
-        }
-      });
-  };
-
-  // run api to load the data
-  useEffect(() => {
-    getCourseProgress();
-  }, []);
 
   return (
     <>
@@ -46,7 +24,7 @@ function Notification() {
             </div>
             <div className="flex flex-row items-center justify-between mediamax-860:text-center mediamax-860:flex-col mediamax-860:gap-[16px]">
               <p className="text-[24px] mediamax-950:text-[20px] text-primary-color">
-                {data.current_course_name}
+                {notificationCourse.title}
               </p>
               <div className="lesson-track">
                 <div className="percent mediamax-950:ml-0">
@@ -57,23 +35,23 @@ function Notification() {
                       cy="28"
                       r="25"
                       style={{
-                        "--percent": data.current_course_progress_percent,
+                        "--percent": notificationCourse.percentage,
                       }}
                     ></circle>
                   </svg>
                   <div className="number">
                     <h3>
-                      {data.current_course_progress_percent}
+                      {notificationCourse.percentage}
                       <span>%</span>
                     </h3>
                   </div>
                 </div>
                 <p className="text-[16px] mediamax-950:text-[14px]">
-                  {data.current_course_progress_time}
+                  {notificationCourse.progress_time}
                 </p>
               </div>
               <Link
-                to={`/academy-lessons/course?course_id=${data.current_course_id}`}
+                to={`/academy-lessons/course?course_id=${notificationCourse.id}`}
               >
                 <button className="font-[inherit] text-[16px] font-bold whitespace-nowrap h-[55px] py-[14px] px-[50px] mediamax-1279:py-[8px] mediamax-1279:px-[20px] mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] text-primary-color bg-green outline-none border-none cursor-pointer">
                   متابعة البرنامج
