@@ -17,6 +17,8 @@ function Lessons() {
   const [topCourses, setTopCourses] = useState([]);
   //store Feature Course data
   const [featureCourse, setFeatureCourse] = useState({});
+  //store Notification Course data
+  const [notificationCourse, setNotificationCourse] = useState({});
 
   // filter And Set Top Courses
   const filterAndSetTopCourses = (data) => {
@@ -30,6 +32,12 @@ function Lessons() {
     setFeatureCourse(filtred);
   };
 
+  // filter And Set Running Course on notification
+  const filterAndSetNotificationCourse = (data) => {
+    const filtred = data.find((el) => el.is_enrolled === true);
+    setNotificationCourse(filtred);
+  };
+
   // get all courses
   const getAllCourses = () => {
     axios
@@ -38,6 +46,7 @@ function Lessons() {
         setAllCourses(res.data);
         filterAndSetTopCourses(res.data);
         filterAndSetFeatureCourse(res.data);
+        filterAndSetNotificationCourse(res.data);
       });
   };
 
@@ -54,6 +63,7 @@ function Lessons() {
         title={featureCourse.title}
         description={featureCourse.description}
         image={featureCourse.thumbnail}
+        video={featureCourse.preview_video}
         start_date={featureCourse.start_date}
         duration={featureCourse.duration}
         learning_average={"٣ ساعات أسبوعيًا"}

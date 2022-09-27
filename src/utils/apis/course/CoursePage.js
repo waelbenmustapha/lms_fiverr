@@ -12,7 +12,7 @@ export const IsOpenDone = (data) => {
 export const EnrollToCourse = (data) => {
   return execRequest({
     baseURL: "https://reqres.in/",
-    url: `/api/users/${data.id}`,
+    url: `/api/users/${data.course_id}`,
     method: "PUT",
     data,
   });
