@@ -14,23 +14,32 @@ import Lessons from "./screens/mainScreens/lessons/Lessons";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AnimatePresence } from "framer-motion";
 import AnimateAfterLogin from "./utils/AnimateAfterLogin";
+import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {
   const location = useLocation();
   return (
     <AuthProvider>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            {ConvertRoutes(SoloRoutes)}
+      <AnimatePresence mode="wait">
+        <ScrollToTop />
+        <Routes location={location} key={location.pathname}>
+          {ConvertRoutes(SoloRoutes)}
 
-            <Route path="/" element={<AnimateAfterLogin><Main/></AnimateAfterLogin>}>
-              {ConvertRoutes(NormalRoutes)}
-              {ConvertRoutes(NavBarRoutes)}
-              <Route element={<Lessons />} index />
-              <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
-            </Route>
-          </Routes>
-        </AnimatePresence>
+          <Route
+            path="/"
+            element={
+              <AnimateAfterLogin>
+                <Main />
+              </AnimateAfterLogin>
+            }
+          >
+            {ConvertRoutes(NormalRoutes)}
+            {ConvertRoutes(NavBarRoutes)}
+            <Route element={<Lessons />} index />
+            <Route path="/academy-lessons">{ConvertRoutes(AppRoutes)}</Route>
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </AuthProvider>
   );
 }
