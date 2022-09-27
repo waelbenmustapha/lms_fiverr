@@ -14,7 +14,12 @@ function Notification() {
   const getCourseProgress = () => {
     axios
       .get("https://mocki.io/v1/34bcf0c9-60a7-4ae4-a135-a1514fe39817")
-      .then((res) => setData(res.data));
+      .then((res) => {
+        setData(res.data);
+        if (res.data.current_course_progress_percent == 100) {
+          setIsNotifOpen(false);
+        }
+      });
   };
 
   // run api to load the data

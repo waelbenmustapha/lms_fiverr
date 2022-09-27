@@ -56,12 +56,12 @@ function AllCourses() {
           </div>
         ))}
       </div>
-      <div className="flex flex-row flex-wrap justify-between items-center ml-[-12px] mr-[-12px]">
+      <div className="flex flex-row flex-wrap items-center ml-[-12px] mr-[-12px]">
         {selectedCat === "all"
           ? programs.map((prog, index) => (
               <div
                 key={`prog-${index}`}
-                className="flex justify-center items-center w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
+                className="flex justify-center items-center max-w-fit w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
               >
                 <CourseCard program={prog} />
               </div>
@@ -71,7 +71,7 @@ function AllCourses() {
               .map((prog, index) => (
                 <div
                   key={`prog-${index}`}
-                  className="flex justify-center items-center w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
+                  className="flex justify-center items-center max-w-fit w-[33.33333%] mediamax-1023:w-[50%] mediamax-650:w-[100%] pl-[12px] pr-[12px] pb-[24px]"
                 >
                   <CourseCard program={prog} />
                 </div>

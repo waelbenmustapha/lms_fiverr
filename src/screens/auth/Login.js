@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { signin } from "../../utils/apis/Auth";
 import { useAuth } from "../../contexts/AuthContext";
 import { motion } from "framer-motion";
-import { RotatingLines, TailSpin } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
 
 function Login() {
   const auth = useAuth();
@@ -24,9 +24,9 @@ function Login() {
 
   return (
     <motion.div
-      initial={{ opacity: 0,x: window.innerWidth }}
-      animate={{ x: 0, opacity: 1,transition:{duration:0.4}}}
-      exit={{ x: window.innerWidth, opacity: 0,transition:{duration:0.4}}}
+      initial={{ opacity: 0, x: window.innerWidth }}
+      animate={{ x: 0, opacity: 1, transition: { duration: 0.4 } }}
+      exit={{ x: window.innerWidth, opacity: 0, transition: { duration: 0.4 } }}
       className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative"
     >
       <div className="flex-[1] w-full h-full my-auto py-8 p-horizontal">
@@ -118,13 +118,17 @@ function Login() {
                   disabled={isSubmitting}
                   className="flex justify-center items-center w-[100%] max-w-[250px] h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
                 >
-                  {isSubmitting ? <RotatingLines
-  strokeColor="white"
-  strokeWidth="5"
-  animationDuration="1"
-  width="35"
-  visible={true}
-/> : <span>تسجيل الدخول</span>}
+                  {isSubmitting ? (
+                    <RotatingLines
+                      strokeColor="white"
+                      strokeWidth="5"
+                      animationDuration="1"
+                      width="35"
+                      visible={true}
+                    />
+                  ) : (
+                    <span>تسجيل الدخول</span>
+                  )}
                 </button>
               </Form>
             )}
