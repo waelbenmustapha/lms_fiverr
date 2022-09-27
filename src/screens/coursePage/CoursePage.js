@@ -8,6 +8,7 @@ import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
 import HelpMe from "../../components/coursePage/HelpMe";
 import { IsOpenDone } from "../../utils/apis/course/CoursePage";
+import ArticleFrame from "../../components/coursePage/ArticleFrame";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
@@ -54,7 +55,6 @@ function CoursePage() {
             <div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
-                
               </p>
               <div className="percent mediamax-767:scale-[0.75]">
                 <svg>
@@ -63,7 +63,7 @@ function CoursePage() {
                     cx="28"
                     cy="28"
                     r="25"
-                    style={{ "--percent": parseInt(courseData.percentage)  }}
+                    style={{ "--percent": parseInt(courseData.percentage) }}
                   ></circle>
                 </svg>
                 <div className="number">
@@ -88,29 +88,19 @@ function CoursePage() {
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
             {selectedContent.article_url ? (
-              <div className="  h-full flex justify-center items-center">
-                <a
-                  onClick={() => {
-                    setselectedContent({ ...selectedContent, is_open: true });
-                    IsOpenDone(selectedContent.id).then(() =>
-                      fetchCourseData()
-                    );
-                  }}
-                  href={selectedContent.article_url}
-                  className="bg-[#00ec8b] p-[20px] w-[200px] text-center font-[bold] text-[16px]"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  اقرأ المقال
-                </a>
-              </div>
+              <ArticleFrame
+                key={selectedContent.id}
+                selectedContent={selectedContent}
+                fetchCourseData={fetchCourseData}
+                setselectedContent={setselectedContent}
+              />
             ) : (
               <ReactPlayer
                 ref={playerRef}
                 controls={true}
                 onProgress={(progress) => {
-                  console.log(progress.playedSeconds)
-                  console.log(playerRef.current.getDuration()/2)
+                  console.log(progress.playedSeconds);
+                  console.log(playerRef.current.getDuration() / 2);
                   if (
                     progress.playedSeconds >
                       playerRef.current.getDuration() / 2 &&
