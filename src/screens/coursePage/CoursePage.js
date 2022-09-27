@@ -21,16 +21,16 @@ function CoursePage() {
     console.log("fetching initial course data");
 
     axios
-      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
+      .get("https://mocki.io/v1/2e3e38b3-17e1-4b30-9aed-587df34a40c8")
       .then((res) => {
         setCourseData(res.data);
-        setselectedContent(res.data?.course_content[0].lessons[0]);
+        setselectedContent(res.data?.chapters[0].lessons[0]);
       });
   }
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
+      .get("https://mocki.io/v1/2e3e38b3-17e1-4b30-9aed-587df34a40c8")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -63,19 +63,19 @@ function CoursePage() {
                     cx="28"
                     cy="28"
                     r="25"
-                    style={{ "--percent": courseData.course_id.progress }}
+                    style={{ "--percent": parseInt(courseData.percentage)  }}
                   ></circle>
                 </svg>
                 <div className="number">
                   <h3>
-                    {courseData.course_id.progress}
+                    {courseData.percentage}
                     <span>%</span>
                   </h3>
                 </div>
               </div>
             </div>
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
-              {courseData.course_content.map((element, index) => (
+              {courseData.chapters.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}
@@ -106,7 +106,6 @@ function CoursePage() {
               </div>
             ) : (
               <ReactPlayer
-                onPlay={() => console.log("im playing now hee")}
                 ref={playerRef}
                 controls={true}
                 onProgress={(progress) => {
@@ -140,7 +139,7 @@ function CoursePage() {
                 key={selectedContent.id}
                 height={"100%"}
                 width="100%"
-                url={selectedContent.video}
+                url={selectedContent.video_url}
               />
             )}
           </div>
