@@ -8,6 +8,7 @@ import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
 import HelpMe from "../../components/coursePage/HelpMe";
 import { IsOpenDone } from "../../utils/apis/course/CoursePage";
+import ArticleFrame from "../../components/coursePage/ArticleFrame";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
@@ -21,16 +22,16 @@ function CoursePage() {
     console.log("fetching initial course data");
 
     axios
-      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
+      .get("https://mocki.io/v1/b34685e5-4661-45e0-a8fe-cf5cdae717a7")
       .then((res) => {
         setCourseData(res.data);
-        setselectedContent(res.data?.course_content[0].lessons[0]);
+        setselectedContent(res.data?.chapters[0].lessons[0]);
       });
   }
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/88564eba-f441-4cfa-a49d-f1aefea76168")
+      .get("https://mocki.io/v1/b34685e5-4661-45e0-a8fe-cf5cdae717a7")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -54,7 +55,6 @@ function CoursePage() {
             <div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
-                
               </p>
               <div className="percent mediamax-767:scale-[0.75]">
                 <svg>
@@ -63,19 +63,19 @@ function CoursePage() {
                     cx="28"
                     cy="28"
                     r="25"
-                    style={{ "--percent": courseData.course_id.progress }}
+                    style={{ "--percent": parseInt(courseData.percentage) }}
                   ></circle>
                 </svg>
                 <div className="number">
                   <h3>
-                    {courseData.course_id.progress}
+                    {courseData.percentage}
                     <span>%</span>
                   </h3>
                 </div>
               </div>
             </div>
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
-              {courseData.course_content.map((element, index) => (
+              {courseData.chapters.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}
@@ -88,28 +88,19 @@ function CoursePage() {
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
             {selectedContent.article_url ? (
-              <div className="  h-full flex justify-center items-center">
-                <a
-                  onClick={() => {
-                    setselectedContent({ ...selectedContent, is_open: true });
-                    IsOpenDone(selectedContent.id).then(() =>
-                      fetchCourseData()
-                    );
-                  }}
-                  href={selectedContent.article_url}
-                  className="bg-[#00ec8b] p-[20px] w-[200px] text-center font-[bold] text-[16px]"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  اقرأ المقال
-                </a>
-              </div>
+              <ArticleFrame
+                key={selectedContent.id}
+                selectedContent={selectedContent}
+                fetchCourseData={fetchCourseData}
+                setselectedContent={setselectedContent}
+              />
             ) : (
               <ReactPlayer
-                onPlay={() => console.log("im playing now hee")}
                 ref={playerRef}
                 controls={true}
                 onProgress={(progress) => {
+                  console.log(progress.playedSeconds);
+                  console.log(playerRef.current.getDuration() / 2);
                   if (
                     progress.playedSeconds >
                       playerRef.current.getDuration() / 2 &&
@@ -140,7 +131,7 @@ function CoursePage() {
                 key={selectedContent.id}
                 height={"100%"}
                 width="100%"
-                url={selectedContent.video}
+                url={selectedContent.video_url}
               />
             )}
           </div>
