@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import image1 from "../../assets/images/image1.png";
 import { ReactComponent as Share } from "../../assets/svg/share.svg";
 import { ReactComponent as Calendar } from "../../assets/svg/calendar.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clockFill.svg";
@@ -27,7 +26,7 @@ function CourseCard({ program }) {
   return (
     <div className="relative max-w-[475px] h-[410px] border-[1px] border-primary-color bg-white hover:transition-transform hover:duration-[0.25s] hover:translate-y-[-8px] hover:shadow-dark">
       <div className="relative w-full h-[220px]">
-        <img className="w-full h-full" src={image1} alt="course" />
+        <img className="w-full h-full" src={program.thumbnail} alt="course" />
         <div className="absolute bottom-[10px] right-[16px] flex flex-row flex-wrap">
           {program.category && (
             <div className="text-[10px] font-bold flex flex-row flex-wrap justify-center items-center py-[5px] px-[16px] ml-[5px] mb-[5px] bg-[#f5f5f5] border-[1px] border-[#153c3f]">
