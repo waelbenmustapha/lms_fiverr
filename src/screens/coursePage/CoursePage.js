@@ -100,6 +100,7 @@ function CoursePage() {
                 controls={true}
                 onProgress={(progress) => {
                   console.log(progress.playedSeconds);
+                  console.log("== ?? ");
                   console.log(playerRef.current.getDuration() / 2);
                   if (
                     progress.playedSeconds >

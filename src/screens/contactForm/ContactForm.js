@@ -11,7 +11,7 @@ function ContactForm() {
     email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
     title: Yup.string().required("حقل مطلوب").min(5, "العنوان قصير"),
     program: Yup.string().required("حقل مطلوب").min(5, "اسم البرنامج قصير"),
-    message: Yup.string().required("حقل مطلوب").min(8, "الرسالة قصيرة"),
+    body: Yup.string().required("حقل مطلوب").min(8, "الرسالة قصيرة"),
   });
 
   return (
@@ -33,10 +33,10 @@ function ContactForm() {
           sendForm({
             name: "morpheus",
             job: "leader",
-            ...values,
           })
             .then(() => navigate("/form-sucess"))
-            .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
+            .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"))
+            .finally(() => setSubmitting(false));
         }}
       >
         {({
