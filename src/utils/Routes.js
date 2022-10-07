@@ -12,6 +12,7 @@ import Login from "../screens/auth/Login";
 import ForgotPassword from "../screens/auth/ForgotPassword";
 import NewPassword from "../screens/auth/NewPassword";
 import FormSubmission from "../screens/contactForm/FormSubmission";
+import { RequireAuth } from "../components/auth/RequireAuth";
 
 export const NavBarRoutes = [
   {
@@ -58,7 +59,7 @@ export const AppRoutes = [
   },
   {
     path: "/academy-lessons/course",
-    component: <CoursePage />,
+    component: <RequireAuth><CoursePage /></RequireAuth>,
   },
 ];
 export const NormalRoutes = [

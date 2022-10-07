@@ -25,6 +25,17 @@ function ArticleFrame({
               />
             </div>
           )}
+          <a
+            onClick={() => {
+              setselectedContent({ ...selectedContent, is_complete: true });
+              IsOpenDone(selectedContent.id).then(() => fetchCourseData());
+            }}
+            href={selectedContent.article_url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <External className="h-[65px] w-[65px] cursor-pointer absolute bottom-[20px] right-[20px] opacity-60" />
+          </a>
           <iframe
             onLoad={() => setLoading(false)}
             src={selectedContent.article_url}
@@ -36,7 +47,7 @@ function ArticleFrame({
           <p
             onClick={() => {
               setIsOpened(true);
-              setselectedContent({ ...selectedContent, is_open: true });
+              setselectedContent({ ...selectedContent, is_complete: true });
               IsOpenDone(selectedContent.id).then(() => fetchCourseData());
             }}
             className="bg-[#00ec8b] cursor-pointer p-[20px] w-[200px] text-center font-[bold] text-[16px]"
@@ -47,7 +58,7 @@ function ArticleFrame({
           </p>
           <a
             onClick={() => {
-              setselectedContent({ ...selectedContent, is_open: true });
+              setselectedContent({ ...selectedContent, is_complete: true });
               IsOpenDone(selectedContent.id).then(() => fetchCourseData());
             }}
             href={selectedContent.article_url}

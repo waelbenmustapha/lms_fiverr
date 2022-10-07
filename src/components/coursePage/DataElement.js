@@ -47,21 +47,23 @@ function DataElement({
           {element.lessons.map((el, index) => (
             <div
               key={`data-${index}`}
-              onClick={() => setselectedContent({ ...el })}
+              onClick={() => !el.is_locked&&setselectedContent({ ...el })}
               className={
                 "pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer " +
-                (el.is_open ? "text-[#00ec8b] underline " : " ") +
+                (el.is_complete ? "text-[#00ec8b] underline " : " ") +
                 (el.id === selectedContent.id
                   ? "bg-[rgb(20,58,61,0.05)] font-bold "
                   : " ")
               }
-            >
+            >          
+
               {el.article_url? (
                 <Book className="h-[14px] w-[14px]" />
               ) :(
                 <Play className="text-[#153C3F] h-[14px] w-[14px]" />
               ) }
               <p>{el.title}</p>
+              {el.is_locked && <Lock className="opacity-20 mr-auto" />}
             </div>
           ))}
         </div>
