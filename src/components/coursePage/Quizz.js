@@ -51,8 +51,7 @@ function Quizz({ data }) {
   }
 
   function next() {
-    
-    if ((currentQuestion === questions.length - 1) && (selectedAnswer?.isCorrect)) {
+    if (currentQuestion === questions.length - 1 && selectedAnswer?.isCorrect) {
       setshowAnswerCorrect(true);
       setShowAnswerFalse(false);
       setShowAnswerRequired(false);
@@ -72,7 +71,7 @@ function Quizz({ data }) {
     }
   }
   return (
-    <div className=" bg-white h-full pt-[80px] pr-[70px]">
+    <div className=" bg-white h-full py-[64px] p-horizontal overflow-y-auto">
       <p className="text-[#00EC8B] text-[16px] font-[bold] ">
         اختبار المعرفة ({questions.length.toLocaleString("ar-EG")}/
         {(currentQuestion + 1).toLocaleString("ar-EG")})

@@ -19,7 +19,7 @@ function Signup() {
       .oneOf([Yup.ref("password1"), null], "كلمت المرور لا تتطابق"),
   });
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center py-[40px] p-horizontal">
+    <div className="relative w-full min-h-screen flex items-center justify-center py-[100px] p-horizontal">
       <Link to={"/"}>
         <img
           className="w-[110px] h-[50px] absolute top-[40px] right-[40px] mediamax-767:right-[20px]"
