@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
-import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
 import { Formik, ErrorMessage, Form, Field } from "formik";
 import * as Yup from "yup";
-import { changePass } from "../../utils/apis/Auth";
-function NewPassword() {
-  const [success, setSuccess] = useState(false);
-
+function Signup() {
+  const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
+    email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
+    fullname: Yup.string().required("حقل مطلوب"),
     password1: Yup.string()
       .min(8, "كلمة المرور قصيرة")
       .max(30, "كلمة المرور طويلة")
@@ -40,18 +38,18 @@ function NewPassword() {
           </span>
         </Link>
         <h3 className="text-primary-one text-3xl font-bold mb-[20px]">
-          إعادة تعيين كلمة المرور
+          إنشاء حساب جديد
         </h3>
         <Formik
           initialValues={{
+            email: "",
+            fullname: "",
             password1: "",
             passwordConfirmation: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={(values, { setSubmitting }) => {            
-            changePass({email:"eve.holt@reqres.in",password:"testpassforapi"}).then((res) => setSuccess(true))
-            .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
-            setSubmitting(false);
+          onSubmit={(values, { setSubmitting }) => {
+            navigate("/login");
           }}
         >
           {({
@@ -62,11 +60,41 @@ function NewPassword() {
               <div className="flex flex-col">
                 <div className="mb-[20px]">
                   <p className="text-[16px] font-bold text-primary-color mb-[8px]">
-                    كلمة المرور الجديدة
+                    الاسم الكامل{" "}
                   </p>
                   <Field
                     className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
-                    placeholder="أدخل كلمة المرور الجديدة.."
+                    placeholder="أدخل الاسم الكامل.."
+                    name="fullname"
+                  />
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="fullname"
+                    component="div"
+                  />
+                </div>
+                <div className="mb-[20px]">
+                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                    البريد الالكتروني{" "}
+                  </p>
+                  <Field
+                    className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+                    placeholder="أدخل البريد الالكتروني.."
+                    name="email"
+                  />
+                  <ErrorMessage
+                    className="text-[#cc0000] text-[14px]"
+                    name="email"
+                    component="div"
+                  />
+                </div>
+                <div className="mb-[20px]">
+                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                    كلمة المرور
+                  </p>
+                  <Field
+                    className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
+                    placeholder="أدخل كلمة المرور .."
                     name="password1"
                     type="password"
                   />
@@ -78,11 +106,11 @@ function NewPassword() {
                 </div>
                 <div className="mb-[64px] mediamax-767:mb-[40px]">
                   <p className="text-[16px] font-bold text-primary-color mb-[8px]">
-                    تأكيد كلمة المرور الجديدة
+                    تأكيد كلمة المرور
                   </p>
                   <Field
                     className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
-                    placeholder="أدخل كلمة المرور الجديدة مره أخرى.."
+                    placeholder="أدخل كلمة المرور.."
                     type="password"
                     name="passwordConfirmation"
                   />
@@ -97,25 +125,15 @@ function NewPassword() {
                   disabled={isSubmitting}
                   className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
                 >
-                  <span>تحديث كلمة المرور</span>
+                  <span>إنشاء حساب </span>
                 </button>
               </div>
             </Form>
           )}
         </Formik>
-        {success && (
-          <div className="text-[16px] font-bold p-[24px] mt-[16px] bg-green/10 flex flex-row items-center">
-            <CheckCircle className="ml-[16px]" />
-
-            <p>
-              تم تعديل كلمة المرور بنجاح! يمكنك القيام{" "}
-              <span className="text-green underline">بتسجيل دخولك</span> الآن
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );
 }
 
-export default NewPassword;
+export default Signup;

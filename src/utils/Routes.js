@@ -13,6 +13,7 @@ import ForgotPassword from "../screens/auth/ForgotPassword";
 import NewPassword from "../screens/auth/NewPassword";
 import FormSubmission from "../screens/contactForm/FormSubmission";
 import { RequireAuth } from "../components/auth/RequireAuth";
+import Signup from "../screens/auth/Signup";
 
 export const NavBarRoutes = [
   {
@@ -72,6 +73,10 @@ export const SoloRoutes = [
   {
     path: "/login",
     component: <Login />,
+  },
+  {
+    path: "/signup",
+    component: <Signup />,
   },
   {
     path: "/forgot-password",
