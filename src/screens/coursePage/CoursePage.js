@@ -38,7 +38,7 @@ function CoursePage() {
         });
     } else {
       axios
-        .get("https://mocki.io/v1/9832bb93-2eab-4fd3-8be8-d07d803f4261")
+        .get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
         .then((res) => {
           setCourseData(res.data);
           setselectedContent(res.data?.chapters[0].lessons[0]);
