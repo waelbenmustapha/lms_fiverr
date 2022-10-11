@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg";
 import { ReactComponent as Check } from "../../assets/svg/check-circle-greeno-utline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
@@ -7,6 +7,7 @@ import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 import VideoModal from "../videoModal/VideoModal";
 import { RotatingLines } from "react-loader-spinner";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Header({
   course_id,
@@ -24,9 +25,11 @@ function Header({
   // status of user is erolled or not
   const [joined, setJoined] = useState(is_enrolled);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const navigate = useNavigate()
+  const auth = useAuth();
   // handle user enroll to course
   const enrollToCourse = () => {
+    if(auth.user){
     EnrollToCourse({
       course_id: course_id,
       is_enrolled: !joined,
@@ -44,7 +47,9 @@ function Header({
         }, 1000);
       })
       .catch((error) => console.log(error));
-  };
+  }else{
+    navigate("/login")
+  }};
 
   return (
     <>
