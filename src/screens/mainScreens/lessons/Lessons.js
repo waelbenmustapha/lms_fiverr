@@ -41,12 +41,12 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axios
-      .get("https://mocki.io/v1/96263ca2-2e4d-4a9e-8de2-8fdc111a8462")
+      .get("https://mocki.io/v1/87315a4b-2a63-48ae-9816-75a323f35a83")
       .then((res) => {
-        setAllCourses(res.data);
-        filterAndSetTopCourses(res.data);
-        filterAndSetFeatureCourse(res.data);
-        filterAndSetNotificationCourse(res.data);
+        setAllCourses(res.data.items);
+        filterAndSetTopCourses(res.data.items);
+        filterAndSetFeatureCourse(res.data.items);
+        filterAndSetNotificationCourse(res.data.items);
       });
   };
 
@@ -57,8 +57,13 @@ function Lessons() {
 
   return (
     <>
-      {notificationCourse && notificationCourse.percentage < 100 && (
-        <Notification notificationCourse={notificationCourse} />
+      {notificationCourse && notificationCourse.current_progress < 100 && (
+        <Notification
+          id={notificationCourse.id}
+          title={notificationCourse.title}
+          percentage={notificationCourse.current_progress}
+          progress_time={notificationCourse.progress_time}
+        />
       )}
       <Header
         course_id={featureCourse.id}

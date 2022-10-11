@@ -27,8 +27,8 @@ function AllCourses() {
   // get all programs
   const getPrograms = () => {
     axios
-      .get("https://mocki.io/v1/96263ca2-2e4d-4a9e-8de2-8fdc111a8462")
-      .then((res) => setPrograms(res.data));
+      .get("https://mocki.io/v1/87315a4b-2a63-48ae-9816-75a323f35a83")
+      .then((res) => setPrograms(res.data.items));
   };
 
   // run api to load the data

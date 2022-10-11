@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Notification({ notificationCourse }) {
+function Notification({ id, title, percentage, progress_time }) {
   // colse or open notification
   const [isNotifOpen, setIsNotifOpen] = useState(true);
 
@@ -24,7 +24,7 @@ function Notification({ notificationCourse }) {
             </div>
             <div className="flex flex-row items-center justify-between mediamax-860:text-center mediamax-860:flex-col mediamax-860:gap-[16px]">
               <p className="text-[24px] mediamax-950:text-[20px] text-primary-color">
-                {notificationCourse.title}
+                {title}
               </p>
               <div className="lesson-track">
                 <div className="percent mediamax-950:ml-0">
@@ -35,24 +35,22 @@ function Notification({ notificationCourse }) {
                       cy="28"
                       r="25"
                       style={{
-                        "--percent": notificationCourse.percentage,
+                        "--percent": percentage,
                       }}
                     ></circle>
                   </svg>
                   <div className="number">
                     <h3>
-                      {notificationCourse.percentage}
+                      {percentage}
                       <span>%</span>
                     </h3>
                   </div>
                 </div>
                 <p className="text-[16px] mediamax-950:text-[14px]">
-                  {notificationCourse.progress_time}
+                  {progress_time}
                 </p>
               </div>
-              <Link
-                to={`/academy-lessons/course?course_id=${notificationCourse.id}`}
-              >
+              <Link to={`/academy-lessons/course?course_id=${id}`}>
                 <button className="font-[inherit] text-[16px] font-bold whitespace-nowrap h-[55px] py-[14px] px-[50px] mediamax-1279:py-[8px] mediamax-1279:px-[20px] mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] text-primary-color bg-green outline-none border-none cursor-pointer">
                   متابعة البرنامج
                 </button>

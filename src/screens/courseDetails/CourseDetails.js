@@ -105,7 +105,7 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axios
-      .get("https://mocki.io/v1/daf340e2-9dac-4852-91bf-28eff9fed9de")
+      .get("https://mocki.io/v1/57db9747-c1ce-491d-90fd-b4d9e4033314")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
@@ -240,7 +240,7 @@ function CourseDetails() {
                   key={index}
                   className="flex flex-row justify-center items-center py-[14px] px-[36px] w-fit text-primary-color border-[2px] border-primary-color"
                 >
-                  {item}
+                  {item.skill}
                 </div>
               ))}
             </div>
@@ -354,20 +354,30 @@ function CourseDetails() {
             <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
           </div>
           {/* --------------- top asked questions ------------- */}
-          <div className="py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
-            <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-              {data.faq_title}
-            </p>
-            <div>
-              {questions.map((item, index) => (
-                <div key={index} className="mb-[16px]">
-                  <Collapsible label={item.title}>
-                    <p>{item.question}</p>
+          {questions.length > 0 && (
+            <div className="py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
+              <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
+                {data.faq_title}
+              </p>
+              <div>
+                <div className="mb-[16px]">
+                  <Collapsible label={"السؤال الأول"}>
+                    <p>{questions[0].faq}</p>
                   </Collapsible>
                 </div>
-              ))}
+                <div className="mb-[16px]">
+                  <Collapsible label={"السؤال الثاني"}>
+                    <p>{questions[1].faq}</p>
+                  </Collapsible>
+                </div>
+                <div className="mb-[16px]">
+                  <Collapsible label={"السؤال الثالث"}>
+                    <p>{questions[2].faq}</p>
+                  </Collapsible>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
           {/* ------- devider ------ */}
           <div className="w-full p-horizontal">
             <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
