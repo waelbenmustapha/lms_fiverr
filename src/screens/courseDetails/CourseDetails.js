@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 // Import needed library
 import axios from "axios";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,10 +24,13 @@ import Collapsible from "../../components/Collapsible/Collapsible";
 import ProgramContentCard from "../../components/programContentCard/ProgramContentCard";
 import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 import { RotatingLines } from "react-loader-spinner";
+import { useAuth } from "../../contexts/AuthContext";
 
 SwiperCore.use([Navigation]);
 
 function CourseDetails() {
+  const auth = useAuth();
+  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams();
   // add this course_id to url to fetch course by id
   const course_id = searchParams.get("course_id");
@@ -66,6 +69,8 @@ function CourseDetails() {
 
   // handle user enroll to course
   const enrollToCourse = () => {
+    console.log(auth)
+    if(auth.user){
     EnrollToCourse({
       course_id: course_id,
       is_enrolled: true,
@@ -83,7 +88,9 @@ function CourseDetails() {
         }, 1000);
       })
       .catch((error) => console.log(error));
-  };
+  }
+else{navigate("/login")}
+};
 
   // Calculate the options for filtering
   // course content by chapter title
