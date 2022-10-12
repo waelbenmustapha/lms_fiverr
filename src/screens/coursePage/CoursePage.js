@@ -31,7 +31,7 @@ function CoursePage() {
 
     if (course_id === "1") {
       axios
-        .get("https://mocki.io/v1/b878fad8-a228-4696-a58e-363cd58eb62a")
+        .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
         .then((res) => {
           setCourseData(res.data);
           setselectedContent(res.data?.chapters[0].lessons[0]);
@@ -48,7 +48,7 @@ function CoursePage() {
   function fetchCourseData() {
     console.log("fetching course data");
     axios
-      .get("https://mocki.io/v1/b878fad8-a228-4696-a58e-363cd58eb62a")
+      .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
       .then((res) => {
         setCourseData(res.data);
       });
