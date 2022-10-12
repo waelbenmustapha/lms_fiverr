@@ -28,7 +28,7 @@ function ArticleFrame({
           <a
             onClick={() => {
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone(selectedContent.id).then(() => fetchCourseData());
+              IsOpenDone(selectedContent.id,selectedContent.is_complete).then(() => fetchCourseData());
             }}
             href={selectedContent.article_url}
             target="_blank"
@@ -48,7 +48,7 @@ function ArticleFrame({
             onClick={() => {
               setIsOpened(true);
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone(selectedContent.id).then(() => fetchCourseData());
+              IsOpenDone(selectedContent.id,selectedContent.is_complete).then(() => fetchCourseData());
             }}
             className="bg-[#00ec8b] cursor-pointer p-[20px] w-[200px] text-center font-[bold] text-[16px]"
             target="_blank"
@@ -59,7 +59,7 @@ function ArticleFrame({
           <a
             onClick={() => {
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone(selectedContent.id).then(() => fetchCourseData());
+              IsOpenDone(selectedContent.id,selectedContent.is_complete).then(() => fetchCourseData());
             }}
             href={selectedContent.article_url}
             target="_blank"

@@ -7,6 +7,9 @@ import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
 import HelpMe from "../../components/coursePage/HelpMe";
+import rewind5 from "../../assets/images/rewind5.png";
+import pause from "../../assets/images/pause.png";
+import rewind30 from "../../assets/images/rewind30.png";
 import { IsOpenDone } from "../../utils/apis/course/CoursePage";
 import ArticleFrame from "../../components/coursePage/ArticleFrame";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -16,10 +19,11 @@ function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
   const [courseData, setCourseData] = useState(null);
   const [searchParams] = useSearchParams();
+  const [videostarted, sertVideoStarted] = useState();
+  const [playing, setPlaying] = useState(true);
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
-  console.log(course_id);
 
   const playerRef = useRef();
   //the content selected by the user to show it currently , it's the content inside a section , an object with a type , name , if the user finished it or not ...
@@ -125,53 +129,100 @@ function CoursePage() {
                 setselectedContent={setselectedContent}
               />
             ) : selectedContent.type === "video" ? (
-              <ReactPlayer
-                ref={playerRef}
-                controls={false}
-                config={{
-                  file: {
-                    attributes: {
-                      onContextMenu: (e) => e.preventDefault(),
-                      controlsList: "nodownload",
-                    },
-                  },
-                }}
-                onProgress={(progress) => {
-                  if (
-                    progress.playedSeconds >
-                      playerRef.current.getDuration() * 0.9 &&
-                    selectedContent.is_complete === false
-                  ) {
-                    alert(
-                      "Watched more than half the video execute setIsOpen api"
-                    );
-                    setselectedContent({
-                      ...selectedContent,
-                      is_complete: true,
-                    });
-                    IsOpenDone(selectedContent.id).then(() =>
-                      fetchCourseData()
-                    );
-                  }
-                }}
-                playIcon={
-                  <div className="flex flex-col justify-center items-center">
-                    <PlayButton
-                      className="text-white h-[56px] w-[56px]"
-                      stroke="white"
+              <div
+                style={{ position: "relative", height: "100%", width: "100%" }}
+              >
+                {videostarted && (
+                  <>
+                    <img
+                      onClick={() => {
+                        setPlaying(!playing);
+                      }}
+                      className="h-[50px] absolute bottom-[20px] right-[50%] w-[50px] opacity-80 cursor-pointer z-[999]"
+                      src={pause}
                     />
-                    <p className="text-[24px] font-bold text-white">
-                      شغل الفيديو
-                    </p>
-                  </div>
-                }
-                playing={true}
-                light={selectedContent.thumbnail}
-                key={selectedContent.id}
-                height={"100%"}
-                width="100%"
-                url={selectedContent.video_url}
-              />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "20px",
+                        left: "20px",
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "20px",
+                      }}
+                    >
+                      <img
+                        onClick={() =>
+                          playerRef.current.seekTo(
+                            playerRef.current.getCurrentTime() - 30
+                          )
+                        }
+                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
+                        src={rewind30}
+                      />
+                      <img
+                        onClick={() =>
+                          playerRef.current.seekTo(
+                            playerRef.current.getCurrentTime() - 5
+                          )
+                        }
+                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
+                        src={rewind5}
+                      />
+                    </div>
+                  </>
+                )}
+                <ReactPlayer
+                
+                  ref={playerRef}
+                  controls={false}
+                  onReady={() => sertVideoStarted(true)}
+                  config={{
+                    file: {
+                      attributes: {
+                        onContextMenu: (e) => e.preventDefault(),
+                        controlsList: "nodownload",
+                      },
+                    },
+                  }}
+                  onProgress={(progress) => {
+                    if (
+                      progress.playedSeconds >
+                        playerRef.current.getDuration() * 0.9 &&
+                      selectedContent.is_complete === false
+                    ) {
+                      alert(
+                        "Watched more than 90% of the video execute setIsOpen api"
+                      );
+                      setselectedContent({
+                        ...selectedContent,
+                        is_complete: true,
+                      });
+                      IsOpenDone(
+                        selectedContent.id,
+                        selectedContent.is_complete
+                      ).then(() => fetchCourseData());
+                    }
+                  }}
+                  playIcon={
+                    <div className="flex flex-col justify-center items-center">
+                      <PlayButton
+                        className="text-white h-[56px] w-[56px]"
+                        stroke="white"
+                      />
+                      <p className="text-[24px] font-bold text-white">
+                        شغل الفيديو
+                      </p>
+                    </div>
+                  }
+                  playing={playing}
+                  light={selectedContent.thumbnail}
+                  key={selectedContent.id}
+                  height={"100%"}
+                  width="100%"
+                  url={selectedContent.video_url}
+                />
+              </div>
             ) : selectedContent.type === "quizz" ? (
               <Quizz data={courseData.quizz.questions} />
             ) : null}
