@@ -29,7 +29,7 @@ function Login() {
       exit={{
         x: window.innerWidth,
         opacity: 0.3,
-        transition: { duration: 0.4},
+        transition: { duration: 0.4 },
       }}
       className="flex flex-row flex-nowrap bg-white min-h-screen h-full relative"
     >
@@ -137,6 +137,12 @@ function Login() {
               </Form>
             )}
           </Formik>
+          <div className="w-fit text-primary-one text-[16px] mt-[8px] mb-[40px]">
+            <span>ليس لديك حساب؟</span>{" "}
+            <Link to={"/signup"} className="underline">
+              سجل الان
+            </Link>
+          </div>
         </div>
       </div>
       <div className="flex-[1] relative block mediamax-550:hidden bg-login-image bg-no-repeat bg-cover">

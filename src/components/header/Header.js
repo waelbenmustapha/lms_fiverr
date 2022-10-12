@@ -25,31 +25,32 @@ function Header({
   // status of user is erolled or not
   const [joined, setJoined] = useState(is_enrolled);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const auth = useAuth();
   // handle user enroll to course
   const enrollToCourse = () => {
-    if(auth.user){
-    EnrollToCourse({
-      course_id: course_id,
-      is_enrolled: !joined,
-      name: "test", // this is just to make fake api work remove it in later part
-      job: "test", // this is just to make fake api work remove it in later part
-    })
-      .then((res) => {
-        console.log(res);
-        // display loader
-        setIsSubmitting(true);
-        // delay 1 second
-        setTimeout(() => {
-          setIsSubmitting(false);
-          setJoined(!joined);
-        }, 1000);
+    if (auth.user) {
+      EnrollToCourse({
+        course_id: course_id,
+        is_enrolled: true,
+        name: "test", // this is just to make fake api work remove it in later part
+        job: "test", // this is just to make fake api work remove it in later part
       })
-      .catch((error) => console.log(error));
-  }else{
-    navigate("/login")
-  }};
+        .then((res) => {
+          console.log(res);
+          // display loader
+          setIsSubmitting(true);
+          // delay 1 second
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setJoined(true);
+          }, 1000);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -111,7 +112,6 @@ function Header({
               {joined ? (
                 <button
                   disabled={isSubmitting}
-                  onClick={() => enrollToCourse()}
                   className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#153C3F] text-[#00ec8b]"
                 >
                   {isSubmitting ? (
