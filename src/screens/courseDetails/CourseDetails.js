@@ -25,6 +25,7 @@ import ProgramContentCard from "../../components/programContentCard/ProgramConte
 import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 import { RotatingLines } from "react-loader-spinner";
 import { useAuth } from "../../contexts/AuthContext";
+import { axiosToken } from "../../utils/apis/AxiosWithToken";
 
 SwiperCore.use([Navigation]);
 
@@ -114,8 +115,8 @@ function CourseDetails() {
 
   // get all Course Data
   const getData = () => {
-    axios
-      .get("https://mocki.io/v1/5172ee00-12de-410c-8f76-9c16becbaad1")
+    axiosToken
+      .get("https://mocki.io/v1/57db9747-c1ce-491d-90fd-b4d9e4033314")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);

@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import CourseCard from "../../components/courseCard/CourseCard";
+import { axiosToken } from "../../utils/apis/AxiosWithToken";
 
 function AllCourses() {
   //store programs data
@@ -26,7 +27,7 @@ function AllCourses() {
 
   // get all programs
   const getPrograms = () => {
-    axios
+    axiosToken
       .get("https://mocki.io/v1/87315a4b-2a63-48ae-9816-75a323f35a83")
       .then((res) => setPrograms(res.data.items));
   };

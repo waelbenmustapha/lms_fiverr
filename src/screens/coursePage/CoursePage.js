@@ -14,6 +14,7 @@ import { IsOpenDone } from "../../utils/apis/course/CoursePage";
 import ArticleFrame from "../../components/coursePage/ArticleFrame";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Quizz from "../../components/coursePage/Quizz";
+import { axiosToken } from "../../utils/apis/AxiosWithToken";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
@@ -24,25 +25,24 @@ function CoursePage() {
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
-
   const playerRef = useRef();
   //the content selected by the user to show it currently , it's the content inside a section , an object with a type , name , if the user finished it or not ...
   const [selectedContent, setselectedContent] = useState(null);
 
   //fetching courseData for the current connected user using the userid and the courseID
-  function fetchInitialCourseData() {
+  async function fetchInitialCourseData() {
     console.log("fetching initial course data");
 
     if (course_id === "1") {
-      axios
+      axiosToken
         .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
         .then((res) => {
           setCourseData(res.data);
           setselectedContent(res.data?.chapters[0].lessons[0]);
         });
     } else {
-      axios
-        .get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
+    
+      axiosToken.get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
         .then((res) => {
           setCourseData(res.data);
           setselectedContent(res.data?.chapters[0].lessons[0]);
@@ -51,7 +51,7 @@ function CoursePage() {
   }
   function fetchCourseData() {
     console.log("fetching course data");
-    axios
+    axiosToken
       .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
       .then((res) => {
         setCourseData(res.data);

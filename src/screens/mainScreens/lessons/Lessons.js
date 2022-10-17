@@ -9,6 +9,7 @@ import Notification from "../../../components/notification/Notification";
 import Header from "../../../components/header/Header";
 import Programs from "../../../components/programs/Programs";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
+import { axiosToken } from "../../../utils/apis/AxiosWithToken";
 
 function Lessons() {
   //store all Courses data
@@ -40,7 +41,7 @@ function Lessons() {
 
   // get all courses
   const getAllCourses = () => {
-    axios
+    axiosToken
       .get("https://mocki.io/v1/87315a4b-2a63-48ae-9816-75a323f35a83")
       .then((res) => {
         setAllCourses(res.data.items);
