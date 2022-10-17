@@ -116,7 +116,7 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/57db9747-c1ce-491d-90fd-b4d9e4033314")
+      .get("https://mocki.io/v1/5172ee00-12de-410c-8f76-9c16becbaad1")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
