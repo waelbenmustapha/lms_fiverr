@@ -30,7 +30,7 @@ SwiperCore.use([Navigation]);
 
 function CourseDetails() {
   const auth = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   // add this course_id to url to fetch course by id
   const course_id = searchParams.get("course_id");
@@ -59,7 +59,9 @@ function CourseDetails() {
   // filter courses by chapter
   useEffect(() => {
     const filterByChapter = () => {
-      const chapter = courseContent.find((chp) => chp.title === selectedTitle);
+      const chapter = courseContent.find(
+        (chp) => chp.chapter_name === selectedTitle
+      );
       if (chapter != null) {
         setFiltredLessons(chapter.lessons);
       }
@@ -69,35 +71,36 @@ function CourseDetails() {
 
   // handle user enroll to course
   const enrollToCourse = () => {
-    console.log(auth)
-    if(auth.user){
-    EnrollToCourse({
-      course_id: course_id,
-      is_enrolled: true,
-      name: "test", // this is just to make fake api work remove it in later part
-      job: "test", // this is just to make fake api work remove it in later part
-    })
-      .then((res) => {
-        console.log(res);
-        // display loader
-        setIsSubmitting(true);
-        // delay 1 second
-        setTimeout(() => {
-          setIsSubmitting(false);
-          setJoined(true);
-        }, 1000);
+    console.log(auth);
+    if (auth.user) {
+      EnrollToCourse({
+        course_id: course_id,
+        is_enrolled: true,
+        name: "test", // this is just to make fake api work remove it in later part
+        job: "test", // this is just to make fake api work remove it in later part
       })
-      .catch((error) => console.log(error));
-  }
-else{navigate("/login")}
-};
+        .then((res) => {
+          console.log(res);
+          // display loader
+          setIsSubmitting(true);
+          // delay 1 second
+          setTimeout(() => {
+            setIsSubmitting(false);
+            setJoined(true);
+          }, 1000);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      navigate("/login");
+    }
+  };
 
   // Calculate the options for filtering
   // course content by chapter title
   useMemo(() => {
     const options = new Set();
     courseContent.forEach((row) => {
-      options.add(row["title"]);
+      options.add(row["chapter_name"]);
     });
     let iterator = [...options.values()];
     let items = [];
@@ -112,12 +115,12 @@ else{navigate("/login")}
   // get all Course Data
   const getData = () => {
     axios
-      .get("https://mocki.io/v1/57db9747-c1ce-491d-90fd-b4d9e4033314")
+      .get("https://mocki.io/v1/5172ee00-12de-410c-8f76-9c16becbaad1")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
         setSkills(res.data.skills_desc);
-        setCourseContent(res.data.chapters);
+        setCourseContent(res.data.all_course_lessons);
         setQuestions(res.data.faq_desc);
         setJoined(res.data.is_enrolled);
       });
