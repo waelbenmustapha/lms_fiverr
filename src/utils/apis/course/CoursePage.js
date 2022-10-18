@@ -1,7 +1,9 @@
 import { execRequest } from "../ExecRequest";
 export const IsOpenDone = (data) => {
+  console.log("hmm")
+  console.log(data)
   return execRequest({
-    baseURL: ": http://0.0.0.0:8000",
+    baseURL: "http://0.0.0.0:8000",
     url: "/lms/api/v2/lesson_progress/",
     method: "POST",
     headers: {

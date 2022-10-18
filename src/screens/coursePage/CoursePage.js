@@ -226,7 +226,7 @@ function CoursePage() {
                         ...selectedContent,
                         is_complete: true,
                       });
-                      IsOpenDone(selectedContent.id, courseDetails.id).then(
+                      IsOpenDone({"lesson_id":selectedContent.id,"course_id": courseDetails.id}).then(
                         () => fetchCourseData()
                       );
                     }
