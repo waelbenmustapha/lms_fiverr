@@ -73,7 +73,7 @@ function Lessons() {
         start_date={featureCourse.start_date}
         duration={
           featureCourse.duration_by_weeks &&
-          featureCourse.duration_by_weeks.toLocaleString("ar-EG")
+          featureCourse.duration_by_weeks.toLocaleString("ar-EG") + " أسابيع"
         }
         learning_average={
           featureCourse.duration_by_hours_per_week &&

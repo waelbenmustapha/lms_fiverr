@@ -114,7 +114,7 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/4c94dc46-ebf0-4520-8af0-8d039f35b174")
+      .get("https://mocki.io/v1/ca365d59-ae34-4e50-861b-c06d117dcd10")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
@@ -142,7 +142,7 @@ function CourseDetails() {
           start_date={data.start_date}
           duration={
             data.duration_by_weeks &&
-            data.duration_by_weeks.toLocaleString("ar-EG")
+            data.duration_by_weeks.toLocaleString("ar-EG") + " أسابيع"
           }
           learning_average={
             data.duration_by_hours_per_week &&
@@ -378,18 +378,18 @@ function CourseDetails() {
               </p>
               <div>
                 <div className="mb-[16px]">
-                  <Collapsible label={"السؤال الأول"}>
-                    <p>{questions[0].faq}</p>
+                  <Collapsible label={questions[0].faq}>
+                    <p>{questions[0].answer}</p>
                   </Collapsible>
                 </div>
                 <div className="mb-[16px]">
-                  <Collapsible label={"السؤال الثاني"}>
-                    <p>{questions[1].faq}</p>
+                  <Collapsible label={questions[1].faq}>
+                    <p>{questions[1].answer}</p>
                   </Collapsible>
                 </div>
                 <div className="mb-[16px]">
-                  <Collapsible label={"السؤال الثالث"}>
-                    <p>{questions[2].faq}</p>
+                  <Collapsible label={questions[2].faq}>
+                    <p>{questions[2].answer}</p>
                   </Collapsible>
                 </div>
               </div>
