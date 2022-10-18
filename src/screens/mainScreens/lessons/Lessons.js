@@ -40,7 +40,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/b07185fe-7ca1-4e7b-b047-535c5fd3838f")
+      .get("https://mocki.io/v1/3a4faeff-2a43-49f8-8b52-7f2801a15c42")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
@@ -71,8 +71,15 @@ function Lessons() {
         image={featureCourse.thumbnail}
         video={featureCourse.preview_video}
         start_date={featureCourse.start_date}
-        duration={featureCourse.duration}
-        learning_average={"٣ ساعات أسبوعيًا"}
+        duration={
+          featureCourse.duration_by_weeks &&
+          featureCourse.duration_by_weeks.toLocaleString("ar-EG")
+        }
+        learning_average={
+          featureCourse.duration_by_hours_per_week &&
+          featureCourse.duration_by_hours_per_week.toLocaleString("ar-EG") +
+            " ساعات أسبوعيًا"
+        }
         is_enrolled={featureCourse.is_enrolled}
       />
       <ScoreBox
