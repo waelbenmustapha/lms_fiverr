@@ -33,10 +33,14 @@ function CourseCard({ program }) {
               <span>{program.category}</span>
             </div>
           )}
-          {program.duration && (
+          {program.duration_by_weeks && (
             <div className="text-[10px] font-bold flex flex-row flex-wrap justify-center items-center py-[5px] px-[16px] ml-[5px] mb-[5px] bg-[#f5f5f5] border-[1px] border-[#153c3f]">
               <Clock className="w-[10px] h-[10px] ml-[5px]" />
-              <span>{program.duration}</span>
+              <span>
+                {program.duration_by_weeks &&
+                  program.duration_by_weeks.toLocaleString("ar-EG")}{" "}
+                أسابيع
+              </span>
             </div>
           )}
           {program.start_date && (
