@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { signin } from './Auth';
 
 
 export async function execRequest (axiosRequestConfig) {

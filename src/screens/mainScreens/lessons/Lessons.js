@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// Import needed library
-import axios from "axios";
 
 // Import Components
 import CallUsBox from "../../../components/callUsBox/CallUsBox";
