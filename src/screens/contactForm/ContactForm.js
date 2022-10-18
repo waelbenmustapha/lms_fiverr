@@ -32,10 +32,7 @@ function ContactForm() {
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
           //send form api here
-          sendForm({
-            name: "morpheus",
-            job: "leader",
-          })
+          sendForm(values)
             .then(() => navigate("/form-sucess"))
             .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"))
             .finally(() => setSubmitting(false));
