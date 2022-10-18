@@ -3,6 +3,7 @@ import DataElement from "../../components/coursePage/DataElement";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
+import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
 
 import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
@@ -31,6 +32,11 @@ function CoursePage() {
   //the content selected by the user to show it currently , it's the content inside a section , an object with a type , name , if the user finished it or not ...
   const [selectedContent, setselectedContent] = useState(null);
   const [courseDetails, setCourseDetails] = useState(null);
+
+function onQuizzClick(){
+  progressquizz.is_quiz_finished?navigate("/certificate"):setSelectedQuizz(courseData.quiz)
+}
+
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialCourseData() {
     console.log("fetching initial course data");
@@ -126,11 +132,14 @@ function CoursePage() {
 
               {
                 /*courseData.current_progress===100*/ true && (
-                  <div
-                    onClick={() => setSelectedQuizz(courseData.quiz)}
-                    className="cursor-pointer flex justify-between items-center text-[#00EC8B] font-[bold] pr-[65px] pl-[65px] mb-[30px] mediamax-767:pr-[25px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px] mediamax-767:mb-[5px]  mediamax-1079:text-[18x]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[40px]  mediamax-1079:mb-[15px] mediamax-950:text-[14px] mediamax-950:px-[30px] mediamax-950:mb-[12px]"
-                  >
-                    اختبار المعرفة
+                  <div className="pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer ">
+                    <div
+                      onClick={() => { progressquizz.percentage==100?onQuizzClick():alert("you need to complete all the course to be able to open quizz")}}
+                      className="cursor-pointer  text-[#00EC8B] font-[bold] text-[18px]"
+                    >
+                      اختبار المعرفة
+                    </div>
+                    {progressquizz.percentage!==100&& <Lock className="opacity-20 mr-auto" />}
                   </div>
                 )
               }
@@ -212,8 +221,6 @@ function CoursePage() {
                     },
                   }}
                   onProgress={(progress) => {
-                    console.log("hi");
-                    console.log("hi");
                     if (
                       progress.playedSeconds >
                         playerRef.current.getDuration() * 0.9 &&
@@ -226,9 +233,10 @@ function CoursePage() {
                         ...selectedContent,
                         is_complete: true,
                       });
-                      IsOpenDone({"lesson_id":selectedContent.id,"course_id": courseDetails.id}).then(
-                        () => fetchCourseData()
-                      );
+                      IsOpenDone({
+                        lesson_id: selectedContent.id,
+                        course_id: courseDetails.id,
+                      }).then(() => fetchCourseData());
                     }
                   }}
                   playIcon={

@@ -120,7 +120,7 @@ function Quizz({ data, progressquizz, courseId }) {
       ) : (
         <div
           className="h-[55px] w-[200px] bg-[#00EC8B] flex justify-center items-center cursor-pointer"
-          onClick={certification}
+          onClick={()=>certification()}
         >
           <p className="text-[16px] font-[bold] text-[#153C3F]">
             انهاء الاختبار
