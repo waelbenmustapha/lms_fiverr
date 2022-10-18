@@ -42,7 +42,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/87315a4b-2a63-48ae-9816-75a323f35a83")
+      .get("https://mocki.io/v1/b07185fe-7ca1-4e7b-b047-535c5fd3838f")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
@@ -58,12 +58,12 @@ function Lessons() {
 
   return (
     <>
-      {notificationCourse && notificationCourse.current_progress < 100 && (
+      {notificationCourse && notificationCourse.percentage < 100 && (
         <Notification
           id={notificationCourse.id}
           title={notificationCourse.title}
-          percentage={notificationCourse.current_progress}
-          progress_time={notificationCourse.progress_time}
+          percentage={notificationCourse.percentage}
+          progress_time={notificationCourse.current_progress}
         />
       )}
       <Header
