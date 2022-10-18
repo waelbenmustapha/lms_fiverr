@@ -114,7 +114,7 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/27a09bfa-c470-4327-9026-3420574249b2")
+      .get("https://mocki.io/v1/4c94dc46-ebf0-4520-8af0-8d039f35b174")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
@@ -140,8 +140,15 @@ function CourseDetails() {
           image={data.thumbnail}
           video={data.preview_video}
           start_date={data.start_date}
-          duration={data.duration}
-          learning_average={"٣ ساعات أسبوعيًا"}
+          duration={
+            data.duration_by_weeks &&
+            data.duration_by_weeks.toLocaleString("ar-EG")
+          }
+          learning_average={
+            data.duration_by_hours_per_week &&
+            data.duration_by_hours_per_week.toLocaleString("ar-EG") +
+              " ساعات أسبوعيًا"
+          }
           is_enrolled={data.is_enrolled}
           is_course_details={true}
         />
@@ -241,7 +248,7 @@ function CourseDetails() {
           {/* --------------- Skills gained from this program ------------------ */}
           <div className="w-full py-[100px] bg-[rgba(20,58,61,5%)] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
             <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-              {data.skills_title}:
+              {data.skills}:
             </p>
             <div className="flex flex-row flex-wrap items-center justify-start gap-[16px]">
               {skills.map((item, index) => (
@@ -367,7 +374,7 @@ function CourseDetails() {
           {questions.length > 0 && (
             <div className="py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
               <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-                {data.faq_title}
+                {data.faqs}
               </p>
               <div>
                 <div className="mb-[16px]">
