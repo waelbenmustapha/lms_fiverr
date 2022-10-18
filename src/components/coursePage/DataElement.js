@@ -47,7 +47,7 @@ function DataElement({
           {element.lessons.map((el, index) => (
             <div
               key={`data-${index}`}
-              onClick={() => !el.is_open&&setselectedContent({ ...el })}
+              onClick={() => el.is_open&&setselectedContent({ ...el })}
               className={
                 "pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer " +
                 (el.is_complete ? "text-[#00ec8b] underline " : " ") +
@@ -63,7 +63,7 @@ function DataElement({
                 <Play className="text-[#153C3F] h-[14px] w-[14px]" />
               ) }
               <p>{el.title}</p>
-              {el.is_open && <Lock className="opacity-20 mr-auto" />}
+              {!el.is_open && <Lock className="opacity-20 mr-auto" />}
             </div>
           ))}
         </div>

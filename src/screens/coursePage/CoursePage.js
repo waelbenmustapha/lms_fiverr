@@ -22,9 +22,7 @@ function CoursePage() {
   const [searchParams] = useSearchParams();
   const [videostarted, sertVideoStarted] = useState();
   const [playing, setPlaying] = useState(true);
-
-  
-
+  const [progressquizz, setProgressQuiz] = useState();
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
@@ -37,50 +35,47 @@ function CoursePage() {
   async function fetchInitialCourseData() {
     console.log("fetching initial course data");
 
-
-   
     
-    if (course_id === "1") {
+      axiosToken
+        .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+        .then((res) => setProgressQuiz(res.data));
       axiosToken
         .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
         .then((res) => setCourseDetails(res.data));
       axiosToken
-        .get("https://mocki.io/v1/a1e2da7d-cf3f-4763-81b3-ac400af948cb")
+        .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
         .then((res) => {
           setCourseData(res.data);
           setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
         });
-    } else {
-      axiosToken
-        .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
-        .then((res) => setCourseDetails(res.data));
-
-      axiosToken
-        .get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
-        .then((res) => {
-          setCourseData(res.data);
-          setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
-        });
-    }
+   
   }
   function fetchCourseData() {
     console.log("fetching course data");
+   
     axiosToken
-      .get("https://mocki.io/v1/a1e2da7d-cf3f-4763-81b3-ac400af948cb")
-      .then((res) => {
-        setCourseData(res.data);
-      });
+    .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+    .then((res) => setProgressQuiz(res.data));
+  axiosToken
+    .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
+    .then((res) => setCourseDetails(res.data));
+  axiosToken
+    .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
+    .then((res) => {
+      setCourseData(res.data);
+      setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
+    });
   }
   useEffect(() => {
     fetchInitialCourseData();
   }, []);
 
   useEffect(() => {
-    setSelectedQuizz(null)
-  }, [selectedContent])
-  
+    setSelectedQuizz(null);
+  }, [selectedContent]);
+
   //if still loading show loading
-  if (courseData == null || selectedContent == null || courseDetails == null) {
+  if (courseData == null || selectedContent == null || courseDetails == null ||progressquizz == null) {
     return (
       <div>
         <p>Loading</p>
@@ -103,13 +98,13 @@ function CoursePage() {
                     cy="28"
                     r="25"
                     style={{
-                      "--percent": parseInt(courseData.current_progress),
+                      "--percent": parseInt(progressquizz.percentage),
                     }}
                   ></circle>
                 </svg>
                 <div className="number">
                   <h3>
-                    26
+                    {progressquizz.percentage}
                     <span>%</span>
                   </h3>
                 </div>
@@ -140,9 +135,10 @@ function CoursePage() {
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
             {selectedQuizz ? (
-              <Quizz data={courseDetails.quiz} />
+              <Quizz courseId={courseDetails.id} progressquizz={progressquizz} data={courseDetails.quiz} />
             ) : selectedContent.lesson_type === "article" ? (
               <ArticleFrame
+                chapterId={courseDetails.id}
                 key={selectedContent.id}
                 selectedContent={selectedContent}
                 fetchCourseData={fetchCourseData}
@@ -205,6 +201,8 @@ function CoursePage() {
                     },
                   }}
                   onProgress={(progress) => {
+                    console.log("hi");
+                    console.log("hi");
                     if (
                       progress.playedSeconds >
                         playerRef.current.getDuration() * 0.9 &&
@@ -217,10 +215,9 @@ function CoursePage() {
                         ...selectedContent,
                         is_complete: true,
                       });
-                      IsOpenDone(
-                        selectedContent.id,
-                        selectedContent.is_complete
-                      ).then(() => fetchCourseData());
+                      IsOpenDone(selectedContent.id, courseDetails.id).then(
+                        () => fetchCourseData()
+                      );
                     }
                   }}
                   playIcon={
@@ -243,7 +240,6 @@ function CoursePage() {
                 />
               </div>
             ) : null}
-            
           </div>
         </div>
         <div className=" flex flex-row mediamax-767:flex-col-reverse">

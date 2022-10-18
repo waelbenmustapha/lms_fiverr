@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import xcircle from "../../assets/images/x-circle.png";
 import checkcircle from "../../assets/images/check-circle.png";
-function Quizz({ data }) {
+import { axiosToken } from "../../utils/apis/AxiosWithToken";
+function Quizz({ data, progressquizz, courseId }) {
   const [questions, setQuestions] = useState(data);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -47,11 +48,17 @@ function Quizz({ data }) {
   }
 
   function certification() {
-    navigate("/certificate");
+    axiosToken.post("http://0.0.0.0:8000/lms/api/v2/finish_quiz/", {
+      course_id: courseId,
+      quiz_id: data[0].id,
+    }).then(()=>navigate("/certificate"));
   }
 
   function next() {
-    if (currentQuestion === questions.length - 1 && selectedAnswer?.is_correct) {
+    if (
+      currentQuestion === questions.length - 1 &&
+      selectedAnswer?.is_correct
+    ) {
       setshowAnswerCorrect(true);
       setShowAnswerFalse(false);
       setShowAnswerRequired(false);

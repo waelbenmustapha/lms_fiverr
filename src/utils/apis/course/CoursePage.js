@@ -1,9 +1,9 @@
 import { execRequest } from "../ExecRequest";
 export const IsOpenDone = (data) => {
   return execRequest({
-    baseURL: "https://reqres.in/",
-    url: "/api/users/2",
-    method: "PUT",
+    baseURL: ": http://0.0.0.0:8000",
+    url: "/lms/api/v2/lesson_progress/",
+    method: "POST",
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("token")}` 
     },
