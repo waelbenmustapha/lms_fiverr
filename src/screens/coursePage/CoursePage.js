@@ -35,36 +35,34 @@ function CoursePage() {
   async function fetchInitialCourseData() {
     console.log("fetching initial course data");
 
-    
-      axiosToken
-        .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
-        .then((res) => setProgressQuiz(res.data));
-      axiosToken
-        .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
-        .then((res) => setCourseDetails(res.data));
-      axiosToken
-        .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
-        .then((res) => {
-          setCourseData(res.data);
-          setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
-        });
-   
+    axiosToken
+      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+      .then((res) => setProgressQuiz(res.data));
+    axiosToken
+      .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
+      .then((res) => setCourseDetails(res.data));
+    axiosToken
+      .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
+      .then((res) => {
+        setCourseData(res.data);
+        setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
+      });
   }
   function fetchCourseData() {
     console.log("fetching course data");
-   
+
     axiosToken
-    .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
-    .then((res) => setProgressQuiz(res.data));
-  axiosToken
-    .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
-    .then((res) => setCourseDetails(res.data));
-  axiosToken
-    .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
-    .then((res) => {
-      setCourseData(res.data);
-      setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
-    });
+      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+      .then((res) => setProgressQuiz(res.data));
+    axiosToken
+      .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
+      .then((res) => setCourseDetails(res.data));
+    axiosToken
+      .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
+      .then((res) => {
+        setCourseData(res.data);
+        setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
+      });
   }
   useEffect(() => {
     fetchInitialCourseData();
@@ -75,7 +73,12 @@ function CoursePage() {
   }, [selectedContent]);
 
   //if still loading show loading
-  if (courseData == null || selectedContent == null || courseDetails == null ||progressquizz == null) {
+  if (
+    courseData == null ||
+    selectedContent == null ||
+    courseDetails == null ||
+    progressquizz == null
+  ) {
     return (
       <div>
         <p>Loading</p>
@@ -135,7 +138,11 @@ function CoursePage() {
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
             {selectedQuizz ? (
-              <Quizz courseId={courseDetails.id} progressquizz={progressquizz} data={courseDetails.quiz} />
+              <Quizz
+                courseId={courseDetails.id}
+                progressquizz={progressquizz}
+                data={courseDetails.quiz}
+              />
             ) : selectedContent.lesson_type === "article" ? (
               <ArticleFrame
                 chapterId={courseDetails.id}
@@ -148,6 +155,10 @@ function CoursePage() {
               <div
                 style={{ position: "relative", height: "100%", width: "100%" }}
               >
+                <div
+                  className="h-full w-full cursor-pointer absolute top-0 z-[1] left-0 "
+                  onClick={() => setPlaying(!playing)}
+                ></div>
                 {videostarted && (
                   <>
                     <img
@@ -215,13 +226,13 @@ function CoursePage() {
                         ...selectedContent,
                         is_complete: true,
                       });
-                      IsOpenDone(selectedContent.id, courseDetails.id).then(
+                      IsOpenDone({"lesson_id":selectedContent.id,"course_id": courseDetails.id}).then(
                         () => fetchCourseData()
                       );
                     }
                   }}
                   playIcon={
-                    <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col justify-center items-center z-[2]">
                       <PlayButton
                         className="text-white h-[56px] w-[56px]"
                         stroke="white"
