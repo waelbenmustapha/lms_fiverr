@@ -42,7 +42,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
+      .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
       .then((res) => {
         setCourseData(res.data);
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
@@ -58,7 +58,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/e207cd35-b600-4002-9162-da36dc1e8a3a")
+      .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
       .then((res) => {
         setCourseData(res.data);
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
@@ -127,7 +127,7 @@ function CoursePage() {
               {
                 /*courseData.current_progress===100*/ true && (
                   <div
-                    onClick={() => setSelectedQuizz(courseDetails.quiz)}
+                    onClick={() => setSelectedQuizz(courseData.quiz)}
                     className="cursor-pointer flex justify-between items-center text-[#00EC8B] font-[bold] pr-[65px] pl-[65px] mb-[30px] mediamax-767:pr-[25px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px] mediamax-767:mb-[5px]  mediamax-1079:text-[18x]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[40px]  mediamax-1079:mb-[15px] mediamax-950:text-[14px] mediamax-950:px-[30px] mediamax-950:mb-[12px]"
                   >
                     اختبار المعرفة
