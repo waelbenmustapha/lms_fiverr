@@ -60,9 +60,7 @@ function CourseDetails() {
   // filter courses by chapter
   useEffect(() => {
     const filterByChapter = () => {
-      const chapter = courseContent.find(
-        (chp) => chp.chapter_name === selectedTitle
-      );
+      const chapter = courseContent.find((chp) => chp.title === selectedTitle);
       if (chapter != null) {
         setFiltredLessons(chapter.lessons);
       }
@@ -101,7 +99,7 @@ function CourseDetails() {
   useMemo(() => {
     const options = new Set();
     courseContent.forEach((row) => {
-      options.add(row["chapter_name"]);
+      options.add(row["title"]);
     });
     let iterator = [...options.values()];
     let items = [];
@@ -116,12 +114,12 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/5172ee00-12de-410c-8f76-9c16becbaad1")
+      .get("https://mocki.io/v1/27a09bfa-c470-4327-9026-3420574249b2")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
         setSkills(res.data.skills_desc);
-        setCourseContent(res.data.all_course_lessons);
+        setCourseContent(res.data.chapters);
         setQuestions(res.data.faq_desc);
         setJoined(res.data.is_enrolled);
       });
@@ -324,6 +322,7 @@ function CourseDetails() {
                     title={item.title}
                     description={item.description}
                     image={item.thumbnail}
+                    articleUrl={item.article_url}
                   />
                 </SwiperSlide>
               ))}
