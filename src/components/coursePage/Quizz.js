@@ -51,7 +51,7 @@ function Quizz({ data }) {
   }
 
   function next() {
-    if (currentQuestion === questions.length - 1 && selectedAnswer?.isCorrect) {
+    if (currentQuestion === questions.length - 1 && selectedAnswer?.is_correct) {
       setshowAnswerCorrect(true);
       setShowAnswerFalse(false);
       setShowAnswerRequired(false);
@@ -60,11 +60,11 @@ function Quizz({ data }) {
       nextQuestion();
     } else if (selectedAnswer === null) {
       setShowAnswerRequired(true);
-    } else if (selectedAnswer.isCorrect) {
+    } else if (selectedAnswer.is_correct) {
       setshowAnswerCorrect(true);
       setShowAnswerFalse(false);
       setShowAnswerRequired(false);
-    } else if (!selectedAnswer.isCorrect) {
+    } else if (!selectedAnswer.is_correct) {
       setShowAnswerFalse(true);
       setshowAnswerCorrect(false);
       setShowAnswerRequired(false);
@@ -82,11 +82,11 @@ function Quizz({ data }) {
       <p className="text-[#00EC8B] text-[32px] mt-[10px] mb-[30px] font-[bold]">
         السؤال {numbersStrings[currentQuestion]}:{" "}
         <span className="text-[#153C3F]">
-          {questions[currentQuestion].question}
+          {questions[currentQuestion].title}
         </span>
       </p>
       <div className="flex flex-col gap-[30px] mb-[30px]">
-        {questions[currentQuestion].answers.map((el) => (
+        {questions[currentQuestion].answer.map((el) => (
           <div
             onClick={() => setSelectedAnswer(el)}
             className="flex flex-row  items-center gap-[17px]"

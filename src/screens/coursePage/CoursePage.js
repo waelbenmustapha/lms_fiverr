@@ -22,37 +22,51 @@ function CoursePage() {
   const [searchParams] = useSearchParams();
   const [videostarted, sertVideoStarted] = useState();
   const [playing, setPlaying] = useState(true);
+
+  
+
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
   const playerRef = useRef();
+  const [selectedQuizz, setSelectedQuizz] = useState(null);
   //the content selected by the user to show it currently , it's the content inside a section , an object with a type , name , if the user finished it or not ...
   const [selectedContent, setselectedContent] = useState(null);
-
+  const [courseDetails, setCourseDetails] = useState(null);
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialCourseData() {
     console.log("fetching initial course data");
 
+
+   
+    
     if (course_id === "1") {
       axiosToken
-        .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
+        .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
+        .then((res) => setCourseDetails(res.data));
+      axiosToken
+        .get("https://mocki.io/v1/a1e2da7d-cf3f-4763-81b3-ac400af948cb")
         .then((res) => {
           setCourseData(res.data);
-          setselectedContent(res.data?.chapters[0].lessons[0]);
+          setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
         });
     } else {
-    
-      axiosToken.get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
+      axiosToken
+        .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
+        .then((res) => setCourseDetails(res.data));
+
+      axiosToken
+        .get("https://mocki.io/v1/9156fb9e-9815-4644-9e33-37e370a06907")
         .then((res) => {
           setCourseData(res.data);
-          setselectedContent(res.data?.chapters[0].lessons[0]);
+          setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
         });
     }
   }
   function fetchCourseData() {
     console.log("fetching course data");
     axiosToken
-      .get("https://mocki.io/v1/1c4ca225-556b-4ca7-9c73-1948f505295c")
+      .get("https://mocki.io/v1/a1e2da7d-cf3f-4763-81b3-ac400af948cb")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -61,15 +75,19 @@ function CoursePage() {
     fetchInitialCourseData();
   }, []);
 
+  useEffect(() => {
+    setSelectedQuizz(null)
+  }, [selectedContent])
+  
   //if still loading show loading
-  if (courseData == null || selectedContent == null) {
+  if (courseData == null || selectedContent == null || courseDetails == null) {
     return (
       <div>
         <p>Loading</p>
       </div>
     );
   } else {
-    return courseData.is_enrolled ? (
+    return courseDetails.is_enrolled ? (
       <div className="h-full flex flex-col">
         <div className="flex flex-row mediamax-767:flex-col-reverse">
           <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
@@ -91,14 +109,14 @@ function CoursePage() {
                 </svg>
                 <div className="number">
                   <h3>
-                    {courseData.current_progress}
+                    26
                     <span>%</span>
                   </h3>
                 </div>
               </div>
             </div>
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
-              {courseData.chapters.map((element, index) => (
+              {courseData.all_course_lessons.map((element, index) => (
                 <DataElement
                   key={`navelem-${index}`}
                   collapsed={index === 0 ? true : false}
@@ -111,7 +129,7 @@ function CoursePage() {
               {
                 /*courseData.current_progress===100*/ true && (
                   <div
-                    onClick={() => setselectedContent(courseData.quizz)}
+                    onClick={() => setSelectedQuizz(courseDetails.quiz)}
                     className="cursor-pointer flex justify-between items-center text-[#00EC8B] font-[bold] pr-[65px] pl-[65px] mb-[30px] mediamax-767:pr-[25px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px] mediamax-767:mb-[5px]  mediamax-1079:text-[18x]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[40px]  mediamax-1079:mb-[15px] mediamax-950:text-[14px] mediamax-950:px-[30px] mediamax-950:mb-[12px]"
                   >
                     اختبار المعرفة
@@ -121,14 +139,16 @@ function CoursePage() {
             </div>
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
-            {selectedContent.type === "article" ? (
+            {selectedQuizz ? (
+              <Quizz data={courseDetails.quiz} />
+            ) : selectedContent.lesson_type === "article" ? (
               <ArticleFrame
                 key={selectedContent.id}
                 selectedContent={selectedContent}
                 fetchCourseData={fetchCourseData}
                 setselectedContent={setselectedContent}
               />
-            ) : selectedContent.type === "video" ? (
+            ) : selectedContent.lesson_type === "video" ? (
               <div
                 style={{ position: "relative", height: "100%", width: "100%" }}
               >
@@ -173,7 +193,6 @@ function CoursePage() {
                   </>
                 )}
                 <ReactPlayer
-                
                   ref={playerRef}
                   controls={false}
                   onReady={() => sertVideoStarted(true)}
@@ -223,9 +242,8 @@ function CoursePage() {
                   url={selectedContent.video_url}
                 />
               </div>
-            ) : selectedContent.type === "quizz" ? (
-              <Quizz data={courseData.quizz.questions} />
             ) : null}
+            
           </div>
         </div>
         <div className=" flex flex-row mediamax-767:flex-col-reverse">
