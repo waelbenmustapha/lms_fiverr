@@ -16,6 +16,7 @@ function Lessons() {
   const [topCourses, setTopCourses] = useState([]);
   //store Feature Course data
   const [featureCourse, setFeatureCourse] = useState({});
+  const [loading, setLoading] = useState(true);
   //store Notification Course data
   const [notificationCourse, setNotificationCourse] = useState(null);
 
@@ -40,12 +41,13 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/3a4faeff-2a43-49f8-8b52-7f2801a15c42")
+      .get("https://mocki.io/v1/948762f7-2980-4422-9f2d-6694a0e7e722")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
         filterAndSetFeatureCourse(res.data.items);
         filterAndSetNotificationCourse(res.data.items);
+        setLoading(false);
       });
   };
 
@@ -53,7 +55,7 @@ function Lessons() {
   useEffect(() => {
     getAllCourses();
   }, []);
-
+  if (loading) return <p>loading</p>;
   return (
     <>
       {notificationCourse && notificationCourse.percentage < 100 && (

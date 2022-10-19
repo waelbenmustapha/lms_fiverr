@@ -40,6 +40,7 @@ function CourseDetails() {
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
 
+  const [loading, setLoading] = useState(true);
   //store Course details data
   const [data, setData] = useState({});
   const [objectives, setObjectives] = useState([]);
@@ -114,7 +115,7 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/ca365d59-ae34-4e50-861b-c06d117dcd10")
+      .get("https://mocki.io/v1/6276803f-df80-4cfe-b77e-e4ac4ca9e181")
       .then((res) => {
         setData(res.data);
         setObjectives(res.data.objective_desc);
@@ -122,6 +123,7 @@ function CourseDetails() {
         setCourseContent(res.data.chapters);
         setQuestions(res.data.faq_desc);
         setJoined(res.data.is_enrolled);
+        setLoading(false);
       });
   };
 
@@ -130,6 +132,7 @@ function CourseDetails() {
     getData();
   }, []);
 
+  if (loading) return <p>loading</p>;
   return (
     data && (
       <>
