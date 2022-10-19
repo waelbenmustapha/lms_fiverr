@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { axiosToken } from "../utils/apis/AxiosWithToken";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({children}) => {
@@ -14,6 +15,20 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem("token")
 
     }
+    axiosToken.interceptors.request.use(
+        (config) => {
+      
+          if (user) {
+            config.headers.Authorization = `Bearer ${user}`;
+          }
+          console.log("request config", config);
+          return config;
+        },
+        (error) => {
+          // console.log("request error", error);
+          return Promise.reject(error);
+        }
+      );
 
     return (<AuthContext.Provider value={{user,login,logout}}>
         {children}
