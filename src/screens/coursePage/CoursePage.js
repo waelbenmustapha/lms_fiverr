@@ -56,7 +56,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
+      .get("https://mocki.io/v1/139433dd-5184-4d78-a5b7-f6b2adbff372")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -161,7 +161,7 @@ function CoursePage() {
               <Quizz
                 courseId={courseDetails.id}
                 progressquizz={progressquizz}
-                data={courseDetails.quiz}
+                data={courseData.quiz}
               />
             ) : selectedContent.lesson_type === "article" ? (
               <ArticleFrame
