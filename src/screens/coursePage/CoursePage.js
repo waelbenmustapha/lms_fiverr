@@ -39,19 +39,10 @@ function CoursePage() {
   }
 
   //fetching courseData for the current connected user using the userid and the courseID
-  async function fetchInitialCourseData() {
-    console.log("fetching initial course data");
-    EnrollToCourse({ course_id }).then((res) => console.log("done"));
-    axiosToken
-      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
-      .then((res) => setProgressQuiz(res.data));
-    axiosToken
-      .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
-      .then((res) => setCourseDetails(res.data));
+  async function fetchInitialSelectedContent() {
     axiosToken
       .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
       .then((res) => {
-        setCourseData(res.data);
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
   }
@@ -59,7 +50,7 @@ function CoursePage() {
     console.log("fetching course data");
 
     axiosToken
-      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+      .get("https://mocki.io/v1/d0fc344c-ac46-4a2c-83c0-1ab16087a620")
       .then((res) => setProgressQuiz(res.data));
     axiosToken
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
@@ -68,11 +59,11 @@ function CoursePage() {
       .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
       .then((res) => {
         setCourseData(res.data);
-        setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
   }
   useEffect(() => {
-    fetchInitialCourseData();
+    fetchInitialSelectedContent()
+    fetchCourseData();
   }, []);
 
   useEffect(() => {
@@ -154,7 +145,9 @@ function CoursePage() {
               {progressquizz.is_quiz_finished && (
                 <div className="pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer ">
                   <div
-                    onClick={() => {navigate("/certificate")}}
+                    onClick={() => {
+                      navigate("/certificate");
+                    }}
                     className="cursor-pointer  font-[bold] text-[18px]"
                   >
                     الحصول على شهادة
