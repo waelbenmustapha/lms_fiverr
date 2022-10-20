@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function CourseCard({ program }) {
   const [isCopied, setIsCopied] = useState(false);
 
+  // generate link to copy it to Clipboard
   function copyToClipboard() {
     navigator.clipboard.writeText(
       window.location.origin +
@@ -15,6 +16,22 @@ function CourseCard({ program }) {
     );
     setIsCopied(true);
   }
+
+  // convert date to arabic date
+  const convertDateToArabic = (input) => {
+    var date = new Date(input);
+    var dateString = date.toLocaleDateString("ar-EG", {
+      // year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    return dateString;
+  };
+
+  // convert Number to Arabic Number
+  const convertNumberToArabic = (input) => {
+    return input.toLocaleString("ar-EG");
+  };
 
   // disappear after 2 second
   useEffect(() => {
@@ -37,16 +54,14 @@ function CourseCard({ program }) {
             <div className="text-[10px] font-bold flex flex-row flex-wrap justify-center items-center py-[5px] px-[16px] ml-[5px] mb-[5px] bg-[#f5f5f5] border-[1px] border-[#153c3f]">
               <Clock className="w-[10px] h-[10px] ml-[5px]" />
               <span>
-                {program.duration_by_weeks &&
-                  program.duration_by_weeks.toLocaleString("ar-EG")}{" "}
-                أسابيع
+                {convertNumberToArabic(program.duration_by_weeks)} أسابيع
               </span>
             </div>
           )}
           {program.start_date && (
             <div className="text-[10px] font-bold flex flex-row flex-wrap justify-center items-center py-[5px] px-[16px] ml-[5px] mb-[5px] bg-[#f5f5f5] border-[1px] border-[#153c3f]">
               <Calendar className="w-[10px] h-[10px] ml-[5px]" />
-              <span>تبدأ في {program.start_date}</span>
+              <span>تبدأ في {convertDateToArabic(program.start_date)}</span>
             </div>
           )}
         </div>

@@ -20,6 +20,22 @@ function Lessons() {
   //store Notification Course data
   const [notificationCourse, setNotificationCourse] = useState(null);
 
+  // convert date to arabic date
+  const convertDateToArabic = (input) => {
+    var date = new Date(input);
+    var dateString = date.toLocaleDateString("ar-EG", {
+      // year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    return dateString;
+  };
+
+  // convert Number to Arabic Number
+  const convertNumberToArabic = (input) => {
+    return input.toLocaleString("ar-EG");
+  };
+
   // filter And Set Top Courses
   const filterAndSetTopCourses = (data) => {
     const filtred = data.filter((el) => el.is_top === true);
@@ -41,7 +57,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/948762f7-2980-4422-9f2d-6694a0e7e722")
+      .get("https://mocki.io/v1/151423ee-4122-4197-8acd-d4c567185536")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
@@ -55,6 +71,7 @@ function Lessons() {
   useEffect(() => {
     getAllCourses();
   }, []);
+
   if (loading) return <p>loading</p>;
   return (
     <>
@@ -72,15 +89,13 @@ function Lessons() {
         description={featureCourse.description}
         image={featureCourse.thumbnail}
         video={featureCourse.preview_video}
-        start_date={featureCourse.start_date}
+        start_date={convertDateToArabic(featureCourse.start_date)}
         duration={
-          featureCourse.duration_by_weeks &&
-          featureCourse.duration_by_weeks.toLocaleString("ar-EG") + " أسابيع"
+          convertNumberToArabic(featureCourse.duration_by_weeks) + " أسابيع"
         }
         learning_average={
-          featureCourse.duration_by_hours_per_week &&
-          featureCourse.duration_by_hours_per_week.toLocaleString("ar-EG") +
-            " ساعات أسبوعيًا"
+          convertNumberToArabic(featureCourse.duration_by_hours_per_week) +
+          " ساعات أسبوعيًا"
         }
         is_enrolled={featureCourse.is_enrolled}
       />

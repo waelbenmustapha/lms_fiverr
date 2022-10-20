@@ -112,12 +112,29 @@ function CourseDetails() {
     return items;
   }, [courseContent]);
 
+  // convert date to arabic date
+  const convertDateToArabic = (input) => {
+    var date = new Date(input);
+    var dateString = date.toLocaleDateString("ar-EG", {
+      // year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    return dateString;
+  };
+
+  // convert Number to Arabic Number
+  const convertNumberToArabic = (input) => {
+    return input.toLocaleString("ar-EG");
+  };
+
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/6276803f-df80-4cfe-b77e-e4ac4ca9e181")
+      .get("https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911")
       .then((res) => {
         setData(res.data);
+        convertDateToArabic(res.data.start_date);
         setObjectives(res.data.objective_desc);
         setSkills(res.data.skills_desc);
         setCourseContent(res.data.chapters);
@@ -142,15 +159,11 @@ function CourseDetails() {
           description={data.description}
           image={data.thumbnail}
           video={data.preview_video}
-          start_date={data.start_date}
-          duration={
-            data.duration_by_weeks &&
-            data.duration_by_weeks.toLocaleString("ar-EG") + " أسابيع"
-          }
+          start_date={convertDateToArabic(data.start_date)}
+          duration={convertNumberToArabic(data.duration_by_weeks) + " أسابيع"}
           learning_average={
-            data.duration_by_hours_per_week &&
-            data.duration_by_hours_per_week.toLocaleString("ar-EG") +
-              " ساعات أسبوعيًا"
+            convertNumberToArabic(data.duration_by_hours_per_week) +
+            " ساعات أسبوعيًا"
           }
           is_enrolled={data.is_enrolled}
           is_course_details={true}
@@ -379,23 +392,13 @@ function CourseDetails() {
               <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
                 {data.faqs}
               </p>
-              <div>
-                <div className="mb-[16px]">
-                  <Collapsible label={questions[0].faq}>
-                    <p>{questions[0].answer}</p>
+              {questions.map((item, index) => (
+                <div key={`question-${index}`} className="mb-[16px]">
+                  <Collapsible label={item.faq}>
+                    <p>{item.answer}</p>
                   </Collapsible>
                 </div>
-                <div className="mb-[16px]">
-                  <Collapsible label={questions[1].faq}>
-                    <p>{questions[1].answer}</p>
-                  </Collapsible>
-                </div>
-                <div className="mb-[16px]">
-                  <Collapsible label={questions[2].faq}>
-                    <p>{questions[2].answer}</p>
-                  </Collapsible>
-                </div>
-              </div>
+              ))}
             </div>
           )}
           {/* ------- devider ------ */}
