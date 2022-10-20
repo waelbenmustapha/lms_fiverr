@@ -8,6 +8,7 @@ import Header from "../../../components/header/Header";
 import Programs from "../../../components/programs/Programs";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
 import { axiosToken } from "../../../utils/apis/AxiosWithToken";
+import Loader from "../../../components/Loader";
 
 function Lessons() {
   //store all Courses data
@@ -81,7 +82,13 @@ function Lessons() {
     getProgress();
   }, []);
 
-  if (loading) return <p>loading</p>;
+  if (loading) {
+    return (
+      <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
       {notificationCourse && notificationCourse.percentage < 100 && (

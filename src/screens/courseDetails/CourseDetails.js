@@ -26,6 +26,7 @@ import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 import { RotatingLines } from "react-loader-spinner";
 import { useAuth } from "../../contexts/AuthContext";
 import { axiosToken } from "../../utils/apis/AxiosWithToken";
+import Loader from "../../components/Loader";
 
 SwiperCore.use([Navigation]);
 
@@ -149,7 +150,9 @@ function CourseDetails() {
     getData();
   }, []);
 
-  if (loading) return <p>loading</p>;
+  if (loading) return  <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
+  <Loader />
+</div>;
   return (
     data && (
       <>

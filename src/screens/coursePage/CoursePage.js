@@ -11,11 +11,12 @@ import HelpMe from "../../components/coursePage/HelpMe";
 import rewind5 from "../../assets/images/rewind5.png";
 import pause from "../../assets/images/pause.png";
 import rewind30 from "../../assets/images/rewind30.png";
-import { IsOpenDone } from "../../utils/apis/course/CoursePage";
+import { EnrollToCourse, IsOpenDone } from "../../utils/apis/course/CoursePage";
 import ArticleFrame from "../../components/coursePage/ArticleFrame";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Quizz from "../../components/coursePage/Quizz";
 import { axiosToken } from "../../utils/apis/AxiosWithToken";
+import Loader from "../../components/Loader";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
@@ -33,14 +34,14 @@ function CoursePage() {
   const [selectedContent, setselectedContent] = useState(null);
   const [courseDetails, setCourseDetails] = useState(null);
 
-function onQuizzClick(){
-  progressquizz.is_quiz_finished?navigate("/certificate"):setSelectedQuizz(courseData.quiz)
-}
+  function onQuizzClick() {
+    setSelectedQuizz(courseData.quiz);
+  }
 
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialCourseData() {
     console.log("fetching initial course data");
-
+    EnrollToCourse({ course_id }).then((res) => console.log("done"));
     axiosToken
       .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
       .then((res) => setProgressQuiz(res.data));
@@ -86,8 +87,8 @@ function onQuizzClick(){
     progressquizz == null
   ) {
     return (
-      <div>
-        <p>Loading</p>
+      <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
+        <Loader />
       </div>
     );
   } else {
@@ -129,20 +130,37 @@ function onQuizzClick(){
                   element={element}
                 />
               ))}
-
               {
                 /*courseData.current_progress===100*/ true && (
                   <div className="pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer ">
                     <div
-                      onClick={() => { progressquizz.percentage==100?onQuizzClick():alert("you need to complete all the course to be able to open quizz")}}
+                      onClick={() => {
+                        progressquizz.percentage == 100
+                          ? onQuizzClick()
+                          : alert(
+                              "you need to complete all the course to be able to open quizz"
+                            );
+                      }}
                       className="cursor-pointer  text-[#00EC8B] font-[bold] text-[18px]"
                     >
                       اختبار المعرفة
                     </div>
-                    {progressquizz.percentage!==100&& <Lock className="opacity-20 mr-auto" />}
+                    {progressquizz.percentage !== 100 && (
+                      <Lock className="opacity-20 mr-auto" />
+                    )}
                   </div>
                 )
               }
+              {progressquizz.is_quiz_finished && (
+                <div className="pt-[17px] pr-[80px] pb-[17px] pl-[64px] flex items-center text-center gap-[8px] flex-row  mediamax-767:pt-[10px]  mediamax-1079:py-[12px] mediamax-1079:pr-[52px] mediamax-950:pr-[40px] mediamax-1079:pl-[50px]  mediamax-1079:gap-[5px] cursor-pointer ">
+                  <div
+                    onClick={() => {navigate("/certificate")}}
+                    className="cursor-pointer  font-[bold] text-[18px]"
+                  >
+                    الحصول على شهادة
+                  </div>
+                </div>
+              )}{" "}
             </div>
           </div>
           <div className=" flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] min767:max-h-[800px]  flex-[1] mediamax-767:h-[50vh] mediamax-767:flex-none">
