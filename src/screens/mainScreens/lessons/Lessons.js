@@ -54,6 +54,14 @@ function Lessons() {
     setNotificationCourse(filtred);
   };
 
+  const [coursePercentageProgress, setCoursePercentageProgress] = useState(0);
+  // get all Notif percentage Progress
+  const getProgress = () => {
+    axiosToken
+      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
+      .then((res) => setCoursePercentageProgress(res.data.percentage));
+  };
+
   // get all courses
   const getAllCourses = () => {
     axiosToken
@@ -70,6 +78,7 @@ function Lessons() {
   // run api to load the data
   useEffect(() => {
     getAllCourses();
+    getProgress();
   }, []);
 
   if (loading) return <p>loading</p>;
