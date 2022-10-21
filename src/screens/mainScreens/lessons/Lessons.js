@@ -91,12 +91,12 @@ function Lessons() {
   }
   return (
     <>
-      {notificationCourse && notificationCourse.percentage < 100 && (
+      {notificationCourse && coursePercentageProgress < 100 && (
         <Notification
           id={notificationCourse.id}
           title={notificationCourse.title}
-          percentage={notificationCourse.percentage}
-          progress_time={notificationCourse.current_progress}
+          percentage={coursePercentageProgress}
+          progress_time={"أتممت ٣ ساعات من أصل ٢٥ ساعة"}
         />
       )}
       <Header
