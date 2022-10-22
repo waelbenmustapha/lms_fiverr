@@ -22,7 +22,7 @@ function Lessons() {
   const [loading, setLoading] = useState(true);
   //store Notification Course data
   const [notificationCourse, setNotificationCourse] = useState(null);
-  const [coursePercentageProgress, setCoursePercentageProgress] = useState(0);
+  const [coursePercentageProgress, setCoursePercentageProgress] = useState(100); // by default 100% so not display anything
 
   // convert date to arabic date
   const convertDateToArabic = (input) => {
