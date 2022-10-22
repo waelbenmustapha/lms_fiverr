@@ -35,13 +35,13 @@ function CoursePage() {
   const [courseDetails, setCourseDetails] = useState(null);
 
   function onQuizzClick() {
-    setSelectedQuizz(courseData.quiz);
+    setSelectedQuizz(courseData.Quizzes);
   }
 
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialSelectedContent() {
     axiosToken
-      .get("https://mocki.io/v1/843431bf-76ac-4094-be28-f2c3df662888")
+      .get("https://mocki.io/v1/1bbeeb64-a645-4e65-9c41-10bae1a889af")
       .then((res) => {
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
@@ -56,7 +56,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/139433dd-5184-4d78-a5b7-f6b2adbff372")
+      .get("https://mocki.io/v1/1bbeeb64-a645-4e65-9c41-10bae1a889af")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -161,7 +161,7 @@ function CoursePage() {
               <Quizz
                 courseId={courseDetails.id}
                 progressquizz={progressquizz}
-                data={courseData.quiz}
+                data={courseData.Quizzes}
               />
             ) : selectedContent.lesson_type === "article" ? (
               <ArticleFrame

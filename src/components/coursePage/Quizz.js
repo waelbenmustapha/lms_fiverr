@@ -93,13 +93,14 @@ function Quizz({ data, progressquizz, courseId }) {
         </span>
       </p>
       <div className="flex flex-col gap-[30px] mb-[30px]">
-        {questions[currentQuestion].quizzes.answer.map((el) => (
+        {questions[currentQuestion].quizzes.answer.map((el,index) => (
           <div
+          key={index}
             onClick={() => setSelectedAnswer(el)}
             className="flex flex-row  items-center gap-[17px]"
           >
             <div className="h-5 w-5 border-[2px] p-[1px] border-[#153C3F] cursor-pointer">
-              {selectedAnswer?.id === el.id && (
+              {selectedAnswer?.text === el.text && (
                 <div className="bg-[#00EC8B] h-full w-full"></div>
               )}
             </div>
