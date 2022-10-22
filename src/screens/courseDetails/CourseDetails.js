@@ -132,7 +132,9 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     axiosToken
-      .get("https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911")
+      .get(
+        "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" /*+ `/${course_id} `*/
+      )
       .then((res) => {
         setData(res.data);
         convertDateToArabic(res.data.start_date);
@@ -150,9 +152,12 @@ function CourseDetails() {
     getData();
   }, []);
 
-  if (loading) return  <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
-  <Loader />
-</div>;
+  if (loading)
+    return (
+      <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   return (
     data && (
       <>
