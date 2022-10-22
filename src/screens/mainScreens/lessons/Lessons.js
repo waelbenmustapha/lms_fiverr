@@ -20,6 +20,7 @@ function Lessons() {
   const [loading, setLoading] = useState(true);
   //store Notification Course data
   const [notificationCourse, setNotificationCourse] = useState(null);
+  const [coursePercentageProgress, setCoursePercentageProgress] = useState(0);
 
   // convert date to arabic date
   const convertDateToArabic = (input) => {
@@ -49,18 +50,20 @@ function Lessons() {
     setFeatureCourse(filtred);
   };
 
+  // get Notif percentage Progress
+  const getProgress = (id) => {
+    axiosToken
+      .get(
+        "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" /*+ `/${id} `*/
+      )
+      .then((res) => setCoursePercentageProgress(res.data.percentage));
+  };
+
   // filter And Set Running Course on notification
   const filterAndSetNotificationCourse = (data) => {
     const filtred = data.find((el) => el.is_enrolled === true);
     setNotificationCourse(filtred);
-  };
-
-  const [coursePercentageProgress, setCoursePercentageProgress] = useState(0);
-  // get all Notif percentage Progress
-  const getProgress = () => {
-    axiosToken
-      .get("https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea")
-      .then((res) => setCoursePercentageProgress(res.data.percentage));
+    getProgress(filtred.id);
   };
 
   // get all courses
@@ -79,7 +82,6 @@ function Lessons() {
   // run api to load the data
   useEffect(() => {
     getAllCourses();
-    getProgress();
   }, []);
 
   if (loading) {
