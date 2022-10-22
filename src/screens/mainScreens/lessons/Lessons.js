@@ -52,9 +52,12 @@ function Lessons() {
 
   // get Notif percentage Progress
   const getProgress = (id) => {
+    console.log(
+      "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" + `/${id}`
+    );
     axiosToken
       .get(
-        "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" /*+ `/${id} `*/
+        "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" /*+ `/${id}`*/
       )
       .then((res) => setCoursePercentageProgress(res.data.percentage));
   };

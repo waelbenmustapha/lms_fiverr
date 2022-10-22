@@ -131,9 +131,13 @@ function CourseDetails() {
 
   // get all Course Data
   const getData = () => {
+    console.log(
+      "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" +
+        `/${course_id}`
+    );
     axiosToken
       .get(
-        "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" /*+ `/${course_id} `*/
+        "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" /*+ `/${course_id}`*/
       )
       .then((res) => {
         setData(res.data);
