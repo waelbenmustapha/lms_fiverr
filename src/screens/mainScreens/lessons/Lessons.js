@@ -9,8 +9,10 @@ import Programs from "../../../components/programs/Programs";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
 import { axiosToken } from "../../../utils/apis/AxiosWithToken";
 import Loader from "../../../components/Loader";
+import { useAuth } from "../../../contexts/AuthContext";
 
 function Lessons() {
+  const auth = useAuth();
   //store all Courses data
   const [allCourses, setAllCourses] = useState([]);
   //store Top Courses data
@@ -52,9 +54,12 @@ function Lessons() {
 
   // get Notif percentage Progress
   const getProgress = (id) => {
+    console.log(
+      "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" + `/${id}`
+    );
     axiosToken
       .get(
-        "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" /*+ `/${id} `*/
+        "https://mocki.io/v1/e491423e-78ff-494b-b7da-117f77985fea" /*+ `/${id}`*/
       )
       .then((res) => setCoursePercentageProgress(res.data.percentage));
   };
@@ -74,7 +79,9 @@ function Lessons() {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
         filterAndSetFeatureCourse(res.data.items);
-        filterAndSetNotificationCourse(res.data.items);
+        if (auth.user) {
+          filterAndSetNotificationCourse(res.data.items);
+        }
         setLoading(false);
       });
   };
