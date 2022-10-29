@@ -41,7 +41,7 @@ function CoursePage() {
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialSelectedContent() {
     axiosToken
-      .get("https://mocki.io/v1/1bbeeb64-a645-4e65-9c41-10bae1a889af")
+      .get("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
       .then((res) => {
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
@@ -56,7 +56,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/1bbeeb64-a645-4e65-9c41-10bae1a889af")
+      .get("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -276,7 +276,7 @@ function CoursePage() {
           <div className="w-[380px] h-full mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
             <HelpMe />
           </div>
-          <CoursTextDescription text={selectedContent.description} />
+          <CoursTextDescription key={selectedContent.id} description2={selectedContent.description2} text={selectedContent.description} />
         </div>
       </div>
     ) : (
