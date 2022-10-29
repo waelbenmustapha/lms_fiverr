@@ -74,7 +74,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/151423ee-4122-4197-8acd-d4c567185536")
+      .get("https://mocki.io/v1/1910392a-f6e8-4d1c-93b6-c437f6efd4cd")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);

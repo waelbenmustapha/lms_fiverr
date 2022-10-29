@@ -55,7 +55,7 @@ function Header({
   return (
     <>
       <div className="relative flex flex-row justify-between mediamax-950:flex-col-reverse mediamax-950:justify-center gap-[40px] bg-[#fafafa] py-[100px] mediamax-1279:py-[70px] p-horizontal">
-        <div className="flex-[1] flex flex-col justify-between">
+        <div className="flex-[1] flex flex-col justify-between max-w-[750px]">
           <div>
             <p className="text-[48px] leading-[1.2] font-bold mb-[30px] mediamax-1279:mb-[20px] mediamax-1279:text-[32px] mediamax-1023:text-[28px] mediamax-950:text-[24px]">
               {title}

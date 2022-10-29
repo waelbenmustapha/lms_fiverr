@@ -71,32 +71,38 @@ function CourseCard({ program }) {
         <div className="text-[16px] mb-[20px] w-full h-[50px] overflow-hidden text-ellipsis">
           {program.description}
         </div>
-        <div className="flex flex-row justify-center items-center w-full gap-[16px]">
-          <Link
-            to={`/academy-lessons/course-details?course_id=${program.id}`}
-            className="flex-[2] h-[40px] py-[8px] px-[16px] font-[inherit] text-[16px] mediamax-1079:text-[14px] mediamax-1079:h-[40px] mediamax-1079:py-[8px] mediamax-1079:px-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] border-primary-color outline-none bg-primary-color text-white"
-          >
-            إنضم للبرنامج
-          </Link>
-          {!isCopied ? (
-            <button
-              onClick={() => {
-                copyToClipboard();
-              }}
-              className="flex-[1] h-[40px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[16px] text-primary-color bg-white font-bold outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
+        {program.is_comingsoon === true ? (
+          <div className="w-full h-[40px] py-[8px] px-[16px] bg-[#e4e4e4] font-[inherit] text-[16px] mediamax-1079:text-[14px] mediamax-1079:h-[40px] mediamax-1079:py-[8px] mediamax-1079:px-[14px] text-center whitespace-nowrap">
+            <span>سيكون متاح قريبا...</span>
+          </div>
+        ) : (
+          <div className="flex flex-row justify-center items-center w-full gap-[16px]">
+            <Link
+              to={`/academy-lessons/course-details?course_id=${program.id}`}
+              className="flex-[2] h-[40px] py-[8px] px-[16px] font-[inherit] text-[16px] mediamax-1079:text-[14px] mediamax-1079:h-[40px] mediamax-1079:py-[8px] mediamax-1079:px-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] border-primary-color outline-none bg-primary-color text-white"
             >
-              <Share />
-              <span>شارك الدورة</span>
-            </button>
-          ) : (
-            <button
-              disabled
-              className="flex-[1] h-[40px] py-[8px] px-[16px] bg-[#f5f5f5] font-[inherit] text-[16px] text-primary-color font-bold flex flex-row items-center justify-center gap-[8px] outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
-            >
-              <span>تم النسخ!!</span>
-            </button>
-          )}
-        </div>
+              إنضم للبرنامج
+            </Link>
+            {!isCopied ? (
+              <button
+                onClick={() => {
+                  copyToClipboard();
+                }}
+                className="flex-[1] h-[40px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[16px] text-primary-color bg-white font-bold outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
+              >
+                <Share />
+                <span>شارك الدورة</span>
+              </button>
+            ) : (
+              <button
+                disabled
+                className="flex-[1] h-[40px] py-[8px] px-[16px] bg-[#f5f5f5] font-[inherit] text-[16px] text-primary-color font-bold flex flex-row items-center justify-center gap-[8px] outline-none border-[1px] cursor-pointer whitespace-nowrap border-primary-color mediamax-1079:text-[14px] mediamax-1079:px-[14px]"
+              >
+                <span>تم النسخ!!</span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
