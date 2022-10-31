@@ -1,40 +1,35 @@
 import { createContext, useContext, useState } from "react";
 import { axiosToken } from "../utils/apis/AxiosWithToken";
+import {
+  axiosExpiredTokenLogout,
+  axiosInjectToken,
+} from "../utils/AxiosInterceptors";
 const AuthContext = createContext(null);
 
-export const AuthProvider = ({children}) => {
-    const [user,setUser] = useState(localStorage.getItem("token"));
-  
-    const login =(user)=>{
-        localStorage.setItem("token",user)
-        setUser(user);
-    }
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(localStorage.getItem("token"));
 
-    const logout = () =>{
-        setUser(null);
-        localStorage.removeItem("token")
+  const login = (user) => {
+    localStorage.setItem("token", user);
+    setUser(user);
+  };
 
-    }
-    axiosToken.interceptors.request.use(
-        (config) => {
-      
-          if (user) {
-            config.headers.Authorization = `Bearer ${user}`;
-          }
-          console.log("request config", config);
-          return config;
-        },
-        (error) => {
-          // console.log("request error", error);
-          return Promise.reject(error);
-        }
-      );
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
-    return (<AuthContext.Provider value={{user,login,logout}}>
-        {children}
-    </AuthContext.Provider>)
-}
+  //Axios Interceptors on HOC
+  axiosInjectToken();
+  axiosExpiredTokenLogout();
 
-export const useAuth =() => {
-    return useContext(AuthContext);
-}
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
