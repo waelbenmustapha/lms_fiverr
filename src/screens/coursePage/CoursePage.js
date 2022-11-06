@@ -25,6 +25,7 @@ function CoursePage() {
   const [videostarted, sertVideoStarted] = useState();
   const [playing, setPlaying] = useState(true);
   const [progressquizz, setProgressQuiz] = useState();
+  const [playedtime, setPlayedtime] = useState(0);
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
@@ -62,7 +63,7 @@ function CoursePage() {
       });
   }
   useEffect(() => {
-    fetchInitialSelectedContent()
+    fetchInitialSelectedContent();
     fetchCourseData();
   }, []);
 
@@ -189,6 +190,15 @@ function CoursePage() {
                       src={pause}
                     />
                     <div
+                      onClick={() => {
+                        setPlaying(!playing);
+                      }}
+                      className="h-[50px] text-[#000] text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
+                    >
+                      {Math.round(playerRef.current.getCurrentTime())}/
+                      {Math.round(playerRef.current.getDuration())}
+                    </div>
+                    <div
                       style={{
                         position: "absolute",
                         bottom: "20px",
@@ -232,6 +242,8 @@ function CoursePage() {
                     },
                   }}
                   onProgress={(progress) => {
+                    setPlayedtime(progress.playedSeconds);
+
                     if (
                       progress.playedSeconds >
                         playerRef.current.getDuration() * 0.9 &&
@@ -276,7 +288,11 @@ function CoursePage() {
           <div className="w-[380px] h-full mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
             <HelpMe />
           </div>
-          <CoursTextDescription key={selectedContent.id} description2={selectedContent.description2} text={selectedContent.description} />
+          <CoursTextDescription
+            key={selectedContent.id}
+            description2={selectedContent.description2}
+            text={selectedContent.description}
+          />
         </div>
       </div>
     ) : (
