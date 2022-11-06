@@ -17,12 +17,13 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Quizz from "../../components/coursePage/Quizz";
 import { axiosToken } from "../../utils/apis/AxiosWithToken";
 import Loader from "../../components/Loader";
+import timeconvertorhhmmss from "../../utils/TimeConvertorhhmmss";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
   const [courseData, setCourseData] = useState(null);
   const [searchParams] = useSearchParams();
-  const [videostarted, sertVideoStarted] = useState();
+  const [videostarted, sertVideoStarted] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [progressquizz, setProgressQuiz] = useState();
   const [playedtime, setPlayedtime] = useState(0);
@@ -119,6 +120,7 @@ function CoursePage() {
                   collapsed={index === 0 ? true : false}
                   selectedContent={selectedContent}
                   setselectedContent={setselectedContent}
+                  sertVideoStarted={sertVideoStarted}
                   element={element}
                 />
               ))}
@@ -193,10 +195,10 @@ function CoursePage() {
                       onClick={() => {
                         setPlaying(!playing);
                       }}
-                      className="h-[50px] text-[#000] text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
+                      className="h-[50px] text-[#000] bg-slate-100 px-3 rounded flex justify-center items-center text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
                     >
-                      {Math.round(playerRef.current.getCurrentTime())}/
-                      {Math.round(playerRef.current.getDuration())}
+                      <p>{timeconvertorhhmmss(Math.round(playerRef.current?.getCurrentTime()))}/
+                      {timeconvertorhhmmss(Math.round(playerRef.current?.getDuration()))}</p>
                     </div>
                     <div
                       style={{
@@ -211,7 +213,7 @@ function CoursePage() {
                       <img
                         onClick={() =>
                           playerRef.current.seekTo(
-                            playerRef.current.getCurrentTime() - 30
+                            playerRef.current?.getCurrentTime() - 30
                           )
                         }
                         className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
@@ -220,7 +222,7 @@ function CoursePage() {
                       <img
                         onClick={() =>
                           playerRef.current.seekTo(
-                            playerRef.current.getCurrentTime() - 5
+                            playerRef.current?.getCurrentTime() - 5
                           )
                         }
                         className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
@@ -233,6 +235,8 @@ function CoursePage() {
                   ref={playerRef}
                   controls={false}
                   onReady={() => sertVideoStarted(true)}
+                          
+                  onDuration={(e)=>console.log(e)}
                   config={{
                     file: {
                       attributes: {
