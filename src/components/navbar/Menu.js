@@ -87,9 +87,12 @@ const Menu = () => {
             ))}
           </ul>
           {!auth.user ? (
-            <Link to={"login"}>
-              <button className="btn-register">تسجيل الدخول</button>
-            </Link>
+            <button
+              onClick={() => window.location.replace("https://google.com")}
+              className="btn-register"
+            >
+              تسجيل الدخول
+            </button>
           ) : (
             <a href="/">
               <button

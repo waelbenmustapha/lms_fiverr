@@ -42,12 +42,18 @@ function NavBar() {
           </ul>
         </div>
         {!auth.user ? (
-          <Link to={"login"}>
-            <button className="btn-register">تسجيل الدخول</button>
-          </Link>
+          <button
+            onClick={() => window.location.replace("https://google.com")}
+            className="btn-register"
+          >
+            تسجيل الدخول
+          </button>
         ) : (
           <a href="/">
-            <button onClick={() => auth.logout()} className="font-[inherit] text-[16px] font-bold text-primary-color h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]">
+            <button
+              onClick={() => auth.logout()}
+              className="font-[inherit] text-[16px] font-bold text-primary-color h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]"
+            >
               تسجيل الخروج
             </button>
           </a>

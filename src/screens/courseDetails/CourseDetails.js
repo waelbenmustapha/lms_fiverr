@@ -92,7 +92,7 @@ function CourseDetails() {
         })
         .catch((error) => console.log(error));
     } else {
-      navigate("/login");
+      window.location.replace('https://google.com');
     }
   };
 

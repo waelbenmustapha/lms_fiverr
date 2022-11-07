@@ -14,6 +14,7 @@ import NewPassword from "../screens/auth/NewPassword";
 import FormSubmission from "../screens/contactForm/FormSubmission";
 import { RequireAuth } from "../components/auth/RequireAuth";
 import Signup from "../screens/auth/Signup";
+import Authenticate from "../screens/auth/Authenticate";
 
 export const NavBarRoutes = [
   {
@@ -60,7 +61,11 @@ export const AppRoutes = [
   },
   {
     path: "/academy-lessons/course",
-    component: <RequireAuth><CoursePage /></RequireAuth>,
+    component: (
+      <RequireAuth>
+        <CoursePage />
+      </RequireAuth>
+    ),
   },
 ];
 export const NormalRoutes = [
@@ -74,6 +79,7 @@ export const SoloRoutes = [
     path: "/login",
     component: <Login />,
   },
+  { path: "/authenticate", component: <Authenticate /> },
   {
     path: "/signup",
     component: <Signup />,
@@ -90,5 +96,4 @@ export const SoloRoutes = [
     path: "/form-sucess",
     component: <FormSubmission />,
   },
-
 ];
