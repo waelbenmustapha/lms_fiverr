@@ -6,14 +6,20 @@ import ScoreBox from "../../../components/scoreBox/ScoreBox";
 import Notification from "../../../components/notification/Notification";
 import Header from "../../../components/header/Header";
 import Programs from "../../../components/programs/Programs";
+import axios from "axios";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
 import { axiosToken } from "../../../utils/apis/AxiosWithToken";
 import Loader from "../../../components/Loader";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Lessons() {
   const auth = useAuth();
-  //store all Courses data
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const email = searchParams.get("email");
+  const name = searchParams.get("name");
+  const token = searchParams.get("token"); //store all Courses data
   const [allCourses, setAllCourses] = useState([]);
   //store Top Courses data
   const [topCourses, setTopCourses] = useState([]);
@@ -24,6 +30,26 @@ function Lessons() {
   const [notificationCourse, setNotificationCourse] = useState(null);
   const [coursePercentageProgress, setCoursePercentageProgress] = useState(100); // by default 100% so not display anything
 
+  function authentic() {
+    //change the .get to .post
+    axios
+      .get("https://mocki.io/v1/3aa284c8-6ec8-444b-8ecd-59c95f715b08", {
+        email,
+        name,
+        token,
+      })
+      .then((res) => {
+        auth.login(res.data.token);
+        navigate("/");
+      })
+      .catch(() => console.log("error occured"));
+  }
+
+  useEffect(() => {
+    if (email && name && token) {
+      authentic();
+    }
+  }, []);
   // convert date to arabic date
   const convertDateToArabic = (input) => {
     var date = new Date(input);
