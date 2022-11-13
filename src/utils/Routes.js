@@ -79,7 +79,7 @@ export const SoloRoutes = [
     path: "/login",
     component: <Login />,
   },
-  { path: "/authenticate", component: <Authenticate /> },
+  { path: "/lms", component: <Authenticate /> },
   {
     path: "/signup",
     component: <Signup />,
