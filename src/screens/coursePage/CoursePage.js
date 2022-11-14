@@ -67,11 +67,7 @@ function CoursePage() {
   useEffect(() => {
     fetchInitialSelectedContent();
     fetchCourseData();
-    axiosToken
-    .post("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
-    .then((res) => {
-      setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
-    });
+   
   }, []);
 
   useEffect(() => {
