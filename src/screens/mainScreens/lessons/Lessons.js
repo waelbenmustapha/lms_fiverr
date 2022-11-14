@@ -8,15 +8,17 @@ import Header from "../../../components/header/Header";
 import Programs from "../../../components/programs/Programs";
 import axios from "axios";
 import TopPrograms from "../../../components/topPrograms/TopPrograms";
-import { axiosToken } from "../../../utils/apis/AxiosWithToken";
+
 import Loader from "../../../components/Loader";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import useAxiosToken from "../../../utils/apis/AxiosWithToken";
 
 function Lessons() {
   const auth = useAuth();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const axiosToken = useAxiosToken()
   const email = searchParams.get("email");
   const name = searchParams.get("name");
   const token = searchParams.get("token"); //store all Courses data
@@ -31,6 +33,7 @@ function Lessons() {
   const [coursePercentageProgress, setCoursePercentageProgress] = useState(100); // by default 100% so not display anything
 
   function authentic() {
+    console.log(token)
     //change the .get to .post
     axios
       .get("https://mocki.io/v1/3aa284c8-6ec8-444b-8ecd-59c95f715b08", {

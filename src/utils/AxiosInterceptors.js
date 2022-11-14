@@ -1,7 +1,7 @@
-import { axiosToken } from "./apis/AxiosWithToken";
+import axios from "axios";
 
 export const axiosExpiredTokenLogout = (logout) => {
-  axiosToken.interceptors.response.use(
+  axios.interceptors.response.use(
     (response) => {
       return response;
     },
@@ -15,7 +15,7 @@ export const axiosExpiredTokenLogout = (logout) => {
   );
 };
 export const axiosInjectToken = (user) => {
-  axiosToken.interceptors.request.use(
+  axios.interceptors.request.use(
     (config) => {
       if (user) {
         config.headers.Authorization = `Bearer ${user}`;

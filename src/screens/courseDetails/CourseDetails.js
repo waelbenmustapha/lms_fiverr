@@ -25,8 +25,9 @@ import ProgramContentCard from "../../components/programContentCard/ProgramConte
 import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
 import { RotatingLines } from "react-loader-spinner";
 import { useAuth } from "../../contexts/AuthContext";
-import { axiosToken } from "../../utils/apis/AxiosWithToken";
+
 import Loader from "../../components/Loader";
+import useAxiosToken from "../../utils/apis/AxiosWithToken";
 
 SwiperCore.use([Navigation]);
 
@@ -40,7 +41,7 @@ function CourseDetails() {
   // Swiper instance
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
-
+  const axiosToken = useAxiosToken()
   const [loading, setLoading] = useState(true);
   //store Course details data
   const [data, setData] = useState({});

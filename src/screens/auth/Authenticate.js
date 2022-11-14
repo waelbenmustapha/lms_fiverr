@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { useAuth } from "../../contexts/AuthContext";
-import { axiosToken } from "../../utils/apis/AxiosWithToken";
+
 
 function Authenticate() {
   const [searchParams] = useSearchParams();

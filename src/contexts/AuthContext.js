@@ -17,6 +17,9 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
+    window.location.replace("https://google.com")
+
+
   };
 
   //Axios Interceptors on HOC

@@ -15,9 +15,9 @@ import { EnrollToCourse, IsOpenDone } from "../../utils/apis/course/CoursePage";
 import ArticleFrame from "../../components/coursePage/ArticleFrame";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Quizz from "../../components/coursePage/Quizz";
-import { axiosToken } from "../../utils/apis/AxiosWithToken";
 import Loader from "../../components/Loader";
 import timeconvertorhhmmss from "../../utils/TimeConvertorhhmmss";
+import useAxiosToken from "../../utils/apis/AxiosWithToken";
 
 function CoursePage() {
   //courseData contains an object with all the data about the course related the a user , course name course content ,user progress in course ,user A have X progress in course B etc ...
@@ -27,6 +27,7 @@ function CoursePage() {
   const [playing, setPlaying] = useState(true);
   const [progressquizz, setProgressQuiz] = useState();
   const [playedtime, setPlayedtime] = useState(0);
+  const axiosToken = useAxiosToken();
   const navigate = useNavigate();
   //Course id from URL is here
   const course_id = searchParams.get("course_id");
@@ -66,6 +67,11 @@ function CoursePage() {
   useEffect(() => {
     fetchInitialSelectedContent();
     fetchCourseData();
+    axiosToken
+    .post("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
+    .then((res) => {
+      setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
+    });
   }, []);
 
   useEffect(() => {

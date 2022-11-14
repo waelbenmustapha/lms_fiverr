@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import xcircle from "../../assets/images/x-circle.png";
 import checkcircle from "../../assets/images/check-circle.png";
-import { axiosToken } from "../../utils/apis/AxiosWithToken";
+import useAxiosToken from "../../utils/apis/AxiosWithToken";
+
 function Quizz({ data, progressquizz, courseId }) {
+  const axiosToken = useAxiosToken()
   const [questions, setQuestions] = useState(data);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);

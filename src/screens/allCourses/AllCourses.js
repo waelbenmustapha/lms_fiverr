@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import CourseCard from "../../components/courseCard/CourseCard";
-import { axiosToken } from "../../utils/apis/AxiosWithToken";
+
 import Loader from "../../components/Loader";
+import useAxiosToken from "../../utils/apis/AxiosWithToken";
 
 function AllCourses() {
   //store programs data
+  const axiosToken = useAxiosToken()
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
   // selected category
