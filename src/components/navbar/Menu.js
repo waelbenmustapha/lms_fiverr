@@ -80,8 +80,8 @@ const Menu = () => {
                     ? "active"
                     : ""
                 }
-                onClick={() => navigate(route.path)}
-              >
+                onClick={() => window.location.replace(route.externalLink)}
+                >
                 <span>{route.name}</span>
               </li>
             ))}

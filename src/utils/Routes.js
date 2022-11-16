@@ -21,32 +21,43 @@ export const NavBarRoutes = [
     path: "/info",
     component: <Info />,
     name: "من نحن",
+    externalLink: "https://google.com/1",
   },
   {
     path: "/prices",
     component: <Prices />,
     name: "اسعار",
+    externalLink: "https://google.com/2",
+
   },
   {
     path: "/services",
     component: <Services />,
     name: "الخدمات",
+    externalLink: "https://google.com/3",
+
   },
   {
     path: "/academy-lessons",
     component: <Lessons />,
     name: "أكاديمية درس",
+    externalLink: "https://google.com/4",
+
   },
 
   {
     path: "/tools",
     component: <Tools />,
     name: "الأدوات",
+    externalLink: "https://google.com/5",
+
   },
   {
     path: "/news",
     component: <News />,
     name: "الأخبار",
+    externalLink: "https://google.com/6",
+
   },
 ];
 
