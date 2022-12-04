@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("motherAppToken");
     window.location.replace("https://google.com")
 
 
