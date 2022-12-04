@@ -18,10 +18,11 @@ function Lessons() {
   const auth = useAuth();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const axiosToken = useAxiosToken()
+  const axiosToken = useAxiosToken();
   const email = searchParams.get("email");
   const name = searchParams.get("name");
-  const token = searchParams.get("token"); //store all Courses data
+  const token = searchParams.get("token");
+  //store all Courses data
   const [allCourses, setAllCourses] = useState([]);
   //store Top Courses data
   const [topCourses, setTopCourses] = useState([]);
@@ -33,7 +34,7 @@ function Lessons() {
   const [coursePercentageProgress, setCoursePercentageProgress] = useState(100); // by default 100% so not display anything
 
   function authentic() {
-    console.log(token)
+    console.log(token);
     //change the .get to .post
     axios
       .get("https://mocki.io/v1/3aa284c8-6ec8-444b-8ecd-59c95f715b08", {
@@ -50,7 +51,14 @@ function Lessons() {
 
   useEffect(() => {
     if (email && name && token) {
-      authentic();
+      if (localStorage.getItem("motherAppToken") === token) {
+        console.log("same token");
+      } else {
+        localStorage.setItem("motherAppToken",token)
+        authentic();
+      }
+    } else {
+      auth.logout()
     }
   }, []);
   // convert date to arabic date
