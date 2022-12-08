@@ -49,18 +49,18 @@ function Lessons() {
       .catch(() => console.log("error occured"));
   }
 
-  useEffect(() => {
-    if (email && name && token) {
-      if (localStorage.getItem("motherAppToken") === token) {
-        console.log("same token");
-      } else {
-        localStorage.setItem("motherAppToken",token)
-        authentic();
-      }
-    } else {
-      auth.logout()
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (email && name && token) {
+  //     if (localStorage.getItem("motherAppToken") === token) {
+  //       console.log("same token");
+  //     } else {
+  //       localStorage.setItem("motherAppToken", token);
+  //       authentic();
+  //     }
+  //   } else {
+  //     auth.logout();
+  //   }
+  // }, []);
   // convert date to arabic date
   const convertDateToArabic = (input) => {
     var date = new Date(input);

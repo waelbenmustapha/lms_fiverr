@@ -40,7 +40,6 @@ function TopPrograms({ topPrograms }) {
       </div>
       <Swiper
         ref={swiperRef}
-        dir="rtl"
         slidesPerView={1}
         spaceBetween={30}
         breakpoints={{

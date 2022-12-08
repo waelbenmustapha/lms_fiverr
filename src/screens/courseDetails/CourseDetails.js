@@ -41,7 +41,7 @@ function CourseDetails() {
   // Swiper instance
   const swiperLearningRef = useRef(null);
   const swiperProgContentRef = useRef(null);
-  const axiosToken = useAxiosToken()
+  const axiosToken = useAxiosToken();
   const [loading, setLoading] = useState(true);
   //store Course details data
   const [data, setData] = useState({});
@@ -93,7 +93,7 @@ function CourseDetails() {
         })
         .catch((error) => console.log(error));
     } else {
-      window.location.replace('https://google.com');
+      window.location.replace("https://google.com");
     }
   };
 
@@ -217,7 +217,6 @@ function CourseDetails() {
             </div>
             <Swiper
               ref={swiperLearningRef}
-              dir="rtl"
               spaceBetween={0}
               slidesPerView={1}
               breakpoints={{
@@ -328,7 +327,6 @@ function CourseDetails() {
             </div>
             <Swiper
               ref={swiperProgContentRef}
-              dir="rtl"
               spaceBetween={20}
               slidesPerView={1}
               breakpoints={{

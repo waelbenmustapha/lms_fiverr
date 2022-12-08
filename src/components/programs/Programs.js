@@ -71,7 +71,6 @@ function Programs({ programs }) {
       </div>
       <Swiper
         ref={swiperGridRef}
-        dir="rtl"
         slidesPerView={1}
         spaceBetween={30}
         breakpoints={{
