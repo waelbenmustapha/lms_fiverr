@@ -67,7 +67,6 @@ function CoursePage() {
   useEffect(() => {
     fetchInitialSelectedContent();
     fetchCourseData();
-   
   }, []);
 
   useEffect(() => {
@@ -199,8 +198,15 @@ function CoursePage() {
                       }}
                       className="h-[50px] text-[#000] bg-slate-100 px-3 rounded flex justify-center items-center text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
                     >
-                      <p>{timeconvertorhhmmss(Math.round(playerRef.current?.getCurrentTime()))}/
-                      {timeconvertorhhmmss(Math.round(playerRef.current?.getDuration()))}</p>
+                      <p>
+                        {timeconvertorhhmmss(
+                          Math.round(playerRef.current?.getCurrentTime())
+                        )}
+                        /
+                        {timeconvertorhhmmss(
+                          Math.round(playerRef.current?.getDuration())
+                        )}
+                      </p>
                     </div>
                     <div
                       style={{
@@ -237,8 +243,7 @@ function CoursePage() {
                   ref={playerRef}
                   controls={false}
                   onReady={() => sertVideoStarted(true)}
-                          
-                  onDuration={(e)=>console.log(e)}
+                  onDuration={(e) => console.log(e)}
                   config={{
                     file: {
                       attributes: {
@@ -310,7 +315,7 @@ function CoursePage() {
           onClick={() =>
             navigate("/academy-lessons/course-details?course_id=" + course_id)
           }
-          className=" h-[55px] py-[14px] px-[50px] mt-[30px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+          className=" h-[55px] py-[14px] px-[50px] mt-[30px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
         >
           <span>انضم للبرنامج التدريبي</span>
         </button>

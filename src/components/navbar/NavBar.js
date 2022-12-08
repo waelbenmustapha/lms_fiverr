@@ -33,7 +33,7 @@ function NavBar() {
                   onClick={() => window.location.replace(route.externalLink)}
                   key={index}
                 >
-                  <span className="text-primary-color text-[16px] font-bold no-underline cursor-pointer">
+                  <span className="text-black text-[16px] font-bold no-underline cursor-pointer">
                     {route.name}
                   </span>
                 </li>
@@ -51,7 +51,7 @@ function NavBar() {
         ) : (
           <button
             onClick={() => auth.logout()}
-            className="font-[inherit] text-[16px] font-bold text-primary-color h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]"
+            className="font-[inherit] text-[16px] font-bold text-black h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]"
           >
             تسجيل الخروج
           </button>

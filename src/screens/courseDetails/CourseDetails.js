@@ -246,7 +246,7 @@ function CourseDetails() {
                 if (index % 2 === 0) {
                   return (
                     <SwiperSlide key={index}>
-                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-primary-color bg-[#fafafa] max-w-[412px] h-[338px]">
+                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-black bg-[#fafafa] max-w-[412px] h-[338px]">
                         <p className="text-[80px] font-bold mediamax-1023:text-[60px] mediamax-950:text-[40px]">
                           {index + 1}
                         </p>
@@ -259,7 +259,7 @@ function CourseDetails() {
                 } else {
                   return (
                     <SwiperSlide key={index}>
-                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-primary-color max-w-[412px] h-[338px] ml-[8px] bg-green shadow-[-8px_8px_0px_#153c3f]">
+                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-black max-w-[412px] h-[338px] ml-[8px] bg-green shadow-[-8px_8px_0px_#153c3f]">
                         <p className="text-[80px] font-bold mediamax-1023:text-[60px] mediamax-950:text-[40px]">
                           {index + 1}
                         </p>
@@ -282,7 +282,7 @@ function CourseDetails() {
               {skills.map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-row justify-center items-center py-[14px] px-[36px] w-fit text-primary-color border-[2px] border-primary-color"
+                  className="flex flex-row justify-center items-center py-[14px] px-[36px] w-fit text-black border-[2px] border-black"
                 >
                   {item.skill}
                 </div>
@@ -309,7 +309,7 @@ function CourseDetails() {
               </div>
             </div>
             <div className="flex flex-row flex-wrap items-center gap-[36px] py-0 px-[64px] mt-[48px] mediamax-950:flex mediamax-950:flex-wrap mediamax-950:items-center mediamax-950:gap-[20px] mediamax-950:py-0 mediamax-950:px-[64px] mediamax-950:mt-[15px]">
-              <p className="text-[20px] text-primary-color">عناوين البرنامة</p>
+              <p className="text-[20px] text-black">عناوين البرنامة</p>
               {chaptersTitles.map((el, index) => (
                 <div
                   key={`ctg-${index}`}
@@ -365,7 +365,7 @@ function CourseDetails() {
               <div>
                 {joined ? (
                   <Link to={"/academy-lessons/course?course_id=" + course_id}>
-                    <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color">
+                    <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black">
                       ابدأ دورتك الآن
                     </div>
                   </Link>
@@ -373,7 +373,7 @@ function CourseDetails() {
                   <button
                     disabled={isSubmitting}
                     onClick={() => enrollToCourse()}
-                    className="w-fit h-[60px] mediamax-1279:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+                    className="w-fit h-[60px] mediamax-1279:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
                   >
                     {isSubmitting ? (
                       <span className="px-[64px] mediamax-1279:px-[40px]">

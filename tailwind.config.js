@@ -40,13 +40,15 @@ module.exports = {
         white: "#ffffff",
         red: "red",
         black: "black",
-        "primary-color": "#153c3f",
+        "primary-color": "#3252C1",
         green: "#00ec8b",
-        blue: "#00c8e1",
+        blue: "#3252C1",
+        gray: "#F9F9F9",
       },
       backgroundImage: {
         "login-image": "url('./assets/images/login-image.png')",
         "bg-1": "url('./assets/images/bg.png')",
+        "blue-gradient": "linear-gradient(64.86deg, #5E45FF 0%, #0028B3 100%)",
       },
       boxShadow: {
         "help-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.05)",
@@ -56,6 +58,7 @@ module.exports = {
         "register-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.1)",
         "nav-bar": "0px 2px 16px 8px rgba(21, 60, 63, 0.05)",
         dark: "8px 16px 32px 0px rgba(21, 60, 63, 0.25)",
+        card: "0px 0px 32px 0px rgba(0, 0, 0, 0.05)",
       },
       keyframes: {
         "animate-width": {
@@ -65,5 +68,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

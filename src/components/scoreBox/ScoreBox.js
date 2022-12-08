@@ -12,7 +12,7 @@ function ScoreBox({
   description3,
 }) {
   return (
-    <div className="w-full bg-primary-color">
+    <div className="w-full bg-black">
       <div className="flex flex-row items-center justify-center gap-[130px] mediamax-1079:gap-[110px] mediamax-900:gap-[60px] w-full py-[100px] px-[20px] mediamax-1079:py-[70px] mediamax-900:py-[60px] bg-green overflow-hidden translate-x-[6px] translate-y-[-6px] mediamax-650:gap-[50px] mediamax-650:py-[50px] mediamax-650:px-[20px] mediamax-550:flex-col ">
         <div className="flex flex-row items-center justify-center">
           <Clock className="w-[100px] h-[100px] ml-[16px] mediamax-1079:w-[70px] mediamax-1079:h-[70px] mediamax-900:w-[50x] mediamax-900:h-[50px] mediamax-650:w-[40px] mediamax-650:h-[40px]" />

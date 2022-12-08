@@ -10,10 +10,10 @@ function FormSubmission() {
       <div className="absolute top-0 left-0 z-10 h-screen w-full flex justify-center items-center gap-[32px] flex-col">
         <CheckCircle className="h-[25vh] w-[25vh]" />
         <div className="flex flex-col items-center justify-center">
-          <p className="text-[45px] mb-[15px] text-center mediamax-1023:text-[35px] mediamax-860:text-[25px] mediamax-550:text-[21px] text-primary-color font-bold">
+          <p className="text-[45px] mb-[15px] text-center mediamax-1023:text-[35px] mediamax-860:text-[25px] mediamax-550:text-[21px] text-black font-bold">
             شكرًا لتواصلك معنا
           </p>
-          <p className="text-[28px] text-center mediamax-1023:text-[24px] mediamax-860:text-[20px] px-[40px] mediamax-550:text-[17px] text-primary-color font-bold">
+          <p className="text-[28px] text-center mediamax-1023:text-[24px] mediamax-860:text-[20px] px-[40px] mediamax-550:text-[17px] text-black font-bold">
             راح يتواصل معاك أحد المسؤولين في أقرب وقت حتى يساعدك بحل المشكلة
           </p>
         </div>

@@ -1,14 +1,3 @@
-@font-face {
-  font-family: "bold"; /*Can be any text*/
-  src: local("URWGeometricArabic"),
-    url("./assets/fonts/URWGeometricArabic-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "regular"; /*Can be any text*/
-  src: local("URWGeometricArabic"),
-    url("./assets/fonts/URWGeometricArabic-Regular.ttf") format("truetype");
-}
-
 :root {
   --text-color: #153c3f;
   --text-green: #00ec8b;

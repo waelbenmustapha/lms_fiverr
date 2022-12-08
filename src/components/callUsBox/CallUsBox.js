@@ -11,7 +11,7 @@ function CallUsBox({ title, description }) {
         {description}
       </p>
       <Link to={"/contact-us"}>
-        <button className="text-[16px] font-[inherit] border-none outline-none bg-primary-color font-bold h-[55px] py-[14px] px-[60px] mediamax-1079:py-[10px] mediamax-1079:px-[40px] mediamax-1079:text-[14px] mediamax-1079:h-[45px] text-white cursor-pointer">
+        <button className="text-[16px] font-[inherit] border-none outline-none bg-black font-bold h-[55px] py-[14px] px-[60px] mediamax-1079:py-[10px] mediamax-1079:px-[40px] mediamax-1079:text-[14px] mediamax-1079:h-[45px] text-white cursor-pointer">
           تواصل معنا
         </button>
       </Link>

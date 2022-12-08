@@ -35,7 +35,7 @@ function NewPassword() {
           className="flex flex-row items-center flex-nowrap w-fit text-primary-one text-[24px] mb-[20px]"
         >
           <BackArrow className="w-[30px] h-[16px] ml-[8px]" />
-          <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-primary-color before:bottom-[2px] right-[0px]">
+          <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-black before:bottom-[2px] right-[0px]">
             الرجوع
           </span>
         </Link>
@@ -48,9 +48,13 @@ function NewPassword() {
             passwordConfirmation: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={(values, { setSubmitting }) => {            
-            changePass({email:"eve.holt@reqres.in",password:"testpassforapi"}).then((res) => setSuccess(true))
-            .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
+          onSubmit={(values, { setSubmitting }) => {
+            changePass({
+              email: "eve.holt@reqres.in",
+              password: "testpassforapi",
+            })
+              .then((res) => setSuccess(true))
+              .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
             setSubmitting(false);
           }}
         >
@@ -61,7 +65,7 @@ function NewPassword() {
             <Form>
               <div className="flex flex-col">
                 <div className="mb-[20px]">
-                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                  <p className="text-[16px] font-bold text-black mb-[8px]">
                     كلمة المرور الجديدة
                   </p>
                   <Field
@@ -77,7 +81,7 @@ function NewPassword() {
                   />
                 </div>
                 <div className="mb-[64px] mediamax-767:mb-[40px]">
-                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                  <p className="text-[16px] font-bold text-black mb-[8px]">
                     تأكيد كلمة المرور الجديدة
                   </p>
                   <Field
@@ -95,7 +99,7 @@ function NewPassword() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
+                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-black outline-none border-none"
                 >
                   <span>تحديث كلمة المرور</span>
                 </button>
