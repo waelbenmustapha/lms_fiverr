@@ -58,7 +58,7 @@ module.exports = {
         "register-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.1)",
         "nav-bar": "0px 2px 16px 8px rgba(21, 60, 63, 0.05)",
         dark: "8px 16px 32px 0px rgba(21, 60, 63, 0.25)",
-        card: "0px 0px 32px 0px rgba(0, 0, 0, 0.05)",
+        card: "0px 8px 32px 0px rgba(0, 0, 0, 0.10)",
       },
       keyframes: {
         "animate-width": {
