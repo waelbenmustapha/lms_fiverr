@@ -36,7 +36,7 @@ function CourseCard({ program }) {
   }, [isCopied]);
 
   return (
-    <div className="relative max-w-[475px] h-[440px] rounded-[4px] overflow-hidden bg-white shadow-card hover:shadow-dark">
+    <div className="flex flex-col relative max-w-[475px] h-[440px] rounded-[4px] overflow-hidden bg-white shadow-card hover:shadow-dark">
       <div className="relative w-full h-[180px]">
         <img className="w-full h-full" src={program.thumbnail} alt="course" />
         <div className="absolute bottom-[10px] left-[16px] flex flex-row flex-wrap">
