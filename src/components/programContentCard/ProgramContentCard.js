@@ -17,7 +17,7 @@ function ProgramContentCard({ id, title, description, image, articleUrl }) {
           </p>
           <Link
             to={"/academy-lessons/course?course_id=" + id}
-            className="flex flex-row flex-nowrap items-center justify-center w-fit py-[8px] px-[16px] font-[inherit] text-[10px] font-bold text-primary-color bg-white no-underline cursor-pointer shadow-course-card"
+            className="flex flex-row flex-nowrap items-center justify-center w-fit py-[8px] px-[16px] font-[inherit] text-[10px] font-bold text-black bg-white no-underline cursor-pointer shadow-course-card"
           >
             <Book className="w-[14px] h-[14px] ml-[4px]" />
             <span>مقال</span>

@@ -25,7 +25,7 @@
     @apply hidden mediamax-950:block relative z-10 select-none appearance-none border-none outline-none cursor-pointer;
   }
   .hamburger span {
-    @apply block w-[33px] h-[2px] mb-2 relative rounded-md bg-primary-color;
+    @apply block w-[33px] h-[2px] mb-2 relative rounded-md bg-black;
     transform-origin: 0 0;
     transition: 0.4s;
   }
@@ -56,7 +56,7 @@
   }
 
   .menu .links ul li span {
-    @apply text-[16px] font-bold no-underline cursor-pointer text-primary-color;
+    @apply text-[16px] font-bold no-underline cursor-pointer text-black;
   }
 
   .links.is-active .btn-register {
@@ -79,7 +79,7 @@
 
   /* --------------- register button ----------------- */
   .btn-register {
-    @apply font-[inherit] text-[16px] font-bold text-primary-color bg-blue h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none shadow-register-btn mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px];
+    @apply font-[inherit] text-[16px] font-bold text-black bg-blue h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none shadow-register-btn mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px];
   }
 
   /* -------- swiper navigation style -------- */
@@ -88,7 +88,7 @@
   }
 
   .swiper-navigation-header .title {
-    @apply text-[32px] text-primary-color;
+    @apply text-[32px] text-black;
   }
 
   .swipe-btns {

@@ -48,8 +48,7 @@ function Header({
         })
         .catch((error) => console.log(error));
     } else {
-      window.location.replace('https://google.com');
-
+      window.location.replace("https://google.com");
     }
   };
 
@@ -84,7 +83,7 @@ function Header({
             <div>
               {joined ? (
                 <Link to={"/academy-lessons/course?course_id=" + course_id}>
-                  <div className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color">
+                  <div className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black">
                     ابدأ دورتك الآن
                   </div>
                 </Link>
@@ -92,7 +91,7 @@ function Header({
                 <button
                   disabled={isSubmitting}
                   onClick={() => enrollToCourse()}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
                 >
                   {isSubmitting ? (
                     <RotatingLines
@@ -134,7 +133,7 @@ function Header({
                 <button
                   disabled={isSubmitting}
                   onClick={() => enrollToCourse()}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
                 >
                   {isSubmitting ? (
                     <RotatingLines

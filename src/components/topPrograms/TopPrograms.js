@@ -73,7 +73,7 @@ function TopPrograms({ topPrograms }) {
       </Swiper>
       <div className="flex flex-row items-center justify-end w-full py-[10px] p-horizontal">
         <Link to={"/academy-lessons/all-courses"}>
-          <button className="font-[inherit] text-[18px] mediamax-1079:text-[16px] mediamax-767:text-[14px] font-bold text-white bg-primary-color whitespace-nowrap py-[14px] px-[24px] mediamax-1079:py-[12px] mediamax-767:py-[8px]  mediamax-1079:px-[24px] mediamax-767:px-[20px] outline-none border-none cursor-pointer">
+          <button className="font-[inherit] text-[18px] mediamax-1079:text-[16px] mediamax-767:text-[14px] font-bold text-white bg-black whitespace-nowrap py-[14px] px-[24px] mediamax-1079:py-[12px] mediamax-767:py-[8px]  mediamax-1079:px-[24px] mediamax-767:px-[20px] outline-none border-none cursor-pointer">
             اكتشف جميع البرامج
           </button>
         </Link>

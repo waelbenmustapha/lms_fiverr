@@ -25,7 +25,7 @@ function ForgotPassword() {
           className="flex flex-row items-center flex-nowrap w-fit text-primary-one text-[24px] mb-[20px]"
         >
           <BackArrow className="w-[30px] h-[16px] ml-[8px]" />
-          <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-primary-color before:bottom-[2px] right-[0px]">
+          <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-black before:bottom-[2px] right-[0px]">
             الرجوع
           </span>
         </Link>
@@ -57,7 +57,7 @@ function ForgotPassword() {
             <Form>
               <div className="flex flex-col">
                 <div className="mb-[64px] mediamax-767:mb-[40px]">
-                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                  <p className="text-[16px] font-bold text-black mb-[8px]">
                     البريد الالكتروني
                   </p>
                   <Field
@@ -75,7 +75,7 @@ function ForgotPassword() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
+                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-black outline-none border-none"
                 >
                   <span>إرسال</span>
                 </button>

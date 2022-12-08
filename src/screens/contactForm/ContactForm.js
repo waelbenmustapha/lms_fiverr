@@ -7,7 +7,6 @@ import axios from "axios";
 function ContactForm() {
   const navigate = useNavigate();
 
- 
   const loginSchema = Yup.object().shape({
     name: Yup.string().required("حقل مطلوب"),
     email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
@@ -46,9 +45,7 @@ function ContactForm() {
             <div className="w-full">
               <div className="flex flex-row mediamax-650:flex-col mediamax-650:gap-[15px] gap-[50px] mb-[20px]">
                 <div className="flex-[1]">
-                  <p className="text-[24px] text-primary-color mb-[8px]">
-                    الاسم
-                  </p>
+                  <p className="text-[24px] text-black mb-[8px]">الاسم</p>
                   <Field
                     className="input-formit"
                     placeholder="أكتب اسمك.."
@@ -61,7 +58,7 @@ function ContactForm() {
                   />
                 </div>
                 <div className="flex-[1]">
-                  <p className="text-[24px] text-primary-color mb-[8px]">
+                  <p className="text-[24px] text-black mb-[8px]">
                     البريد الالكتروني
                   </p>
                   <Field
@@ -79,7 +76,7 @@ function ContactForm() {
               </div>
               <div className="flex flex-row mediamax-650:flex-col mediamax-650:gap-[15px] gap-[50px] mb-[20px]">
                 <div className="flex-[1]">
-                  <p className="text-[24px] text-primary-color mb-[8px]">
+                  <p className="text-[24px] text-black mb-[8px]">
                     عنوان الرسالة
                   </p>
                   <Field
@@ -94,7 +91,7 @@ function ContactForm() {
                   />
                 </div>
                 <div className="flex-[1]">
-                  <p className="text-[24px] text-primary-color mb-[8px]">
+                  <p className="text-[24px] text-black mb-[8px]">
                     اسم البرنامج
                   </p>
                   <Field
@@ -110,9 +107,7 @@ function ContactForm() {
                 </div>
               </div>
               <div className=" w-full flex flex-col  ">
-                <p className="text-[24px] text-primary-color mb-[8px]">
-                  الرسالة
-                </p>
+                <p className="text-[24px] text-black mb-[8px]">الرسالة</p>
                 <Field
                   as="textarea"
                   className="input-formit w-full  h-[270px]  p-5"
@@ -128,7 +123,7 @@ function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center text-[20px] font-bold text-primary-color"
+                    className="bg-[#00EC8B] cursor-pointer self-end h-[50px] w-full max-w-[280px] mediamax-550:max-w-full flex justify-center items-center text-[20px] font-bold text-black"
                   >
                     submit
                   </button>

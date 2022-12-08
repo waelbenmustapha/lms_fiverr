@@ -42,13 +42,13 @@ function Programs({ programs }) {
   return (
     <div className="programs">
       <div className="flex flex-row flex-wrap items-center gap-[36px] mediamax-1079:gap-[20px] p-horizontal mb-[40px]">
-        <p className="text-[20px] text-primary-color">تصنيف البرامج</p>
+        <p className="text-[20px] text-black">تصنيف البرامج</p>
         {category.map((ctg, index) => (
           <div
             key={`category-${index}`}
             onClick={() => setselectedCat(ctg.category)}
             className={
-              "flex items-center justify-center font-[inherit] text-[20px] font-bold h-[55px] py-[8px] px-[32px] mediamax-1079:text-[16px] mediamax-1079:h-[40px] mediamax-1079:px-[28px] whitespace-nowrap outline-none cursor-pointer border-[1px] border-primary-color " +
+              "flex items-center justify-center font-[inherit] text-[20px] font-bold h-[55px] py-[8px] px-[32px] mediamax-1079:text-[16px] mediamax-1079:h-[40px] mediamax-1079:px-[28px] whitespace-nowrap outline-none cursor-pointer border-[1px] border-black " +
               (ctg.category === selectedCat ? "bg-green" : "bg-white")
             }
           >

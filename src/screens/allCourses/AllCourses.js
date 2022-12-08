@@ -7,7 +7,7 @@ import useAxiosToken from "../../utils/apis/AxiosWithToken";
 
 function AllCourses() {
   //store programs data
-  const axiosToken = useAxiosToken()
+  const axiosToken = useAxiosToken();
   const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
   // selected category
@@ -21,7 +21,7 @@ function AllCourses() {
       options.add(row["category"]);
     });
     let iterator = [...options.values()];
-    let items = [{ name: "جميع البرامج", category: "all" }];
+    let items = [{ name: "All Courses", category: "all" }];
     iterator.forEach((element) => {
       items.push({ name: element, category: element });
     });
@@ -31,7 +31,7 @@ function AllCourses() {
   // get all programs
   const getPrograms = () => {
     axiosToken
-      .get("https://mocki.io/v1/1910392a-f6e8-4d1c-93b6-c437f6efd4cd")
+      .get("https://mocki.io/v1/63ecf56c-bfab-4c82-a512-2304072ad3e5")
       .then((res) => {
         setLoading(false);
         setPrograms(res.data.items);
@@ -50,19 +50,21 @@ function AllCourses() {
     );
   }
   return (
-    <div className="pt-[64px] mediamax-1079:pt-[40px] pb-[150px] mediamax-1079:pb-[80px] px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-      <p className="text-primary-color text-[32px] mediamax-1079:text-[24px] mb-[40px]">
-        جميع البرامج
+    <div className="bg-gray pt-[64px] mediamax-1079:pt-[40px] pb-[150px] mediamax-1079:pb-[80px] px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
+      <p className="text-black text-[32px] font-bold mediamax-1079:text-[24px] mb-[40px]">
+        All Courses
       </p>
-      <div className="flex flex-row flex-wrap items-center gap-[36px] mediamax-1079:gap-[20px] mb-[40px]">
-        <p className="text-[20px] text-primary-color">تصنيف البرامج</p>
+      <div className="flex flex-row flex-wrap items-center gap-[20px] mediamax-1079:gap-[20px] mb-[40px]">
+        <p className="text-[16px] text-black">Filter Courses</p>
         {category.map((ctg, index) => (
           <div
             key={`category-${index}`}
             onClick={() => setselectedCat(ctg.category)}
             className={
-              "flex justify-center items-center font-[inherit] text-[20px] mediamax-1079:text-[16px] font-bold h-[55px] mediamax-1079:h-[40px] px-[32px] py-[8px] mediamax-1079:px-[28px] border-[1px] border-primary-color outline-none whitespace-nowrap cursor-pointer " +
-              (ctg.category === selectedCat ? "bg-green" : "bg-white")
+              "flex justify-center items-center font-[inherit] text-[16px] mediamax-1079:text-[14px] font-bold h-[55px] mediamax-1079:h-[40px] px-[32px] py-[8px] mediamax-1079:px-[28px] rounded-[2px] border-blue border-[2px] outline-none whitespace-nowrap cursor-pointer " +
+              (ctg.category === selectedCat
+                ? "bg-blue text-white"
+                : "bg-white text-blue")
             }
           >
             <span>{ctg.name}</span>

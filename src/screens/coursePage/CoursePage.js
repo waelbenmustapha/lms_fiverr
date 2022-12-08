@@ -322,7 +322,7 @@ function CoursePage() {
           onClick={() =>
             navigate("/academy-lessons/course-details?course_id=" + course_id)
           }
-          className=" h-[55px] py-[14px] px-[50px] mt-[30px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-primary-color"
+          className=" h-[55px] py-[14px] px-[50px] mt-[30px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
         >
           <span>انضم للبرنامج التدريبي</span>
         </button>

@@ -40,7 +40,7 @@ function Login() {
             className="flex flex-row items-center flex-nowrap w-fit text-primary-one text-[24px] mb-[20px]"
           >
             <BackArrow className="w-[30px] h-[16px] ml-[8px]" />
-            <span className="relative font-bold before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-primary-color before:bottom-[2px] right-[0px]">
+            <span className="relative font-bold before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-black before:bottom-[2px] right-[0px]">
               الرجوع
             </span>
           </Link>
@@ -75,7 +75,7 @@ function Login() {
             }) => (
               <Form className="flex flex-col">
                 <div className="mb-[16px]">
-                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                  <p className="text-[16px] font-bold text-black mb-[8px]">
                     البريد الالكتروني
                   </p>
                   <Field
@@ -91,7 +91,7 @@ function Login() {
                   />
                 </div>
                 <div className="mb-[16px]">
-                  <p className="text-[16px] font-bold text-primary-color mb-[8px]">
+                  <p className="text-[16px] font-bold text-black mb-[8px]">
                     كلمة المرور
                   </p>
                   <Field
@@ -120,7 +120,7 @@ function Login() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex justify-center items-center w-[100%] max-w-[250px] h-[50px] font-bold text-center text-[20px] bg-green text-primary-color outline-none border-none"
+                  className="flex justify-center items-center w-[100%] max-w-[250px] h-[50px] font-bold text-center text-[20px] bg-green text-black outline-none border-none"
                 >
                   {isSubmitting ? (
                     <RotatingLines
