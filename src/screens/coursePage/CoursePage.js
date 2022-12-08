@@ -44,7 +44,7 @@ function CoursePage() {
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialSelectedContent() {
     axiosToken
-      .get("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
+      .get("https://mocki.io/v1/168c8ce8-6498-46df-8140-81124811503c")
       .then((res) => {
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
@@ -59,7 +59,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/a12a6971-19f5-46d9-ae18-113d5e8c55dc")
+      .get("https://mocki.io/v1/168c8ce8-6498-46df-8140-81124811503c")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -67,7 +67,6 @@ function CoursePage() {
   useEffect(() => {
     fetchInitialSelectedContent();
     fetchCourseData();
-   
   }, []);
 
   useEffect(() => {
@@ -91,7 +90,7 @@ function CoursePage() {
       <div className="h-full flex flex-col">
         <div className="flex flex-row mediamax-767:flex-col-reverse">
           <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
-            <div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
+            {/*<div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
               </p>
@@ -114,7 +113,13 @@ function CoursePage() {
                   </h3>
                 </div>
               </div>
+            </div>*/}
+            <div className="bg-white p-[10px] mb-[24px]">
+              <p className=" text-[#5E45FF] text-[16px] font-bold ml-[20px]">
+                {progressquizz.percentage}% completed
+              </p>
             </div>
+
             <div className="overflow-y-scroll  mediamax-1079:text-[12px]  mediamax-950:text-[11px] noscrollbar">
               {courseData.all_course_lessons.map((element, index) => (
                 <DataElement
@@ -122,6 +127,7 @@ function CoursePage() {
                   collapsed={index === 0 ? true : false}
                   selectedContent={selectedContent}
                   setselectedContent={setselectedContent}
+                  progress={progressquizz.percentage}
                   sertVideoStarted={sertVideoStarted}
                   element={element}
                 />
@@ -199,8 +205,15 @@ function CoursePage() {
                       }}
                       className="h-[50px] text-[#000] bg-slate-100 px-3 rounded flex justify-center items-center text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
                     >
-                      <p>{timeconvertorhhmmss(Math.round(playerRef.current?.getCurrentTime()))}/
-                      {timeconvertorhhmmss(Math.round(playerRef.current?.getDuration()))}</p>
+                      <p>
+                        {timeconvertorhhmmss(
+                          Math.round(playerRef.current?.getCurrentTime())
+                        )}
+                        /
+                        {timeconvertorhhmmss(
+                          Math.round(playerRef.current?.getDuration())
+                        )}
+                      </p>
                     </div>
                     <div
                       style={{
@@ -237,8 +250,7 @@ function CoursePage() {
                   ref={playerRef}
                   controls={false}
                   onReady={() => sertVideoStarted(true)}
-                          
-                  onDuration={(e)=>console.log(e)}
+                  onDuration={(e) => console.log(e)}
                   config={{
                     file: {
                       attributes: {

@@ -21,7 +21,7 @@
 .smpercent svg circle:last-of-type {
   stroke-dasharray: 93.6px;
   stroke-dashoffset: calc(93.6px - (93.6px * var(--percent)) / 100);
-  stroke: var(--text-color);
+  stroke: white;
 }
 
 .smpercent .smnumber {
@@ -32,8 +32,8 @@
 }
 
 .smpercent .smnumber h3 {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: bold;
-  color: var(--text-color);
+  color: white;
   margin-bottom: 5px;
 }

@@ -56,3 +56,9 @@ body {
     padding: 40px 20px !important;
   }
 }
+.backgroundblue{
+  background: linear-gradient(64.86deg, #5E45FF 0%, #0028B3 100%);
+/* table shadow option */
+
+box-shadow: 0px 3px 4px rgba(35, 35, 35, 0.05);
+}
