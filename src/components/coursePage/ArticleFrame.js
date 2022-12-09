@@ -51,7 +51,7 @@ function ArticleFrame({
               setselectedContent({ ...selectedContent, is_complete: true });
               IsOpenDone({"lesson_id":selectedContent.id,"course_id": chapterId}).then(() => fetchCourseData());
             }}
-            className="bg-[#00ec8b] cursor-pointer p-[20px] w-[200px] text-center font-[bold] text-[16px]"
+            className="bg-[#00ec8b] cursor-pointer p-[20px] w-[200px] text-center font-bold text-[16px]"
             target="_blank"
             rel="noreferrer"
           >

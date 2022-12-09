@@ -4,12 +4,14 @@ import ReactPlayer from "react-player";
 import axios from "axios";
 import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
 import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
+import { Link } from "react-router-dom";
 
 import "./coursePage.css";
 import CoursTextDescription from "../../components/coursePage/CoursTextDescription";
-import HelpMe from "../../components/coursePage/HelpMe";
 import rewind5 from "../../assets/images/rewind5.png";
 import pause from "../../assets/images/pause.png";
+import guard from "../../assets/images/guard.png";
+
 import rewind30 from "../../assets/images/rewind30.png";
 import { EnrollToCourse, IsOpenDone } from "../../utils/apis/course/CoursePage";
 import ArticleFrame from "../../components/coursePage/ArticleFrame";
@@ -44,7 +46,7 @@ function CoursePage() {
   //fetching courseData for the current connected user using the userid and the courseID
   async function fetchInitialSelectedContent() {
     axiosToken
-      .get("https://mocki.io/v1/168c8ce8-6498-46df-8140-81124811503c")
+      .get("https://mocki.io/v1/b196bd96-30ff-4e8c-ae11-7dc9aa336efd")
       .then((res) => {
         setselectedContent(res.data?.all_course_lessons[0].lessons[0]);
       });
@@ -59,7 +61,7 @@ function CoursePage() {
       .get("https://mocki.io/v1/788b305e-aa63-4cde-be10-7efbef8dcd53")
       .then((res) => setCourseDetails(res.data));
     axiosToken
-      .get("https://mocki.io/v1/168c8ce8-6498-46df-8140-81124811503c")
+      .get("https://mocki.io/v1/b196bd96-30ff-4e8c-ae11-7dc9aa336efd")
       .then((res) => {
         setCourseData(res.data);
       });
@@ -87,7 +89,7 @@ function CoursePage() {
     );
   } else {
     return courseDetails.is_enrolled ? (
-      <div className="h-full flex flex-col">
+      <div className="h-full bg-[#f9f9f9] flex flex-col">
         <div className="flex flex-row mediamax-767:flex-col-reverse">
           <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
             {/*<div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
@@ -143,9 +145,9 @@ function CoursePage() {
                               "you need to complete all the course to be able to open quizz"
                             );
                       }}
-                      className="cursor-pointer  text-[#00EC8B] font-[bold] text-[18px]"
+                      className="cursor-pointer  text-[#5E45FF] font-bold text-[18px]"
                     >
-                      اختبار المعرفة
+                      Take Quiz
                     </div>
                     {progressquizz.percentage !== 100 && (
                       <Lock className="opacity-20 mr-auto" />
@@ -159,7 +161,7 @@ function CoursePage() {
                     onClick={() => {
                       navigate("/certificate");
                     }}
-                    className="cursor-pointer  font-[bold] text-[18px]"
+                    className="cursor-pointer  font-bold text-[18px]"
                   >
                     الحصول على شهادة
                   </div>
@@ -191,7 +193,7 @@ function CoursePage() {
                   onClick={() => setPlaying(!playing)}
                 ></div>
                 {videostarted && (
-                  <>
+                  <div>
                     <img
                       onClick={() => {
                         setPlaying(!playing);
@@ -244,7 +246,7 @@ function CoursePage() {
                         src={rewind5}
                       />
                     </div>
-                  </>
+                  </div>
                 )}
                 <ReactPlayer
                   ref={playerRef}
@@ -303,8 +305,22 @@ function CoursePage() {
           </div>
         </div>
         <div className=" flex flex-row mediamax-767:flex-col-reverse">
-          <div className="w-[380px] h-full mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
-            <HelpMe />
+          <div className="w-[380px]  pr-[20px] mediamax-767:w-full mediamax-767:h-full mediamax-767:flex mediamax-767:justify-center  mediamax-1079:w-[280px] mediamax-950:w-[240px]">
+            <div className="relative  flex flex-col w-full  mb-[70px] mt-[22px]   mr-[65px] px-[64px] py-[40px] bg-[white]   h-[310px] mediamax-767:w-max mediamax-767:p-[20px] mediamax-767:m-[50px] mediamax-767:h-[250px]  mediamax-1079:mb-[60px]  mediamax-1079:mt-[20px]  mediamax-1079:mr-[40px]  mediamax-1079:w-full  mediamax-1079:h-[270px] mediamax-950:mb-[50px] mediamax-950:mt-[17px] mediamax-950:mr-[25px] mediamax-950:w-full mediamax-950:h-[250px]">
+              <img
+                className=" h-[24px] self-start w-[24px] mediamax-767:left-[10px] mediamax-767:top-[15px] mediamax-767:h-[40px] mediamax-767:w-[40px]"
+                src={guard}
+                alt="help"
+              />
+              <div className="text-[18px] font-[400]  mediamax-767:text-[13px] mt-[20px] mediamax-767:mr-[10px] mediamax-1079:text-[14px]">
+              If you face any issues regarding the course, please contact customer support.
+              </div>
+              <Link
+              className=" h-[50px] mt-[20px] py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
+            >
+              Contact us
+            </Link>
+            </div>
           </div>
           <CoursTextDescription
             key={selectedContent.id}

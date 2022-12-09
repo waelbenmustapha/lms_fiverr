@@ -16,7 +16,7 @@ function DataElement({
   return (
     <div>
       <div
-        className={" cursor-pointer flex justify-between  items-center pr-[40px] pl-[65px] py-[16px] mediamax-767:pr-[20px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px] mediamax-767:mb-[5px]  mediamax-1079:text-[13px]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[30px]  mediamax-1079:mb-[15px] mediamax-950:text-[12px] mediamax-950:px-[30px] mediamax-950:mb-[12px] "+(element.locked?" bg-[#F1F1F1] ":" backgroundblue ")}
+        className={" cursor-pointer flex justify-between  items-center pr-[40px] pl-[65px] py-[16px] mediamax-767:pr-[20px]  mediamax-767:pl-[25px]  mediamax-767:h-[50px]   mediamax-1079:text-[13px]  mediamax-1079:pl-[40px]  mediamax-1079:pr-[30px]   mediamax-950:text-[12px] mediamax-950:px-[30px] "+(element.locked?" bg-[#F1F1F1] mt-[-1px] border-t-[1px] border-t-[#647CCF] border-b-[1px] border-b-[#647CCF]":" backgroundblue ")}
         onClick={() => {if(!element.locked)setCollapse(!collapse)}}
       >
         <div>
@@ -24,7 +24,7 @@ function DataElement({
           <p className={"text-[10px] py-[7px]  "+(element.locked?"text-[#D6D6D6]":" text-[rgba(251,206,132,1)]")}>
             4 Lessons, 45 Minutes
           </p>
-        </div>
+        </div> 
         <div className="flex gap-[12px] items-center">
           {/* {element.locked && <Lock className="opacity-20" />}
           {element.progress !== 0 && (
@@ -100,7 +100,7 @@ function DataElement({
               ) : (
                 <Play className="text-[#153C3F] h-[14px] w-[14px]" />
               )}
-              <p >{el.title}</p>
+              <p  className="text-[14px] font-[400]">{el.title}</p>
               <div className="ml-auto">
                 <p className="text-[#9C8DFD] text-[10px] font-bold">
                   {" "}
