@@ -12,48 +12,30 @@ function NavBar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="p-horizontal sticky top-0 flex flex-row items-center gap-[5vw] py-[20px] w-full h-[100px] z-10 shadow-nav-bar bg-white mediamax-950:justify-between">
+    <nav className="p-horizontal sticky top-0 flex flex-row justify-between items-center gap-[5vw] py-[20px] w-full h-[100px] z-10 shadow-nav-bar bg-white mediamax-950:justify-between">
       <Menu />
-      <a href="/">
-        <img className="logo" src={logo} alt="logo" />
-      </a>
-      <div className="flex flex-row items-center justify-between w-full mediamax-950:hidden">
-        <div className="links">
-          <ul className="flex flex-row items-center gap-[32px] list-none">
-            {NavBarRoutes.map((route, index) => (
-              <div key={`nav-${index}`}>
-                <li
-                  className={
-                    location.pathname.startsWith(route.path) ||
-                    (location.pathname === "/" &&
-                      route.path === "/academy-lessons")
-                      ? "relative before:absolute before:content-[''] before:bottom-[-4px] before:w-full before:h-[2px] before:bg-blue "
-                      : ""
-                  }
-                  onClick={() => window.location.replace(route.externalLink)}
-                  key={index}
-                >
-                  <span className="text-black text-[16px] font-bold no-underline cursor-pointer">
-                    {route.name}
-                  </span>
-                </li>
-              </div>
-            ))}
-          </ul>
-        </div>
+      <div className="flex flex-row items-center">
+        <a href="/">
+          <img className="logo" src={logo} alt="logo" />
+        </a>
+        <p className="ml-[20px] mediamax-950:hidden text-[18px] mediamax-950:text-[16px] text-[#BBB1FB]">
+          Learning Management System
+        </p>
+      </div>
+      <div className="mediamax-950:hidden">
         {!auth.user ? (
           <button
             onClick={() => window.location.replace("https://google.com")}
-            className="btn-register"
+            className="btn-register rounded-[4px]"
           >
-            تسجيل الدخول
+            Login
           </button>
         ) : (
           <button
             onClick={() => auth.logout()}
-            className="font-[inherit] text-[16px] font-bold text-black h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]"
+            className="font-[inherit] rounded-[4px] text-[16px] font-bold text-black h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px] bg-[#d2d2d2]"
           >
-            تسجيل الخروج
+            Logout
           </button>
         )}
       </div>

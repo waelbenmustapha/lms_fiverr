@@ -82,7 +82,7 @@
 
   /* --------------- register button ----------------- */
   .btn-register {
-    @apply font-[inherit] text-[16px] font-bold text-black bg-blue h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none shadow-register-btn mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px];
+    @apply font-[inherit] text-[16px] font-bold text-white bg-blue h-[55px] py-[14px] px-[24px] cursor-pointer border-none outline-none mediamax-950:text-[14px] mediamax-950:h-[40px] mediamax-950:py-[8px] mediamax-950:px-[24px];
   }
 
   /* -------- swiper navigation style -------- */

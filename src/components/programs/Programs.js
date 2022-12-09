@@ -13,8 +13,8 @@ import "swiper/css/navigation";
 import CourseCard from "../courseCard/CourseCard";
 
 // Import SVG
-import { ReactComponent as ArrowLeft } from "../../assets/svg/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/svg/double-arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../assets/svg/double-arrow-right.svg";
 
 SwiperCore.use([Navigation]);
 
@@ -32,7 +32,7 @@ function Programs({ programs }) {
       options.add(row["category"]);
     });
     let iterator = [...options.values()];
-    let items = [{ name: "جميع البرامج", category: "all" }];
+    let items = [{ name: "All Courses", category: "all" }];
     iterator.forEach((element) => {
       items.push({ name: element, category: element });
     });
@@ -40,16 +40,18 @@ function Programs({ programs }) {
   }, [programs]);
 
   return (
-    <div className="programs">
+    <div>
       <div className="flex flex-row flex-wrap items-center gap-[36px] mediamax-1079:gap-[20px] p-horizontal mb-[40px]">
-        <p className="text-[20px] text-black">تصنيف البرامج</p>
+        <p className="text-[16px] text-black">Filter Courses</p>
         {category.map((ctg, index) => (
           <div
             key={`category-${index}`}
             onClick={() => setselectedCat(ctg.category)}
             className={
-              "flex items-center justify-center font-[inherit] text-[20px] font-bold h-[55px] py-[8px] px-[32px] mediamax-1079:text-[16px] mediamax-1079:h-[40px] mediamax-1079:px-[28px] whitespace-nowrap outline-none cursor-pointer border-[1px] border-black " +
-              (ctg.category === selectedCat ? "bg-green" : "bg-white")
+              "flex justify-center items-center font-[inherit] text-[16px] mediamax-1079:text-[14px] font-bold h-[55px] mediamax-1079:h-[40px] px-[32px] py-[8px] mediamax-1079:px-[28px] rounded-[2px] border-blue border-[2px] outline-none whitespace-nowrap cursor-pointer " +
+              (ctg.category === selectedCat
+                ? "bg-blue text-white"
+                : "bg-white text-blue")
             }
           >
             <span>{ctg.name}</span>
@@ -57,15 +59,15 @@ function Programs({ programs }) {
         ))}
       </div>
       <div className="swiper-navigation-header px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px]">
-        <p className="title">جميع البرامج</p>
+        <p className="title">All Courses</p>
         <div className="swipe-btns">
-          <ArrowRight
-            onClick={() => swiperGridRef.current.swiper.slidePrev()}
-            className="icon"
-          />
           <ArrowLeft
+            onClick={() => swiperGridRef.current.swiper.slidePrev()}
+            className="icon text-blue"
+          />
+          <ArrowRight
             onClick={() => swiperGridRef.current.swiper.slideNext()}
-            className="icon"
+            className="icon text-blue"
           />
         </div>
       </div>
