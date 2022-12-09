@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 // Import SVG
-import { ReactComponent as ArrowUp } from "../../assets/svg/arrowUp.svg";
-import { ReactComponent as ArrowDown } from "../../assets/svg/arrowDown.svg";
+import { ReactComponent as ArrowDown } from "../../assets/svg/arrow-down.svg";
 
 const Collapsible = (props) => {
   const [open, setOPen] = useState(false);
@@ -13,26 +12,25 @@ const Collapsible = (props) => {
   };
 
   return (
-    <div
-      className="cursor-pointer"
-      style={
-        open
-          ? { backgroundColor: "#00EC8B" }
-          : { backgroundColor: "rgba(21, 60, 63, 5%)" }
-      }
-    >
+    <div className="cursor-pointer shadow-card">
       <div
-        className="w-full flex flex-row justify-between items-center py-[28px] px-[32px] mediamax-767:p-[20px]"
+        className="w-full flex flex-row justify-between items-center p-[20px]"
+        style={
+          open
+            ? { backgroundColor: "#3252C1", color: "#fff" }
+            : { backgroundColor: "#fff", color: "#3252C1" }
+        }
         onClick={toggle}
       >
-        <p className="text-[20px] mediamax-1079:text-[18px] font-bold">
-          {props.label}
-        </p>
-        {open ? (
-          <ArrowUp className="w-[17px] h-[8px]" />
-        ) : (
-          <ArrowDown className="w-[17px] h-[8px]" />
-        )}
+        <p className="text-[20px] mediamax-1079:text-[18px]">{props.label}</p>
+        <ArrowDown
+          style={
+            open
+              ? { transform: "rotate(180deg)", color: "#fff" }
+              : { transform: "rotate(0deg)", color: "#3252C1" }
+          }
+          className="w-[17px] h-[8px] duration-150"
+        />
       </div>
       <div
         className="h-[0px] overflow-hidden transition-[height] duration-[0.38s]"
@@ -43,7 +41,7 @@ const Collapsible = (props) => {
             : { height: "0px" }
         }
       >
-        <div className="text-[16px] px-[32px] pt-[8px] pb-[32px]">
+        <div className="text-[16px] px-[20px] pt-[8px] pb-[20px]">
           {props.children}
         </div>
       </div>

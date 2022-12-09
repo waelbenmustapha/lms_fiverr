@@ -9,6 +9,9 @@
   .p-horizontal {
     @apply px-[64px] mediamax-1079:px-[40px] mediamax-767:px-[20px];
   }
+  .p-vertical {
+    @apply py-[80px] mediamax-1079:py-[64px] mediamax-767:py-[40px];
+  }
   .input-formit {
     @apply px-6 h-[50px] w-full  bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
   }
@@ -88,7 +91,7 @@
   }
 
   .swiper-navigation-header .title {
-    @apply text-[32px] text-black;
+    @apply text-[36px] mediamax-1023:text-[28px] font-bold mediamax-1079:text-[28px];
   }
 
   .swipe-btns {

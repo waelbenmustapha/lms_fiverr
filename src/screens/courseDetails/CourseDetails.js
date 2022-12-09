@@ -13,8 +13,10 @@ import "swiper/css/grid";
 import "swiper/css/navigation";
 
 // Import SVG
-import { ReactComponent as ArrowLeft } from "../../assets/svg/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/svg/double-arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../assets/svg/double-arrow-right.svg";
+import { ReactComponent as GroupArrow } from "../../assets/svg/group-arrow1.svg";
+import { ReactComponent as GroupFlesh } from "../../assets/svg/group-flesh.svg";
 
 // import components
 import CallUsBox from "../../components/callUsBox/CallUsBox";
@@ -133,12 +135,12 @@ function CourseDetails() {
   // get all Course Data
   const getData = () => {
     console.log(
-      "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" +
+      "https://mocki.io/v1/da76c052-2598-4557-a565-1d998eb999aa" +
         `/${course_id}`
     );
     axiosToken
       .get(
-        "https://mocki.io/v1/92d25f9e-4852-46a0-bae4-c1a909f20911" /*+ `/${course_id}`*/
+        "https://mocki.io/v1/da76c052-2598-4557-a565-1d998eb999aa" /*+ `/${course_id}`*/
       )
       .then((res) => {
         setData(res.data);
@@ -172,52 +174,49 @@ function CourseDetails() {
           description={data.description}
           image={data.thumbnail}
           video={data.preview_video}
-          start_date={convertDateToArabic(data.start_date)}
-          duration={convertNumberToArabic(data.duration_by_weeks) + " أسابيع"}
-          learning_average={
-            convertNumberToArabic(data.duration_by_hours_per_week) +
-            " ساعات أسبوعيًا"
-          }
+          start_date={data.start_date}
+          duration={data.duration_by_weeks + " weeks"}
+          learning_average={data.duration_by_hours_per_week + " hours"}
           is_enrolled={data.is_enrolled}
           is_course_details={true}
         />
         <ScoreBox
           title1={`${data.statistics_one}+`}
-          description1="ساعة مسجلة"
+          description1="Students"
           title2={`${data.statistics_two}+`}
-          description2="مقال ذات صلة"
+          description2="Available Courses"
           title3={data.statistics_three}
-          description3="إتمام البرنامج"
+          description3="Categories"
         />
 
         {/* ---------- course details ---------------- */}
-        <div className="py-[100px] bg-bg-1 bg-no-repeat mediamax-1023:py-[50px] mediamax-950:py-[40px]">
-          <div className="p-horizontal">
-            <p className="font-[inherit] text-[32px] font-bold mb-[30px] mediamax-1023:text-[28px] mediamax-1023:mb-[20px] mediamax-950:text-[24px] ">
-              {data.about_title}
-            </p>
-            <p className="font-[inherit] text-[20px] mb-[100px] mediamax-1023:text-[20px] mediamax-1023:mb-[60px] mediamax-950:text-[18px] mediamax-950:mb-[60px]">
-              {data.about_desc}
-            </p>
-          </div>
+        <div className="p-horizontal">
+          <p className="text-[36px] mediamax-1023:text-[28px] font-bold mediamax-1079:text-[28px] mb-[20px] ">
+            {data.about_title}
+          </p>
+          <p className="font-[inherit] text-[20px] mb-[100px] mediamax-1023:text-[20px] mediamax-1023:mb-[60px] mediamax-950:text-[18px] mediamax-950:mb-[60px]">
+            {data.about_desc}
+          </p>
+        </div>
+        <div className="bg-bg-1 bg-right-bottom bg-no-repeat">
           {/* ------- course objectives ------- */}
           <div className="mb-[60px]">
             <div className="swiper-navigation-header p-horizontal">
               <p className="title">{data.objectives}:</p>
               <div className="swipe-btns">
-                <ArrowRight
-                  onClick={() => swiperLearningRef.current.swiper.slidePrev()}
-                  className="icon"
-                />
                 <ArrowLeft
+                  onClick={() => swiperLearningRef.current.swiper.slidePrev()}
+                  className="icon text-blue"
+                />
+                <ArrowRight
                   onClick={() => swiperLearningRef.current.swiper.slideNext()}
-                  className="icon"
+                  className="icon text-blue"
                 />
               </div>
             </div>
             <Swiper
               ref={swiperLearningRef}
-              spaceBetween={0}
+              spaceBetween={20}
               slidesPerView={1}
               breakpoints={{
                 320: {
@@ -243,46 +242,33 @@ function CourseDetails() {
               modules={[Navigation]}
             >
               {objectives.map(function (obj, index) {
-                if (index % 2 === 0) {
-                  return (
-                    <SwiperSlide key={index}>
-                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-black bg-[#fafafa] max-w-[412px] h-[338px]">
-                        <p className="text-[80px] font-bold mediamax-1023:text-[60px] mediamax-950:text-[40px]">
-                          {index + 1}
-                        </p>
-                        <p className="text-[24px] font-bold mediamax-1023:text-[20px] mediamax-950:text-[18px]">
-                          {obj.objective}
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                  );
-                } else {
-                  return (
-                    <SwiperSlide key={index}>
-                      <div className="flex flex-col items-start justify-center p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px] text-black max-w-[412px] h-[338px] ml-[8px] bg-green shadow-[-8px_8px_0px_#153c3f]">
-                        <p className="text-[80px] font-bold mediamax-1023:text-[60px] mediamax-950:text-[40px]">
-                          {index + 1}
-                        </p>
-                        <p className="text-[24px] font-bold mediamax-1023:text-[20px] mediamax-950:text-[18px]">
-                          {obj.objective}
-                        </p>
-                      </div>
-                    </SwiperSlide>
-                  );
-                }
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="relative flex flex-col items-start justify-center rounded-[4px] text-black shadow-card bg-white max-w-[412px] h-[338px] p-[32px] mediamax-1023:p-[30px] mediamax-1023:max-w-[380px] mediamax-1023:h-[300px] mediamax-950:p-[28px] mediamax-950:max-w-[350px] mediamax-950:h-[280px]">
+                      <GroupFlesh className="absolute top-0 right-0 h-[60%] w-fit" />
+                      <GroupArrow className="absolute bottom-0 left-0 h-[60%] w-fit" />
+                      <p className="text-[64px] text-blue font-bold mediamax-950:text-[40px]">
+                        {index + 1}
+                      </p>
+                      <p className="text-[20px] mediamax-950:text-[18px] line-clamp-3">
+                        {obj.objective}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                );
               })}
             </Swiper>
           </div>
           {/* --------------- Skills gained from this program ------------------ */}
-          <div className="w-full py-[100px] bg-[rgba(20,58,61,5%)] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
-            <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
+          <div className="w-full pb-[64px] p-horizontal">
+            <p className="text-[36px] mediamax-1023:text-[28px] font-bold mediamax-1079:text-[28px] mb-[32px] mediamax-1023:mb-[20px]">
               {data.skills}:
             </p>
-            <div className="flex flex-row flex-wrap items-center justify-start gap-[16px]">
+            <div className="flex flex-row flex-wrap items-center justify-start gap-[12px]">
               {skills.map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-row justify-center items-center py-[14px] px-[36px] w-fit text-black border-[2px] border-black"
+                  className="flex flex-row justify-center items-center py-[14px] px-[36px] w-fit text-[14px] font-bold text-blue rounded-[2px] border-[2px] border-blue"
                 >
                   {item.skill}
                 </div>
@@ -290,35 +276,34 @@ function CourseDetails() {
             </div>
           </div>
           {/* --------------- course content -------------------- */}
-          <div className="relative py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px]">
-            <div className="swiper-navigation-header p-horizontal">
-              <p className="title">محتوى البرنامج</p>
+          <div className="relative pb-[64px]">
+            <div className="flex items-center swiper-navigation-header p-horizontal">
+              <p className="title">Course Content</p>
               <div className="swipe-btns">
-                <ArrowRight
-                  onClick={() =>
-                    swiperProgContentRef.current.swiper.slidePrev()
-                  }
-                  className="icon"
-                />
                 <ArrowLeft
                   onClick={() =>
                     swiperProgContentRef.current.swiper.slideNext()
                   }
-                  className="icon"
+                  className="icon text-blue"
+                />
+                <ArrowRight
+                  onClick={() =>
+                    swiperProgContentRef.current.swiper.slidePrev()
+                  }
+                  className="icon text-blue"
                 />
               </div>
             </div>
             <div className="flex flex-row flex-wrap items-center gap-[36px] py-0 px-[64px] mt-[48px] mediamax-950:flex mediamax-950:flex-wrap mediamax-950:items-center mediamax-950:gap-[20px] mediamax-950:py-0 mediamax-950:px-[64px] mediamax-950:mt-[15px]">
-              <p className="text-[20px] text-black">عناوين البرنامة</p>
               {chaptersTitles.map((el, index) => (
                 <div
                   key={`ctg-${index}`}
                   onClick={() => setselectedTitle(el.label)}
                   className={
-                    "flex items-center justify-center font-[inherit] text-[20px] font-bold h-[55px] py-[14px] px-[32px] mediamax-1023:text-[18px] mediamax-1023:h-[45px] mediamax-1023:py-[12px] mediamax-1023:px-[28px] mediamax-950:text-[16px] mediamax-950:h-[40px] mediamax-950:py-[12px] mediamax-950:px-[28px] outline-none whitespace-nowrap cursor-pointer " +
+                    "relative flex items-center justify-center font-bold font-[inherit] text-[16px] whitespace-nowrap cursor-pointer " +
                     (el.label === selectedTitle
-                      ? "bg-green shadow-strong-shadow"
-                      : "bg-[#f5f5f5]")
+                      ? "text-blue before:absolute before:content-[''] before:h-[2px] before:w-full before:bg-blue before:bottom-0 before:left-0"
+                      : "text-[#D2D2D2]")
                   }
                 >
                   <span>{el.name}</span>
@@ -361,46 +346,40 @@ function CourseDetails() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="w-full px-[20px] flex items items-center justify-center mt-[40px]">
-              <div>
-                {joined ? (
-                  <Link to={"/academy-lessons/course?course_id=" + course_id}>
-                    <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black">
-                      ابدأ دورتك الآن
-                    </div>
-                  </Link>
-                ) : (
-                  <button
-                    disabled={isSubmitting}
-                    onClick={() => enrollToCourse()}
-                    className="w-fit h-[60px] mediamax-1279:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
-                  >
+            <div className="w-full px-[20px] flex items items-center justify-center text-center my-[40px]">
+              {false ? (
+                <Link to={"/academy-lessons/course?course_id=" + course_id}>
+                  <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] rounded-[4px] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-blue-gradient text-white">
+                    Start the course
+                  </div>
+                </Link>
+              ) : (
+                <button
+                  disabled={isSubmitting}
+                  onClick={() => enrollToCourse()}
+                  className="w-full max-w-[640px] h-[60px] mediamax-1279:h-[50px] rounded-[4px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-blue-gradient text-white"
+                >
+                  <span className="w-full">
                     {isSubmitting ? (
-                      <span className="px-[64px] mediamax-1279:px-[40px]">
-                        <RotatingLines
-                          strokeColor="white"
-                          strokeWidth="5"
-                          animationDuration="1"
-                          width="35"
-                          visible={true}
-                        />
-                      </span>
+                      <RotatingLines
+                        strokeColor="white"
+                        strokeWidth="5"
+                        animationDuration="1"
+                        width="35"
+                        visible={true}
+                      />
                     ) : (
-                      <span>انضم للدورة التدريبية</span>
+                      <span>Join Course</span>
                     )}
-                  </button>
-                )}
-              </div>
+                  </span>
+                </button>
+              )}
             </div>
-          </div>
-          {/* ------- devider ------ */}
-          <div className="w-full p-horizontal">
-            <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
           </div>
           {/* --------------- top asked questions ------------- */}
           {questions.length > 0 && (
-            <div className="py-[100px] mediamax-1023:py-[70px] mediamax-950:py-[50px] p-horizontal">
-              <p className="text-[32px] mediamax-1079:text-[24px] mb-[40px]">
+            <div className="pb-[40px] p-horizontal">
+              <p className="text-[36px] mediamax-1023:text-[28px] font-bold mediamax-1079:text-[28px] mb-[32px] mediamax-1023:mb-[20px]">
                 {data.faqs}
               </p>
               {questions.map((item, index) => (
@@ -412,14 +391,10 @@ function CourseDetails() {
               ))}
             </div>
           )}
-          {/* ------- devider ------ */}
-          <div className="w-full p-horizontal">
-            <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
-          </div>
         </div>
         <CallUsBox
-          title="باقي ما جاوبناك؟"
-          description="تواصل معنا لمساعدتك على آلية التسجيل وتوفيرك بمعلومات إضافية"
+          title="Do You Have Any Questions?"
+          description="Contact us to provide you with the necessary information."
         />
       </>
     )

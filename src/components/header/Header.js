@@ -4,7 +4,7 @@ import { ReactComponent as Calendar } from "../../assets/svg/calendarOutline.svg
 import { ReactComponent as Check } from "../../assets/svg/check-circle-greeno-utline.svg";
 import { ReactComponent as Clock } from "../../assets/svg/clock.svg";
 import { EnrollToCourse } from "../../utils/apis/course/CoursePage";
-import { ReactComponent as PlayButton } from "../../assets/svg/play-circle.svg";
+import { ReactComponent as PlayButton } from "../../assets/svg/play.svg";
 import VideoModal from "../videoModal/VideoModal";
 import { RotatingLines } from "react-loader-spinner";
 import { useAuth } from "../../contexts/AuthContext";
@@ -53,45 +53,47 @@ function Header({
   };
 
   return (
-    <>
-      <div className="relative flex flex-row justify-between mediamax-950:flex-col-reverse mediamax-950:justify-center gap-[40px] bg-[#fafafa] py-[100px] mediamax-1279:py-[70px] p-horizontal">
-        <div className="flex-[1] flex flex-col justify-between max-w-[750px]">
+    <div className="bg-header bg-no-repeat bg-cover p-horizontal p-vertical">
+      <div className="relative flex flex-row justify-between rounded-[4px] mediamax-950:flex-col-reverse mediamax-950:justify-center gap-[40px] bg-[#fafafa] p-vertical p-horizontal">
+        <div className="w-[50%] mediamax-950:w-full flex flex-col justify-between max-w-[750px]">
           <div>
-            <p className="text-[48px] leading-[1.2] font-bold mb-[30px] mediamax-1279:mb-[20px] mediamax-1279:text-[32px] mediamax-1023:text-[28px] mediamax-950:text-[24px]">
+            <p className="w-full break-words text-[40px] text-blue leading-[1.2] font-bold mb-[30px] mediamax-1279:mb-[20px] mediamax-1279:text-[32px] mediamax-1023:text-[28px] mediamax-950:text-[24px]">
               {title}
             </p>
-            <p className="text-[20px] mb-[30px] mediamax-1279:text-[18px] mediamax-1279:mb-[20px]">
+            <p className="text-[20px] mb-[30px] line-clamp-6 mediamax-1279:text-[18px] mediamax-1279:mb-[20px]">
               {description}
             </p>
             <div className="flex flex-row flex-nowrap mb-[30px] mediamax-1279:text-[14px] mediamax-1279:mb-[20px]">
-              <Calendar className="w-[24px] h-[24px] ml-[10px] mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
+              <Calendar className="w-[24px] h-[24px] mr-[10px] text-blue mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
               <p>
-                يبدأ البرنامج في تاريخ{" "}
+                Course starts on{" "}
                 <span style={{ fontWeight: "bold" }}>{start_date}</span>
               </p>
             </div>
             <div className="flex flex-row flex-nowrap mb-[30px] mediamax-1279:text-[14px] mediamax-1279:mb-[20px]">
-              <Clock className="w-[24px] h-[24px] ml-[10px] mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
+              <Clock className="w-[24px] h-[24px] mr-[10px] text-blue mediamax-1279:w-[22px] mediamax-1279:h-[22px] mediamax-1279:ml-[10px]" />
               <p>
-                مدة البرنامج{" "}
-                <span style={{ fontWeight: "bold" }}>{duration}</span>، بمعدل{" "}
+                <span>Course lasts </span>
+                <span style={{ fontWeight: "bold" }}>{duration}</span>,{" "}
                 <span style={{ fontWeight: "bold" }}>{learning_average}</span>
+                <span> a week</span>
               </p>
             </div>
           </div>
           {is_course_details ? (
             <div>
               {joined ? (
-                <Link to={"/academy-lessons/course?course_id=" + course_id}>
-                  <div className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black">
-                    ابدأ دورتك الآن
-                  </div>
+                <Link
+                  className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] h-[55px] py-[8px] px-[16px] text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
+                  to={"/academy-lessons/course?course_id=" + course_id}
+                >
+                  <span>Start the course</span>
                 </Link>
               ) : (
                 <button
                   disabled={isSubmitting}
                   onClick={() => enrollToCourse()}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
+                  className="w-full h-[55px] py-[8px] px-[16px] text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
                 >
                   {isSubmitting ? (
                     <RotatingLines
@@ -102,7 +104,7 @@ function Header({
                       visible={true}
                     />
                   ) : (
-                    <span>انضم للبرنامج التدريبي</span>
+                    <span>Join Course</span>
                   )}
                 </button>
               )}
@@ -164,42 +166,19 @@ function Header({
         </div>
         <div
           onClick={() => setPreviewVideoOpen(true)}
-          className="cursor-pointer flex-[1] relative max-w-[580px] max-h-[500px] mediamax-950:max-w-full mediamax-950:max-h-full flex items-center justify-center"
+          className="cursor-pointer w-[50%] mediamax-950:w-full relative max-w-[580px] max-h-[500px] mediamax-950:max-w-full mediamax-950:max-h-full flex items-center justify-center"
         >
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 588 503"
-            fill="url(#imgpattern)"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M584 499H12V36.7648H373.179L436.126 4H584V499Z"
-              stroke="#153C3F"
-              strokeWidth="8"
+          <div className="w-full h-full rounded-[4px] overflow-hidden">
+            <img
+              className="brightness-75 w-full h-full"
+              src={image ? image : require("../../assets/images/noimg.png")}
             />
-            <path
-              d="M4 491V44.5H348L405 11H576V491H4Z"
-              stroke="#00EC8B"
-              strokeWidth="8"
-            />
-            <path d="M12 33L12 500" stroke="#153C3F" strokeWidth="8" />
-            <defs>
-              <pattern id="imgpattern" x="0" y="0" width="1" height="1">
-                <image
-                  className="brightness-[70%]"
-                  width="588"
-                  height="503"
-                  xlinkHref={image}
-                />
-              </pattern>
-            </defs>
-          </svg>
+          </div>
           <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col justify-center items-center">
-            <PlayButton
-              className="text-white h-[56px] w-[56px]"
-              stroke="white"
-            />
-            <p className="text-white font-bold text-[24px]">شغل الفيديو</p>
+            <PlayButton className="text-white h-[50px] w-[40px]" />
+            <p className="text-white font-bold text-[20px] mediamax-860:text-[18px] mt-[20px]">
+              Course Preview
+            </p>
           </div>
         </div>
         <VideoModal
@@ -208,7 +187,7 @@ function Header({
           setPreviewVideoOpen={setPreviewVideoOpen}
         />
       </div>
-    </>
+    </div>
   );
 }
 

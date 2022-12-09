@@ -39,15 +39,17 @@ module.exports = {
       colors: {
         white: "#ffffff",
         red: "red",
-        black: "black",
+        black: "#232323",
         "primary-color": "#3252C1",
         green: "#00ec8b",
         blue: "#3252C1",
         gray: "#F9F9F9",
+        yellow: "#FCC05D",
       },
       backgroundImage: {
         "login-image": "url('./assets/images/login-image.png')",
-        "bg-1": "url('./assets/images/bg.png')",
+        "bg-1": "url('./assets/images/forward-arrows.png')",
+        header: "url('./assets/images/header-bg.png')",
         "blue-gradient": "linear-gradient(64.86deg, #5E45FF 0%, #0028B3 100%)",
       },
       boxShadow: {
@@ -58,7 +60,8 @@ module.exports = {
         "register-btn": "0px 4px 64px 8px rgba(0, 200, 225, 0.1)",
         "nav-bar": "0px 2px 16px 8px rgba(21, 60, 63, 0.05)",
         dark: "8px 16px 32px 0px rgba(21, 60, 63, 0.25)",
-        card: "0px 0px 32px 0px rgba(0, 0, 0, 0.10)",
+        card: "0px 0px 16px 0px rgba(0, 0, 0, 0.05)",
+        statistc: "0px 4px 16px 0px rgba(0, 0, 0, 0.1)",
       },
       keyframes: {
         "animate-width": {
