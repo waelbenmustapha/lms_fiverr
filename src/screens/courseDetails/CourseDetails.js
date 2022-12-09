@@ -347,7 +347,7 @@ function CourseDetails() {
               ))}
             </Swiper>
             <div className="w-full px-[20px] flex items items-center justify-center text-center my-[40px]">
-              {false ? (
+              {joined ? (
                 <Link to={"/academy-lessons/course?course_id=" + course_id}>
                   <div className="w-fit h-[60px] mediamax-1079:h-[50px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] rounded-[4px] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-blue-gradient text-white">
                     Start the course
@@ -359,7 +359,7 @@ function CourseDetails() {
                   onClick={() => enrollToCourse()}
                   className="w-full max-w-[640px] h-[60px] mediamax-1279:h-[50px] rounded-[4px] py-[8px] px-[60px] text-[20px] mediamax-1279:text-[16px] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-blue-gradient text-white"
                 >
-                  <span className="w-full">
+                  <span className="w-full flex items-center justify-center">
                     {isSubmitting ? (
                       <RotatingLines
                         strokeColor="white"
