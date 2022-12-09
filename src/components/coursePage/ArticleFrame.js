@@ -29,7 +29,10 @@ function ArticleFrame({
           <a
             onClick={() => {
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone({"lesson_id":selectedContent.id,"course_id": chapterId}).then(() => fetchCourseData());
+              IsOpenDone({
+                lesson_id: selectedContent.id,
+                course_id: chapterId,
+              }).then(() => fetchCourseData());
             }}
             href={selectedContent.article_url}
             target="_blank"
@@ -45,22 +48,27 @@ function ArticleFrame({
         </>
       ) : (
         <div className="  h-full flex justify-center items-center">
-          <p
+          <div
+            className=" h-[50px]  w-[200px] py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
             onClick={() => {
               setIsOpened(true);
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone({"lesson_id":selectedContent.id,"course_id": chapterId}).then(() => fetchCourseData());
+              IsOpenDone({
+                lesson_id: selectedContent.id,
+                course_id: chapterId,
+              }).then(() => fetchCourseData());
             }}
-            className="bg-[#00ec8b] cursor-pointer p-[20px] w-[200px] text-center font-bold text-[16px]"
-            target="_blank"
-            rel="noreferrer"
           >
-            اقرأ المقال
-          </p>
+            <p className="text-[16px] text-white font-bold ">Read Article</p>
+          </div>
+
           <a
             onClick={() => {
               setselectedContent({ ...selectedContent, is_complete: true });
-              IsOpenDone({"lesson_id":selectedContent.id,"course_id": chapterId}).then(() => fetchCourseData());
+              IsOpenDone({
+                lesson_id: selectedContent.id,
+                course_id: chapterId,
+              }).then(() => fetchCourseData());
             }}
             href={selectedContent.article_url}
             target="_blank"
