@@ -1,19 +1,8 @@
-:root {
-  --text-color: #153c3f;
-  --text-green: #00ec8b;
-  --bg-one: #00c8e1;
-  --bg-two: #00ec8b;
-  --bg-three: #153c3f;
-  --bg-footer: #153c3f;
-  --color-footer: #ffffff;
-}
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, "regular", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  color: var(--text-color);
 }
 
 * {
