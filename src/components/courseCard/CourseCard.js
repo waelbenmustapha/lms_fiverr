@@ -17,15 +17,40 @@ function CourseCard({ program }) {
     setIsCopied(true);
   }
 
+  // function for day nth suffix
+  const nth = function (d) {
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
   // convert date to arabic date
-  const convertDateToArabic = (input) => {
-    var date = new Date(input);
-    var dateString = date.toLocaleDateString("ar-EG", {
-      // year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-    return dateString;
+  const convertDate = (input) => {
+    const fortnightAway = new Date(input);
+    const date = fortnightAway.getDate();
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ][fortnightAway.getMonth()];
+    return `${month} ${date}${nth(date)}`;
   };
 
   // disappear after 2 second
@@ -45,7 +70,9 @@ function CourseCard({ program }) {
               <Calendar className="w-[15px] h-[15px] mr-[10px] text-blue" />
               <span>
                 Starts on{" "}
-                <span className=" font-bold">{program.start_date}</span>
+                <span className=" font-bold">
+                  {convertDate(program.start_date)}
+                </span>
               </span>
             </div>
           )}

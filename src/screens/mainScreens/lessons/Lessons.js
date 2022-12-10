@@ -62,20 +62,40 @@ function Lessons() {
     }
   }, []);
 
-  // convert date to arabic date
-  const convertDateToArabic = (input) => {
-    var date = new Date(input);
-    var dateString = date.toLocaleDateString("ar-EG", {
-      // year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-    return dateString;
+  // function for day nth suffix
+  const nth = function (d) {
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
   };
 
-  // convert Number to Arabic Number
-  const convertNumberToArabic = (input) => {
-    return input.toLocaleString("ar-EG");
+  // convert date to arabic date
+  const convertDate = (input) => {
+    const fortnightAway = new Date(input);
+    const date = fortnightAway.getDate();
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ][fortnightAway.getMonth()];
+    return `${month} ${date}${nth(date)}`;
   };
 
   // filter And Set Top Courses
@@ -154,7 +174,7 @@ function Lessons() {
         description={featureCourse.description}
         image={featureCourse.thumbnail}
         video={featureCourse.preview_video}
-        start_date={featureCourse.start_date}
+        start_date={convertDate(featureCourse.start_date)}
         duration={featureCourse.duration_by_weeks + " weeks"}
         learning_average={featureCourse.duration_by_hours_per_week + " hours"}
         is_enrolled={featureCourse.is_enrolled}

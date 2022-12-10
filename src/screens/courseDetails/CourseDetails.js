@@ -116,20 +116,40 @@ function CourseDetails() {
     return items;
   }, [courseContent]);
 
-  // convert date to arabic date
-  const convertDateToArabic = (input) => {
-    var date = new Date(input);
-    var dateString = date.toLocaleDateString("ar-EG", {
-      // year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-    return dateString;
+  // function for day nth suffix
+  const nth = function (d) {
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
   };
 
-  // convert Number to Arabic Number
-  const convertNumberToArabic = (input) => {
-    return input.toLocaleString("ar-EG");
+  // convert date to arabic date
+  const convertDate = (input) => {
+    const fortnightAway = new Date(input);
+    const date = fortnightAway.getDate();
+    const month = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ][fortnightAway.getMonth()];
+    return `${month} ${date}${nth(date)}`;
   };
 
   // get all Course Data
@@ -144,7 +164,7 @@ function CourseDetails() {
       )
       .then((res) => {
         setData(res.data);
-        convertDateToArabic(res.data.start_date);
+        convertDate(res.data.start_date);
         setObjectives(res.data.objective_desc);
         setSkills(res.data.skills_desc);
         setCourseContent(res.data.chapters);
