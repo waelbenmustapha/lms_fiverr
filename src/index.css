@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  /*----------------------------------------------------*/
   .logo {
     @apply w-[90px] h-[35px] cursor-pointer;
   }
@@ -13,7 +14,7 @@
     @apply py-[80px] mediamax-1079:py-[64px] mediamax-767:py-[40px];
   }
   .input-formit {
-    @apply px-6 h-[50px] w-full  bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E];
+    @apply px-6 h-[53px] placeholder:text-[14px] rounded-[4px] w-full border-[#D2D2D2] border-[1px] focus:bg-white outline-none;
   }
   .links {
     @apply block mediamax-950:hidden;

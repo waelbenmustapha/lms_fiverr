@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Close } from "../../assets/svg/close.svg";
 
-function Notification({ id, title, percentage, progress_time }) {
+function Notification({ id, title, percentage, progress }) {
   // colse or open notification
   const [isNotifOpen, setIsNotifOpen] = useState(true);
 
@@ -19,7 +19,7 @@ function Notification({ id, title, percentage, progress_time }) {
           <div className="flex flex-row items-center justify-between mb-[16px]">
             <p className="text-[16px] text-black">
               <span className="text-blue mr-[16px]">{percentage}%</span>
-              <span className="font-bold text-blue mr-[4px]">3/25</span>
+              <span className="font-bold text-blue mr-[4px]">{progress}</span>
               <span>Hours Completed</span>
             </p>
             <div
@@ -29,7 +29,7 @@ function Notification({ id, title, percentage, progress_time }) {
               <Close className="w-[15px] h-[15px]" />
             </div>
           </div>
-          <div className="flex flex-row items-center justify-between mediamax-860:text-center mediamax-860:flex-col mediamax-860:gap-[16px]">
+          <div className="flex flex-row items-center justify-between mediamax-650:text-center mediamax-650:flex-col mediamax-650:gap-[16px]">
             <div>
               <p className="text-[20px] font-bold mediamax-950:text-[18px]">
                 Current Course
@@ -39,7 +39,7 @@ function Notification({ id, title, percentage, progress_time }) {
               </p>
             </div>
             <Link to={`/academy-lessons/course?course_id=${id}`}>
-              <button className="font-[inherit] text-[16px] font-bold whitespace-nowrap py-[14px] px-[24px] mediamax-1279:py-[8px] mediamax-1279:px-[20px] mediamax-950:text-[14px] mediamax-950:py-[8px] mediamax-950:px-[24px] rounded-[4px] text-white bg-blue-gradient outline-none border-none cursor-pointer">
+              <button className="font-[inherit] text-[16px] font-bold whitespace-nowrap py-[14px] px-[24px] mediamax-950:text-[14px] rounded-[4px] text-white bg-blue-gradient outline-none border-none cursor-pointer">
                 Continue Course
               </button>
             </Link>
