@@ -13,8 +13,8 @@ import "swiper/css/navigation";
 import CourseCard from "../courseCard/CourseCard";
 
 // Import SVG
-import { ReactComponent as ArrowLeft } from "../../assets/svg/arrowLeft.svg";
-import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
+import { ReactComponent as ArrowLeft } from "../../assets/svg/double-arrow-left.svg";
+import { ReactComponent as ArrowRight } from "../../assets/svg/double-arrow-right.svg";
 import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation]);
@@ -24,17 +24,17 @@ function TopPrograms({ topPrograms }) {
   const swiperRef = useRef(null);
 
   return (
-    <div className="top-programs mb-[40px]">
+    <div className="mb-[40px]">
       <div className="swiper-navigation-header p-horizontal">
-        <p className="title">البرامج الأكثر شيوعًا</p>
+        <p className="title">Popular Courses</p>
         <div className="swipe-btns">
-          <ArrowRight
-            onClick={() => swiperRef.current.swiper.slidePrev()}
-            className="icon"
-          />
           <ArrowLeft
+            onClick={() => swiperRef.current.swiper.slidePrev()}
+            className="icon text-blue"
+          />
+          <ArrowRight
             onClick={() => swiperRef.current.swiper.slideNext()}
-            className="icon"
+            className="icon text-blue"
           />
         </div>
       </div>
@@ -71,10 +71,10 @@ function TopPrograms({ topPrograms }) {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="flex flex-row items-center justify-end w-full py-[10px] p-horizontal">
+      <div className="flex flex-row items-center justify-start w-full py-[10px] p-horizontal">
         <Link to={"/academy-lessons/all-courses"}>
-          <button className="font-[inherit] text-[18px] mediamax-1079:text-[16px] mediamax-767:text-[14px] font-bold text-white bg-black whitespace-nowrap py-[14px] px-[24px] mediamax-1079:py-[12px] mediamax-767:py-[8px]  mediamax-1079:px-[24px] mediamax-767:px-[20px] outline-none border-none cursor-pointer">
-            اكتشف جميع البرامج
+          <button className="font-[inherit] text-[16px] mediamax-767:text-[14px] font-bold text-white bg-blue-gradient rounded-[4px] whitespace-nowrap py-[14px] px-[32px] mediamax-1079:py-[12px] mediamax-767:py-[8px]  mediamax-1079:px-[28px] mediamax-767:px-[20px] outline-none border-none cursor-pointer">
+            Discover All Courses
           </button>
         </Link>
       </div>

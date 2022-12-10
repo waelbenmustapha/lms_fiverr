@@ -84,7 +84,7 @@ function Header({
             <div>
               {joined ? (
                 <Link
-                  className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] h-[55px] py-[8px] px-[16px] text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
+                  className="animate-[animate-width_0.65s_ease-in-out] min-w-fit w-[60%] py-[16px] px-[16px] text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
                   to={"/academy-lessons/course?course_id=" + course_id}
                 >
                   <span>Start the course</span>
@@ -93,7 +93,7 @@ function Header({
                 <button
                   disabled={isSubmitting}
                   onClick={() => enrollToCourse()}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
+                  className="w-full py-[16px] px-[16px] text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
                 >
                   {isSubmitting ? (
                     <RotatingLines
@@ -112,30 +112,43 @@ function Header({
           ) : (
             <div>
               {joined ? (
-                <button
-                  disabled={isSubmitting}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#153C3F] text-[#00ec8b]"
-                >
-                  {isSubmitting ? (
-                    <RotatingLines
-                      strokeColor="white"
-                      strokeWidth="5"
-                      animationDuration="1"
-                      width="35"
-                      visible={true}
-                    />
-                  ) : (
-                    <div className="flex flex-row gap-[10px] items-center">
-                      <Check />
-                      <p>تم انضمامك للبرنامج بنجاح!</p>
-                    </div>
-                  )}
-                </button>
+                <>
+                  <button
+                    disabled={isSubmitting}
+                    className="w-full py-[16px] px-[16px] text-[16px] mediamax-767:text-[14px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-[#E7F4E5] text-[#1E860F]"
+                  >
+                    {isSubmitting ? (
+                      <RotatingLines
+                        strokeColor="white"
+                        strokeWidth="5"
+                        animationDuration="1"
+                        width="35"
+                        visible={true}
+                      />
+                    ) : (
+                      <div className="flex flex-row gap-[8px] items-center">
+                        <Check />
+                        <p>
+                          You have been successfully registered in the course !
+                        </p>
+                      </div>
+                    )}
+                  </button>
+                  <div className="w-fit text-[16px] mediamax-767:text-[14px] mt-3">
+                    You can now view or{" "}
+                    <Link
+                      to={`/academy-lessons/course-details?course_id=${course_id}`}
+                      className="font-bold cursor-pointer text-yellow"
+                    >
+                      Start the course
+                    </Link>
+                  </div>
+                </>
               ) : (
                 <button
                   disabled={isSubmitting}
                   onClick={() => enrollToCourse()}
-                  className="w-full h-[55px] py-[8px] px-[16px] text-[20px] mediamax-1279:text-[16px] mediamax-1279:h-[40px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer bg-[#00ec8b] text-black"
+                  className="w-full py-[16px] px-[16px] text-[16px] font-[inherit] font-bold text-center flex items-center justify-center no-underline outline-none border-none cursor-pointer rounded-[4px] bg-blue-gradient text-white"
                 >
                   {isSubmitting ? (
                     <RotatingLines
@@ -146,20 +159,9 @@ function Header({
                       visible={true}
                     />
                   ) : (
-                    <span>انضم للبرنامج التدريبي</span>
+                    <span>Join Course</span>
                   )}
                 </button>
-              )}
-              {joined && (
-                <div className="w-fit text-[16px] mt-3">
-                  يمكنك الآن عرض البرنامج والبدء فيه..
-                  <Link
-                    to={`/academy-lessons/course-details?course_id=${course_id}`}
-                    className="font-bold cursor-pointer text-green"
-                  >
-                    ابدأ البرنامج
-                  </Link>
-                </div>
               )}
             </div>
           )}
