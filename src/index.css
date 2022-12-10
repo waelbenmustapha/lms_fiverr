@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  /*----------------------------------------------------*/
   .logo {
     @apply w-[90px] h-[35px] cursor-pointer;
   }

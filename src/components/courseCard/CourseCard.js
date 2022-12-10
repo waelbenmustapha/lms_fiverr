@@ -36,7 +36,7 @@ function CourseCard({ program }) {
   }, [isCopied]);
 
   return (
-    <div className="flex flex-col relative max-w-[475px] h-[440px] rounded-[4px] overflow-hidden bg-white shadow-card hover:shadow-dark">
+    <div className="course-card group text-black hover:text-white flex flex-col relative max-w-[475px] h-[440px] rounded-[4px] overflow-hidden bg-white shadow-card hover:shadow-dark">
       <div className="relative w-full h-[180px]">
         <img className="w-full h-full" src={program.thumbnail} alt="course" />
         <div className="absolute bottom-[10px] left-[16px] flex flex-row flex-wrap">
@@ -65,7 +65,7 @@ function CourseCard({ program }) {
       <div className="flex-1 w-full p-[16px] flex flex-col justify-between">
         <div>
           {program.category && (
-            <div className="w-fit text-[10px] text-white bg-blue rounded-[4px] font-bold flex flex-row flex-wrap justify-center items-center py-[8px] px-[16px] mb-[10px]">
+            <div className="course-card-category w-fit text-[10px] text-white group-hover:text-blue bg-blue group-hover:bg-yellow rounded-[4px] font-bold flex flex-row flex-wrap justify-center items-center py-[8px] px-[16px] mb-[10px]">
               <span>{program.category}</span>
             </div>
           )}
@@ -77,14 +77,14 @@ function CourseCard({ program }) {
           </div>
         </div>
         {program.is_comingsoon === true ? (
-          <div className="w-full h-[50px] py-[8px] px-[16px] bg-[#e4e4e4] rounded-[4px] font-[inherit] text-[16px] mediamax-1079:text-[14px] mediamax-1079:h-[40px] mediamax-1079:py-[8px] mediamax-1079:px-[14px] text-center flex items-center justify-center whitespace-nowrap">
+          <div className="w-full h-[50px] py-[8px] px-[16px] text-blue bg-[#e4e4e4] rounded-[4px] font-[inherit] text-[16px] mediamax-1079:text-[14px] mediamax-1079:h-[40px] mediamax-1079:py-[8px] mediamax-1079:px-[14px] text-center flex items-center justify-center whitespace-nowrap">
             <span>Coming soon...</span>
           </div>
         ) : (
           <div className="flex flex-row justify-center items-center w-full gap-[16px]">
             <Link
               to={`/academy-lessons/course-details?course_id=${program.id}`}
-              className="flex-[1] h-[50px] py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
+              className="flex-[1] h-[50px] py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-transparent outline-none bg-blue group-hover:bg-white text-white group-hover:text-blue"
             >
               Join Course
             </Link>
@@ -93,7 +93,7 @@ function CourseCard({ program }) {
                 onClick={() => {
                   copyToClipboard();
                 }}
-                className="flex-[1] h-[50px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[14px] text-blue bg-white font-bold outline-none border-[1px] rounded-[4px] cursor-pointer whitespace-nowrap border-blue"
+                className="group-hover:text-white text-blue flex-[1] h-[50px] py-[8px] px-[16px] flex flex-row items-center justify-center gap-[8px] font-[inherit] text-[14px]  font-bold outline-none border-[1px] rounded-[4px] cursor-pointer whitespace-nowrap border-blue group-hover:border-white"
               >
                 <Share />
                 <span>Share Course</span>
@@ -101,7 +101,7 @@ function CourseCard({ program }) {
             ) : (
               <button
                 disabled
-                className="flex-[1] h-[50px] py-[8px] px-[16px] bg-[#f5f5f5] font-[inherit] text-[14px] text-blue font-bold flex flex-row items-center justify-center gap-[8px] outline-none border-[1px] rounded-[4px] cursor-pointer whitespace-nowrap border-blue"
+                className="text-blue flex-[1] h-[50px] py-[8px] px-[16px] bg-[#f5f5f5] font-[inherit] text-[14px] font-bold flex flex-row items-center justify-center gap-[8px] outline-none border-[1px] rounded-[4px] cursor-pointer whitespace-nowrap border-blue"
               >
                 <span>Copied !!</span>
               </button>

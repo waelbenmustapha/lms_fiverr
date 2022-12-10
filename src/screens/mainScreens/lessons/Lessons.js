@@ -49,18 +49,19 @@ function Lessons() {
       .catch(() => console.log("error occured"));
   }
 
-   useEffect(() => {
-     if (email && name && token) {
-       if (localStorage.getItem("motherAppToken") === token) {
-         console.log("same token");
-       } else {
-         localStorage.setItem("motherAppToken", token);
-         authentic();
-       }
-     } else {
-       auth.logout();
-     }
-   }, []);
+  useEffect(() => {
+    if (email && name && token) {
+      if (localStorage.getItem("motherAppToken") === token) {
+        console.log("same token");
+      } else {
+        localStorage.setItem("motherAppToken", token);
+        authentic();
+      }
+    } else {
+      auth.logout();
+    }
+  }, []);
+
   // convert date to arabic date
   const convertDateToArabic = (input) => {
     var date = new Date(input);
@@ -104,14 +105,16 @@ function Lessons() {
   // filter And Set Running Course on notification
   const filterAndSetNotificationCourse = (data) => {
     const filtred = data.find((el) => el.is_enrolled === true);
-    setNotificationCourse(filtred);
-    getProgress(filtred.id);
+    if (filtred) {
+      setNotificationCourse(filtred);
+      getProgress(filtred.id);
+    }
   };
 
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/361ed3d7-a811-4e7d-ac08-40ebe3e6f5ad")
+      .get("https://mocki.io/v1/bb2ae6a6-3408-4b59-ac48-17137264420b")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
@@ -130,7 +133,7 @@ function Lessons() {
 
   if (loading) {
     return (
-      <div className="h-[calc(100vh-200px)] w-screen flex justify-center items-center">
+      <div className="h-[calc(100vh-200px)] w-full flex justify-center items-center">
         <Loader />
       </div>
     );
@@ -142,7 +145,7 @@ function Lessons() {
           id={notificationCourse.id}
           title={notificationCourse.title}
           percentage={coursePercentageProgress}
-          progress_time={"أتممت ٣ ساعات من أصل ٢٥ ساعة"}
+          progress={"3/25"}
         />
       )}
       <Header
@@ -151,34 +154,29 @@ function Lessons() {
         description={featureCourse.description}
         image={featureCourse.thumbnail}
         video={featureCourse.preview_video}
-        start_date={convertDateToArabic(featureCourse.start_date)}
-        duration={
-          convertNumberToArabic(featureCourse.duration_by_weeks) + " أسابيع"
-        }
-        learning_average={
-          convertNumberToArabic(featureCourse.duration_by_hours_per_week) +
-          " ساعات أسبوعيًا"
-        }
+        start_date={featureCourse.start_date}
+        duration={featureCourse.duration_by_weeks + " weeks"}
+        learning_average={featureCourse.duration_by_hours_per_week + " hours"}
         is_enrolled={featureCourse.is_enrolled}
       />
       <ScoreBox
         title1={`${featureCourse.statistics_one}+`}
-        description1="برنامج متاح"
+        description1="Students"
         title2={`${featureCourse.statistics_two}+`}
-        description2="تصينف وفئة"
+        description2="Available Courses"
         title3={`${featureCourse.statistics_three}+`}
-        description3="طالب وطالبة"
+        description3="Categories"
       />
-      <div className="w-full px-0 py-[100px] mediamax-1279:py-[70px] bg-bg-1 bg-no-repeat">
+      <div className="w-full bg-bg-1 bg-right-bottom bg-no-repeat">
         <TopPrograms topPrograms={topCourses} />
         <div className="w-full p-horizontal mb-[40px]">
-          <div className="w-full h-[1px] bg-[rgba(21,60,63,0.1)]"></div>
+          <div className="w-full h-[1px] bg-[#E6E6E6]"></div>
         </div>
         <Programs programs={allCourses} />
       </div>
       <CallUsBox
-        title="تواصل معنا؟"
-        description="تواصل معنا لمساعدتك على تحديد الدورة الأنسب لك"
+        title="Do You Have Any Questions?"
+        description="Contact us to provide you with the necessary information."
       />
     </>
   );

@@ -34,9 +34,16 @@ body {
     padding: 40px 20px !important;
   }
 }
-.backgroundblue{
-  background: linear-gradient(64.86deg, #5E45FF 0%, #0028B3 100%);
-/* table shadow option */
+.backgroundblue {
+  background: linear-gradient(64.86deg, #5e45ff 0%, #0028b3 100%);
+  /* table shadow option */
 
-box-shadow: 0px 3px 4px rgba(35, 35, 35, 0.05);
+  box-shadow: 0px 3px 4px rgba(35, 35, 35, 0.05);
+}
+
+/*-----------------Course Card -----------------------*/
+.course-card:hover {
+  background: url("./assets/images/Arrows.png"),
+    linear-gradient(63.12deg, #5e45ff 28.56%, #102dc0 124.3%, #0028b3 147.16%);
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
 }

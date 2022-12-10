@@ -1,10 +1,8 @@
-import React from 'react'
-import { RotatingLines } from 'react-loader-spinner'
+import React from "react";
+import { RotatingLines } from "react-loader-spinner";
 
 function Loader() {
-  return (
-    <div><RotatingLines/></div>
-  )
+  return <RotatingLines strokeColor="#3252C1" />;
 }
 
-export default Loader
+export default Loader;
