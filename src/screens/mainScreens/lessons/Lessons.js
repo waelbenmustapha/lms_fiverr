@@ -49,18 +49,18 @@ function Lessons() {
       .catch(() => console.log("error occured"));
   }
 
-    // useEffect(() => {
-    //   if (email && name && token) {
-    //     if (localStorage.getItem("motherAppToken") === token) {
-    //       console.log("same token");
-    //     } else {
-    //       localStorage.setItem("motherAppToken", token);
-    //       authentic();
-    //     }
-    //   } else {
-    //     auth.logout();
-    //   }
-    // }, []);
+   useEffect(() => {
+     if (email && name && token) {
+       if (localStorage.getItem("motherAppToken") === token) {
+         console.log("same token");
+       } else {
+         localStorage.setItem("motherAppToken", token);
+         authentic();
+       }
+     } else {
+       auth.logout();
+     }
+   }, []);
   // convert date to arabic date
   const convertDateToArabic = (input) => {
     var date = new Date(input);
@@ -111,7 +111,7 @@ function Lessons() {
   // get all courses
   const getAllCourses = () => {
     axiosToken
-      .get("https://mocki.io/v1/1910392a-f6e8-4d1c-93b6-c437f6efd4cd")
+      .get("https://mocki.io/v1/78837451-fc7c-42a4-b3ad-965038118575")
       .then((res) => {
         setAllCourses(res.data.items);
         filterAndSetTopCourses(res.data.items);
