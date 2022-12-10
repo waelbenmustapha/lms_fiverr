@@ -198,14 +198,14 @@ function CoursePage() {
                       onClick={() => {
                         setPlaying(!playing);
                       }}
-                      className="h-[50px] absolute bottom-[20px] right-[50%] w-[50px] opacity-80 cursor-pointer z-[999]"
+                      className="h-[50px] absolute bottom-[20px] right-[50%] w-[50px] opacity-80 cursor-pointer z-[1]"
                       src={pause}
                     />
                     <div
                       onClick={() => {
                         setPlaying(!playing);
                       }}
-                      className="h-[50px] text-[#000] bg-slate-100 px-3 rounded flex justify-center items-center text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[999]"
+                      className="h-[50px] text-[#000] bg-slate-100 px-3 rounded flex justify-center items-center text-[24px] absolute bottom-[20px] right-[0px]  opacity-80 cursor-pointer z-[1]"
                     >
                       <p>
                         {timeconvertorhhmmss(
@@ -233,7 +233,7 @@ function CoursePage() {
                             playerRef.current?.getCurrentTime() - 30
                           )
                         }
-                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
+                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[1]"
                         src={rewind30}
                       />
                       <img
@@ -242,7 +242,7 @@ function CoursePage() {
                             playerRef.current?.getCurrentTime() - 5
                           )
                         }
-                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[999]"
+                        className="h-[50px] opacity-80  w-[50px] cursor-pointer z-[1]"
                         src={rewind5}
                       />
                     </div>

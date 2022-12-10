@@ -1,96 +1,114 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
-import { ReactComponent as BackArrow } from "../../assets/svg/backArrow.svg";
-import { Formik, ErrorMessage, Form, Field } from "formik";
+import React, { useState } from "react";
+import {  useNavigate } from "react-router-dom";
+import {  useFormik } from "formik";
 import * as Yup from "yup";
-import { forgetPass } from "../../utils/apis/Auth";
-function ForgotPassword() {
-  const [success, setSuccess] = useState(false);
-  const loginSchema = Yup.object().shape({
-    email: Yup.string().email("بريد الكتروني خاطئ").required("حقل مطلوب"),
-  });
-  return (
-    <div className="relative w-full min-h-screen flex items-center justify-center py-[40px] p-horizontal">
-      <Link to={"/"}>
-        <img
-          className="w-[110px] h-[50px] absolute top-[40px] right-[40px] mediamax-767:right-[20px]"
-          src={logo}
-          alt="logo"
-        />
-      </Link>
-      <div className="relative w-full max-w-[400px] h-full flex flex-col justify-center px-auto">
-        <Link
-          to={"/login"}
-          className="flex flex-row items-center flex-nowrap w-fit text-primary-one text-[24px] mb-[20px]"
-        >
-          <BackArrow className="w-[30px] h-[16px] ml-[8px]" />
-          <span className="relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-black before:bottom-[2px] right-[0px]">
-            الرجوع
-          </span>
-        </Link>
-        <h3 className="text-primary-one text-3xl font-bold mb-[20px]">
-          إعادة تعيين كلمة المرور
-        </h3>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-          }}
-          validationSchema={loginSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-            forgetPass({
-              email: "eve.holt@reqres.in",
-              password: "testpassforapi",
-            })
-              .then((res) => setSuccess(true))
-              .catch(() => alert("حدث خطأ , الرجاء اعادة المحاولة"));
+import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
 
-            setSubmitting(false);
-          }}
-        >
-          {({
-            isSubmitting,
-            /* and other goodies */
-          }) => (
-            <Form>
+
+const ForgotPassword = () => {
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate()
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email format").required("Required"),
+    }),
+    onSubmit: function (values) {
+      // submit password if match the requirements and show success message
+
+      console.log(values);
+      setSuccess(true)
+    },
+  });
+
+  return (
+    <>
+      {/** background image */}
+      {/* <img
+        className="fixed top-0 right-0 z-[-10] w-auto h-screen"
+        src="/bgblue.png"
+        style={{}}
+        alt="bg"
+      /> */}
+      <div
+        style={{
+          backgroundImage: "url(/bgblue.png)",
+          backgroundAttachment: "fixed",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        }}
+        className="relative w-full min-h-screen flex items-center justify-center py-[40px] px-[185px] horizontal-padding"
+      >
+        <div className="relative w-full h-full flex flex-col justify-center py-[90px] max-w-[1100px] items-center rounded-[4px]  bg-white">
+          <div className="max-w-[500px]">
+            <p onClick={()=>navigate(-1)}  className="font-bold cursor-pointer ">
+              {"<<"} <span className="font-[400] underline">Back</span>
+            </p>
+            <p className="text-[#5E45FF] font-bold text-[32px]">
+              Reset Your Password
+            </p>
+            <p className="text-[20px] mb-[32px]">
+              Enter your email below to receive a password reset email
+            </p>
+
+            <form onSubmit={formik.handleSubmit}>
               <div className="flex flex-col">
-                <div className="mb-[64px] mediamax-767:mb-[40px]">
-                  <p className="text-[16px] font-bold text-black mb-[8px]">
-                    البريد الالكتروني
-                  </p>
-                  <Field
-                    className="px-6 w-full h-[50px] bg-[#F8F8F8] focus:bg-white outline-none focus:border-[1px] focus:border-[#203B3E]"
-                    placeholder="أدخل بريدك الالكتروني.."
-                    name="email"
-                    type="email"
-                  />
-                  <ErrorMessage
-                    className="text-[#cc0000] text-[14px]"
-                    name="email"
-                    component="div"
-                  />
+                <div className="mb-[40px]">
+                  <p className="text-[16px] mb-[8px]">Email</p>
+                  <div className="relative">
+                   
+                    <input
+                      style={
+                        formik.touched.email && formik.errors.email
+                          ? { borderColor: "#cc0000", color: "#cc0000" }
+                          : { borderColor: "#DFDFDF" }
+                      }
+                      className="w-full h-[62px] bg-white rounded-[1px] px-[20px] placeholder:text-placeholder outline-none border-[1px]"
+                      placeholder="Enter your email"
+                      name="email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
+                    />
+                  </div>
+                  {formik.touched.email &&
+                    formik.errors.email && (
+                      <div className="text-[#cc0000] text-[14px]">
+                        {formik.errors.email}
+                      </div>
+                    )}
                 </div>
+
                 <button
+                  className=" h-[50px] mt-[20px] w-full py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-[50px] font-bold text-center text-[20px] bg-green text-black outline-none border-none"
                 >
-                  <span>إرسال</span>
+                  <p className="text-[16px] text-white font-bold ">
+                    Reset Password
+                  </p>
                 </button>
               </div>
-            </Form>
-          )}
-        </Formik>
-        {success && (
-          <div className="text-[16px] font-bold p-[24px] mt-[16px] bg-[#F8F8F8]">
-            <p>تم إرسال طلب تعديل كلمة المرور على بريدك الالكتروني</p>
+            </form>
+
+            {success && (
+              <>
+                <div className="text-[16px] p-[24px] mt-[16px] bg-green/10 flex-row flex">
+                  <div className="text-green flex flex-row mb-[8px]">
+                    <CheckCircle className="mr-[8px]" />
+                  </div>
+                  <p>An email has been sent , please check your mailbox</p>
+                </div>
+                
+              </>
+            )}
           </div>
-        )}
+        </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default ForgotPassword;

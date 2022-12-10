@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
@@ -13,6 +13,7 @@ const NewPassword = () => {
   const [passwordType, setPasswordType] = useState("password");
   const [passwordConfirmationType, setPasswordConfirmationType] =
     useState("password");
+    const navigate = useNavigate()
 
   const [passValidation, setPassValidation] = useState(null);
   const togglePassword = () => {
@@ -111,7 +112,7 @@ const NewPassword = () => {
       >
         <div className="relative w-full h-full flex flex-col justify-center py-[90px] max-w-[1100px] items-center rounded-[4px]  bg-white">
           <div className="max-w-[600px]">
-            <p className="font-bold cursor-pointer ">{"<<"} <span className="font-[400] underline">Back</span></p>
+            <p onClick={()=>navigate(-1)}  className="font-bold cursor-pointer ">{"<<"} <span className="font-[400] underline">Back</span></p>
             <p className="text-[#5E45FF] font-bold text-[32px]">Reset Your Password</p>
             <p className="text-[20px] mb-[32px]">
               Enter your new password below

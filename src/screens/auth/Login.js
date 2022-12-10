@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
@@ -11,23 +11,12 @@ import axios from "axios";
 const Login = () => {
   const [success, setSuccess] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordConfirmationType, setPasswordConfirmationType] =
-    useState("password");
-
-  const [passValidation, setPassValidation] = useState(null);
+  const navigate = useNavigate()
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
     } else {
       setPasswordType("password");
-    }
-  };
-
-  const togglePasswordConfirmation = () => {
-    if (passwordConfirmationType === "password") {
-      setPasswordConfirmationType("text");
-    } else {
-      setPasswordConfirmationType("password");
     }
   };
 
@@ -39,7 +28,6 @@ const Login = () => {
         if (res.status === 200) {
           console.log(res);
           setSuccess(true);
-          setPassValidation("");
         } else {
           console.log(res);
         }
@@ -50,44 +38,15 @@ const Login = () => {
   const formik = useFormik({
     initialValues: {
       password: "",
-      passwordConfirmation: "",
+      email: "",
     },
     validationSchema: Yup.object({
-      password: Yup.string()
-        .required("Required")
-        .test("test name", "validation failure message", function (e) {
-          let hasNumber = /\d/.test(e);
-          let hasUpper = /[A-Z]/.test(e);
-          let hasLower = /[a-z]/.test(e);
-          let morethaneightchar = e?.length >= 8;
-
-          let specialChar = /[!@#$%^&*]/.test(e);
-          if (
-            hasNumber &&
-            hasUpper &&
-            hasLower &&
-            specialChar &&
-            morethaneightchar
-          ) {
-            setPassValidation("strong");
-          } else if (hasNumber && (hasUpper || hasLower) && morethaneightchar) {
-            setPassValidation("medium");
-          } else {
-            setPassValidation("weak");
-          }
-          return true;
-        }),
-      passwordConfirmation: Yup.string()
-        .required("Required")
-        .oneOf([Yup.ref("password"), null], "Passowrds do not match!"),
+      email: Yup.string().email("Invalid email format").required("Required"),
+      password: Yup.string().required("Required"),
     }),
     onSubmit: function (values) {
       // submit password if match the requirements and show success message
-      if (passValidation !== "weak") {
-        console.log(`password: ${values.password}`);
-        console.log(`passwordConfirmation: ${values.passwordConfirmation}`);
-        updatePassword(values.password);
-      }
+      console.log(values);
     },
   });
 
@@ -111,49 +70,52 @@ const Login = () => {
       >
         <div className="relative w-full h-full flex flex-col justify-center py-[90px] max-w-[1100px] items-center rounded-[4px]  bg-white">
           <div className="max-w-[600px]">
-            <p className="font-bold cursor-pointer ">{"<<"} <span className="font-[400] underline">Back</span></p>
-            <p className="text-[#5E45FF] font-bold text-[32px]">Reset Your Password</p>
+            <p onClick={()=>navigate(-1)} className="font-bold cursor-pointer ">
+              {"<<"} <span className="font-[400] underline">Back</span>
+            </p>
+            <p className="text-[#5E45FF] font-bold text-[32px]">Login</p>
             <p className="text-[20px] mb-[32px]">
-              Enter your new password below
+              Welcome back! Please enter your details.
             </p>
 
             <form onSubmit={formik.handleSubmit}>
               <div className="flex flex-col">
                 <div className="mb-[20px]">
-                  <p className="text-[16px] mb-[8px]">New Password</p>
+                  <p className="text-[16px] mb-[8px]">Email</p>
                   <div className="relative">
-                    <div
+                    <input
                       style={
-                        formik.touched.password && formik.errors.password
-                          ? { color: "#cc0000" }
-                          : passValidation === "strong"
-                          ? { color: "#3ECE44" }
-                          : passValidation === "medium"
-                          ? { color: "#4397D8" }
-                          : passValidation === "weak"
-                          ? { color: "#FDB236" }
-                          : { color: "#D3D3D3" }
+                        formik.touched.email && formik.errors.email
+                          ? { borderColor: "#cc0000", color: "#cc0000" }
+                          : { borderColor: "#DFDFDF" }
                       }
-                      className="flex absolute inset-y-0 left-0 items-center pl-[20px] text-placeholder pointer-events-none"
-                    >
-                      <Lock />
+                      className="w-full h-[62px] bg-white rounded-[1px] px-[20px] placeholder:text-placeholder outline-none border-[1px]"
+                      placeholder="example@email.com"
+                      name="email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
+                    />
+                  </div>
+                  {formik.touched.email && formik.errors.email && (
+                    <div className="text-[#cc0000] text-[14px]">
+                      {formik.errors.email}
                     </div>
+                  )}
+                </div>
+                <div className="mb-[20px]">
+                  <p className="text-[16px] mb-[8px]">Password</p>
+                  <div className="relative">
                     <input
                       style={
                         formik.touched.password && formik.errors.password
                           ? { borderColor: "#cc0000", color: "#cc0000" }
-                          : passValidation === "strong"
-                          ? { borderColor: "#3ECE44", color: "#3ECE44" }
-                          : passValidation === "medium"
-                          ? { borderColor: "#4397D8", color: "#4397D8" }
-                          : passValidation === "weak"
-                          ? { borderColor: "#FDB236", color: "#FDB236" }
-                          : { borderColor: "#DFDFDF", color: "" }
+                          : { borderColor: "#DFDFDF" }
                       }
                       className={
-                        " h-[62px] w-[380px] bg-white rounded-[1px] px-[40px] placeholder:text-placeholder outline-none border-[1px] "
+                        " h-[62px] w-[380px] bg-white rounded-[1px] px-[20px] placeholder:text-placeholder outline-none border-[1px] "
                       }
-                      placeholder="Enter your new Password.."
+                      placeholder="Password.."
                       name="password"
                       type={passwordType}
                       onChange={formik.handleChange}
@@ -172,105 +134,68 @@ const Login = () => {
                     </div>
                   </div>
 
-                  {formik.values.password.length > 0 &&
-                    passValidation === "weak" && (
-                      <div className="text-[#FDB236] text-[14px]">
-                        Oppss! Your password is weak, we recommend you change
-                        it!
-                      </div>
-                    )}
-                  {formik.values.password.length > 0 &&
-                    passValidation === "medium" && (
-                      <div className="text-[#4397D8] text-[14px]">
-                        Hmm.. Your new password is good but not strong
-                      </div>
-                    )}
-                  {formik.values.password.length > 0 &&
-                    passValidation === "strong" && (
-                      <div className="text-[#3ECE44] text-[14px]">
-                        Well done!! Your new password is strong
-                      </div>
-                    )}
                   {formik.touched.password && formik.errors.password && (
                     <div className="text-[#cc0000] text-[14px]">
                       {formik.errors.password}
                     </div>
                   )}
                 </div>
-                <div className="mb-[40px]">
-                  <p className="text-[16px] mb-[8px]">Confirm New Password</p>
-                  <div className="relative">
-                    <div
-                      style={
-                        formik.touched.passwordConfirmation &&
-                        formik.errors.passwordConfirmation
-                          ? { color: "#cc0000" }
-                          : { color: "#D3D3D3" }
-                      }
-                      className="flex absolute inset-y-0 left-0 items-center pl-[20px] pointer-events-none"
-                    >
-                      <Lock />
-                    </div>
+                <div
+                  style={{
+                    flexDirection: "row",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop:10,
+                    marginBottom:10
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
                     <input
-                      style={
-                        formik.touched.passwordConfirmation &&
-                        formik.errors.passwordConfirmation
-                          ? { borderColor: "#cc0000", color: "#cc0000" }
-                          : { borderColor: "#DFDFDF" }
-                      }
-                      className="w-full h-[62px] bg-white rounded-[1px] px-[40px] placeholder:text-placeholder outline-none border-[1px]"
-                      placeholder="Re-enter your new Password.."
-                      name="passwordConfirmation"
-                      type={passwordConfirmationType}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.passwordConfirmation}
+                      type="checkbox"
+                      id="vehicle2"
+                      style={{ height: 20, width: 20, borderRadius: 4 }}
+                      name="vehicle2"
+                      value="Car"
                     />
-                    <div
-                      onClick={togglePasswordConfirmation}
-                      className="flex absolute inset-y-0 right-0 items-center px-[20px] cursor-pointer"
+                    <p
+                      style={{ marginLeft: 10, fontSize: 14, color: "#232323" }}
                     >
-                      {passwordConfirmationType === "password" ? (
-                        <Eye className="w-[14px] h-[14px]" />
-                      ) : (
-                        <EyeClosed className="w-[14px] h-[14px]" />
-                      )}
-                    </div>
+                      Remember for 30 days
+                    </p>
                   </div>
-                  {formik.touched.passwordConfirmation &&
-                    formik.errors.passwordConfirmation && (
-                      <div className="text-[#cc0000] text-[14px]">
-                        {formik.errors.passwordConfirmation}
-                      </div>
-                    )}
+                  <Link
+                    to={"/forgot-password"}
+                    className="font-bold text-[14px] text-[#5E45FF] "
+                  >
+                    Forgot Password
+                  </Link>
                 </div>
-               
+
                 <button
-              className=" h-[50px] mt-[20px] w-full py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
-              type="submit"
-              >
-              <p className="text-[16px] text-white font-bold ">Reset Password</p>
-            </button>
+                  className=" h-[50px] mt-[20px] w-full py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
+                  type="submit"
+                >
+                  <p className="text-[16px] text-white font-bold ">Sign In</p>
+                </button>
               </div>
             </form>
 
-            {success && (<>
-              <div className="text-[16px] p-[24px] mt-[16px] bg-green/10">
-                <div className="text-green flex flex-row mb-[8px]">
-                  <CheckCircle className="mr-[8px]" />
-                  <span>Congrats!!</span>
-                </div>
-                <p>Your password has been reset</p>
-                
-              </div>
-              <p className="text-center mt-[16px]">
-                  Try to{" "}
-                  <Link to={"/login"} className="font-bold text-[14px] text-[#5E45FF] ">
-                    Log In
-                  </Link>{" "}
-                  
-                </p>
-            </>)}
+            <p className="text-center mt-[16px]">
+              Don't have an account?
+              <Link
+                to={"/signup"}
+                className="font-bold text-[14px] text-[#5E45FF] "
+              >
+                {" "}
+                Sign Up
+              </Link>{" "}
+            </p>
           </div>
         </div>
       </div>
