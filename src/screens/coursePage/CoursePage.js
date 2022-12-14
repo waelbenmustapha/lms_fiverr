@@ -91,7 +91,7 @@ function CoursePage() {
     return courseDetails.is_enrolled ? (
       <div className="h-full bg-[#f9f9f9] flex flex-col">
         <div className="flex flex-row mediamax-767:flex-col-reverse">
-          <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
+          <div className="w-[380px] mediamax-767:w-full mediamax-1079:w-[280px] relative mediamax-950:w-[240px] flex flex-col bg-[#fafafa] h-[calc(100vh-100px)] mediamax-767:max-h-[40vh]  mediamax-767:h-fit min767:max-h-[800px] ">
             {/*<div className="mb-[40px] mt-[76px] flex items-center gap-[20px]  mediamax-767:mb-[3px]  mediamax-767:mt-[8px] mr-[64px]  mediamax-1079:mr-[40px] mediamax-950:mr-[30px]  mediamax-767:mr-[20px]  mediamax-767:gap-[15px] mediamax-1079:mb-[28px] mediamax-1079:mt-[60px] mediamax-1079:gap-[14px] mediamax-950:mb-[25px] mediamax-950:mt-[50px] mediamax-950:gap-[12px]">
               <p className="text-[18px] font-bold  mediamax-1079:text-[16px]">
                 تقدمك بالبرنامج:
@@ -116,6 +116,12 @@ function CoursePage() {
                 </div>
               </div>
             </div>*/}
+            <div className="absolute top-0 left-0 w-full h-[6px] bg-[#E2DEFA]">
+            <div
+              style={{ width: `${progressquizz.percentage}%` }}
+              className="h-full bg-[#5E45FF] rounded-[4px]"
+            ></div>
+          </div>
             <div className="bg-white p-[10px] mb-[24px]">
               <p className=" text-[#5E45FF] text-[16px] font-bold ml-[20px]">
                 {progressquizz.percentage}% completed

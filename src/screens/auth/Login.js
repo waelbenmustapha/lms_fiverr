@@ -4,14 +4,18 @@ import { Formik, ErrorMessage, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 import { ReactComponent as CheckCircle } from "../../assets/svg/check-circle.svg";
 import { ReactComponent as Lock } from "../../assets/svg/lock.svg";
+import { signin } from "../../utils/apis/Auth";
 import { ReactComponent as Eye } from "../../assets/svg/eye.svg";
 import { ReactComponent as EyeClosed } from "../../assets/svg/eye-close.svg";
 import axios from "axios";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Login = () => {
   const [success, setSuccess] = useState(false);
+  const [loginErr, setLoginErr] = useState(false);
+  const auth = useAuth()
   const [passwordType, setPasswordType] = useState("password");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -20,20 +24,7 @@ const Login = () => {
     }
   };
 
-  // submit changes
-  async function updatePassword(password) {
-    await axios
-      .put("https://reqres.in/api/users/", { password })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          setSuccess(true);
-        } else {
-          console.log(res);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
+
 
   const formik = useFormik({
     initialValues: {
@@ -46,7 +37,12 @@ const Login = () => {
     }),
     onSubmit: function (values) {
       // submit password if match the requirements and show success message
-      console.log(values);
+      signin(values)
+        .then((res) => {
+          auth.login(res.token);
+          navigate("/", { state: { from: "login" } });
+        })
+        .catch(() => setLoginErr(true))
     },
   });
 
@@ -61,7 +57,7 @@ const Login = () => {
       /> */}
       <div
         style={{
-          backgroundImage: "url(/bgblue.png)",
+          backgroundImage: "url(/bgblue .png)",
           backgroundAttachment: "fixed",
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
@@ -70,10 +66,8 @@ const Login = () => {
       >
         <div className="relative w-full h-full flex flex-col justify-center py-[90px] max-w-[1100px] items-center rounded-[4px]  bg-white">
           <div className="max-w-[600px]">
-            <p onClick={()=>navigate(-1)} className="font-bold cursor-pointer ">
-              {"<<"} <span className="font-[400] underline">Back</span>
-            </p>
-            <p className="text-[#5E45FF] font-bold text-[32px]">Login</p>
+           
+            <p className="text-[#5E45FF] font-bold text-[32px]">Log In</p>
             <p className="text-[20px] mb-[32px]">
               Welcome back! Please enter your details.
             </p>
@@ -115,7 +109,7 @@ const Login = () => {
                       className={
                         " h-[62px] w-[380px] bg-white rounded-[1px] px-[20px] placeholder:text-placeholder outline-none border-[1px] "
                       }
-                      placeholder="Password.."
+                      placeholder="********"
                       name="password"
                       type={passwordType}
                       onChange={formik.handleChange}
@@ -145,8 +139,8 @@ const Login = () => {
                     flexDirection: "row",
                     display: "flex",
                     justifyContent: "space-between",
-                    marginTop:10,
-                    marginBottom:10
+                    marginTop: 10,
+                    marginBottom: 10,
                   }}
                 >
                   <div
@@ -176,7 +170,11 @@ const Login = () => {
                     Forgot Password
                   </Link>
                 </div>
-
+                {loginErr && (
+                  <div className="text-[13px] p-[10px] mt-[10px] w-fit rounded-[4px] bg-[rgb(204,0,0,0.2)] flex flex-row items-center">
+                    <p> Invalid email or password </p>
+                  </div>
+                )}
                 <button
                   className=" h-[50px] mt-[20px] w-full py-[8px] px-[16px] font-[inherit] text-[14px] font-bold cursor-pointer whitespace-nowrap no-underline text-center flex items-center justify-center border-[1px] rounded-[4px] border-blue outline-none bg-blue-gradient text-white"
                   type="submit"
